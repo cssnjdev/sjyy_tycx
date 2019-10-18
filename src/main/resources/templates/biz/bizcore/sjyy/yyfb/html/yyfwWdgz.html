@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<title>标签管理</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/sy.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/yyfb/yyfwWdgz.js}"></script>
+
+
+<style>
+
+ .block{
+   background: #fff;
+ }
+ 
+ .yy_container>.row>.colbox{
+ 	margin-bottom: 20px;
+ }
+ 
+ .block>.block_title{
+   background: #f3f3ff;
+ }
+ 
+ .block>.block_query{
+    border-bottom: none;
+}
+ 
+ 
+ .block{
+   border: 1px solid #eee;
+ }
+  
+ 
+ 
+</style>
+		  
+</head>
+
+<body style="">
+  
+ 
+<div id="north"  class="ui-layout-north" >
+
+		<div id="top" class="w_p100 top box p10_r_l"  style="padding:20px 30px 0 30px;border: 0;height: 55px;"  >
+		
+		 	   <div class="w_p100 m_center relative "   >
+		 	       
+		 	         <span id="top_title"  >
+			               <strong>	我关注的应用 </strong>
+			         </span>
+		 	         <a href="javascript:void(0);" class="backhome"  onclick="cssnj_windowBack()">
+		                                       返回首页 <span class="glyphicon glyphicon-hand-left" style="color:red"></span>
+		             </a>
+		 	        
+			    </div>
+		    
+		         
+		</div> 
+ 
+ </div> 
+  
+<div id="center" class="ui-layout-center" >
+  
+  <div id="yy_container" class="container yy_container" style="height: 100%;padding-left:20px; padding-right:20px;background:#f3f3f3;">
+  
+      <div class="row">
+       
+      </div>
+         
+  </div>
+ 
+ </div> 
+  
+<div class="modal fade" id="YyMaxModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog" style="z-index: 9999;width:80%;margin-top:30px;height:80%;" >
+		<div class="modal-content" style="height: 100%;background: none;">
+			<div class="modal-header" style="background: rgba(255,255,255,1);padding: 5px;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" > 
+					<span aria-hidden="true" class="glyphicon glyphicon-remove" style="font-size:14px;color:#5273D6;line-height: 21px;"></span>
+				</button>
+				 <h5 class="modal-title"  style="font-size: 15px;font-weight: bold;line-height: 21px;">
+				 		<span style="background: blue;width:6px;height:15px;margin-top:3px;margin-left:10px; display: inline-block;"></span>
+				        <span id = "YyMaxTitle" ></span>
+				 </h5>
+ 			</div>
+		    <div class="modal-body" id="YyMaxBody"   style="height:100%;background: #fff;">						
+		      	<div style="width: 100%;height: 100%;"> </div>										
+		    </div>
+		</div>
+	</div>
+</div> 
+  
+  
+</body>
+
+
+</html>

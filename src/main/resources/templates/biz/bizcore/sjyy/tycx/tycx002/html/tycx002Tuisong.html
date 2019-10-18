@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>问题反馈管理</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+ <script type="text/javascript" src="/workflow_client/config/workflow_config.js"></script>
+   <script type="text/javascript" src="/workflow_client/core/workflow.js"></script>
+	 <script type="text/javascript" src="/workflow_client/ext/workflow_ext.js"></script>
+</head>
+
+<body>
+
+	<div class="modal-header qptab_modal-header" id="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+			<span aria-hidden="true" id="times">×</span>
+		</button>
+		<div class="modal-title qptab_modal-title qptab_modal-title" id="myModalLabel">
+			<span class="glyphicon glyphicon-th-list" aria-hidden="true"
+				style="margin-left: 5px;margin-right:5px;"></span> 问题推送
+		</div>
+	</div>
+
+	<div class="modal-body">
+		<div style="height:650px;overflow:auto;">
+			<div id="top" class="w_p100 top box" >
+		 	    <div class="w_p96 m_center relative "  id="workflow_toolbar">
+			    	<!--  <span id="top_help" class="abs_left top_toolbar"  >
+			        	<a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="saveTuisong()">
+		                	<span class="glyphicon glyphicon-save"></span>推送
+		                </a>-->
+		                <a href="javascript:void(0);" id="uploadtoftp" class="btn btn-sm btn-primary no-radius" onclick="start()">
+		                	<span class="glyphicon glyphicon-save"></span>添加截图
+		                </a>
+					<!--  </span>-->
+			        <span id="top_title" class="abs_right top_title"  >
+			        	问题推送
+			        </span>
+			    </div>
+			</div>
+			
+			<div class="" id="" style="margin: 0 auto;min-height: 500px;">
+				<jsp:useBean id="date" class="java.util.Date"></jsp:useBean>
+				<fmt:formatDate var="currDatetime" value="${date }" type="both" dateStyle="long" pattern="yyyy-MM-dd HH:mm:ss"/>
+				<form id="wttsForm"   class="form-horizontal"  >
+					<table class="table" border="0" cellpadding="5" cellspacing="0" style="margin: 0 auto; width: 100%;">
+						<input type="hidden" name="lcslh" id="lcslh" value="${lcslh}"   />
+						<input type="hidden" name="workItemId" id="workItemId" value="${workItemId}"   />
+						<input type="hidden" name="fxyyid" id="fxyyid" value="${fxyyid}"   />
+						<tr>
+                			<td width="20%" align="right"  >
+                				<strong>SQLXH：</strong>
+                			</td>
+                			<td width="30%" >
+			               		<input type="text" name="sqlxh" id="sqlxh" value="${sqlxh }" class="form-control" readonly="readonly" />
+			                </td>
+                			<td width="20%" align="right"  >
+                				<strong>查询条件：</strong>
+                			</td>
+                			<td width="30%" >
+			               		<input type="text" name="cxtj" id="cxtj" value="${cxtjStr }" class="form-control" readonly="readonly" />
+			                </td>
+                		</tr>
+						<tr>
+                			<td width="20%" align="right"  >
+                				<strong>录入人员：</strong>
+                			</td>
+                			<td width="30%" >
+			               		<input type="text" name="lrr_dm" id="lrr_dm" value="999999CSSNJ" class="form-control"  readonly="readonly" />
+			                </td>
+                			<td width="20%" align="right"  >
+                				<strong>录入时间：</strong>
+                			</td>
+                			<td width="30%" >
+			               		<input type="text" name="lrrq" id="lrrq" value="${currDatetime }" class="form-control"  readonly="readonly" />
+			                </td>
+                		</tr>
+						<tr>
+                			<td width="20%" align="right"  >
+                				<strong>推送人员：</strong>
+                			</td>
+                			<td width="30%" >
+			               		<input type="text" name="jsry_dm" id="jsry_dm" value="999999CSSNJ" class="form-control"  readonly="readonly" />
+			                </td>
+                			<!-- <td width="20%" align="right"  >
+                				<strong>文件：</strong>
+                			</td>
+                			<td width="30%" >
+						        <input type="file" id="wtimg" name="wtimg"/>
+			                </td> -->
+                		</tr>
+                		<tr>
+                			<td width="20%" align="right">
+                				<strong>问题描述：</strong>
+                			</td>
+                			<td width="80%" align="right" colspan="3">
+                				<textarea name="wtms" id="wtms" class="form-control" bizvalidate="false" widget="true" style="width: 99.9%; height: 165px; float: left;"></textarea>
+                			</td>
+                		</tr>
+                		<tr>
+                			<td width="20%" align="right">
+                				<strong>问题图片：</strong>
+                			</td>
+                			<td width="80%" align="right" colspan="3">
+                				<img id="wtimgurl" name="wtimgurl" width="100%" height="100%" alt="问题图片" src=""/>
+                			</td>
+                		</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script language="javascript" type="text/javascript" src="/public/js/screenshot/jcanvas.min.js"></script>
+	<script language="javascript" type="text/javascript" src="/public/js/screenshot/html2canvas.min.js"></script>
+	<script language="javascript" type="text/javascript" src="/public/js/screenshot/canvasCut.js"></script>
+	<script language="javascript" type="text/javascript">
+	//初始化方法，启动工作流
+	var workItemid="";
+		$(function(){
+		       cssnj_workflow_init();
+		    })
+		    //保存前
+function cssnj_workflow_save_before() {
+		//表单验证
+		if (cssnj_workflow_lcslh == null || cssnj_workflow_lcslh == "") {
+			
+			//启动工作流
+			var dataObj = new Object();
+			
+			dataObj.bizId = "3320120170401";
+			dataObj.bizMc = "南京中软-通用开发平台";
+			
+			dataObj.lcdyid = "wtfkwj";
+			dataObj.lcjgdm = "23201001000";
+			dataObj.qdgw = "232000000037";
+			dataObj.qdjg = "23201001000";
+			dataObj.qdry = "23201000186"; // 启动人员
+			//dataObj.ywlcid = '1';
+			// 自定义参数无限扩展 （流程扩展信息，存入流程变量）
+			// dataObj.cssnj_workflow_params_abc = "1"; //自定义扩展参数 参数名前必须添加
+			// cssnj_workflow_params_abc; 后台实际取的 参数名为 abc.
+			//dataObj.cssnj_workflow_params_id=id;
+			cssnj_workflow_start_self(dataObj);
+		} else {
+			//保存业务方法
+			saveTuisong();
+		}
+	
+}
+//启动成功后事件
+function cssnj_workflow_start_after_success(lcslh, workItemId) {
+	//alert("页面重载start After方法 " + lcslh);
+	lcslid = lcslh;
+	workItemid=workItemId;
+	$("#lcslid").val(lcslid);
+	saveTuisong();
+}
+		var dataurl=null;
+		var imgblob=null;
+		var formData1=new FormData();
+		function saveTuisong() {
+			var formData = $("#wttsForm").cssnjGetFormData();
+			formData.lcslh=lcslid;
+			formData.workItemId=workItemid;
+			$.ajax({
+				type : "POST",
+				dataType : "json",
+				async : false,
+				url:ctx+"tykf/request?tld=Tycx002DzcxService_saveTS",
+				data:formData,
+				success : function(result) {
+					
+					var tsid=result.tsid;
+					var fd=new FormData();
+					fd.append("tsid",tsid);
+					fd.append("file",imgblob,tsid+".png");
+					console.log( imgblob);
+					var bb=new Blob(['abd123'],{type:"text/plain"});
+					fd.append("text",bb);
+					console.log( bb);
+					
+					$.ajax({
+						type : "POST",
+						dataType : "json",
+						async : false,
+						contentType:false,
+						processData:false,
+						url:ctx+"tykf/request?tld=Tycx002DzcxService_saveTSImg",
+						data:fd,
+						success : function(result) {
+							alert("2保存成功!");
+						},
+						error : function(e) {
+							alert("2保存失败!");
+						}
+					});
+					alert("1保存成功!");
+				},
+				error : function(e) {
+					alert("1保存失败!");
+				}
+			});
+		}
+		function start() {
+			//隐藏模态框方便用户截图
+			$('.modal-backdrop').remove();
+			$("#tuisongDialog").hide();
+			screenshot.beginShot(true,function(dataURL, blob) {
+				$('#wtimgurl').attr('src', dataURL);
+				dataurl=encodeURI(dataURL);
+				imgblob=blob;
+			//显示模态框
+			$("#tuisongDialog").show();
+			});
+		}
+		
+	</script>
+	
+</body>
+
+
+</html>

@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Tycx001CxCxjgdyMapper">
+    <resultMap id="tycx001CxCxjgdyPojoMap" type="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo">
+        <result column="dmsql" property="dmsql" />
+        <result column="dqfs" property="dqfs" />
+        <result column="dyghbbj" property="dyghbbj" />
+        <result column="glbj" property="glbj" />
+        <result column="jcbzdlx" property="jcbzdlx" />
+        <result column="kzlx" property="kzlx" />
+        <result column="lbm" property="lbm" />
+        <result column="lkd" property="lkd" />
+        <result column="llx" property="llx" />
+        <result column="lmc" property="lmc" />
+        <result column="lms" property="lms" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="mbbz" property="mbbz" />
+        <result column="sdbj" property="sdbj" />
+        <result column="sjgsdq" property="sjgsdq" />
+        <result column="sjlmc" property="sjlmc" />
+        <result column="sqlxh" property="sqlxh" />
+        <result column="tjlx" property="tjlx" />
+        <result column="url" property="url" />
+        <result column="uuid" property="uuid" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="xh" property="xh" />
+        <result column="xsgs" property="xsgs" />
+        <result column="xsxh" property="xsxh" />
+        <result column="xzcs" property="xzcs" />
+        <result column="ycbj" property="ycbj" />
+        <result column="zsfs" property="zsfs" />
+        <result column="tzfs" property="tzfs" />
+        <result column="urlmc" property="urlmc" />
+        <result column="jskj" property="jskj" />
+        <result column="ywkj" property="ywkj" />
+        <result column="color" property="color" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        dmsql,
+        dqfs,
+        dyghbbj,
+        glbj,
+        jcbzdlx,
+        kzlx,
+        lbm,
+        lkd,
+        llx,
+        lmc,
+        lms,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        mbbz,
+        sdbj,
+        sjgsdq,
+        sjlmc,
+        sqlxh,
+        tjlx,
+        url,
+        uuid,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        xh,
+        xsgs,
+        xsxh,
+        xzcs,
+        ycbj,
+        zsfs,
+        tzfs,
+        yjfw,
+        urlmc,
+        jskj,
+        ywkj,
+        color
+    </sql>
+    <sql id="Base_Param_List" >
+        #{dmsql},
+        #{dqfs},
+        #{dyghbbj},
+        #{glbj},
+        #{jcbzdlx},
+        #{kzlx},
+        #{lbm},
+        #{lkd},
+        #{llx},
+        #{lmc},
+        #{lms},
+        #{lrrq},
+        #{lrr_dm},
+        #{mbbz},
+        #{sdbj},
+        #{sjgsdq},
+        #{sjlmc},
+        #{sqlxh},
+        #{tjlx},
+        #{url},
+        #{uuid},
+        #{xgrq},
+        #{xgr_dm},
+        #{xh},
+        #{xsgs},
+        #{xsxh},
+        #{xzcs},
+        #{ycbj},
+        #{zsfs},
+        #{urlmc},
+        #{jskj},
+        #{ywkj},
+        #{color}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo" >
+       SELECT UUID,SQLXH,XH,LMC,YCBJ,GLBJ,URL,TJLX,XSXH,XZCS,SJLMC,SJGSDQ,
+               LBM,JCBZDLX,DMSQL,ZSFS,KZLX,DYGHBBJ,DQFS,XSGS,LKD,LMS,LLX,MBBZ,
+               LRR_DM,LRRQ,XGR_DM,XGRQ,NVL(SDBJ,0) SDBJ,TZFS,
+               (SELECT B.LMS FROM CX_CXJGDY B WHERE A.SJLMC=B.UUID) SJLMS,YJFW,urlmc,color,zdybj
+          FROM CX_CXJGDY A
+         WHERE 1 = 1
+           <if test="uuid != null" >
+           AND UUID =  #{uuid}
+           </if>
+         <if test="sqlxh != null" >
+           AND sqlxh =  #{sqlxh}
+           </if>         
+           <if test="lmc != null" >
+           AND  UPPER(LMC) =  #{lmc}
+           </if>     
+      ORDER BY XSXH
+    </select>
+
+    <select id="selectByPKey" resultMap="tycx001CxCxjgdyPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from CX_CXJGDY
+        where
+        uuid=#{uuid}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo">
+        delete from CX_CXJGDY
+        where
+        sqlxh=#{sqlxh}
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo" >
+        insert into CX_CXJGDY (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo" >
+        insert into CX_CXJGDY
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            lrrq, 
+            <if test="dmsql != null and dmsql !='' " >
+                dmsql,
+            </if>
+            <if test="dqfs != null and dqfs !=''" >
+                dqfs,
+            </if>
+            <if test="dyghbbj != null and dyghbbj !=''" >
+                dyghbbj,
+            </if>
+            <if test="glbj != null and glbj !=''" >
+                glbj,
+            </if>
+            <if test="jcbzdlx != null and jcbzdlx !=''" >
+                jcbzdlx,
+            </if>
+            <if test="kzlx != null and kzlx !=''" >
+                kzlx,
+            </if>
+            <if test="lbm != null and lbm !=''" >
+                lbm,
+            </if>
+            <if test="lkd != null and lkd !=''" >
+                lkd,
+            </if>
+            <if test="llx != null and llx !=''" >
+                llx,
+            </if>
+            <if test="lmc != null and lmc !=''" >
+                lmc,
+            </if>
+            <if test="lms != null and lms !=''" >
+                lms,
+            </if>  
+            <if test="lrr_dm != null and lrr_dm !=''" >
+                lrr_dm,
+            </if>
+            <if test="mbbz != null and mbbz !=''" >
+                mbbz,
+            </if>
+            <if test="sdbj != null and sdbj !=''" >
+                sdbj,
+            </if>
+            <if test="sjgsdq != null and sjgsdq !=''" >
+                sjgsdq,
+            </if>
+            <if test="sjlmc != null and sjlmc !=''" >
+                sjlmc,
+            </if>
+            <if test="sqlxh != null and sqlxh !=''" >
+                sqlxh,
+            </if>
+            <if test="tjlx != null and tjlx !=''" >
+                tjlx,
+            </if>
+            <if test="url != null and url !=''" >
+                url,
+            </if>
+            <if test="uuid != null and uuid !=''" >
+                uuid,
+            </if>
+            <if test="xgrq != null and xgrq !=''" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null and xgr_dm !=''" >
+                xgr_dm,
+            </if>
+            <if test="xh != null and xh !=''" >
+                xh,
+            </if>
+            <if test="xsgs != null and xsgs !=''" >
+                xsgs,
+            </if>
+            <if test="xsxh != null and xsxh !=''" >
+                xsxh,
+            </if>
+            <if test="xzcs != null and xzcs !=''" >
+                xzcs,
+            </if>
+            <if test="ycbj != null and ycbj !=''" >
+                ycbj,
+            </if>
+            <if test="zsfs != null and zsfs !=''" >
+                zsfs,
+            </if>
+             <if test="urlmc != null and urlmc !=''" >
+                urlmc,
+            </if>
+             <if test="jskj != null and jskj !=''" >
+                jskj,
+            </if>
+             <if test="ywkj != null and ywkj !=''" >
+                ywkj,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            sysdate,
+            <if test="dmsql != null and dmsql!=''" >
+                    #{dmsql},
+            </if>
+            <if test="dqfs != null and dqfs !=''" >
+                    #{dqfs},
+            </if>
+            <if test="dyghbbj != null and dyghbbj !=''" >
+                    #{dyghbbj},
+            </if>
+            <if test="glbj != null and glbj !=''" >
+                    #{glbj},
+            </if>
+            <if test="jcbzdlx != null and jcbzdlx!=''" >
+                    #{jcbzdlx},
+            </if>
+            <if test="kzlx != null and kzlx!=''" >
+                    #{kzlx},
+            </if>
+            <if test="lbm != null and lbm!=''" >
+                    #{lbm},
+            </if>
+            <if test="lkd != null and lkd!=''" >
+                    #{lkd},
+            </if>
+            <if test="llx != null and llx!=''" >
+                    #{llx},
+            </if>
+            <if test="lmc != null and lmc!=''" >
+                    #{lmc},
+            </if>
+            <if test="lms != null and lms!=''" >
+                    #{lms},
+            </if> 
+            <if test="lrr_dm != null and lrr_dm !=''" >
+                    #{lrr_dm},
+            </if>
+            <if test="mbbz != null and mbbz!=''" >
+                    #{mbbz},
+            </if>
+            <if test="sdbj != null and sdbj!=''" >
+                    #{sdbj},
+            </if>
+            <if test="sjgsdq != null and sjgsdq!=''" >
+                    #{sjgsdq},
+            </if>
+            <if test="sjlmc != null and sjlmc!=''" >
+                    #{sjlmc},
+            </if>
+            <if test="sqlxh != null and sqlxh!=''" >
+                    #{sqlxh},
+            </if>
+            <if test="tjlx != null and tjlx!=''" >
+                    #{tjlx},
+            </if>
+            <if test="url != null and url!=''" >
+                    #{url},
+            </if>
+            <if test="uuid != null and uuid!=''" >
+                    #{uuid},
+            </if>
+            <if test="xgrq != null and xgrq!=''" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null and xgr_dm!=''" >
+                    #{xgr_dm},
+            </if>
+            <if test="xh != null and xh!=''" >
+                    #{xh},
+            </if>
+            <if test="xsgs != null and xsgs!=''" >
+                    #{xsgs},
+            </if>
+            <if test="xsxh != null and xsxh!=''" >
+                    #{xsxh},
+            </if>
+            <if test="xzcs != null and xzcs!=''" >
+                    #{xzcs},
+            </if>
+            <if test="ycbj != null and ycbj!=''" >
+                    #{ycbj},
+            </if>
+            <if test="zsfs != null and zsfs!=''" >
+                    #{zsfs},
+            </if>
+            <if test="urlmc != null and urlmc!=''" >
+                    #{urlmc},
+            </if>
+            <if test="jskj != null and jskj!=''" >
+                    #{jskj},
+            </if>
+            <if test="ywkj != null and ywkj!=''" >
+                    #{ywkj},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo" >
+        update CX_CXJGDY
+        <trim prefix="set" suffixOverrides="," >
+            <if test="dmsql != null " >
+                dmsql =#{dmsql},
+            </if>
+            <if test="dqfs != null " >
+                dqfs =#{dqfs},
+            </if>
+            <if test="dyghbbj != null " >
+                dyghbbj =#{dyghbbj},
+            </if>
+            <if test="glbj != null " >
+                glbj =#{glbj},
+            </if>
+            <if test="jcbzdlx != null " >
+                jcbzdlx =#{jcbzdlx},
+            </if>
+            <if test="kzlx != null " >
+                kzlx =#{kzlx},
+            </if>
+            <if test="lbm != null " >
+                lbm =#{lbm},
+            </if>
+            <if test="lkd != null " >
+                lkd =#{lkd},
+            </if>
+            <if test="llx != null " >
+                llx =#{llx},
+            </if>
+            <if test="lmc != null " >
+                lmc =#{lmc},
+            </if>
+            <if test="lms != null " >
+                lms =#{lms},
+            </if>
+            <if test="lrrq != null " >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null " >
+                lrr_dm =#{lrr_dm},
+            </if>
+            <if test="mbbz != null " >
+                mbbz =#{mbbz},
+            </if>
+            <if test="sdbj != null " >
+                sdbj =#{sdbj},
+            </if>
+            <if test="sjgsdq != null " >
+                sjgsdq =#{sjgsdq},
+            </if>
+            <if test="sjlmc != null " >
+                sjlmc =#{sjlmc},
+            </if>
+            <if test="sqlxh != null " >
+                sqlxh =#{sqlxh},
+            </if>
+            <if test="tjlx != null  " >
+                tjlx =#{tjlx},
+            </if>
+            <if test="url != null  " >
+                url =#{url},
+            </if>
+            <if test="uuid != null " >
+                uuid =#{uuid},
+            </if>
+            <if test="xgrq != null " >
+                xgrq =to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null " >
+                xgr_dm =#{xgr_dm},
+            </if>
+            <if test="xh != null " >
+                xh =#{xh},
+            </if>
+            <if test="xsgs != null " >
+                xsgs =#{xsgs},
+            </if>
+            <if test="xsxh != null " >
+                xsxh =#{xsxh},
+            </if>
+            <if test="xzcs != null " >
+                xzcs =#{xzcs},
+            </if>
+            <if test="ycbj != null " >
+                ycbj =#{ycbj},
+            </if>
+            <if test="zsfs != null " >
+                zsfs =#{zsfs},
+            </if>
+            <if test="urlmc != null " >
+                urlmc =#{urlmc},
+            </if>
+            <if test="jskj != null " >
+                jskj =#{jskj},
+            </if>
+            <if test="ywkj != null " >
+                ywkj =#{ywkj},
+            </if>
+            <if test="color != null " >
+                color =#{color},
+            </if>
+            <if test="yjfw != null " >
+                yjfw =#{yjfw},
+            </if>
+        </trim>
+        where
+        uuid=#{uuid}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo" >
+        update  CX_CXJGDY set
+        dmsql = #{dmsql},
+        dqfs = #{dqfs},
+        dyghbbj = #{dyghbbj},
+        glbj = #{glbj},
+        jcbzdlx = #{jcbzdlx},
+        kzlx = #{kzlx},
+        lbm = #{lbm},
+        lkd = #{lkd},
+        llx = #{llx},
+        lmc = #{lmc},
+        lms = #{lms},
+        lrrq = #{lrrq},
+        lrr_dm = #{lrr_dm},
+        mbbz = #{mbbz},
+        sdbj = #{sdbj},
+        sjgsdq = #{sjgsdq},
+        sjlmc = #{sjlmc},
+        sqlxh = #{sqlxh},
+        tjlx = #{tjlx},
+        url = #{url},
+        uuid = #{uuid},
+        xgrq = #{xgrq},
+        xgr_dm = #{xgr_dm},
+        xh = #{xh},
+        xsgs = #{xsgs},
+        xsxh = #{xsxh},
+        xzcs = #{xzcs},
+        ycbj = #{ycbj},
+        zsfs = #{zsfs}
+        where
+        
+    </update>
+    <insert id="saveAddCxjgl" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxjgdyPojo" >
+        insert into CX_CXJGDY
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="dmsql != null and dmsql !='' " >
+                dmsql,
+            </if>
+            <if test="dqfs != null and dqfs !=''" >
+                dqfs,
+            </if>
+            <if test="dyghbbj != null and dyghbbj !=''" >
+                dyghbbj,
+            </if>
+            <if test="glbj != null and glbj !=''" >
+                glbj,
+            </if>
+            <if test="jcbzdlx != null and jcbzdlx !=''" >
+                jcbzdlx,
+            </if>
+            <if test="kzlx != null and kzlx !=''" >
+                kzlx,
+            </if>
+            <if test="lbm != null and lbm !=''" >
+                lbm,
+            </if>
+            <if test="lkd != null and lkd !=''" >
+                lkd,
+            </if>
+            <if test="llx != null and llx !=''" >
+                llx,
+            </if>
+            <if test="lmc != null and lmc !=''" >
+                lmc,
+            </if>
+            <if test="lms != null and lms !=''" >
+                lms,
+            </if>
+            <if test="lrrq != null and lrrq !=''" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null and lrr_dm !=''" >
+                lrr_dm,
+            </if>
+            <if test="mbbz != null and mbbz !=''" >
+                mbbz,
+            </if>
+            <if test="sdbj != null and sdbj !=''" >
+                sdbj,
+            </if>
+                sjgsdq,
+            <if test="sjlmc != null and sjlmc !=''" >
+                sjlmc,
+            </if>
+            <if test="sqlxh != null and sqlxh !=''" >
+                sqlxh,
+            </if>
+            <if test="tjlx != null and tjlx !=''" >
+                tjlx,
+            </if>
+            <if test="url != null and url !=''" >
+                url,
+            </if>
+            <if test="uuid != null and uuid !=''" >
+                uuid,
+            </if>
+            <if test="xgrq != null and xgrq !=''" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null and xgr_dm !=''" >
+                xgr_dm,
+            </if>
+            <if test="xh != null and xh !=''" >
+                xh,
+            </if>
+            <if test="xsgs != null and xsgs !=''" >
+                xsgs,
+            </if>
+            <if test="xsxh != null and xsxh !=''" >
+                xsxh,
+            </if>
+            <if test="xzcs != null and xzcs !=''" >
+                xzcs,
+            </if>
+            <if test="ycbj != null and ycbj !=''" >
+                ycbj,
+            </if>
+            <if test="zsfs != null and zsfs !=''" >
+                zsfs,
+            </if>
+             <if test="urlmc != null and urlmc !=''" >
+                urlmc,
+            </if>
+             <if test="jskj != null and jskj !=''" >
+                jskj,
+            </if>
+             <if test="ywkj != null and ywkj !=''" >
+                ywkj,
+            </if>
+            zdybj
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="dmsql != null and dmsql!=''" >
+                    #{dmsql},
+            </if>
+            <if test="dqfs != null and dqfs !=''" >
+                    #{dqfs},
+            </if>
+            <if test="dyghbbj != null and dyghbbj !=''" >
+                    #{dyghbbj},
+            </if>
+            <if test="glbj != null and glbj !=''" >
+                    #{glbj},
+            </if>
+            <if test="jcbzdlx != null and jcbzdlx!=''" >
+                    #{jcbzdlx},
+            </if>
+            <if test="kzlx != null and kzlx!=''" >
+                    #{kzlx},
+            </if>
+            <if test="lbm != null and lbm!=''" >
+                    #{lbm},
+            </if>
+            <if test="lkd != null and lkd!=''" >
+                    #{lkd},
+            </if>
+            <if test="llx != null and llx!=''" >
+                    #{llx},
+            </if>
+            <if test="lmc != null and lmc!=''" >
+                    #{lmc},
+            </if>
+            <if test="lms != null and lms!=''" >
+                    #{lms},
+            </if>
+            <if test="lrrq != null and lrrq!=''" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null and lrr_dm !=''" >
+                    #{lrr_dm},
+            </if>
+            <if test="mbbz != null and mbbz!=''" >
+                    #{mbbz},
+            </if>
+            <if test="sdbj != null and sdbj!=''" >
+                    #{sdbj},
+            </if>
+            <if test="sjgsdq != null and sjgsdq!=''" >
+                    #{sjgsdq},
+            </if>
+            <if test="sjgsdq == null or sjgsdq==''" >
+                    '0000',
+            </if>
+            <if test="sjlmc != null and sjlmc!=''" >
+                    #{sjlmc},
+            </if>
+            <if test="sqlxh != null and sqlxh!=''" >
+                    #{sqlxh},
+            </if>
+            <if test="tjlx != null and tjlx!=''" >
+                    #{tjlx},
+            </if>
+            <if test="url != null and url!=''" >
+                    #{url},
+            </if>
+            <if test="uuid != null and uuid!=''" >
+                    #{uuid},
+            </if>
+            <if test="xgrq != null and xgrq!=''" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null and xgr_dm!=''" >
+                    #{xgr_dm},
+            </if>
+            <if test="xh != null and xh!=''" >
+                    #{xh},
+            </if>
+            <if test="xsgs != null and xsgs!=''" >
+                    #{xsgs},
+            </if>
+            <if test="xsxh != null and xsxh!=''" >
+                    #{xsxh},
+            </if>
+            <if test="xzcs != null and xzcs!=''" >
+                    #{xzcs},
+            </if>
+            <if test="ycbj != null and ycbj!=''" >
+                    #{ycbj},
+            </if>
+            <if test="zsfs != null and zsfs!=''" >
+                    #{zsfs},
+            </if>
+            <if test="urlmc != null and urlmc!=''" >
+                    #{urlmc},
+            </if>
+            <if test="jskj != null and jskj!=''" >
+                    #{jskj},
+            </if>
+            <if test="ywkj != null and ywkj!=''" >
+                    #{ywkj},
+            </if>
+            '1'
+        </trim>
+    </insert>
+</mapper>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>数据单元</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+	<script type="text/javascript"   data-th-src="@{/js/yyfb/yyfb001_sjdy.js}"></script>
+
+
+
+<style>
+
+.ipts {
+ position: absolute;color: red;top: 19px;font-size: 10px;left: 3px; white-space: nowrap;display: none;
+}
+.ipul{
+  list-style: none;
+  padding: 0px;
+  font-size: 12px;
+}
+.ipul li{
+  list-style: none;
+  padding: 5px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.ipul li:HOVER{
+   background: #eee;
+}
+
+.ipul li .btn{
+   padding: 2px 3px 2px 3px;
+   font-size: 12px;
+}
+
+
+.dblink {
+	position: relative; 
+	width: inherit;
+	width: 60%;
+	height:auto;
+	margin: 0 auto;
+	margin-bottom:12px; 
+	display:block;
+ }
+.dblink table{
+	width:100%;
+	margin:0;
+}
+.dblink td{
+  height: 28px;
+  text-align: center;
+  padding: 2px;
+}
+.xzDblink{
+  bottom:5px;position: absolute;right:-50px;cursor: pointer;
+}
+.qxDblink{
+  bottom:5px;position: absolute;right:-50px;cursor: pointer;display: none;
+}
+.tisxx{
+ bottom:-13px;   left:42%; position: absolute;color:red;font-size:12px;display:none
+}
+#left{
+width:10%;height:100%;float:left;
+}
+#right{
+width:85%;height:100%;float:left;
+}
+</style>	  	 
+</head>
+<body>
+
+ <div class="ui-layout-north "     >
+		
+		<div class="w_p100 " style="height: 38px;">
+		<div id="top" class="w_p100 top box" >
+		 	    <div class="w_p96 m_center relative " >	     
+			           <span id="top_help" class="abs_left top_toolbar"  >
+			              <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="search_dataTable()">
+		                        <span class="glyphicon glyphicon-search"></span>查询
+		                    </a>
+		                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="addSjdyByFxyyid()">
+		                        <span class="glyphicon glyphicon-plus"></span>添加
+		                    </a>                            
+			           </span>	           
+			            <span id="top_title" class="abs_right top_title"  >
+			               	
+			           </span>
+			           
+			    </div>
+		    
+		</div>
+		
+		</div>
+
+
+	<div id="cxtj_box" class="w_p100 box cxtj_box" >
+	   
+	   <div class="w_p96 m_center over_hidden" >
+	   
+	    <form id="cxtj_form">
+	    
+		   <table  class="jb_tj"  cellpadding="0" cellspacing="0"> 
+			    <tbody><tr>
+			        <td>数据库</td> 
+			        <td width="200">
+			        	<select name="sjk" id="sjk" class="form-control populate" onchange = "changeOwner()">
+	 						<option value=""></option>
+							<option   th:each="c:${sjkList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+				 	    </select>
+		 	        </td>
+			    </tr></tbody>
+			 </table>
+			 
+			  <table  class="jb_tj"  cellpadding="0" cellspacing="0"> 
+			    <tbody><tr>
+			        <td>用户名</td> 
+			        <td width="200">
+			        	<select name="owner" id="owner" class="form-control populate"  data-plugin-selectTwo >
+							<option value="">全部 </option>
+							<option   th:each="c:${yhlist}"  th:value="${c.code}" th:text="${c.caption}"></option>
+
+						</select>
+		 	        </td>
+			    </tr></tbody>
+			 </table>
+			 <table  class="jb_tj"  cellpadding="0" cellspacing="0"> 
+			    <tbody><tr>
+			        <td>表英文名</td> 
+			        <td width="200">
+			        <input name="en_name" class="form-control"/>
+		 	        </td>
+			    </tr></tbody>
+			 </table>	
+			  <table  class="jb_tj"  cellpadding="0" cellspacing="0"> 
+			    <tbody><tr>
+			        <td>表中文名</td> 
+			        <td width="200">
+			        	<input name="zh_name" class="form-control"/>
+			        	<input name="etlid"    id="etlid"    type="hidden"  value="${etlid}"    />
+						<input name="ishlk"    id="ishlk"    type="hidden"  value="${ishlk}"    />
+						<input name="procxtbj" id="procxtbj" type="hidden"  value="${procxtbj}" />
+						<input name="fxyy_id" id="fxyy_id" type="hidden"  value="${fxyy_id}" />
+		 	        </td>
+			    </tr></tbody>
+			 </table> 
+		 </form> 
+		 
+	   </div>
+	    
+	</div>
+	
+</div>
+ 
+<div id="main" class="ui-layout-center" style="background: none;">
+     
+         <table id="example1" isfy="true" selectType="1" blhstr="SjkdywhBLH_getNewTable" orderby='order by ywkmc' rowDblclick = "rowDblclick" style="text-align:center;border-collapse:collapse;" cellspacing="0" width="100%" class="display nowrap dataTable" >
+					  <thead style="font-weight:bold;">
+			            <tr>
+			            	  <td name="checkbox"  dataType="dt_checkbox"  width="5"> </td>
+			                  <td name="RN"        dataType="String" width="100" do_onclick="openMx" onclick="">序号</td>
+		                      <td name="OWNER"     dataType="String" width="100" >用户名</td>
+		                      <td name="EN_NAME"    dataType="String" width="100"  >表名</td>
+		                      <td name="ZH_NAME"  dataType="String" width="100" >中文名</td>
+		                      <td name="SM"       dataType="String"  width="100" >说明</td>
+		                      <td name="SJLY_DM" dataType="String" visible="F"></td>
+		                                     
+			            </tr>
+			          </thead>
+   
+		</table>    
+		        
+ </div>
+
+</body>
+</html>

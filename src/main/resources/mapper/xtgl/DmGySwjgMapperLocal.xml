@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizsys.xtgl.dao.local.DmGySwjgMapperLocal">
+    <resultMap id="dmGySwjgPojoMap" type="com.cwks.bizsys.xtgl.domain.DmGySwjgPojo">
+        <result column="bsfwtbz" property="bsfwtbz" />
+        <result column="czdh" property="czdh" />
+        <result column="dsswjgjg" property="dsswjgjg" />
+        <result column="dsswjgmc" property="dsswjgmc" />
+        <result column="dzxx" property="dzxx" />
+        <result column="gdslx_dm" property="gdslx_dm" />
+        <result column="ghbz" property="ghbz" />
+        <result column="gjswjgmc" property="gjswjgmc" />
+        <result column="gsswjgjg" property="gsswjgjg" />
+        <result column="jgjc_dm" property="jgjc_dm" />
+        <result column="sjswjg_dm" property="sjswjg_dm" />
+        <result column="swjgbz" property="swjgbz" />
+        <result column="swjgdz" property="swjgdz" />
+        <result column="swjgfzr_dm" property="swjgfzr_dm" />
+        <result column="swjgjc" property="swjgjc" />
+        <result column="swjgjg" property="swjgjg" />
+        <result column="swjglxdh" property="swjglxdh" />
+        <result column="swjgmc" property="swjgmc" />
+        <result column="swjgywmc" property="swjgywmc" />
+        <result column="swjgyzbm" property="swjgyzbm" />
+        <result column="swjg_dm" property="swjg_dm" />
+        <result column="xsxh" property="xsxh" />
+        <result column="xybz" property="xybz" />
+        <result column="xzqhsz_dm" property="xzqhsz_dm" />
+        <result column="yxbz" property="yxbz" />
+        <result column="yxqsrq" property="yxqsrq" />
+        <result column="yxzzrq" property="yxzzrq" />
+        <result column="zn_dm" property="zn_dm" />
+    </resultMap>
+
+    <resultMap id="comboTreePojoMap" type="com.cwks.bizcore.comm.vo.ComboTreePojo">
+        <result column="id" property="id" />
+        <result column="text" property="text" />
+        <result column="parentId" property="parentId" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        bsfwtbz,
+        czdh,
+        dsswjgjg,
+        dsswjgmc,
+        dzxx,
+        gdslx_dm,
+        ghbz,
+        gjswjgmc,
+        gsswjgjg,
+        jgjc_dm,
+        sjswjg_dm,
+        swjgbz,
+        swjgdz,
+        swjgfzr_dm,
+        swjgjc,
+        swjgjg,
+        swjglxdh,
+        swjgmc,
+        swjgywmc,
+        swjgyzbm,
+        swjg_dm,
+        xsxh,
+        xybz,
+        xzqhsz_dm,
+        yxbz,
+        to_char(yxqsrq,'yyyy-mm-dd hh24:mi:ss') yxqsrq,
+        to_char(yxzzrq,'yyyy-mm-dd hh24:mi:ss') yxzzrq,
+        zn_dm
+    </sql>
+
+    <select id="selectComboSjSwjgDm" parameterType="com.cwks.bizcore.comm.vo.ComboTreePojo" resultType="com.cwks.bizcore.comm.vo.ComboTreePojo" >
+        select t.swjg_dm id,t.swjgmc text,t.sjswjg_dm parentId from dm_gy_swjg_local t start with t.sjswjg_dm='00000000000' connect by prior t.swjg_dm = sjswjg_dm order siblings by t.swjg_dm
+    </select>
+
+    <select id="select" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwjgPojo" resultType="com.cwks.bizsys.xtgl.domain.DmGySwjgPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  dm_gy_swjg_local t
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="swjgmc != null and swjgmc != ''">
+            swjgmc = #{swjgmc}
+            </if>
+            <if test="swjg_dm != null and swjg_dm != ''">
+            and swjg_dm = #{swjg_dm}
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="dmGySwjgPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from dm_gy_swjg_local
+        where
+        swjg_dm=#{swjg_dm}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwjgPojo">
+        delete from dm_gy_swjg_local
+        where
+                swjg_dm=#{swjg_dm}
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwjgPojo" >
+        insert into dm_gy_swjg_local (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Column_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwjgPojo" >
+        insert into dm_gy_swjg_local
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="bsfwtbz != null" >
+                bsfwtbz,
+            </if>
+            <if test="czdh != null" >
+                czdh,
+            </if>
+            <if test="dsswjgjg != null" >
+                dsswjgjg,
+            </if>
+            <if test="dsswjgmc != null" >
+                dsswjgmc,
+            </if>
+            <if test="dzxx != null" >
+                dzxx,
+            </if>
+            <if test="gdslx_dm != null" >
+                gdslx_dm,
+            </if>
+            <if test="ghbz != null" >
+                ghbz,
+            </if>
+            <if test="gjswjgmc != null" >
+                gjswjgmc,
+            </if>
+            <if test="gsswjgjg != null" >
+                gsswjgjg,
+            </if>
+            <if test="jgjc_dm != null" >
+                jgjc_dm,
+            </if>
+            <if test="sjswjg_dm != null" >
+                sjswjg_dm,
+            </if>
+            <if test="swjgbz != null" >
+                swjgbz,
+            </if>
+            <if test="swjgdz != null" >
+                swjgdz,
+            </if>
+            <if test="swjgfzr_dm != null" >
+                swjgfzr_dm,
+            </if>
+            <if test="swjgjc != null" >
+                swjgjc,
+            </if>
+            <if test="swjgjg != null" >
+                swjgjg,
+            </if>
+            <if test="swjglxdh != null" >
+                swjglxdh,
+            </if>
+            <if test="swjgmc != null" >
+                swjgmc,
+            </if>
+            <if test="swjgywmc != null" >
+                swjgywmc,
+            </if>
+            <if test="swjgyzbm != null" >
+                swjgyzbm,
+            </if>
+            <if test="swjg_dm != null" >
+                swjg_dm,
+            </if>
+            <if test="xsxh != null" >
+                xsxh,
+            </if>
+            <if test="xybz != null" >
+                xybz,
+            </if>
+            <if test="xzqhsz_dm != null" >
+                xzqhsz_dm,
+            </if>
+            <if test="yxbz != null" >
+                yxbz,
+            </if>
+            <if test="yxqsrq != null" >
+                yxqsrq,
+            </if>
+            <if test="yxzzrq != null" >
+                yxzzrq,
+            </if>
+            <if test="zn_dm != null" >
+                zn_dm,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="bsfwtbz != null" >
+                    #{bsfwtbz},
+            </if>
+            <if test="czdh != null" >
+                    #{czdh},
+            </if>
+            <if test="dsswjgjg != null" >
+                    #{dsswjgjg},
+            </if>
+            <if test="dsswjgmc != null" >
+                    #{dsswjgmc},
+            </if>
+            <if test="dzxx != null" >
+                    #{dzxx},
+            </if>
+            <if test="gdslx_dm != null" >
+                    #{gdslx_dm},
+            </if>
+            <if test="ghbz != null" >
+                    #{ghbz},
+            </if>
+            <if test="gjswjgmc != null" >
+                    #{gjswjgmc},
+            </if>
+            <if test="gsswjgjg != null" >
+                    #{gsswjgjg},
+            </if>
+            <if test="jgjc_dm != null" >
+                    #{jgjc_dm},
+            </if>
+            <if test="sjswjg_dm != null" >
+                    #{sjswjg_dm},
+            </if>
+            <if test="swjgbz != null" >
+                    #{swjgbz},
+            </if>
+            <if test="swjgdz != null" >
+                    #{swjgdz},
+            </if>
+            <if test="swjgfzr_dm != null" >
+                    #{swjgfzr_dm},
+            </if>
+            <if test="swjgjc != null" >
+                    #{swjgjc},
+            </if>
+            <if test="swjgjg != null" >
+                    #{swjgjg},
+            </if>
+            <if test="swjglxdh != null" >
+                    #{swjglxdh},
+            </if>
+            <if test="swjgmc != null" >
+                    #{swjgmc},
+            </if>
+            <if test="swjgywmc != null" >
+                    #{swjgywmc},
+            </if>
+            <if test="swjgyzbm != null" >
+                    #{swjgyzbm},
+            </if>
+            <if test="swjg_dm != null" >
+                    #{swjg_dm},
+            </if>
+            <if test="xsxh != null" >
+                    #{xsxh},
+            </if>
+            <if test="xybz != null" >
+                    #{xybz},
+            </if>
+            <if test="xzqhsz_dm != null" >
+                    #{xzqhsz_dm},
+            </if>
+            <if test="yxbz != null" >
+                    #{yxbz},
+            </if>
+            <if test="yxqsrq != null" >
+                    to_date(#{yxqsrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="yxzzrq != null" >
+                    to_date(#{yxzzrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="zn_dm != null" >
+                    #{zn_dm},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwjgPojo" >
+        update dm_gy_swjg_local
+        <trim prefix="set" suffixOverrides="," >
+            bsfwtbz =#{bsfwtbz},
+            czdh =#{czdh},
+            dsswjgjg =#{dsswjgjg},
+            dsswjgmc =#{dsswjgmc},
+            dzxx =#{dzxx},
+            gdslx_dm =#{gdslx_dm},
+            ghbz =#{ghbz},
+            gjswjgmc =#{gjswjgmc},
+            gsswjgjg =#{gsswjgjg},
+            jgjc_dm =#{jgjc_dm},
+            sjswjg_dm =#{sjswjg_dm},
+            swjgbz =#{swjgbz},
+            swjgdz =#{swjgdz},
+            swjgfzr_dm =#{swjgfzr_dm},
+            swjgjc =#{swjgjc},
+            swjgjg =#{swjgjg},
+            swjglxdh =#{swjglxdh},
+            swjgmc =#{swjgmc},
+            swjgywmc =#{swjgywmc},
+            swjgyzbm =#{swjgyzbm},
+            swjg_dm =#{swjg_dm},
+            xsxh =#{xsxh},
+            xybz =#{xybz},
+            xzqhsz_dm =#{xzqhsz_dm},
+            yxbz =#{yxbz},
+            yxqsrq =to_date(#{yxqsrq},'yyyy-mm-dd hh24:mi:ss'),
+            yxzzrq =to_date(#{yxzzrq},'yyyy-mm-dd hh24:mi:ss'),
+            zn_dm =#{zn_dm},
+        </trim>
+        where
+        swjg_dm=#{swjg_dm}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwjgPojo" >
+        update T_XT_DEV_CODE_DM
+        <if test="bsfwtbz != null" >
+        set DM_ID = #{bsfwtbz},
+        </if>
+        <if test="czdh != null" >
+        set DM_ID = #{czdh},
+        </if>
+        <if test="dsswjgjg != null" >
+        set DM_ID = #{dsswjgjg},
+        </if>
+        <if test="dsswjgmc != null" >
+        set DM_ID = #{dsswjgmc},
+        </if>
+        <if test="dzxx != null" >
+        set DM_ID = #{dzxx},
+        </if>
+        <if test="gdslx_dm != null" >
+        set DM_ID = #{gdslx_dm},
+        </if>
+        <if test="ghbz != null" >
+        set DM_ID = #{ghbz},
+        </if>
+        <if test="gjswjgmc != null" >
+        set DM_ID = #{gjswjgmc},
+        </if>
+        <if test="gsswjgjg != null" >
+        set DM_ID = #{gsswjgjg},
+        </if>
+        <if test="jgjc_dm != null" >
+        set DM_ID = #{jgjc_dm},
+        </if>
+        <if test="sjswjg_dm != null" >
+        set DM_ID = #{sjswjg_dm},
+        </if>
+        <if test="swjgbz != null" >
+        set DM_ID = #{swjgbz},
+        </if>
+        <if test="swjgdz != null" >
+        set DM_ID = #{swjgdz},
+        </if>
+        <if test="swjgfzr_dm != null" >
+        set DM_ID = #{swjgfzr_dm},
+        </if>
+        <if test="swjgjc != null" >
+        set DM_ID = #{swjgjc},
+        </if>
+        <if test="swjgjg != null" >
+        set DM_ID = #{swjgjg},
+        </if>
+        <if test="swjglxdh != null" >
+        set DM_ID = #{swjglxdh},
+        </if>
+        <if test="swjgmc != null" >
+        set DM_ID = #{swjgmc},
+        </if>
+        <if test="swjgywmc != null" >
+        set DM_ID = #{swjgywmc},
+        </if>
+        <if test="swjgyzbm != null" >
+        set DM_ID = #{swjgyzbm},
+        </if>
+        <if test="swjg_dm != null" >
+        set DM_ID = #{swjg_dm},
+        </if>
+        <if test="xsxh != null" >
+        set DM_ID = #{xsxh},
+        </if>
+        <if test="xybz != null" >
+        set DM_ID = #{xybz},
+        </if>
+        <if test="xzqhsz_dm != null" >
+        set DM_ID = #{xzqhsz_dm},
+        </if>
+        <if test="yxbz != null" >
+        set DM_ID = #{yxbz},
+        </if>
+        <if test="yxqsrq != null" >
+        set DM_ID = #{yxqsrq},
+        </if>
+        <if test="yxzzrq != null" >
+        set DM_ID = #{yxzzrq},
+        </if>
+        <if test="zn_dm != null" >
+        set DM_ID = #{zn_dm}
+        </if>
+        where
+        swjg_dm=#{swjg_dm}
+    </update>
+</mapper>

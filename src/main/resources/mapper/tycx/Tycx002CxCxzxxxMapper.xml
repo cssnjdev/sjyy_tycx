@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Tycx002CxCxzxxxMapper">
+    <resultMap id="tycx002CxCxzxxxPojoMap" type="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002CxCxzxxxPojo">
+        <result column="cxsj" property="cxsj" />
+        <result column="cxy" property="cxy" />
+        <result column="cxzxsj" property="cxzxsj" />
+        <result column="czry_dm" property="czry_dm" />
+        <result column="fhjgs" property="fhjgs" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="sessionid" property="sessionid" />
+        <result column="sjgsdq" property="sjgsdq" />
+        <result column="sjgsrq" property="sjgsrq" />
+        <result column="sqlstr" property="sqlstr" />
+        <result column="sqlxh" property="sqlxh" />
+        <result column="threadid" property="threadid" />
+        <result column="tjcsstr" property="tjcsstr" />
+        <result column="uuid" property="uuid" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="ztlx_dm" property="ztlx_dm" />
+        <result column="fwip" property="fwip" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        to_char(cxsj,'yyyy-mm-dd hh24:mi:ss') cxsj,
+        cxy,
+        cxzxsj,
+        czry_dm,
+        fhjgs,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        sessionid,
+        sjgsdq,
+        to_char(sjgsrq,'yyyy-mm-dd hh24:mi:ss') sjgsrq,
+        sqlstr,
+        sqlxh,
+        threadid,
+        tjcsstr,
+        uuid,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        ztlx_dm,
+        fwip
+    </sql>
+    <sql id="Base_Param_List" >
+        #{cxsj},
+        #{cxy},
+        #{cxzxsj},
+        #{czry_dm},
+        #{fhjgs},
+        #{lrrq},
+        #{lrr_dm},
+        #{sessionid},
+        #{sjgsdq},
+        #{sjgsrq},
+        #{sqlstr},
+        #{sqlxh},
+        #{threadid},
+        #{tjcsstr},
+        #{uuid},
+        #{xgrq},
+        #{xgr_dm},
+        #{ztlx_dm},
+        #{fwip}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002CxCxzxxxPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002CxCxzxxxPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  CX_CXZXXX t
+        <trim prefix="WHERE" prefixOverrides="and">
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="tycx002CxCxzxxxPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from CX_CXZXXX
+        where
+        
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002CxCxzxxxPojo">
+        delete from CX_CXZXXX
+        where
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002CxCxzxxxPojo" >
+        insert into CX_CXZXXX ( uuid,sqlxh,sqlstr,(to_char(cxsj, 'yyyy-mm-dd hh24:mi:ss') cxsj, czry_dm,lrr_dm,to_char(lrrq, 'yyyy-mm-dd hh24:mi:ss') lrrq,sjgsdq)
+         values(#{uuid}, #{sqlxh}, #{sqlstr}, #{cxsj}, #{czry_dm}, #{lrr_dm}, #{lrrq},#{sjgsdq})
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002CxCxzxxxPojo" >
+        insert into CX_CXZXXX
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="cxsj != null" >
+                cxsj,
+            </if>
+            <if test="cxy != null" >
+                cxy,
+            </if>
+            <if test="cxzxsj != null" >
+                cxzxsj,
+            </if>
+            <if test="czry_dm != null" >
+                czry_dm,
+            </if>
+            <if test="fhjgs != null" >
+                fhjgs,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="sessionid != null" >
+                sessionid,
+            </if>
+            <if test="sjgsdq != null" >
+                sjgsdq,
+            </if>
+            <if test="sjgsrq != null" >
+                sjgsrq,
+            </if>
+            <if test="sqlstr != null" >
+                sqlstr,
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh,
+            </if>
+            <if test="threadid != null" >
+                threadid,
+            </if>
+            <if test="tjcsstr != null" >
+                tjcsstr,
+            </if>
+            <if test="uuid != null" >
+                uuid,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+            <if test="ztlx_dm != null" >
+                ztlx_dm,
+            </if>
+             <if test="fwip != null" >
+                fwip,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="cxsj != null" >
+                    to_date(#{cxsj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="cxy != null" >
+                    #{cxy},
+            </if>
+            <if test="cxzxsj != null" >
+                    #{cxzxsj},
+            </if>
+            <if test="czry_dm != null" >
+                    #{czry_dm},
+            </if>
+            <if test="fhjgs != null" >
+                    #{fhjgs},
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                    #{lrr_dm},
+            </if>
+            <if test="sessionid != null" >
+                    #{sessionid},
+            </if>
+            <if test="sjgsdq != null" >
+                    #{sjgsdq},
+            </if>
+            <if test="sjgsrq != null" >
+                    to_date(#{sjgsrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="sqlstr != null" >
+                    #{sqlstr},
+            </if>
+            <if test="sqlxh != null" >
+                    #{sqlxh},
+            </if>
+            <if test="threadid != null" >
+                    #{threadid},
+            </if>
+            <if test="tjcsstr != null" >
+                    #{tjcsstr},
+            </if>
+            <if test="uuid != null" >
+                    #{uuid},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                    #{xgr_dm},
+            </if>
+            <if test="ztlx_dm != null" >
+                    #{ztlx_dm},
+            </if>
+             <if test="fwip != null" >
+                    #{fwip},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002CxCxzxxxPojo" >
+        update CX_CXZXXX
+        <trim prefix="set" suffixOverrides="," >
+            <if test="cxsj != null" >
+                cxsj =to_date(#{cxsj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="cxy != null" >
+                cxy =#{cxy},
+            </if>
+            <if test="cxzxsj != null" >
+                cxzxsj =#{cxzxsj},
+            </if>
+            <if test="czry_dm != null" >
+                czry_dm =#{czry_dm},
+            </if>
+            <if test="fhjgs != null" >
+                fhjgs =#{fhjgs},
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm =#{lrr_dm},
+            </if>
+            <if test="sessionid != null" >
+                sessionid =#{sessionid},
+            </if>
+            <if test="sjgsdq != null" >
+                sjgsdq =#{sjgsdq},
+            </if>
+            <if test="sjgsrq != null" >
+                sjgsrq =to_date(#{sjgsrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="sqlstr != null" >
+                sqlstr =#{sqlstr},
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh =#{sqlxh},
+            </if>
+            <if test="threadid != null" >
+                threadid =#{threadid},
+            </if>
+            <if test="tjcsstr != null" >
+                tjcsstr =#{tjcsstr},
+            </if>
+            <if test="uuid != null" >
+                uuid =#{uuid},
+            </if>
+            <if test="xgrq != null" >
+                xgrq =to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm =#{xgr_dm},
+            </if>
+            <if test="ztlx_dm != null" >
+                ztlx_dm =#{ztlx_dm},
+            </if>
+        </trim>
+        <trim prefix="where" prefixOverrides="and" >
+
+            <if test="uuid != null" >
+               and uuid =#{uuid}
+            </if>        
+        </trim>
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002CxCxzxxxPojo" >
+        update  CX_CXZXXX set
+        cxsj = #{cxsj},
+        cxy = #{cxy},
+        cxzxsj = #{cxzxsj},
+        czry_dm = #{czry_dm},
+        fhjgs = #{fhjgs},
+        lrrq = #{lrrq},
+        lrr_dm = #{lrr_dm},
+        sessionid = #{sessionid},
+        sjgsdq = #{sjgsdq},
+        sjgsrq = #{sjgsrq},
+        sqlstr = #{sqlstr},
+        sqlxh = #{sqlxh},
+        threadid = #{threadid},
+        tjcsstr = #{tjcsstr},
+        uuid = #{uuid},
+        xgrq = #{xgrq},
+        xgr_dm = #{xgr_dm},
+        ztlx_dm = #{ztlx_dm}
+        where
+        
+    </update>
+</mapper>

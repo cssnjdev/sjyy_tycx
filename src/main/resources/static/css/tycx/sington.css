@@ -1,0 +1,18 @@
+.singTonTable{
+	
+	margin: 0 auto;
+	border-collapse: collapse;
+	height: auto;
+}
+
+.singTonTable td{
+	border: 1px solid #ddd;
+	padding: 10px;
+ 	white-space: normal;;
+ 	word-spacing: normal;
+ 	line-height: 18px;
+}
+
+.singTonTable td span{
+	text-align: left;
+}

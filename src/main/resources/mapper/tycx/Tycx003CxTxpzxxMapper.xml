@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Tycx003CxTxpzxxMapper">
+    <resultMap id="tycx003CxTxpzxxPojoMap" type="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo">
+        <result column="fontsize" property="fontsize" />
+        <result column="hzb" property="hzb" />
+        <result column="hzbdw" property="hzbdw"/>
+        <result column="hzbmc" property="hzbmc" />
+        <result column="sjylx" property="sjylx" />
+        <result column="sql" property="sql" />
+        <result column="sqlxh" property="sqlxh" />
+        <result column="title" property="title" />
+        <result column="txlx" property="txlx" />
+        <result column="uuid" property="uuid" />
+        <result column="zzb" property="zzb" />
+        <result column="zzbdw" property="zzbdw" />
+        <result column="zzbmc" property="zzbmc" />
+        <result column="sjymc" property="sjymc" />
+        <result column="x" property="x" />
+        <result column="y" property="y" />
+        <result column="x2" property="x2" />
+        <result column="y2" property="y2" />
+        <result column="xqxds" property="xqxds" />
+        <result column="yqxds" property="yqxds" />
+        <result column="ccgcmc" property="ccgcmc" />
+        <result column="visbletitle" property="visbletitle" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        fontsize,
+        hzb,
+        hzbdw,
+        hzbmc,
+        sjylx,
+        sql,
+        sqlxh,
+        title,
+        txlx,
+        t.uuid,
+        zzb,
+        zzbdw,
+        zzbmc,
+        ds_sid sjymc,
+        x,
+        y,
+        x2,
+        y2,
+        xqxds,
+        yqxds,
+        ccgcmc,
+        visbletitle
+    </sql>
+    <sql id="Base_Param_List" >
+        #{fontsize},
+        #{hzb},
+        #{hzbmc},
+        #{hzbdw},
+        #{sjylx},
+        #{sql},
+        #{sqlxh},
+        #{title},
+        #{txlx},
+        #{uuid},
+        #{zzb},
+        #{zzbdw},
+        #{zzbmc},
+        #{x},
+        #{y},
+        #{x2},
+        #{y2},
+        #{xqxds},
+        #{yqxds},
+        #{ccgcmc},
+        #{visbletitle}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  CX_TXPZXX t,sys_datasource T1
+        WHERE T.SJYLX=T1.datasource_id
+         <if test="sqlxh != null and sqlxh!=''" >
+               AND T.sqlxh =#{sqlxh}
+            </if>
+          <if test="uuid != null and uuid!=''" >
+               AND T.uuid=#{uuid}
+            </if>
+    </select>
+    <select id="selectAll" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  CX_TXPZXX t,sys_datasource T1
+        WHERE T.SJYLX=T1.datasource_id
+        <if test="sqlxh != null and sqlxh!=''" >
+            AND T.sqlxh =#{sqlxh}
+        </if>
+        <if test="uuid != null and uuid!=''" >
+            AND T.uuid=#{uuid}
+        </if>
+    </select>
+    <select id="selectByPKey" resultMap="tycx003CxTxpzxxPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from CX_TXPZXX
+        where
+        uuid=#{uuid}
+    </select>
+    <!--根据主键和uuid删除-->
+    <delete id="deleteByPKeySelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo">
+        delete from CX_TXPZXX t
+        where 1=1
+
+        <if test="sqlxh != null and sqlxh!=''" >
+            AND T.sqlxh =#{sqlxh}
+        </if>
+        <if test="uuid != null and uuid!=''" >
+            AND T.uuid=#{uuid}
+        </if>
+    </delete>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo">
+        delete from CX_TXPZXX
+        where
+                sqlxh=#{sqlxh}
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo" >
+        insert into CX_TXPZXX (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo" >
+        insert into CX_TXPZXX
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="fontsize != null" >
+                fontsize,
+            </if>
+            <if test="hzb != null" >
+                hzb,
+            </if>
+            <if test="hzbmc != null" >
+                hzbmc,
+            </if>
+            <if test="hzbdw != null" >
+                hzbdw,
+            </if>
+            <if test="sjylx != null" >
+                sjylx,
+            </if>
+            <if test="sql != null" >
+                sql,
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh,
+            </if>
+            <if test="title != null" >
+                title,
+            </if>
+            <if test="txlx != null" >
+                txlx,
+            </if>
+            <if test="uuid != null" >
+                uuid,
+            </if>
+            <if test="zzb != null" >
+                zzb,
+            </if>
+            <if test="zzbdw != null" >
+                zzbdw,
+            </if>
+            <if test="zzbmc != null" >
+                zzbmc,
+            </if>
+            <if test="x!=null">
+                x,
+            </if>
+            <if test="y!=null">
+                y,
+            </if>
+            <if test="x2!=null">
+                x2,
+            </if>
+            <if test="y2!=null">
+                y2,
+            </if>
+            <if test="xqxds!=null">
+                xqxds,
+            </if>
+            <if test="yqxds!=null">
+                yqxds,
+            </if>
+            <if test="ccgcmc!=null">
+                ccgcmc,
+            </if>
+            <if test="visbletitle!=null">
+                visbletitle,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="fontsize != null" >
+                    #{fontsize},
+            </if>
+            <if test="hzb != null" >
+                    #{hzb},
+            </if>
+            <if test="hzbdw != null" >
+                    #{hzbdw},
+            </if>
+            <if test="hzbmc != null" >
+                    #{hzbmc},
+            </if>
+            <if test="sjylx != null" >
+                    #{sjylx},
+            </if>
+            <if test="sql != null" >
+                    #{sql},
+            </if>
+            <if test="sqlxh != null" >
+                    #{sqlxh},
+            </if>
+            <if test="title != null" >
+                    #{title},
+            </if>
+            <if test="txlx != null" >
+                    #{txlx},
+            </if>
+            <if test="uuid != null" >
+                    #{uuid},
+            </if>
+            <if test="zzb != null" >
+                    #{zzb},
+            </if>
+            <if test="zzbdw != null" >
+                    #{zzbdw},
+            </if>
+            <if test="zzbmc != null" >
+                    #{zzbmc},
+            </if>
+            <if test="x!=null">
+                    #{x},
+            </if>
+            <if test="y!=null">
+                    #{y},
+            </if>
+            <if test="x2!=null">
+                    #{x2},
+            </if>
+            <if test="y2!=null">
+                    #{y2},
+            </if>
+            <if test="xqxds!=null">
+                    #{xqxds},
+            </if>
+            <if test="yqxds!=null">
+                    #{yqxds},
+            </if>
+            <if test="ccgcmc!=null">
+                    #{ccgcmc},
+            </if>
+            <if test="visbletitle!=null">
+                    #{visbletitle},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo" >
+        update CX_TXPZXX
+        <trim prefix="set" suffixOverrides="," >
+            <if test="fontsize != null" >
+                fontsize =#{fontsize},
+            </if>
+            <if test="hzb != null" >
+                hzb =#{hzb},
+            </if>
+            <if test="hzbdw != null" >
+                hzbdw =#{hzbdw},
+            </if>
+            <if test="hzbmc != null" >
+                hzbmc =#{hzbmc},
+            </if>
+            <if test="sjylx != null" >
+                sjylx =#{sjylx},
+            </if>
+            <if test="sql != null" >
+                sql =#{sql},
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh =#{sqlxh},
+            </if>
+            <if test="title != null" >
+                title =#{title},
+            </if>
+            <if test="txlx != null" >
+                txlx =#{txlx},
+            </if>
+            <if test="uuid != null" >
+                uuid =#{uuid},
+            </if>
+            <if test="zzb != null" >
+                zzb =#{zzb},
+            </if>
+            <if test="zzbdw != null" >
+                zzbdw =#{zzbdw},
+            </if>
+            <if test="zzbmc != null" >
+                zzbmc =#{zzbmc},
+            </if>
+            <if test="x!=null">
+                x=#{x},
+            </if>
+            <if test="y!=null">
+                y=#{y},
+            </if>
+            <if test="x2!=null">
+                x2=#{x2},
+            </if>
+            <if test="y2!=null">
+                 y2=#{y2},
+            </if>
+            <if test="xqxds!=null">
+                 xqxds=#{xqxds},
+            </if>
+            <if test="yqxds!=null">
+                 yqxds=#{yqxds},
+            </if>
+            <if test="ccgcmc!=null">
+                ccgcmc=#{ccgcmc},
+            </if>
+            <if test="visbletitle!=null">
+                visbletitle=#{visbletitle},
+            </if>
+        </trim>
+        where
+        uuid=#{uuid}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx003CxTxpzxxPojo" >
+        update  CX_TXPZXX set
+        fontsize = #{fontsize},
+        hzb = #{hzb},
+        hzbdw=#{hzbdw},
+        hzbmc = #{hzbmc},
+        sjylx = #{sjylx},
+        sql = #{sql},
+        sqlxh = #{sqlxh},
+        title = #{title},
+        txlx = #{txlx},
+        uuid = #{uuid},
+        zzb = #{zzb},
+        zzbdw = #{zzbdw},
+        zzbmc = #{zzbmc}
+        where
+        uuid=#{uuid}
+    </update>
+</mapper>

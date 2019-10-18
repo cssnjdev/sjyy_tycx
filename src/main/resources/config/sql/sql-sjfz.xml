@@ -1,0 +1,1854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlfile>
+	<sql id="SQL_SJFZ_COMM_GETDQRQ" describ="获取当前日期" isLoad="true">
+		select
+		to_char(sysdate,'yyyy-mm-dd') dqrq from dual where 1=?
+	</sql>
+	<sql id="SQL_SJFZ_COMM_GETDQSJ" describ="获取当前时间" isLoad="true">
+		SELECT
+		to_char(SYSDATE,'yyyy-mm-dd hh:mi:ss') AS sj FROM dual where 1=?
+	</sql>
+	<sql id="SQL_SJFZ_COMM_GETUUID" describ="获取主键" isLoad="true">
+		select
+		PKG_PUB_FUN.FUN_GET_GUID uuid from dual
+	</sql>
+	<sql id="SQL_SJFZ_COMM_GETSWJGLIST" describ="查询税务机关列表" isLoad="true">
+		select a.swjgdm id,a.swjgmc text from A_LS_comm_swjglb a where 1=?
+		order
+		by a.xh
+	</sql>
+	<sql id="SQL_SJFZ_COMM_GETZNFWBYSWJG" describ="根据机关查询职能范围" isLoad="true">
+		select a.znjgfw znfw from DM_QX_SWJG_WJDS a where a.swjg_dm = ?
+	</sql>
+	<sql id="SQL_SJFZ_COMM_GETZNFWBYSF" describ="根据身份查询职能范围" isLoad="true">
+		select a.znjgfw znfw
+		from dm_qx_swjg_wjds a, dm_qx_swrysf b
+		where
+		b.swrysf_dm
+		= ?
+		and a.swjg_dm = b.sfswjg_dm
+	</sql>
+	<!-- SJFZ_FZ001 -->
+	<sql id="SQL_SJFZ_FZ001_SELECTSWJGBYSF" describ="根据当前登陆的身份查询对应的机关下拉列表"
+		isLoad="true">
+		SELECT T.Swjg_Dm SWJGDM, t.swjgmc SWJGMC
+		FROM
+		DM_GY_SWJG T
+		START
+		WITH T.SWJG_DM = (select a.sfswjg_dm
+		from
+		DM_QX_SWRYSF a
+		where
+		a.swrysf_dm = ?)
+		CONNECT BY PRIOR T.SWJG_DM =
+		T.SJSWJG_DM
+		and t.swjgbz =
+		'0'
+		and t.zn_dm = '01'
+	</sql>
+	<sql id="SQL_SJFZ_FZ001_QUERYQYLBBYNSRSBH" describ="根据纳税人识别号或社会信用代码及操作人身份查询企业列表"
+		isLoad="true">
+		select to_char(a.djxh) djxh,
+		a.zgswskfj_dm zgswskfjdm,
+		b.swjgmc
+		zgswskfjmc,
+		a.nsrmc,
+		a.nsrsbh,
+		a.shxydm,
+		a.fddbrxm,
+		a.fddbrsfzjhm,
+		a.zzjg_dm zzjgdm,
+		c.nsrztmc,
+		d.kzztdjlxmc,
+		(case
+		when a.kqccsztdjbz = 'Y'
+		then
+		'是'
+		when a.kqccsztdjbz = 'N' then
+		'否'
+		else
+		''
+		end) kqccsztdjbz,
+		a.scjydz,
+		a.zcdz
+		from dj_nsrxx a, DM_GY_SWJG b, DM_GY_nsrzt c,
+		dm_dj_kzztdjlx d
+		where (a.nsrsbh = ? or a.shxydm = ?)
+		and a.zgswskfj_dm
+		= b.swjg_dm(+)
+		and a.nsrzt_dm = c.nsrzt_dm(+)
+		and a.kzztdjlx_dm =
+		d.kzztdjlx_dm(+)
+		and a.nsrzt_dm not in ('07', '08', '10')
+		and
+		a.zgswskfj_dm like
+		(select x.znjgfw || '%'
+		from DM_QX_SWJG_WJDS x,
+		dm_qx_swrysf y
+		where y.swrysf_dm = ?
+		and y.sfswjg_dm = x.swjg_dm)
+		order
+		by a.zgswj_dm, a.zgswskfj_dm, a.nsrmc
+	</sql>
+	<sql id="SQL_SJFZ_FZ001_QUERYLRXLISTBYDJXH" describ="根据企业登记序号查询联系人列表"
+		isLoad="true">
+		select distinct b.swry_dm id, b.swryxm text
+		from DM_QX_SWRYSF a,
+		dm_gy_swry b
+		where a.swry_dm = b.swry_dm
+		and a.yxbz = 'Y'
+		and b.yxbz =
+		'Y'
+		and a.sfswjg_dm in
+		(SELECT T.Swjg_Dm
+		FROM DM_GY_SWJG T
+		START WITH
+		T.SWJG_DM IN
+		(select n.zgswskfj_dm from dj_nsrxx n where n.djxh = ?)
+		CONNECT BY PRIOR T.SWJG_DM = T.SJSWJG_DM
+		and t.zn_dm = '01')
+	</sql>
+	<sql id="SQL_SJFZ_FZ001_QUERYQYXXBYXH" describ="根据业务表序号查询对应企业的基本信息"
+		isLoad="true">
+		select to_char(a.djxh) djxh,
+		a.zgswskfj_dm zgswskfjdm,
+		b.swjgmc
+		zgswskfjmc,
+		a.nsrmc,
+		a.nsrsbh,
+		a.shxydm,
+		a.fddbrxm,
+		a.fddbrsfzjhm,
+		a.zzjg_dm zzjgdm,
+		c.nsrztmc,
+		d.kzztdjlxmc,
+		(case
+		when a.kqccsztdjbz = 'Y'
+		then
+		'是'
+		when a.kqccsztdjbz = 'N' then
+		'否'
+		else
+		''
+		end) kqccsztdjbz,
+		a.scjydz,
+		a.zcdz,
+		e.ssgly_dm lxrdm
+		from dj_nsrxx a,
+		DM_GY_SWJG b,
+		DM_GY_nsrzt c,
+		dm_dj_kzztdjlx d,
+		A_GY_NSRXX_SWRY_DZ e
+		where e.xh = ?
+		and
+		a.djxh = e.djxh
+		and a.zgswskfj_dm = b.swjg_dm(+)
+		and a.nsrzt_dm =
+		c.nsrzt_dm(+)
+		and a.kzztdjlx_dm = d.kzztdjlx_dm(+)
+	</sql>
+	<sql id="SQL_SJFZ_FZ001_QUERYUPLOADJGLB" describ="上传后查询结果列表"
+		isLoad="true">
+		select a.djxh,
+		b.nsrsbh,
+		b.shxydm,
+		b.nsrmc,
+		a.bj,
+		case
+		when a.bj =
+		'0' then
+		'失败'
+		when a.bj = '1' then
+		'成功'
+		else
+		'未知'
+		end bjmc,
+		c.swryxm,
+		case
+		when a.bj = '1' then
+		'成功'
+		else
+		a.message
+		end message
+		from
+		A_LS_FZ001_UPLOADLB a, dj_nsrxx b, dm_gy_swry c
+		where a.djxh =
+		b.djxh(+)
+		and a.lxrdm = c.swry_dm(+)
+		and 1 = ?
+		order by a.bj, a.message,
+		a.djxh
+	</sql>
+	<sql id="SQL_SJFZ_CS_QUERYJGRYBYSJJGDM" describ="根据上级机关查询下级机关及本级机关人员"
+		isLoad="true">
+		select id, text, state, lx
+		from (SELECT a.swjg_dm id, a.swjgmc
+		text, 'closed' state, '1' lx
+		FROM DM_GY_SWJG a
+		where a.xybz = 'Y'
+		and
+		a.yxbz = 'Y'
+		and a.sjswjg_dm = ?
+		union
+		select distinct b.swry_dm id,
+		b.swryxm text, '' state, '2' lx
+		from DM_QX_SWRYSF a, dm_gy_swry b
+		where
+		a.swry_dm = b.swry_dm
+		and a.sfswjg_dm = ?)
+		order by lx, id
+	</sql>
+	<!-- SJFZ_FZ002 -->
+	<sql id="SQL_SJFZ_FZ002_QUERYSJLYDMB" describ="查询数据来源代码表" isLoad="true">
+		select a.jbsjly_dm dm, a.jbsjly_mc mc
+		from A_DM_xt_JBSJLY a
+		where
+		a.yxbj=?
+		order by a.jbsjly_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ002_QUERYKSDMB" describ="查询科室代码表" isLoad="true">
+		select
+		a.jbqsks_dm dm, a.jbqsks_mc mc
+		from a_dm_xt_jbqsks a
+		where
+		a.yxbj=?
+		order by a.jbqsks_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ002_QUERYMBJCXXBYUUID" describ="根据主键查询模板基础信息"
+		isLoad="true">
+		select a.jbsjly_dm, a.jbqsks_dm, a.table_name_en,
+		a.table_name_zw, a.sm
+		from a_cj_ksmb a
+		where a.uuid = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ002_QUERYMBZDXXBYUUID" describ="根据主键查询模板字段列表"
+		isLoad="true">
+		select a.uuid,
+		a.mxxh,
+		a.zd_name_en,
+		a.zd_name_zw zd_name_zw_xgq,
+		a.zd_name_zw zd_name_zw_xgh,
+		a.zd_length zd_length_xgh,
+		a.zd_length
+		zd_length_xgq
+		from a_cj_ksmb_zd a
+		where a.uuid = ?
+		order by a.mxxh
+	</sql>
+	<!-- SJFZ_FZ004 -->
+	<sql id="SQL_SJFZ_FZ004_QUERYCZRJGXXBYSFDM" describ="根据操作人代码取所属机关信息"
+		isLoad="true">
+		select a.sfswjg_dm swjgdm, b.swjgmc
+		from DM_QX_SWRYSF a,
+		dm_gy_swjg b
+		where a.swrysf_dm = ?
+		and a.sfswjg_dm = b.swjg_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYSFSHDMB" describ="取是否审核的代码表" isLoad="true">
+		select a.xybj_dm dm,a.xybj_mc mc from a_dm_gy_xybj a where a.yxbj = ?
+		order by a.xybj_dm desc
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYKSLIST" describ="查询科室代码表" isLoad="true">
+		select a.jbqsks_dm id, a.jbqsks_mc text, 'closed' state, '1' lx
+		from
+		a_dm_xt_jbqsks a
+		where a.yxbj = ?
+		order by a.jbqsks_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYMBLISTBYKSDM" describ="根据科室代码查询模板列表"
+		isLoad="true">
+		select a.uuid id, a.table_name_zw text, '' state, '2' lx
+		from
+		a_cj_ksmb a
+		where a.jbqsks_dm = ?
+		and a.yxbj = 'Y'
+		order by
+		a.table_name_zw
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYFQJDYDYRGWDM" describ="查询发起阶段应对人员的岗位代码"
+		isLoad="true">
+		select a.gw_dm
+		from a_xt_swjg_gzl_gw_dzb a
+		where
+		a.swjg_dm = ?
+		and
+		a.lcdy_id = ?
+		and a.yxbj = 'Y'
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYPJJGLISTBYSFDM" describ="根据身份查询平级机关列表"
+		isLoad="true">
+		select t.swjg_dm id, t.swjgmc text, 'closed' state, '1' lx
+		from
+		Dm_Gy_Swjg t
+		where t.yxbz = 'Y'
+		and t.yxbz = 'Y'
+		and exists (select
+		n_jg.sjswjg_dm
+		from dm_qx_swrysf sf, Dm_Gy_Swjg n_jg
+		where sf.swrysf_dm
+		= ?
+		and sf.sfswjg_dm = n_jg.swjg_dm
+		and t.sjswjg_dm = n_jg.sjswjg_dm)
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYSJJGLISTBYSJJGDMGWDM" describ="根据上级机关代码、岗位代码查询下级机关及个人"
+		isLoad="true">
+		select id, text, state, lx, ssswjgdm
+		from (SELECT a.swjg_dm id,
+		a.swjgmc text,
+		'closed' state,
+		'1' lx,
+		'' ssswjgdm
+		FROM DM_GY_SWJG a
+		where
+		a.xybz = 'Y'
+		and a.yxbz = 'Y'
+		and a.sjswjg_dm = ?
+		union
+		select distinct
+		b.swry_dm id,
+		b.swryxm text,
+		'' state,
+		'2' lx,
+		a.SFSWJG_DM ssswjgdm
+		from
+		DM_QX_SWRYSF a, dm_gy_swry b, QX_JGGW_SWRYSF c, QX_SWJG_GW d
+		where
+		a.swry_dm = b.swry_dm
+		and a.sfswjg_dm = ?
+		and a.swrysf_dm = c.swrysf_dm
+		and c.yxbz = 'Y'
+		and c.gwxh = d.gwxh)
+		order by lx, id
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYZRWZJBYLCSLH" describ="根据流程实例号查询子任务主键"
+		isLoad="true">
+		select a.uuid,a.mxxh,a.zt_dm,a.ydsm from a_Cj_Zdyrwsl_Mx a
+		where
+		a.lcslh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYZRWJBXXBYPK" describ="根据主键查询主任务基本信息"
+		isLoad="true">
+		select b.swjgmc fqbmmc,
+		c.uuid tbbuuid,
+		c.table_name_zw tbbbm,
+		a.tbwcxdts,
+		a.sfsh_dm,
+		a.sm
+		from a_cj_zdyrwsl a, dm_gy_swjg b, a_cj_ksmb
+		c
+		where a.uuid = ?
+		and a.lrjg_dm = b.swjg_dm
+		and a.mblb = c.uuid
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYMBJCXXBYPK" describ="查询模板基础信息" isLoad="true">
+		select a.table_name_zw,a.table_name_en from a_cj_ksmb a where
+		a.uuid =
+		?
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYMBZDXXBYBM" describ="查询模板字段信息" isLoad="true">
+		select a.column_name zdywm,
+		b.comments zdzwm,
+		a.data_type zclx,
+		to_char(a.data_length) zdcd,
+		case
+		when a.nullable = 'N' then
+		'否'
+		else
+		'是'
+		end sfwk
+		from dba_tab_cols a, dba_col_comments b
+		where a.table_name = ?
+		and
+		a.owner = 'DB_SJFZ'
+		and a.owner = b.owner
+		and a.table_name =
+		b.table_name
+		and a.column_name = b.column_name
+		and a.column_name not in
+		('UUID', 'UUID_XH', 'LRRY_DM', 'LRSJ', 'XGSJ')
+		order by
+		a.segment_column_id
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_UPDATEZRWJCXX" describ="修改主任务基础信息" isLoad="true">
+		update a_cj_zdyrwsl a set a.xgry_dm=?
+		,a.xg_sj=sysdate,a.sfsh_dm=?,a.tbwcxdts=?,a.sm=? where a.uuid=?
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_UPDATEZRWYDSM" describ="修改子任务应对说明" isLoad="true">
+		update a_cj_zdyrwsl_mx a set a.xgry_dm = ? ,a.xg_sj=sysdate,a.ydsm=?
+		where a.uuid = ? and a.mxxh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYZRWJCXX" describ="查询主任务基础信息" isLoad="true">
+		select a.uuid,a.mblb,a.sfsh_dm,a.tbwcxdts,a.sm,a.zt_dm from
+		a_cj_zdyrwsl a where a.lcslh=?
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYZRWLB" describ="主任务查询子任务列表信息" isLoad="true">
+		select a.uuid,
+		a.mxxh,
+		a.lcslh,
+		a.zt_dm ztdm,
+		b.zt_mc ztmc,
+		a.ydr_dm ydrdm,
+		c.swryxm ydrxm
+		from a_cj_zdyrwsl_mx a, a_dm_sjfz_cj_zt b, dm_gy_swry c
+		where a.uuid = ?
+		and a.zt_dm = b.zt_dm
+		and a.ydr_dm = c.swry_dm(+) order
+		by a.mxxh
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYMBBMBYZRWPK" describ="根据主任务主键查询模板表名"
+		isLoad="true">
+		select a.table_name_en, a.table_name_zw,a.uuid
+		from a_cj_ksmb a,
+		a_cj_zdyrwsl b
+		where a.uuid = b.mblb
+		and b.uuid = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_CHECKZRWSFYGJ" describ="判断主任务是否已归集" isLoad="true">
+		select count(1) as gs
+		from a_cj_zdyrwsl a
+		where a.uuid = ?
+		and
+		a.zt_dm =
+		'04'
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_CHECKZRWSFYWC" describ="主任务判断子任务是否已完成"
+		isLoad="true">
+		select count(1) as gs from a_cj_zdyrwsl_mx a where
+		a.uuid=? and
+		a.zt_dm
+		&lt;&gt; ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_CHECKZRWSFYSH" describ="判断子任务是否已审核" isLoad="true">
+		select count(1) as gs from a_cj_zdyrwsl_mx a where a.uuid=? and
+		a.mxxh=?
+		and a.zt_dm='03'
+	</sql>
+	<sql id="SQL_SJFZ_FZ004_QUERYSJKBBYUUID" describ="根据主键查询数据库表"
+		isLoad="true">
+		select b.table_name_en sjkb from a_cj_zdyrwsl a,a_cj_ksmb b
+		where a.uuid = ? and a.mblb = b.uuid
+	</sql>
+	<!-- SJFZ_FZ003 -->
+	<sql id="SQL_SJFZ_FZ003_SELECTSWJGBYPGJG" describ="根据当前登陆的身份查询对应的评估机关下拉列表"
+		isLoad="true">
+		SELECT K.SWJG_DM, K.SWJGMC
+		FROM DM_QX_ZNJGDZBKZ_PGJG
+		A,
+		DM_GY_SWJG K
+		WHERE A.PGJG_DM = K.SWJG_DM
+		AND A.GLJG_DM IN
+		((SELECT
+		T.SWJG_DM
+		FROM DM_GY_SWJG T
+		START WITH T.SWJG_DM IN
+		(SELECT
+		JGR.SJSWJG_DM
+		FROM DM_QX_SWRYSF A, DM_GY_SWJG JGR
+		WHERE
+		A.SWRYSF_DM = ?
+		AND A.SFSWJG_DM
+		= JGR.SWJG_DM)
+		CONNECT BY PRIOR
+		T.SWJG_DM = T.SJSWJG_DM
+		AND T.SWJGBZ =
+		'0'
+		AND T.ZN_DM IN ('01', '11')))
+	</sql>
+	<sql id="SQL_SJFZ_FZ003_SELECTXYBJ" describ="是否预申报" isLoad="true">
+		SELECT
+		A.XYBJ_DM,A.XYBJ_MC FROM A_DM_GY_XYBJ A
+	</sql>
+	<sql id="SQL_SJFZ_FZ003_SELECTZSXM" describ="征收项目" isLoad="true">
+		SELECT
+		A.ZSXM_DM, A.ZSXMMC FROM DM_GY_ZSXM A ORDER BY A.ZSXM_DM
+	</sql>
+	<sql id="SQL_SJFZ_FZ003_SELECTZSPM" describ="征收品目" isLoad="true">
+		SELECT
+		A.ZSPM_DM id, A.ZSPMMC text FROM DM_GY_ZSPM A WHERE A.ZSXM_DM
+		= ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ003_SELECTYCXSYXZ" describ="一次性税源性质" isLoad="true">
+		SELECT A.YCXSYXZ_DM, A.YCXSYXZ_MC FROM A_DM_GC_YCXSYXZ A
+	</sql>
+	<sql id="SQL_SJFZ_FZ003_SELECTSBXXUUID" describ="判断sbxxuuid是否存在"
+		isLoad="true">
+		SELECT * FROM A_GC_YCXSYDY A WHERE A.SBXXUUID = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ003_SELECTJSYJ" describ="sbxx.jsyj和ycxssje"
+		isLoad="true">
+		select sbxx.jsyj jsyj from sb_sbxx sbxx WHERE
+		sbxx.sbxxuuid = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ003_FYCXJG" describ="分页查询结果查询" isLoad="true">
+		select
+		hc,
+		nsrsbh,
+		nsrmc,
+		swjgmc,
+		hymc,
+		zsxmmc,
+		zspmmc,
+		jsyj,
+		ysbqy,
+		sbfsmc,
+		to_char(skssqq, 'yyyy-mm-dd') skssqq,
+		to_char(skssqz, 'yyyy-mm-dd')
+		skssqz,
+		sbxxuuid,
+		sbuuid,
+		to_char(djxh) djxh,
+		to_char(pzxh) pzxh,
+		to_char(pzmxxh) pzmxxh,
+		to_char(nssbrq, 'yyyy-mm-dd') nssbrq,
+		zgswskfj_dm,
+		zsxm_dm,
+		zspm_dm,
+		ycxssje,
+		ycxsyxz_dm,
+		ycxsyxz_mc
+		from
+		a_ls_fz003_query
+		where 1 = ?
+		order by hc
+	</sql>
+	<!-- SJFZ_FZ005 -->
+	<sql id="SQL_SJFZ_FZ005_QUERYUUID" describ="生成UUID" isLoad="true">
+		select
+		PKG_PUB_FUN.FUN_GET_GUID AS UUID from dual where 1=?
+	</sql>
+
+	<sql id="SQL_SJFZ_FZ005_SELECTSOME" describ="根据纳税人识别码（或社会统一信用代码）、登记序号、纳税人名称取其他信息"
+		isLoad="true">
+		select nvl(t.shxydm,t.nsrsbh) nsrsbh,
+		t.djxh,
+		t.nsrmc,
+		t.fddbrxm,
+		t.fddbrsfzjhm ,
+		t.zcdz
+		from dj_nsrxx t where (t.shxydm=? or
+		t.nsrsbh=?)
+		and t.yxbz ='Y' and t.zgswskfj_dm like ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ005_SELECTSWJGBYSF" describ="根据当前登陆的身份查询对应的机关下拉列表"
+		isLoad="true">
+		SELECT T.Swjg_Dm SWJGDM, t.swjgmc SWJGMC
+		FROM DM_GY_SWJG T
+		START
+		WITH T.SWJG_DM =
+		(select a.sfswjg_dm from DM_QX_SWRYSF a where
+		a.swrysf_dm = ?)
+		CONNECT BY PRIOR T.SWJG_DM = T.SJSWJG_DM
+		and t.swjgbz =
+		'0'
+		and t.zn_dm = '01'
+	</sql>
+	<sql id="SQL_SJFZ_FZ005_SELECTSOME" describ="根据纳税人识别码（或社会统一信用代码）、登记序号、纳税人名称取其他信息"
+		isLoad="true">
+		select nvl(t.shxydm,t.nsrsbh) nsrsbh,
+		t.djxh,
+		t.nsrmc,
+		t.fddbrxm,
+		t.fddbrsfzjhm ,
+		t.zcdz
+		from dj_nsrxx t where (t.shxydm=? or
+		t.nsrsbh=?)
+		and t.yxbz ='Y' and t.zgswskfj_dm like ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ005_QUERYLCSLH" describ="查询流程实例号" isLoad="true">
+		select LCSLH from A_FG_ZDFXYDSDHC WHERE DJXH=?
+	</sql>
+
+	<sql id="SQL_SJFZ_FZ005_UPDATELCSLH" describ="根据流程实例号更新数据" isLoad="true">
+		update A_FG_ZDFXYDSDHC set djxh =?,ajzjzl =?,nbjtsybg =?,nclcfyj
+		=?,qtxx =? where lcslh =?
+	</sql>
+	<!-- SJFZ_FZ006 -->
+	<sql id="SQL_SJFZ_FZ006_SELECTSSYCZB" describ="查询税收分析" isLoad="true">
+		select xx.zsxm_dm zsxm_dm,
+		xx.zsxmmc sz,
+		a.bq_1 ysb,
+		nvl(b.tqtc_2,0)
+		qcysb ,
+		nvl(c.qntq_ysb_yc,0) ysbqyycxsy,
+		nvl(d.qntq_fysb_yc,0)
+		fysbqyycxsy,
+		nvl(e.tqtc_5,0) qntqsbs,
+		nvl((a.bq_1+nvl(b.tqtc_2,0)-nvl(d.qntq_fysb_yc,0)),0) ycck_a,
+		nvl((nvl(e.tqtc_5,0)-nvl(c.qntq_ysb_yc,0)-nvl(d.qntq_fysb_yc,0)),0)
+		ycck_b
+		from
+		(select t.id_zsxm, nvl(sum(t.sk_sb), 0) bq_1
+		from
+		a_taf_nsrysb t where t.dt_ysb &gt;=to_date( ? ,'yyyy-mm-dd')
+		and
+		t.dt_ysb &lt;= to_date( ? ,'yyyy-mm-dd') and t.zgswskfj_dm like ?
+		group by
+		t.id_zsxm) a,
+		(select
+		sbxx.zsxm_dm,nvl(sum(sbxx.jsyj),0) as
+		tqtc_2 from
+		Sb_Sbxx sbxx
+		where sbxx.sbqx&gt;=add_months(to_date( ?
+		,'yyyy-mm-dd'),-12) and
+		sbxx.sbqx&lt;=add_months(to_date( ?
+		,'yyyy-mm-dd'),-12)
+		and
+		sbxx.gzlx_dm_1 in ('1','5') and
+		sbxx.zfbz_1&lt;&gt;'Y' and
+		Sbxx.zsxm_dm &lt;&gt;'10112' and
+		sbxx.zgswskfj_dm like ?
+		and not
+		exists( select 1 from a_gc_ysbqymd ysbqy
+		where
+		ysbqy.djxh =
+		sbxx.djxh and ysbqy.yxbj='Y' and ysbqy.yyqq&lt;=
+		to_date(
+		?
+		,'yyyy-mm-dd') and ysbqy.yyqz&gt;=to_date( ? ,'yyyy-mm-dd') )
+		group by
+		sbxx.zsxm_dm
+		union all
+		select sbxx.zsxm_dm,nvl(sum(sbxx.ynse),0)
+		as
+		tqtc_2 from Sb_Sbxx sbxx where sbxx.sbqx&gt;=add_months(to_date(
+		?
+		,'yyyy-mm-dd'),-12) and sbxx.sbqx&lt;=add_months(to_date( ?
+		,'yyyy-mm-dd'),-12)
+		and sbxx.gzlx_dm_1 in ('1','5') and
+		sbxx.zfbz_1&lt;&gt;'Y' and Sbxx.zsxm_dm ='10112' and sbxx.zgswskfj_dm
+		like ?
+		and not exists( select 1 from a_gc_ysbqymd
+		ysbqy where ysbqy.djxh
+		=
+		sbxx.djxh and ysbqy.yxbj='Y' and
+		ysbqy.yyqq&lt;= to_date( ?
+		,'yyyy-mm-dd') and ysbqy.yyqz&gt;=to_date(
+		? ,'yyyy-mm-dd') )
+		group by
+		sbxx.zsxm_dm
+		) b ,
+		(
+		select ysb.zsxm_dm,
+		(sum(ysb.ycxsyje) ) as
+		qntq_ysb_yc from a_Gc_Ycxsydy ysb where
+		ysb.yxbj='Y' and
+		ysb.nssbrq&gt;=add_months(to_date( ?
+		,'yyyy-mm-dd'),-12) and
+		ysb.nssbrq&lt;=add_months(to_date( ?
+		,'yyyy-mm-dd'),-12)
+		and exists (
+		select 1 from a_gc_ysbqymd
+		ysbqy where ysbqy.djxh = ysb.djxh and
+		ysbqy.yxbj='Y' and
+		ysbqy.yyqq&lt;= to_date( ? ,'yyyy-mm-dd') and
+		ysbqy.yyqz&gt;=to_date(
+		? ,'yyyy-mm-dd') )
+		and ysb.zgswskfj_dm like ?
+		group by
+		ysb.zsxm_dm
+
+		) c,
+		(
+		select ysb.zsxm_dm, (sum(ysb.ycxsyje) ) as
+		qntq_fysb_yc from a_Gc_Ycxsydy ysb where ysb.yxbj='Y' and
+		ysb.nssbrq&gt;=add_months(to_date( ? ,'yyyy-mm-dd'),-12) and
+		ysb.nssbrq&lt;=add_months(to_date( ? ,'yyyy-mm-dd'),-12)
+		and exists (
+		select 1 from a_gc_ysbqymd ysbqy where ysbqy.djxh = ysb.djxh
+		and
+		ysbqy.yxbj='Y' and ysbqy.yyqq&lt;= to_date( ? ,'yyyy-mm-dd') and
+		ysbqy.yyqz&gt;=to_date( ? ,'yyyy-mm-dd') )
+		and ysb.zgswskfj_dm like ?
+		group by ysb.zsxm_dm
+
+		) d,
+		(select
+		sbxx.zsxm_dm,nvl(sum(sbxx.jsyj),0) as
+		tqtc_5 from Sb_Sbxx sbxx
+		where sbxx.sbqx&gt;=add_months(to_date( ?
+		,'yyyy-mm-dd'),-12) and
+		sbxx.sbqx&lt;=add_months(to_date( ?
+		,'yyyy-mm-dd'),-12)
+		and
+		sbxx.gzlx_dm_1 in ('1','5') and
+		sbxx.zfbz_1&lt;&gt;'Y' and
+		Sbxx.zsxm_dm &lt;&gt;'10112' and
+		sbxx.zgswskfj_dm like ?
+		group by
+		sbxx.zsxm_dm
+		union all
+		select
+		sbxx.zsxm_dm,nvl(sum(sbxx.ynse),0) as
+		tqtc_5 from Sb_Sbxx sbxx where
+		sbxx.sbqx&gt;=add_months(to_date(
+		? ,'yyyy-mm-dd'),-12) and
+		sbxx.sbqx&lt;=add_months(to_date( ?
+		,'yyyy-mm-dd'),-12)
+		and
+		sbxx.gzlx_dm_1 in ('1','5') and
+		sbxx.zfbz_1&lt;&gt;'Y' and Sbxx.zsxm_dm
+		='10112' and sbxx.zgswskfj_dm
+		like ?
+		group by sbxx.zsxm_dm
+		) e ,
+		(select
+		zsxm.zsxm_dm,
+		zsxm.zsxmmc from dm_gy_zsxm zsxm order by
+		zsxm.zsxm_dm) xx
+		where xx.zsxm_dm = a.id_zsxm and xx.zsxm_dm =
+		b.zsxm_dm(+) and
+		xx.zsxm_dm = c.zsxm_dm(+) and xx.zsxm_dm =
+		d.zsxm_dm(+)
+		and xx.zsxm_dm
+		=
+		e.zsxm_dm(+)
+
+		group by xx.zsxm_dm,
+		xx.zsxmmc,
+		a.bq_1,b.tqtc_2,c.qntq_ysb_yc,d.qntq_fysb_yc,e.tqtc_5
+		order
+		by
+		xx.zsxm_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_SELECTSSYC" describ="查询税收分析" isLoad="true">
+		select
+		a.xh, B.SWJGMC tbjg,a.tbzt_dm ztdm, (case when a.tbzt_dm='1' then
+		'已锁定' when a.tbzt_dm='0' then '未锁定' end) ztmc, C.SWRYXM tbr, A.jsly
+		jsly,to_char(a.lr_sj,'yyyy-mm-dd hh24:mi:ss') tbsj
+		from A_GC_SSYC
+		a,
+		DM_GY_SWJG B,
+		DM_GY_SWry C
+		where A.TBSWJG_DM=B.SWJG_DM AND
+		C.SWRY_DM=A.TBR_DM and a.tbswjg_dm like ? and trunc(a.lr_sj)
+		&gt;=to_date(
+		?
+		,'yyyy-mm-dd') and trunc(a.lr_sj) &lt;=to_date( ?
+		,'yyyy-mm-dd')
+		order by a.tbswjg_dm,a.lr_sj
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_SELECTALLSSYC" describ="查询税收分析" isLoad="true">
+		select a.xh, B.SWJGMC tbjg,a.tbzt_dm ztdm, (case when a.tbzt_dm='1'
+		then '已锁定' when a.tbzt_dm='0' then '未锁定' end) ztmc, C.SWRYXM tbr,
+		A.jsly jsly,to_char(a.lr_sj,'yyyy-mm-dd hh24:mi:ss') tbsj
+		from
+		A_GC_SSYC a,
+		DM_GY_SWJG B,
+		DM_GY_SWry C
+		where
+		A.TBSWJG_DM=B.SWJG_DM AND
+		C.SWRY_DM=A.TBR_DM and trunc(a.lr_sj) &gt;=to_date(
+		? ,'yyyy-mm-dd')
+		and
+		trunc(a.lr_sj) &lt;=to_date( ? ,'yyyy-mm-dd') order by
+		a.tbswjg_dm,a.lr_sj
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_SELECTSBXXUUID" describ="判断sbxxuuid是否存在"
+		isLoad="true">
+		SELECT * FROM A_GC_SSYC_ZB A WHERE A.XMXH = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_CXSSYCZB" describ="查询税收预测主表" isLoad="true">
+		select
+		a.xh,
+		B.SWJGMC tbjg,
+		a.tbzt_dm zt,
+		z.swryxm tbr,
+		A.JSSQSM jssqsm
+		from
+		A_GC_SSYC a,
+		DM_GY_SWJG B,
+		Dm_Gy_Swry z
+		where A.TBSWJG_DM=B.SWJG_DM and
+		a.tbswjg_dm=? and
+		a.lr_sj&gt;=to_date(? ,'yyyy-mm-dd') and
+		a.lr_sj&lt;=to_date(?
+		,'yyyy-mm-dd')
+		and z.swry_dm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_SELECTSWJG" describ="查询税务机关" isLoad="true">
+		SELECT
+		T.Swjg_Dm SWJGDM, t.swjgmc SWJGMC
+		FROM DM_GY_SWJG T
+		START WITH
+		T.SWJG_DM
+		=
+		(select k.sjswjg_dm
+		from DM_QX_SWRYSF a,
+		DM_GY_SWJG k
+		where a.swrysf_dm
+		= ? and k.swjg_dm =
+		a.sfswjg_dm)
+		CONNECT BY PRIOR T.SWJG_DM =
+		T.SJSWJG_DM
+		and t.swjgbz = '0'
+		and t.zn_dm = '01'
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_COUNTSSYC" describ="查询税务机关" isLoad="true">
+		select
+		count(1) as gs from A_GC_SSYC a where
+		trunc(a.lr_sj)>=trunc(sysdate,'mm')
+		and a.tbswjg_dm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_UPDATESSYC_JS" describ="解锁" isLoad="true">
+		update
+		A_GC_SSYC a set a.tbzt_dm='0' where a.xh=?
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_INSERTSSYC" describ="SSYC插入" isLoad="true">
+		insert
+		into A_GC_SSYC (xh,Tbswjg_Dm,Tbr_Dm,tbyf,Tbzt_Dm,lrry_dm,Yxbj,Lr_Sj)
+		values(?,?,?,substr(to_char(sysdate,'yyyy-mm-dd'),6,2),'1',?,'Y',sysdate)
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_INSERTSSYCZB" describ="SSYCZB插入" isLoad="true">
+		INSERT INTO A_GC_SSYC_ZB
+		(XH,MXXH,ZSXM_DM,YSBJE,QNTQ_TC_YSB_JE,YSB_YCX_JE,F_YSB_YCX_JE,QN_TSSBS_JE,CKZ_1,CKZ_2,RGQR_JE,LRRY_DM,YXBJ,LR_SJ)
+		VALUES(?,?,?,?,?,?,?,?,?,?,?,?,'Y',SYSDATE)
+	</sql>
+	<sql id="SQL_SJFZ_FZ006_QUERYINFO" describ="查询明细" isLoad="true">
+		select
+		a.zsxm_dm,
+		b.zsxmmc sz,
+		a.ysbje ysb,
+		a.qntq_tc_ysb_je qcysb,
+		a.ysb_ycx_je
+		ysbqyycxsy,
+		a.f_ysb_ycx_je fysbqyycxsy,
+		a.qn_tssbs_je qntqsbs,
+		a.ckz_1
+		ycck_a,
+		a.ckz_2 ycck_b,
+		a.rgqr_je rgqrsbs
+		from a_gc_ssyc_zb a, dm_gy_zsxm
+		b
+		where a.xh = ?
+		and a.zsxm_dm = b.zsxm_dm
+		order by a.xh
+	</sql>
+	<!-- SJFZ_FZ007 -->
+	<sql id="SQL_SJFZ_FZ007_SELECTSWJGBYSF" describ="根据当前登陆的身份查询对应的机关下拉列表"
+		isLoad="true">
+		SELECT T.Swjg_Dm SWJGDM, t.swjgmc SWJGMC
+		FROM
+		DM_GY_SWJG T
+		START
+		WITH T.SWJG_DM = (select a.sfswjg_dm
+		from
+		DM_QX_SWRYSF a
+		where
+		a.swrysf_dm = ?)
+		CONNECT BY PRIOR T.SWJG_DM =
+		T.SJSWJG_DM
+		and t.swjgbz =
+		'0'
+		and t.zn_dm = '01'
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_QUERYCZRJGXXBYSFDM" describ="根据操作人代码取所属机关信息"
+		isLoad="true">
+		select a.sfswjg_dm swjgdm, b.swjgmc
+		from DM_QX_SWRYSF a,
+		dm_gy_swjg b
+		where a.swrysf_dm = ?
+		and a.sfswjg_dm = b.swjg_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_GETTCBMDMB" describ="获取提出部门代码表" isLoad="true">
+		select a.gzbm_dm dm,a.gzbmmc mc from DM_GZ_GZBM a where a.yxbz=? order
+		by a.gzbm_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_GETGZZBZLBYTCBM" describ="根据提出部门查询规则指标种类代码表"
+		isLoad="true">
+		SELECT a.gzzl_dm id,a.gzzlmc text FROM DM_GZ_GZZL a where
+		a.yxbz='Y' and a.gzbm_dm = ? order by a.gzzl_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_CHECKYWSJBYLCSLH" describ="判断流程实例号能否匹配到业务数据"
+		isLoad="true">
+		select count(1) as gs from a_fz_rwfpmx a where a.lcslh=?
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_QUERYSBLXBYLCSLH" describ="根据流程实例号判断识别类型"
+		isLoad="true">
+		select a.sblx_dm from a_fz_rwfpmx a where a.lcslh=?
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_QUERYFXJGXX" describ="查询分页结果信息" isLoad="true">
+		select (case
+		when a.sblx_dm = '1' then
+		'企业'
+		when a.sblx_dm = '2' then
+		'自然人'
+		when a.sblx_dm = '3' then
+		'建筑项目'
+		when a.sblx_dm = '3' then
+		'施工编码'
+		else
+		'错误'
+		end) sblx,
+		to_char(a.djxh) djxh,
+		a.nsrmc,
+		a.shxydm,
+		a.nsrsbh,
+		nvl(a.shxydm, a.nsrsbh) zsnsrsbh,
+		c.sfzjlxmc zjlx,
+		a.zj_hm,
+		b.swjgmc,
+		(case
+		when a.gzlx_dm = '1' then
+		'纳服应对'
+		when a.gzlx_dm = '2' then
+		'纳税人应对'
+		when a.gzlx_dm = '3' then
+		'风险事项应对'
+		else
+		'错误'
+		end) gzlx,
+		to_char(a.gzqsrq,
+		'yyyy-mm-dd') gzqsrq,
+		to_char(a.gzzzrq, 'yyyy-mm-dd') gzzzrq,
+		to_char(a.gzfq_rq, 'yyyy-mm-dd') gzfqrq,
+		a.rewcts rwwcts,
+		to_char(a.rwwcsx, 'yyyy-mm-dd') rwwcsx,
+		a.sjbz,
+		a.gzfxms,
+		a.gz_id,
+		a.gz_dm,
+		d.gzzb_mc
+		from R_GZ_SB_GZYDK_LS a, dm_gy_swjg b, DM_GY_SFZJLX
+		c, r_gz_gzzb d
+		where a.zgswskfj_dm = b.swjg_dm
+		and a.zjlx_dm =
+		c.sfzjlx_dm(+)
+		and a.gz_dm = d.gz_dm(+)
+		and 1 = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_QUERYQYJCXX" describ="查询企业基础信息" isLoad="true">
+		select a.nsrmc,
+		a.nsrsbh,
+		a.shxydm,
+		d.swjgmc,
+		b.fddbrxm frxm,
+		e.sfzjlxmc
+		frzjmc,
+		b.fddbrsfzjhm frzjhm,
+		c.fddbryddh frlxdh,
+		b.zcdz,
+		a.rwwcsx
+		ydwcsxz,
+		f.gzzb_mc ydsxlx,
+		a.lczt_dm lczt,a.gzfxms,a.sfty,a.hxclfs
+		from
+		a_fz_rwfpmx a,
+		dj_nsrxx b,
+		dj_nsrxx_kz c,
+		dm_gy_swjg d,
+		DM_GY_SFZJLX e,
+		R_GZ_GZZB f
+		where
+		a.lcslh = ?
+		and a.djxh = b.djxh
+		and b.djxh = c.djxh(+)
+		and a.zgswskfj_dm
+		=
+		d.swjg_dm(+)
+		and b.fddbrsfzjlx_dm = e.sfzjlx_dm(+)
+		and a.gz_dm =
+		f.gz_dm(+)
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_QUERYZRRJCXX" describ="查询自然人基础信息" isLoad="true">
+		select a.nsrmc,
+		a.nsrsbh,
+		e.sfzjlxmc,
+		a.zj_hm,
+		d.swjgmc,
+		a.rwwcsx ydwcsxz,
+		f.gzzb_mc ydsxlx,
+		a.lczt_dm lczt,a.gzfxms,a.sfty,a.hxclfs
+		from
+		a_fz_rwfpmx a, dm_gy_swjg
+		d,
+		DM_GY_SFZJLX e, R_GZ_GZZB f
+		where a.lcslh
+		= ?
+		and a.zgswskfj_dm =
+		d.swjg_dm(+)
+		and a.zjlx_dm = e.sfzjlx_dm(+)
+		and
+		a.gz_dm = f.gz_dm(+)
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_QUERYJCXMJCXX" describ="查询建筑项目基础信息" isLoad="true">
+		select a.nsrmc,
+		a.nsrsbh,
+		a.shxydm,
+		c.swjgmc,
+		b.gcxmbh,
+		b.gcxmmc,
+		b.gcxmdz,
+		a.rwwcsx ydwcsxz,
+		f.gzzb_mc ydsxlx,
+		a.lczt_dm
+		lczt,a.gzfxms,a.sfty,a.hxclfs
+		from
+		a_fz_rwfpmx a,
+		DJ_JZYGCXMQKDJXXB b,
+		dm_gy_swjg c
+		where a.lcslh = ?
+		and
+		a.sbdx_dm =
+		b.gcxmbh(+)
+		and
+		a.zgswskfj_dm = c.swjg_dm(+)
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_QUERYSGGCJCXX" describ="查询施工工程基础信息" isLoad="true">
+		SELECT A.NSRMC,
+		A.NSRSBH,
+		A.SHXYDM,
+		C.SWJGMC,
+		B.Bdcxmbh,
+		B.Bdcxmmc,
+		B.Xmdz,
+		A.RWWCSX YDWCSXZ,
+		F.GZZB_MC YDSXLX,
+		A.LCZT_DM
+		LCZT,a.gzfxms,a.sfty,a.hxclfs
+		from
+		a_fz_rwfpmx a,
+		DJ_BDCXMDJXX b,
+		dm_gy_swjg c
+		where a.lcslh = ?
+		and
+		a.sbdx_dm =
+		b.bdcxmbh(+)
+		and
+		a.zgswskfj_dm = c.swjg_dm(+)
+	</sql>
+	<sql id="SQL_SJFZ_FZ007_QUERYSMBYLCSLH" describ="根据流程实例号查询受理意见及审批意见"
+		isLoad="true">
+		select a.xh,a.sm from a_fz_gzlyj a where a.lcslh=?
+	</sql>
+	<!-- SJFZ_FZ008 -->
+	<sql id="SQL_SJFZ_FZ008_QUERYSCCWSJ" describ="查询上传错误数据" isLoad="true">
+		select to_char(a.djxh) djxh,
+		to_char(a.ssqq, 'yyyy-mm-dd') ssqs,
+		to_char(a.ssqz, 'yyyy-mm-dd') ssqz,
+		a.gzfxms ms,
+		a.message
+		from
+		A_LS_FZ_WBRWFPMX a
+		where a.zt = ?
+		order by a.xh
+	</sql>
+	<sql id="SQL_SJFZ_FZ008_QUERY" describ="分页查询" isLoad="true">
+		select hc,
+		uuid,
+		xh,
+		to_char(djxh) djxh,
+		nsrsbm,
+		shxydm,
+		nvl(shxydm,nsrsbm) xsnsrsbm,
+		nsrmc,
+		zjlx,
+		zjhm,
+		swjgmc,
+		to_char(ssqq, 'yyyy-mm-dd') ssqq,
+		to_char(ssqz,
+		'yyyy-mm-dd') ssqz,
+		gzfxms
+		from A_LS_FZ008_query a
+		where 1 = ?
+		order by
+		a.hc
+	</sql>
+	<!-- SJFZ_FZ009 -->
+	<sql id="SQL_SJFZ_FZ009_QUERYQYLBBYNSRSBH" describ="根据纳税人识别号或社会信用代码及操作人身份查询企业列表"
+		isLoad="true">
+		select to_char(a.djxh) djxh,
+		a.zgswskfj_dm zgswskfjdm,
+		b.swjgmc
+		zgswskfjmc,
+		a.nsrmc,
+		a.nsrsbh,
+		a.shxydm,
+		a.fddbrxm,
+		a.fddbrsfzjhm,
+		a.zzjg_dm zzjgdm,
+		a.nsrzt_dm nsrztdm,
+		c.nsrztmc,
+		a.kzztdjlx_dm
+		kzztdjlxdm,
+		d.kzztdjlxmc,
+		a.kqccsztdjbz kqccsztdjbzdm,
+		(case
+		when
+		a.kqccsztdjbz = 'Y' then
+		'是'
+		when a.kqccsztdjbz = 'N' then
+		'否'
+		else
+		''
+		end)
+		kqccsztdjbzmc,
+		a.scjydz,
+		a.zcdz
+		from dj_nsrxx a, DM_GY_SWJG b,
+		DM_GY_nsrzt c, dm_dj_kzztdjlx d
+		where (a.nsrsbh = ? or a.shxydm = ?)
+		and a.zgswskfj_dm = b.swjg_dm(+)
+		and a.nsrzt_dm = c.nsrzt_dm(+)
+		and
+		a.kzztdjlx_dm = d.kzztdjlx_dm(+)
+		and a.nsrzt_dm not in ('07', '08',
+		'10')
+		and a.zgswskfj_dm like
+		(select x.znjgfw || '%'
+		from DM_QX_SWJG_WJDS
+		x, dm_qx_swrysf y
+		where y.swrysf_dm = ?
+		and y.sfswjg_dm = x.swjg_dm)
+		order by a.zgswj_dm, a.zgswskfj_dm, a.nsrmc
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYSZWZDMB" describ="查询所在位置代码表" isLoad="true">
+		select a.dlwz_dm dm, a.dlwz_mc mc
+		from A_DM_SJFZ_DLWZ a
+		where
+		a.yxbj =
+		'Y'
+		and 1 = ?
+		order by a.dlwz_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYHDFSDMB" describ="查询核定方式代码表" isLoad="true">
+		select a.hdfs_dm dm, a.hdfs_mc mc
+		from A_DM_SJFZ_HDFS a
+		where a.yxbj =
+		'Y'
+		and 1 = ?
+		order by a.hdfs_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYJSYJDMB" describ="查询计税依据代码表" isLoad="true">
+		select a.jsyj_dm dm, a.jsyj_mc mc
+		from A_DM_SJFZ_JSYJ a
+		where a.yxbj =
+		'Y'
+		and 1 = ?
+		order by a.jsyj_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYJYLXDMB" describ="查询交易类型代码表" isLoad="true">
+		select a.jylx_dm dm, a.jylx_mc mc
+		from a_Dm_Sjfz_JYLX a
+		where a.yxbj =
+		'Y'
+		and 1 = ?
+		order by a.jylx_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYCZRSSJGDM" describ="查询操作人身份所在机关"
+		isLoad="true">
+		select a.sfswjg_dm from dm_qx_swrysf a where a.swrysf_dm=?
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYFQJDYDYRGWDM" describ="查询发起阶段应对人员的岗位代码"
+		isLoad="true">
+		select a.gw_dm
+		from a_xt_swjg_gzl_gw_dzb a
+		where
+		a.swjg_dm = ?
+		and
+		a.lcdy_id = ?
+		and a.yxbj = 'Y'
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYFQJDYDYRGWDM" describ="根据流程实例号查询基础信息"
+		isLoad="true">
+		select uuid,
+		zrf_djxh,
+		zrf_zgswksdm,
+		(select swjgmc from
+		dm_gy_swjg where swjg_dm = srf_zgswksdm) zrf_zgswksmc,
+		zrf_kqccsztdjbzdm,
+		(case
+		when zrf_kqccsztdjbzdm = 'Y' then
+		'是'
+		when
+		zrf_kqccsztdjbzdm = 'N' then
+		'否'
+		else
+		''
+		end) zrf_kqccsztdjbzmc,
+		zrf_kzztdjlxdm,
+		(select kzztdjlxmc
+		from dm_dj_kzztdjlx
+		where kzztdjlx_dm
+		= zrf_kzztdjlxdm) zrf_kzztdjlxmc,
+		zrf_nsrmc,
+		zrf_nsrsbh,
+		zrf_shxydm,
+		zrf_frxm,
+		zrf_frzjhm,
+		zrf_zzjgdm,
+		zrf_zcdz,
+		zrf_scjydz,
+		srf_djxh,
+		srf_zgswksdm,
+		(select swjgmc from dm_gy_swjg where swjg_dm =
+		srf_zgswksdm) srf_zgswksmc,
+		srf_kqccsztdjbzdm,
+		(case
+		when
+		srf_kqccsztdjbzdm = 'Y' then
+		'是'
+		when srf_kqccsztdjbzdm = 'N' then
+		'否'
+		else
+		''
+		end) srf_kqccsztdjbzmc,
+		srf_kzztdjlxdm,
+		(select kzztdjlxmc
+		from
+		dm_dj_kzztdjlx
+		where kzztdjlx_dm = srf_kzztdjlxdm) srf_kzztdjlxmc,
+		srf_nsrmc,
+		srf_nsrsbh,
+		srf_shxydm,
+		srf_frxm,
+		srf_frzjhm,
+		srf_zzjgdm,
+		srf_zcdz,
+		srf_scjydz,
+		qtxx_szwz,
+		qtxx_jylx,
+		qtxx_fcqxzhm,
+		qtxx_tzsyzhm,
+		qtxx_fcmj,
+		qtxx_tdmj,
+		qtxx_jyje,
+		qtxx_hdfs,
+		qtxx_hdje,
+		qtxx_zzsyysje,
+		qtxx_tdzzsje,
+		qtxx_jsyj,
+		qtxx_jsyjje,
+		qtxx_zrfyhsje,
+		qtxx_bjfcsje,
+		qtxx_sfyzjfcs,
+		qtxx_bjtdsysje,
+		qtxx_sfyzjtdsys,
+		qtxx_qsje,
+		qtxx_srfyhsje,
+		qtxx_qksm,
+		lczt,
+		lcslh
+		from a_fz_fdcjysssx a
+		where a.lcslh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYSMBYLCSLH" describ="根据流程实例号查询受理意见及审批意见"
+		isLoad="true">
+		select a.xh,a.sm from a_fz_gzlyj a where a.lcslh=?
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_FYCXJG" describ="查询分页查询结果" isLoad="true">
+		select
+		lcslh,
+		zrfnsrsbh,
+		zrfnsrmc,
+		srfnsrsbh,
+		srfnsrmc,
+		szwzmc,
+		jylxmc,
+		fcqxzhm,
+		tzsyzhm,
+		scsj
+		from a_ls_fz010_query
+		where 1 = ?
+		order by hc
+	</sql>
+	<sql id="SQL_SJFZ_FZ009_QUERYDYNR" describ="查询打印内容" isLoad="true">
+		select
+		'（' || a.nd || '年）' || a.hm || '号' bh,
+		a.zrfnsrsbh,
+		a.zrfnsrmc,
+		a.srfnsrsbh,
+		a.srfnsrmc,
+		e.dlwz_mc szwzmc,
+		b.jylx_mc jylxmc,
+		a.jyje,
+		a.fcqxzhm,
+		a.tzsyzhm,
+		a.fcmj,
+		a.tdmj,
+		(case
+		when a.hdfs = '03' then
+		d.hdfs_mc || ' ' || a.hdje
+		else
+		d.hdfs_mc
+		end) hdfs,
+		nvl(a.zzsyysje, 0)
+		zzsyysje,
+		nvl(a.tdzzsje, 0) tdzzsje,
+		c.jsyj_mc jsyjmc,
+		a.jsyjje,
+		a.zrfyhsje,
+		a.bjfcsje,
+		(case
+		when a.sfyzjfcs = '1' then
+		'是'
+		when a.sfyzjfcs
+		= '2' then
+		'否'
+		else
+		''
+		end) sfyzjfcs,
+		a.bjtdsysje,
+		(case
+		when a.sfyzjtdsys =
+		'1' then
+		'是'
+		when a.sfyzjtdsys = '2' then
+		'否'
+		else
+		''
+		end) sfyzjtdsys,
+		a.qsje,
+		a.srfyhsje,
+		a.qksm,
+		to_char(a.scsj,'yyyy-mm-dd') scsj
+		from
+		a_fz_fdcjysssx_ws a,
+		a_Dm_Sjfz_JYLX b,
+		A_DM_SJFZ_JSYJ c,
+		A_DM_SJFZ_HDFS
+		d,
+		A_DM_SJFZ_DLWZ e
+		where a.lcslh = ?
+		and a.jylx = b.jylx_dm(+)
+		and a.jsyj
+		= c.jsyj_dm(+)
+		and a.hdfs =
+		d.hdfs_dm(+)
+		and a.szwz = e.dlwz_dm(+)
+	</sql>
+	<!-- SJFZ_FZ010 -->
+	<sql id="SQL_SJFZ_FZ010_SELECTSWJGBYSF" describ="根据当前登陆的身份查询对应的机关下拉列表"
+		isLoad="true">
+		SELECT T.Swjg_Dm SWJGDM, t.swjgmc SWJGMC
+		FROM
+		DM_GY_SWJG T
+		START
+		WITH T.SWJG_DM = (select a.sfswjg_dm
+		from
+		DM_QX_SWRYSF a
+		where
+		a.swrysf_dm = ?)
+		CONNECT BY PRIOR T.SWJG_DM =
+		T.SJSWJG_DM
+		and t.swjgbz =
+		'0'
+		and t.zn_dm = '01'
+	</sql>
+	<sql id="SQL_SJFZ_FZ010_GETTCBMDMB" describ="获取提出部门代码表" isLoad="true">
+		select a.gzbm_dm id,a.gzbmmc text from DM_GZ_GZBM a where a.yxbz=?
+		order
+		by a.gzbm_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ010_GETGZZBZLBYTCBM" describ="根据提出部门查询规则指标种类代码表"
+		isLoad="true">
+		SELECT a.gzzl_dm id,a.gzzlmc text FROM DM_GZ_GZZL a where
+		a.yxbz='Y' and a.gzbm_dm = ? order by a.gzzl_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ010_GETGZZBBYGZZBZL" describ="根据提出部门、查询规则指标种类查询规则指标代码表"
+		isLoad="true">
+		select a.gz_dm id,a.gzzb_mc text from R_GZ_GZZB a where
+		a.gzbm_dm=? and a.gzzl_dm=? and a.xy_bj='1' order by a.gz_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ010_QUERYLWSJLB" describ="分页查询当前页数据" isLoad="true">
+		select uuid,
+		to_char(djxh) djxh,
+		nsrmc,
+		nsrsbh,
+		zgswjg_dm,
+		zgswjg_mc,
+		sblx_dm,
+		sblx_mc,
+		ydlx_dm,
+		ydlx_mc,
+		tcbm_dm,
+		tcbm_mc,
+		gzzl_dm,
+		gzzl_mc,
+		gzzb_dm,
+		gzzb_mc,
+		gzqsrq,
+		gzzzrq,
+		qksm
+		from r_gz_sb_lwsj_ls a
+		where 1 = ?
+		order by hc
+	</sql>
+	<sql id="SQL_SJFZ_FZ010_QUERYLBBYNSRSBH" describ="根据纳税人识别号查询列表"
+		isLoad="true">
+		select djxh, swjgdm, swjgmc, nsrmc, nsrsbh, shxydm, scjydz,
+		zcdz
+		from (select to_char(a.djxh) djxh,
+		a.zgswskfj_dm swjgdm,
+		b.swjgmc
+		swjgmc,
+		a.nsrmc,
+		a.nsrsbh,
+		a.shxydm,
+		a.scjydz,
+		a.zcdz
+		from dj_nsrxx a,
+		DM_GY_SWJG b
+		where (a.nsrsbh = ? or a.shxydm = ?)
+		and a.zgswskfj_dm =
+		b.swjg_dm(+)
+		and a.nsrzt_dm not in ('07', '08', '10')
+		and a.yxbz = 'Y'
+		and a.zgswskfj_dm like (select x.znjgfw || '%'
+		from DM_QX_SWJG_WJDS x,
+		dm_qx_swrysf y
+		where y.swrysf_dm = ?
+		and y.sfswjg_dm = x.swjg_dm)
+		union
+		select to_char(a.djxh) djxh,
+		a.slswjg_dm swjgdm,
+		b.swjgmc swjgmc,
+		a.xm
+		nsrmc,
+		a.nsrsbh,
+		'' shxydm,
+		'' scjydz,
+		'' zcdz
+		from dj_zrr a, DM_GY_SWJG b
+		where (a.nsrsbh = ? or a.sfzjhm = ?)
+		and a.slswjg_dm = b.swjg_dm(+)
+		and
+		a.sjyxzt = 'A'
+		and a.slswjg_dm like (select x.znjgfw || '%'
+		from
+		DM_QX_SWJG_WJDS x, dm_qx_swrysf y
+		where y.swrysf_dm = ?
+		and y.sfswjg_dm
+		= x.swjg_dm))
+		order by swjgdm, nsrmc
+	</sql>
+	<sql id="SQL_SJFZ_FZ010_QUERYSBLXBYPK" describ="根据主键获取识别类型" isLoad="true">
+		select a.sblx_dm from r_gz_sb_lwsj a where a.uuid = ? and a.zf_bj='0'
+	</sql>
+	<sql id="SQL_SJFZ_FZ010_QUERYQYXXBYPK" describ="根据主键获取企业信息" isLoad="true">
+		select a.uuid,
+		b.nsrmc,
+		c.swjgmc,
+		b.nsrsbh,
+		b.shxydm,
+		b.scjydz,
+		b.zcdz,
+		a.tcbm_dm,
+		a.gzzl_dm,
+		a.gzzb_dm,
+		a.qksm,
+		to_char(a.gzqsrq, 'yyyy-mm-dd')
+		gzqsrq,
+		to_char(a.gzzzrq, 'yyyy-mm-dd') gzzzrq
+		from r_gz_sb_lwsj a,
+		dj_nsrxx b, Dm_Gy_Swjg c
+		where a.uuid = ?
+		and a.djxh = b.djxh
+		and
+		b.zgswskfj_dm = c.swjg_dm(+)
+		and a.zf_bj = '0'
+	</sql>
+	<sql id="SQL_SJFZ_FZ010_QUERYZRRXXBYPK" describ="根据主键获取自然人信息"
+		isLoad="true">
+		select a.uuid,
+		b.xm nsrmc,
+		c.swjgmc,
+		b.nsrsbh,
+		'' shxydm,
+		'' scjydz,
+		'' zcdz,
+		a.tcbm_dm,
+		a.gzzl_dm,
+		a.gzzb_dm,
+		a.qksm,
+		to_char(a.gzqsrq,
+		'yyyy-mm-dd') gzqsrq,
+		to_char(a.gzzzrq, 'yyyy-mm-dd') gzzzrq
+		from
+		r_gz_sb_lwsj a, dj_zrr b, Dm_Gy_Swjg c
+		where a.uuid = ?
+		and a.djxh =
+		b.djxh
+		and b.slswjg_dm = c.swjg_dm(+)
+		and a.zf_bj = '0'
+	</sql>
+	<!-- SJFZ_FZ011 -->
+	<sql id="SQL_SJFZ_FZ011_QUERYQYLBBYNSRSBH" describ="根据纳税人识别号或社会信用代码及操作人身份查询企业列表"
+		isLoad="true">
+		select to_char(a.djxh) djxh,
+		a.zgswskfj_dm zgswskfjdm,
+		b.swjgmc
+		zgswskfjmc,
+		a.nsrmc,
+		a.nsrsbh,
+		a.shxydm,
+		a.fddbrxm,
+		a.fddbrsfzjhm,
+		a.zzjg_dm zzjgdm,
+		c.nsrztmc,
+		d.kzztdjlxmc,
+		(case
+		when a.kqccsztdjbz = 'Y'
+		then
+		'是'
+		when a.kqccsztdjbz = 'N' then
+		'否'
+		else
+		''
+		end) kqccsztdjbz,
+		a.scjydz,
+		a.zcdz
+		from dj_nsrxx a, DM_GY_SWJG b, DM_GY_nsrzt c,
+		dm_dj_kzztdjlx d
+		where (a.nsrsbh = ? or a.shxydm = ?)
+		and a.zgswskfj_dm
+		= b.swjg_dm(+)
+		and a.nsrzt_dm = c.nsrzt_dm(+)
+		and a.kzztdjlx_dm =
+		d.kzztdjlx_dm(+)
+		and a.nsrzt_dm not in ('07', '08', '10')
+		and
+		a.zgswskfj_dm like
+		(select x.znjgfw || '%'
+		from DM_QX_SWJG_WJDS x,
+		dm_qx_swrysf y
+		where y.swrysf_dm = ?
+		and y.sfswjg_dm = x.swjg_dm)
+		order
+		by a.zgswj_dm, a.zgswskfj_dm, a.nsrmc
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYSWJGBYSF" describ="查询身份所在机关" isLoad="true">
+		select a.sfswjg_dm swjgdm from dm_qx_swrysf a where a.swrysf_dm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYJCXX" describ="查询基础信息" isLoad="true">
+		select
+		to_char(a.djxh) djxh,
+		a.nsrmc,
+		a.nsrsbh,
+		a.shxydm,
+		a.frxm,
+		a.frzjhm,
+		a.zcdz,
+		a.anzjzl,
+		a.nbjtsybg,
+		a.nclcfyj,
+		a.qtxx,
+		a.lczt,
+		a.uuid
+		from
+		a_fz_zdfxyd a
+		where a.lcslh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYHSRWLB" describ="查询核实任务列表" isLoad="true">
+		select a.uuid,
+		a.xh,
+		a.tsrysfdm,
+		a.tsryxm,
+		a.ydrysfdm,
+		a.ydryxm,
+		a.xhsnr,
+		a.hsjg,
+		a.lczt,
+		(case
+		when a.lczt is null then
+		'待发起'
+		when a.lczt = '0' then
+		'待核实'
+		when a.lczt = '1' then
+		'已核实'
+		else
+		'错误'
+		end) lcztmc,
+		a.lcslh
+		from
+		A_FZ_ZDFXYD_MX a
+		where a.uuid = ?
+		order by a.xh
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYSCWJXHBYPK" describ="根据主键查询新的上传序号"
+		isLoad="true">
+		select nvl(max(a.xh), 0) + 1 as xh
+		from A_FZ_SCWJ a
+		where a.uuid
+		= ?
+		and a.hjdm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_UPDATEWJNR" describ="更新文件内容" isLoad="true">
+		select
+		a.wjnr from a_fz_scwj a where a.uuid=? and a.hjdm=? and a.xh = ? for
+		update
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYSCWJLB" describ="查询上传文件列表" isLoad="true">
+		select a.uuid lcslh,
+		a.hjdm,
+		(case
+		when a.hjdm = 'shtqinit' then
+		'审核提请'
+		when a.hjdm = 'rwfpinit' then
+		'任务分配'
+		when a.hjdm = 'hzhsinit' then
+		'汇总情况核实'
+		when a.hjdm = 'jzspinit' then
+		'局长审批'
+		when a.hjdm = 'zxinit' then
+		'执行'
+		when a.hjdm = 'hsinit' then
+		'核实'
+		else
+		'未配置的环节'
+		end) hjmc,
+		a.xh,
+		a.wjm,
+		to_char(a.lr_sj,'yyyy-mm-dd hh24:mi:ss') scsj
+		from a_fz_scwj a
+		where
+		a.uuid = ?
+		and a.zfbj = '0'
+		order by a.lr_sj
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYSCWJ" describ="查询上传文件" isLoad="true">
+		select
+		a.wjm, a.wjnr
+		from a_fz_scwj a
+		where a.uuid = ?
+		and a.hjdm = ?
+		and a.xh =
+		?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYJGLIST" describ="查询机关列表" isLoad="true">
+		select a.Swjgdm id, a.swjgmc text, 'closed' state, '1' lx
+		from
+		A_LS_comm_swjglb a
+		where 1 = ?
+		order by a.xh
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYJGRYBYSJJG" describ="根据上级机关查询下级机关及人员"
+		isLoad="true">
+		select id, text, state, lx
+		from (select a.swjg_dm id, a.swjgmc
+		text,
+		'closed' state, '1' lx
+		from Dm_Gy_Swjg a
+		where a.sjswjg_dm = ?
+		and
+		a.xybz
+		= 'Y'
+		and a.yxbz = 'Y'
+		union
+		select a.swrysf_dm id, a.rysfmc text,
+		''
+		state, '2' lx
+		from DM_QX_SWRYSF a
+		where a.sfswjg_dm = ?
+		and a.yxbz =
+		'Y')
+		c
+		order by lx, id
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYRYXXBYSF" describ="根据身份查询人员代码及机关"
+		isLoad="true">
+		select a.swry_dm swrydm,a.sfswjg_dm swjgdm from dm_qx_swrysf a
+		where a.swrysf_dm in ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYCZRJGBYSF" describ="根据身份查询机关" isLoad="true">
+		select a.sfswjg_dm swjgdm from dm_qx_swrysf a where a.swrysf_dm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYHSRWMS" describ="查询核实任务的描述" isLoad="true">
+		select a.uuid,a.xh,a.xhsnr,a.hsjg,a.lczt,a.lcslh from a_fz_zdfxyd_mx a
+		where a.lcslh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYYDRWJBXX" describ="查询应对任务基本信息" isLoad="true">
+		select a.nsrmc,
+		(case
+		when a.shxydm is not null then
+		a.nsrsbh
+		else
+		a.nsrsbh
+		end) nsrsbh,
+		a.frxm,
+		a.frzjhm,
+		a.zcdz,
+		a.anzjzl,
+		a.nbjtsybg,
+		a.nclcfyj,
+		a.qtxx,
+		a.lcslh
+		from a_fz_zdfxyd a
+		where a.uuid = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYYJ" describ="查询意见" isLoad="true">
+		select
+		a.xh,a.sm from a_fz_gzlyj a where a.lcslh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYFQRXX" describ="查询发起人信息" isLoad="true">
+		select a.lrry_dm,a.lrjg_dm from a_fz_zdfxyd a where a.lcslh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ011_QUERYJZXX" describ="查询局长信息" isLoad="true">
+		select
+		a.csz from a_xt_xtcs a where a.csbm = ?
+	</sql>
+	<!-- SJFZ_FZ012 -->
+	<sql id="SQL_SJFZ_FZ012_QUERYSZ" describ="查询税种 " isLoad="true">
+		select
+		a.zsxm_dm dm, a.zsxmmc mc
+		from dm_gy_zsxm a
+		where a.xybz = 'Y'
+		and a.yxbz
+		= 'Y'
+		and a.zsxm_dm &lt;= '10199'
+		and 1 = ?
+		order by a.zsxm_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ012_QUERYZBLB" describ="查询主表列表 " isLoad="true">
+		select
+		a.uuid,a.swjgmc,a.ygtjbbqxmc,a.sbsjq,a.sbsjz,a.lrsj,a.xgsj,a.lrry,a.xgry
+		from a_ls_fz012_query a where 1=? order by a.hc
+	</sql>
+	<sql id="SQL_SJFZ_FZ012_QUERYTJLB" describ="查询统计列表 " isLoad="true">
+		select
+		a.zsxm_dm,
+		a.zsxm_mc,
+		a.tqycxsy_je,
+		a.qntqsb_je,
+		a.ycck_je,
+		a.rgqrsb_je,
+		a.rgqrsb_je yrgqrsb_je
+		from a_ls_fz012_tjxx a
+		where 1 = ?
+		order by
+		a.zsxm_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ012_QUERYSJZT" describ="查询数据状态 " isLoad="true">
+		select
+		count(1) as gs
+		from a_fz_sssryg a
+		where a.swjg_dm = ?
+		and
+		a.ygtjbbqx_dm =
+		?
+		and a.sbsjq = to_date(?, 'yyyy-mm-dd')
+		and a.sbsjz =
+		to_date(?,
+		'yyyy-mm-dd')
+	</sql>
+	<sql id="SQL_SJFZ_FZ012_QUERYZTSJ" describ="查询主题数据 " isLoad="true">
+		select
+		a.swjg_dm,
+		a.ygtjbbqx_dm,
+		to_char(a.sbsjq, 'yyyy-mm-dd') sbsjq,
+		to_char(a.sbsjz, 'yyyy-mm-dd') sbsjz
+		from a_fz_sssryg a
+		where a.uuid = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ012_QUERYMXSJ" describ="查询明细数据 " isLoad="true">
+		select
+		a.zsxm_dm,
+		b.zsxmmc zsxm_mc,
+		a.tqycxsy_je,
+		a.qntqsb_je,
+		a.ycck_je,
+		a.rgqrsb_je
+		from a_fz_sssryg_mx a, dm_gy_zsxm b
+		where a.uuid = ?
+		and
+		a.zfbj = '0'
+		and a.zsxm_dm = b.zsxm_dm(+)
+	</sql>
+	<!-- SJFZ_FZ013 -->
+	<sql id="SQL_SJFZ_FZ013_QUERYJGBYSF" describ="根据身份查询机关" isLoad="true">
+		select a.swry_dm,a.sfswjg_dm,a.rysfmc from dm_qx_swrysf a where
+		a.swrysf_dm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ013_QUERYTSXX" describ="查询推送信息" isLoad="true">
+		select
+		a.url,a.lczt,a.msxx,a.fkxx from A_FZ_TS a where a.lcslh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ013_QUERYFQRXX" describ="查询发起人信息" isLoad="true">
+		select a.tsrdm,a.tsrjg_dm from A_FZ_TS a where a.lcslh =?
+	</sql>
+	<!-- SJFZ_FZ014 -->
+	<sql id="SQL_SJFZ_FZ014_QUERYBMLIST" describ="查询部门列表" isLoad="true">
+		select a.jbqsks_dm dm ,a.jbqsks_mc mc
+		from a_dm_xt_jbqsks a
+		where a.yxbj
+		= ?
+		order by a.jbqsks_dm
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_QUERYSQRXX" describ="查询申请人信息" isLoad="true">
+		select b.swry_dm, b.swryxm, a.sfswjg_dm, to_char(sysdate,
+		'yyyy-mm-dd') sj
+		from dm_qx_swrysf a, dm_gy_swry b
+		where a.swry_dm =
+		b.swry_dm
+		and a.swrysf_dm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_QUERYSQXX" describ="查询申请信息" isLoad="true">
+		select
+		a.uuid,
+		a.sqrdm,
+		a.sqrxm,
+		a.sqrjg_dm,
+		to_char(a.spsj, 'yyyy-mm-dd') sqsj,
+		a.sqbm,
+		a.bqscfs,
+		a.xzbqqksm,
+		a.jbnr,
+		a.spjg,
+		a.spyj,
+		a.zxqkms,
+		a.lczt,
+		a.lcslh
+		from a_fz_xzbqsq a
+		where a.lcslh = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_QUERYTHYJ" describ="查询退回意见" isLoad="true">
+		select
+		a.sm from a_fz_gzlyj a where a.lcslh = ? and a.xh = '1'
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_QUERYSCFJSL" describ="查询上传附件的数量" isLoad="true">
+		select count(1) as gs from a_fz_scwj a where a.uuid = ? and a.zfbj='0'
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_GETGLYXX" describ="获取管理员信息" isLoad="true">
+		select
+		a.csz from a_xt_xtcs a where a.csbm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_QUERYSCWJLB" describ="查询上传文件列表" isLoad="true">
+		select a.uuid lcslh,
+		a.hjdm,
+		(case
+		when a.hjdm = 'fqinit' then
+		'发起申请'
+		else
+		'未配置的环节'
+		end) hjmc,
+		a.xh,
+		a.wjm,
+		to_char(a.lr_sj,'yyyy-mm-dd hh24:mi:ss')
+		scsj
+		from a_fz_scwj a
+		where
+		a.uuid = ?
+		and a.zfbj = '0'
+		order by a.lr_sj
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_QUERYSCWJXHBYPK" describ="根据主键查询新的上传序号"
+		isLoad="true">
+		select nvl(max(a.xh), 0) + 1 as xh
+		from A_FZ_SCWJ a
+		where a.uuid
+		= ?
+		and a.hjdm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_QUERYSCWJXHBYPK" describ="根据主键查询新的上传序号"
+		isLoad="true">
+		select nvl(max(a.xh), 0) + 1 as xh
+		from A_FZ_SCWJ a
+		where a.uuid
+		= ?
+		and a.hjdm = ?
+	</sql>
+	<sql id="SQL_SJFZ_FZ014_UPDATEWJNR" describ="更新文件内容" isLoad="true">
+		select
+		a.wjnr from a_fz_scwj a where a.uuid=? and a.hjdm=? and a.xh = ? for
+		update
+	</sql>
+</sqlfile>

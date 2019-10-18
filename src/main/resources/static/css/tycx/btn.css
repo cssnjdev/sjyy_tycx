@@ -1,0 +1,239 @@
+
+body,button.btn{
+   font:12px "΢���ź�", Arial, Helvetica, sans-serif;
+}
+
+button.btn{
+  background-color:#DAEEF5;
+  color:#000;
+  border: none;
+  border-radius:2px;
+  border:1px solid #9fbfea;
+  border-radius:2px;
+  padding:2px 16px 5px 12px;
+  background:url(ctx+"/img/image/buttons/btn_bk_lu.png") repeat-x #daeef5;
+}
+
+.xj_lu{ /*�½�*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url(ctx+"/img/image/add_lu.png") no-repeat;
+    background-size:16px 16px;
+}
+.baocun_lu{ /*����*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/baocun_lu.png") no-repeat;
+    background-size:16px 16px;
+
+}
+.tingzhi_lu{ /*ͣ��*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/tingyong_lu.png") no-repeat;
+    background-size:16px 16px;
+
+}
+
+.stop_lu{  /*ֹͣ*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/stop_lu.png") no-repeat;
+    background-size:16px 16px;
+}
+
+.wj_lu{  /*�ļ�*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/wj_lu.png") no-repeat;
+    background-size:16px 16px;
+}
+
+.ljzx_lu{ /*����ִ��*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/ljzx_lu.png") no-repeat;
+    background-size:16px 16px;
+}
+
+.yl_lu{  /*Ԥ�Y*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/yulan_lu.png") no-repeat;
+    background-size:16px 16px;
+}
+.cx_lu{  /*��ѯ*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/zoom2_lu.png") no-repeat;
+    background-size:16px 16px;
+}
+.bz_lu{ /*����*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/bz_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.sc_lu{ /*ɾ��*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/sc_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.dc_lu{ /*����*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/dc_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.gb_lu{ /*�ر�*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/gb_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.jgl_lu{ /*���ߖ�*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/jgl_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.pj_lu{ /*����*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/pj_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.tj_lu{ /*�ύ*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/tj_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.daochu_lu{ /*����*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/daochu_lu.png") no-repeat;
+    background-size:16px 16px;
+
+
+}
+.xz_lu{ /*����*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url(ctx+"/img/image/add_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.xg_lu{ /*�޸�*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url(ctx+"/img/image/xg_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.zf_lu{ /*����*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url(ctx+"/img/image/close2_lu.png") no-repeat;
+     background-size:15px 15px;
+}
+
+.ts_lu{ /*��ʾ*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/ts_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+.qd_lu{ /*ȷ��*/
+	width:16px;
+    height:16px;
+    position:relative;
+    display:inline-block;
+    top:3px;margin-right:3px;
+    background:url("/img/image/check_lu.png") no-repeat;
+     background-size:16px 16px;
+}
+<!--anniu -->
+
+button.btn:hover{
+  background-color:#57BDEE;
+  border:1px solid #9fbfea;
+  border-radius:2px;
+  height:26px;
+  background:url(ctx+"/img/image/buttons/btn_bk_lu.png");
+}
+
+button.btn.selectContr{
+  color:#000;
+  font:12px "΢���ź�", Arial, Helvetica, sans-serif;
+}
+
+button.btn.focus, button.btn:focus {
+    color: #000;
+  /*  background-color: #57BDEE;*/
+    border-color: none;
+    outline-color:-webkit-focus-ring-color;
+    outline-style:auto;
+    outline-width:5px;
+    outline:5px auto -webkit-focus-ring-color;
+    outline-offset:-2px;
+}

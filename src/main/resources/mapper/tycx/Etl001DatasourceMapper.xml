@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Etl001DatasourceMapper">
+    <resultMap id="Etl001DatasourcePojoMap" type="com.cwks.bizcore.tycx.core.mapping.pojo.Etl001DatasourcePojo">
+        <result column="datasource_id" property="datasource_id" />
+        <result column="ds_desc" property="ds_desc" />
+        <result column="ds_ip" property="ds_ip" />
+        <result column="ds_name" property="ds_name" />
+        <result column="ds_sid" property="ds_sid" />
+        <result column="ds_type" property="ds_type" />
+        <result column="is_valid" property="is_valid" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrry_dm" property="lrry_dm" />
+        <result column="order_num" property="order_num" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgry_dm" property="xgry_dm" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        datasource_id,
+        ds_desc,
+        ds_ip,
+        ds_name,
+        ds_sid,
+        ds_type,
+        is_valid,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrry_dm,
+        order_num,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgry_dm
+    </sql>
+    <sql id="Base_Param_List" >
+        #{datasource_id},
+        #{ds_desc},
+        #{ds_ip},
+        #{ds_name},
+        #{ds_sid},
+        #{ds_type},
+        #{is_valid},
+        #{lrrq},
+        #{lrry_dm},
+        #{order_num},
+        #{xgrq},
+        #{xgry_dm}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Etl001DatasourcePojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Etl001DatasourcePojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  SYS_DATASOURCE t
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="ds_name != null" >
+           	 and t.ds_name like '%'||#{ds_name}||'%'
+           </if>
+           <if test="ds_type != null and ds_type !='' " >
+             and t.ds_type = #{ds_type} 
+           </if>
+           <if test="is_valid != null and is_valid !='' " >
+             and t.is_valid = #{is_valid} 
+           </if>
+           <if test="ds_desc != null and ds_desc !='' " >
+             and t.ds_desc like '%'||#{ds_desc}||'%'
+           </if>
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="Etl001DatasourcePojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from SYS_DATASOURCE
+        where
+        datasource_id=#{datasource_id}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Etl001DatasourcePojo">
+        delete from SYS_DATASOURCE
+        where
+                datasource_id=#{datasource_id}
+            
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Etl001DatasourcePojo" >
+        insert into SYS_DATASOURCE (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Etl001DatasourcePojo" >
+        insert into SYS_DATASOURCE
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="datasource_id != null" >
+                datasource_id,
+            </if>
+            <if test="ds_desc != null" >
+                ds_desc,
+            </if>
+            <if test="ds_ip != null" >
+                ds_ip,
+            </if>
+            <if test="ds_name != null" >
+                ds_name,
+            </if>
+            <if test="ds_sid != null" >
+                ds_sid,
+            </if>
+            <if test="ds_type != null" >
+                ds_type,
+            </if>
+            <if test="is_valid != null" >
+                is_valid,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm,
+            </if>
+            <if test="order_num != null" >
+                order_num,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="datasource_id != null" >
+                    #{datasource_id},
+            </if>
+            <if test="ds_desc != null" >
+                    #{ds_desc},
+            </if>
+            <if test="ds_ip != null" >
+                    #{ds_ip},
+            </if>
+            <if test="ds_name != null" >
+                    #{ds_name},
+            </if>
+            <if test="ds_sid != null" >
+                    #{ds_sid},
+            </if>
+            <if test="ds_type != null" >
+                    #{ds_type},
+            </if>
+            <if test="is_valid != null" >
+                    #{is_valid},
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrry_dm != null" >
+                    #{lrry_dm},
+            </if>
+            <if test="order_num != null" >
+                    #{order_num},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgry_dm != null" >
+                    #{xgry_dm},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Etl001DatasourcePojo" >
+        update SYS_DATASOURCE
+        <trim prefix="set" suffixOverrides="," >
+            <if test="datasource_id != null" >
+                datasource_id =#{datasource_id},
+            </if>
+            <if test="ds_desc != null" >
+                ds_desc =#{ds_desc},
+            </if>
+            <if test="ds_ip != null" >
+                ds_ip =#{ds_ip},
+            </if>
+            <if test="ds_name != null" >
+                ds_name =#{ds_name},
+            </if>
+            <if test="ds_sid != null" >
+                ds_sid =#{ds_sid},
+            </if>
+            <if test="ds_type != null" >
+                ds_type =#{ds_type},
+            </if>
+            <if test="is_valid != null" >
+                is_valid =#{is_valid},
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm =#{lrry_dm},
+            </if>
+            <if test="order_num != null" >
+                order_num =#{order_num},
+            </if>
+            <if test="xgrq != null" >
+                xgrq =to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm =#{xgry_dm},
+            </if>
+        </trim>
+        where
+        datasource_id=#{datasource_id}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Etl001DatasourcePojo" >
+        update  SYS_DATASOURCE set
+        datasource_id = #{datasource_id},
+        ds_desc = #{ds_desc},
+        ds_ip = #{ds_ip},
+        ds_name = #{ds_name},
+        ds_sid = #{ds_sid},
+        ds_type = #{ds_type},
+        is_valid = #{is_valid},
+        lrrq = #{lrrq},
+        lrry_dm = #{lrry_dm},
+        order_num = #{order_num},
+        xgrq = #{xgrq},
+        xgry_dm = #{xgry_dm}
+        where
+        datasource_id=#{datasource_id}
+    </update>
+</mapper>

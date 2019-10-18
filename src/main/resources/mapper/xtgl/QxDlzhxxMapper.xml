@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizsys.xtgl.dao.QxDlzhxxMapper">
+    <resultMap id="qxDlzhxxPojoMap" type="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo">
+        <result column="dlzhkl" property="dlzhkl" />
+        <result column="dlzh_dm" property="dlzh_dm" />
+        <result column="klyxqq" property="klyxqq" />
+        <result column="klyxqz" property="klyxqz" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="swry_dm" property="swry_dm" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="yxbz" property="yxbz" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        dlzhkl,
+        dlzh_dm,
+        to_char(klyxqq,'yyyy-mm-dd hh24:mi:ss') klyxqq,
+        to_char(klyxqz,'yyyy-mm-dd hh24:mi:ss') klyxqz,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        swry_dm,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        yxbz
+    </sql>
+    <sql id="Base_Param_List" >
+        #{dlzhkl},
+        #{dlzh_dm},
+        #{klyxqq},
+        #{klyxqz},
+        #{lrrq},
+        #{lrr_dm},
+        #{swry_dm},
+        #{xgrq},
+        #{xgr_dm},
+        #{yxbz}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo" resultType="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  QX_DLZHXX t
+        <trim prefix="WHERE" prefixOverrides="and">
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="qxDlzhxxPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from QX_DLZHXX
+        where
+        dlzh_dm=#{dlzh_dm}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo">
+        delete from QX_DLZHXX
+        where
+                dlzh_dm=#{dlzh_dm}
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo" >
+        insert into QX_DLZHXX (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo" >
+        insert into QX_DLZHXX
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="dlzhkl != null" >
+                dlzhkl,
+            </if>
+            <if test="dlzh_dm != null" >
+                dlzh_dm,
+            </if>
+            <if test="klyxqq != null" >
+                klyxqq,
+            </if>
+            <if test="klyxqz != null" >
+                klyxqz,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="swry_dm != null" >
+                swry_dm,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+            <if test="yxbz != null" >
+                yxbz,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="dlzhkl != null" >
+                    #{dlzhkl},
+            </if>
+            <if test="dlzh_dm != null" >
+                    #{dlzh_dm},
+            </if>
+            <if test="klyxqq != null" >
+                    to_date(#{klyxqq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="klyxqz != null" >
+                    to_date(#{klyxqz},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                    #{lrr_dm},
+            </if>
+            <if test="swry_dm != null" >
+                    #{swry_dm},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                    #{xgr_dm},
+            </if>
+            <if test="yxbz != null" >
+                    #{yxbz},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo" >
+        update QX_DLZHXX
+        <trim prefix="set" suffixOverrides="," >
+            <if test="dlzhkl != null" >
+                dlzhkl =#{dlzhkl},
+            </if>
+            <if test="dlzh_dm != null" >
+                dlzh_dm =#{dlzh_dm},
+            </if>
+            <if test="klyxqq != null" >
+                klyxqq =to_date(#{klyxqq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="klyxqz != null" >
+                klyxqz =to_date(#{klyxqz},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm =#{lrr_dm},
+            </if>
+            <if test="swry_dm != null" >
+                swry_dm =#{swry_dm},
+            </if>
+                xgrq = sysdate ,
+            <if test="xgr_dm != null" >
+                xgr_dm =#{xgr_dm},
+            </if>
+            <if test="yxbz != null" >
+                yxbz =#{yxbz},
+            </if>
+        </trim>
+        where
+        dlzh_dm=#{dlzh_dm}
+    </update>
+    <update id="updateBySwrydm" parameterType="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo" >
+        update QX_DLZHXX
+        <trim prefix="set" suffixOverrides="," >
+            <if test="dlzhkl != null" >
+                dlzhkl =#{dlzhkl},
+            </if>
+            <if test="dlzh_dm != null" >
+                dlzh_dm =#{dlzh_dm},
+            </if>
+            <if test="klyxqq != null" >
+                klyxqq =to_date(#{klyxqq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="klyxqz != null" >
+                klyxqz =to_date(#{klyxqz},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm =#{lrr_dm},
+            </if>
+                xgrq =sysdate,
+            <if test="xgr_dm != null" >
+                xgr_dm =#{xgr_dm},
+            </if>
+            <if test="yxbz != null" >
+                yxbz =#{yxbz},
+            </if>
+        </trim>
+        where
+        swry_dm=#{swry_dm}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizsys.xtgl.domain.QxDlzhxxPojo" >
+        update  QX_DLZHXX set
+        <if test="dlzhkl != null" >
+            dlzhkl = #{dlzhkl},
+        </if>
+        <if test="dlzh_dm != null" >
+            dlzh_dm = #{dlzh_dm},
+        </if>
+        <if test="klyxqq != null" >
+            klyxqq = #{klyxqq},
+        </if>
+        <if test="klyxqz != null" >
+            klyxqz = #{klyxqz},
+        </if>
+        <if test="lrrq != null" >
+            lrrq = #{lrrq},
+        </if>
+        <if test="lrr_dm != null" >
+            lrr_dm = #{lrr_dm},
+        </if>
+        <if test="swry_dm != null" >
+            swry_dm = #{swry_dm},
+        </if>
+        <if test="xgrq != null" >
+            xgrq = #{xgrq},
+        </if>
+        <if test="xgr_dm != null" >
+            xgr_dm = #{xgr_dm},
+        </if>
+        <if test="yxbz != null" >
+            yxbz = #{yxbz}
+        </if>
+        where
+        dlzh_dm=#{dlzh_dm}
+    </update>
+</mapper>

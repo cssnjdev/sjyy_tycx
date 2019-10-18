@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <title>一户式查询</title>
+	<!-- jsp.header.html-->
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/themes/insdep/easyui.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/easyui_animation.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/easyui_plus.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/insdep_theme_default.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/icon.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.easyui.min.js}"></script>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/themes/insdep/jquery.insdep-extend.min.js}"></script>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/locale/easyui-lang-zh_CN.js}"></script>
+	<script  data-th-src="@{/js/tycx/js/common.js}"></script>
+	<script  data-th-src="@{/js/app/system/xtgl/codejs/common_easyui.js}"></script>
+	<script  data-th-src="@{/js/app/system/xtgl/codejs/common_alert.js}"></script>
+	<!-- jsp.header.html-->
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/biz/bizcore/sjyy/tycx/tycx004/html/tycx004_yhsxt.js}"></script>
+
+</head>
+  <style>
+ 		 
+      html,body{
+      	padding: 0;
+      	margin: 0;
+        font-family: '微软雅黑','宋体';
+        font-weight: 2px;
+      }		 
+ 	  
+ 	  #header,#title,#qyzkTitle,#qyzk,#Tab_header,#main{
+ 	   width: 100%;
+ 	   clear: both;
+ 	  }
+ 		  
+	  #title{
+	     background: #4F7FD3;
+	     color: #fff;
+	     line-height: 42px;
+	     height: 42px;
+	  }
+  
+  
+     #title span{
+       font-size: 15px;
+       letter-spacing: 2px;
+     }
+     
+     #qyzkTitle{
+         line-height: 40px;
+	     height: 40px;
+	     border-bottom: #95B8E7 1px solid;
+	     font-size: 16px;
+         letter-spacing: 2px;
+         font-weight: bold;
+         background: #D9EDF7;
+     }
+     
+     #qyzk{
+        
+        height:inherit;
+        overflow: auto;
+         border-bottom: #DDDFDE 1px solid;
+        
+      }
+       
+     #qyzk .qyzk_contain{
+        padding: 20px 40px 20px 40px;
+        max-width: 700px;
+        width: 49%;
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 14px;
+     }
+     
+     #qyzk .qyzk_contain p{
+        line-height: 16px;
+         padding: 0;
+         margin: 0;
+         margin-top: 3px;
+     }
+     
+     #Tab_header{
+       height: 44px;
+       border-bottom: #DDDFDE 1px solid;
+       box-shadow: 0 2px 0 0 rgba(100,100,100,0.5);
+       padding: 0;
+       
+     }
+     
+     #Tab_header>span{
+      float: left;
+     }
+     
+     #Tab_header>span.tabH{
+       padding: 10px 5px 10px 5px;
+       font-size:16px;
+       height: 44px;
+       margin-left:24px; 
+       width: auto;
+       letter-spacing:1px;
+       cursor: pointer;
+     }
+     
+    #Tab_header>span.tabH .glyphicon-user{
+      color: #C1C2C4;
+    }
+     
+     #Tab_header>span.tabH .title{
+       color: #000;
+       font-weight: bold;
+       height: 24px;
+       line-height:24px;
+       float: left;
+       letter-spacing: 2px;
+     }
+     
+     #Tab_header>span.tabH .help{
+       width: 24px;
+       height: 24px;
+       line-height:24px;
+       float: left;
+       text-align: center;
+       color: #8A9EAA;
+     }
+     
+     #Tab_header>span.tabH .help .glyphicon {
+          display: none;
+      }
+     
+     #Tab_header>span.tabH.tabH_active{
+       
+       border-bottom: 3px #5684BF solid;
+      
+     }
+      
+      #Tab_header>span.tabH.tabH_active .help .glyphicon {
+          display: inline;
+      }
+       
+      
+      #main>div{
+         height: 100%;
+         width: 100%;
+         margin: 0 auto;
+         margin-bottom:100px;
+         background: #f3f3f3;
+      }
+      
+      #main>div>iframe {
+	     padding: 0;
+	     margin: 0;
+	     border: 0;
+	     width: 100%;
+	     height: 100%;
+	     overflow: auto;
+	     
+	  }
+	  
+      .normal-info{
+        color: #2B2BD5;
+        cursor: pointer;
+      }
+      
+      .import-info{
+         color: #ED9B81;
+        cursor: pointer;
+      } 
+	 
+	 .qyzk_contain>table td span,.qyzk_contain>table td p {
+	    display: block;
+	    float: left;
+	 }
+	
+	 .qyzk_contain>table td p{
+	   clear: both;
+	  }
+	 
+	 .qyzk_contain>table td .normal-info.no-over{
+	    max-width: 150px;
+	    text-overflow:ellipsis;
+	    overflow: hidden;
+	    white-space: nowrap;
+ 	    display: block;
+	    float: left;
+	    position: relative; 
+	 }
+        
+     .qyzk_contain>table td .normal-info.no-over div{
+	     width: 100%;
+	     position: absolute;
+	     background: #fff;
+	     border: 1px solid #ddd;
+	     left:0px;
+	     top: 25px;
+	  }  
+ 
+}
+       
+       
+  </style>   
+  
+
+  
+  
+</head>
+ 
+
+
+ <body style="overflow-y: hidden; min-width:960px; ">
+ 
+	 <div id="header">
+		<!--    <div id="title">
+		      <span style="width: auto;float: left;margin-left: 42px;font-size: 16px;">一户式系统</span>
+		     <!-- <span style="width: auto;float: right;margin-right: 36px;cursor: pointer;">退出</span>
+		      <span style="width: auto;float: right;margin-right: 36px;cursor: pointer;">设置</span>
+		       --> 
+		   <!--   </div>-->  
+		    <div id="qyzkTitle">
+		       
+		       <span style="width: auto;float: left;margin-left: 30px;">一户式系统</span>
+		       
+		       <span  style="width: auto;float: right;margin-right: 40px;cursor: pointer;">
+		          <a class="glyphicon glyphicon-chevron-up" onclick="toggleHeader(this)" ></a>
+		       </span>
+		       <span id="qyzkQymc" dataName="nsrmc" style="margin-right: 40px;font-size: 20px;font-weight: bold;letter-spacing: 3px;float: right; display: none;">
+		       		 
+		       </span>
+		       
+		    </div>
+		    
+		    <div id="qyzk">
+		       
+		       <div style="float: left;" class="qyzk_contain">
+		          <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100">
+		            <tr>
+		              <td align="left"  width="25%" valign="top" style="line-height: 24px;">
+		                <p><span style="font-weight: bold"> 纳税人状态</span></p>
+		                <p style="line-height: 50px;"> <span style="font-size: 26px;font-weight: bold;letter-spacing: 3px; " dataName="nsrztmc"></span> </p>
+		                <p><span style="font-weight: bold">纳税信用等级:</span><span dataName="xydjDm"></span></p>
+		              </td>
+		              <td  align="left" width="35%" valign="top"  >
+		                  <p><span style="font-weight: bold">本年减免税金额:</span><span class="normal-info" dataName="jmje">万元</span> </p>
+		                  <p><span style="font-weight: bold">本年营业额：</span><span class="normal-info" dataName="yye">万元</span> </p>
+		                  <p><span style="font-weight: bold">本年总申报额：</span><span class="normal-info" dataName="nse">万元</span> </p>
+		                  <p><span style="font-weight: bold">注册资本:</span><span class="normal-info" dataName="zczb">万元</span> </p>
+		                  <p><span style="font-weight: bold">当年地税税款缴纳金额:</span><span class="normal-info" dataName="sjje">万元</span> </p>	 
+		                
+		              </td>
+		              <td align="left" width="40%" valign="top"> 
+		                <p><span style="font-weight: bold" dataName="zgswjmc"></span><span style="font-weight: bold">排名：</span><span class="normal-info" dataName="nspmXj"></span> </p>
+		                <p><span style="font-weight: bold">全市排名：</span><span class="normal-info" dataName="nspmSj"></span> </p>
+		                <p><span dataName="hymc" style="font-weight: bold"></span><span style="font-weight: bold">行业排名：</span><span class="normal-info" dataName="nspmHy"></span> </p>
+		                <p><span style="font-weight: bold">累计欠税:</span><span class="normal-info" dataName="qsje">万元</span> </p> 
+		                <p><span style="font-weight: bold">地税税负率:</span><span class="normal-info" dataName="sfl"></span> </p>  		              
+		              </td>
+		            </tr>
+		          </table>
+		       </div>
+		       
+		       <div style="float: right;" class="qyzk_contain" >
+		           <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100">
+		            <tr>
+		             
+		              <td align="left" valign="top"  width="70%" >
+		                  <h4 ><span style="font-size: 20px;font-weight: bold;letter-spacing: 3px;" dataName="nsrmc"></span></h4>
+		                  <p style="clear: both;"><span style="font-weight: bold">生产经营地址：</span> <span dataName="scjydz" class="normal-info"></span> </p>
+		                  <p><span style="font-weight: bold" >从业人数&nbsp;</span><span class="normal-info" dataName="cyrs"></span><span> &nbsp;人</span> 
+                             <span> &nbsp;|&nbsp;</span><span style="font-weight: bold">小微企业: </span> <span class="normal-info" dataName="sfsyxxwlqy"></span> 
+                             <span> &nbsp;|&nbsp;</span><span style="font-weight: bold">定期定额户:</span><span class="normal-info" dataName="sfdqdeh"></span>
+                             <span> &nbsp;|&nbsp;</span><span style="font-weight: bold">登记注册类型:</span><span class="normal-info" dataName="djzclxmc"></span>
+		                   </p>
+		                   <p> <span style="font-weight: bold">国税: </span><span class="normal-info" dataName="nsrzglxmc"></span> 
+                              <span> &nbsp;|&nbsp;</span><span style="font-weight: bold">发票领购情况:</span><span class="normal-info" dataName="sflgfp"></span> 
+                              <span> &nbsp;|&nbsp;</span><span style="font-weight: bold">经营范围:</span><span class="normal-info no-over" dataName="jyfw"> </span> 
+                              <span> &nbsp;|&nbsp;</span><span style="font-weight: bold">行业:</span><span class="normal-info" dataName="hymc"></span>  
+		                   </p>
+		                   <p> <span style="font-weight: bold">税务机关:</span> <span class="normal-info" dataName="zgswjmc"></span> 
+                              <span> &nbsp;|&nbsp;</span><span style="font-weight: bold">社会信用代码/识别号:</span><span class="normal-info" dataName="shxydm"></span> 
+                              <span> &nbsp;|&nbsp;</span><span style="font-weight: bold">项目登记信息:</span> <span class="normal-info" dataName="xmts"></span> 
+		                   </p>
+		              </td>
+ 		            </tr>
+		          </table>
+		       </div>
+		       
+		    </div>
+		    <div id = "Tab_header">
+		       
+		       <span style="height: 100%;line-height:44px; background: #568CE4;color: #fff;width:36px;margin: 0;text-align: center;font-size:16px;">
+		           <span  class="glyphicon glyphicon-align-justify"></span>
+		       </span>
+		       
+		        <span class="tabH tabH_active"  tabName="yhscx" >
+		           <div class="title">
+		             <span class="glyphicon glyphicon-user"></span>
+		             <span >一户式查询</span>
+		            </div>
+		            <div class="help">
+		              <span class="glyphicon glyphicon-question-sign"></span>
+		            </div>
+		        </span>
+		       
+		        <span class="tabH"  tabName="zbfx" >
+		           <div class="title">
+		             <span class="glyphicon glyphicon-user"></span>
+		             <span >指标分析</span>
+		            </div>
+		            <div class="help">
+		              <span class="glyphicon glyphicon-question-sign"></span>
+		            </div>
+		        </span>
+		       
+		       <span class="tabH " tabName="bqhx" >
+		           <div class="title">
+		             <span class="glyphicon glyphicon-user"></span>
+		             <span >标签画像</span>
+		            </div>
+		            <div class="help">
+		              <span class="glyphicon glyphicon-question-sign"></span>
+		            </div>
+		        </span>
+		        
+		        <span class="tabH"  tabName="mxsj" >
+		           <div class="title">
+		             <span class="glyphicon glyphicon-user"></span>
+		             <span >申报特性</span>
+		            </div>
+		            <div class="help">
+		              <span class="glyphicon glyphicon-question-sign"></span>
+		            </div>
+		        </span>
+		         <span class="tabH"  tabName="glgxqy" >
+		           <div class="title">
+		             <span class="glyphicon glyphicon-user"></span>
+		             <span >关联关系企业</span>
+		            </div>
+		            <div class="help">
+		              <span class="glyphicon glyphicon-question-sign"></span>
+		            </div>
+		        </span>
+		         <span class="tabH"  tabName="blb" >
+		           <div class="title">
+		             <span class="glyphicon glyphicon-user"></span>
+		             <span >病历本</span>
+		            </div>
+		            <div class="help">
+		              <span class="glyphicon glyphicon-question-sign"></span>
+		            </div>
+		        </span>
+		         
+		        
+		         
+		    </div>
+	    
+	 </div>
+     
+     <div id="main" style="background: #eee;  ">
+        
+        <div  id="tab_yhscx" >
+        	<iframe id="frame_yhscx" name="yhscx"  frameborder="0"  src=" "></iframe>
+        </div>
+        
+        <div  id="tab_zbfx">
+           <iframe id="frame_zbfx" name="zbfx"  frameborder="0"  src=""></iframe>
+        </div>
+        
+        <div  id="tab_bqhx">
+            <iframe id="frame_bqhx" name="bqhx"  frameborder="0"  src=" "></iframe>
+        </div>
+         
+        <div  id="tab_mxsj">
+          <iframe id="frame_mxsj" name="mxsj"  frameborder="0"  src=" "></iframe>
+        </div>
+        <div  id="tab_glgxqy">
+          <iframe id="frame_glgxqy" name="glgxqy"  frameborder="0"  src=" "></iframe>
+        </div>
+      <div  id="tab_blb">
+          <iframe id="frame_blb" name="blb"  frameborder="0"  src=" "></iframe>
+        </div>
+        <div style="background: #fff;" id="main_w" ></div>
+        
+     </div>
+   
+</body>
+ 
+</html>

@@ -1,0 +1,77 @@
+table.dataTable{
+	
+	margin: 0 0 0 0;
+	margin-top:0px !important;
+}
+
+
+table.dataTable thead th,
+table.dataTable thead td {
+    font:12px "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    letter-spacing:1pt;
+    line-height:15px;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom:1px solid #ddd;
+    border-right:1px dotted #adcfdc
+}
+
+table.dataTable tbody td{
+   padding: 8px 10px;
+   font:12px "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif;
+}
+
+
+table.dataTable.row-border tbody th, 
+table.dataTable.row-border tbody td, 
+table.dataTable.display tbody th, 
+table.dataTable.display tbody td {
+   border-top:none;
+   border-right:1px dotted #adcfdc; 
+   border-bottom:1px solid #ddd;
+}
+
+
+table.dataTable.row-border tbody tr {
+	border-bottom:1px solid #ddd;
+}
+
+table.dataTable.hover tbody tr:hover,table.dataTable.display tbody tr:hover {
+  background-color:#def1df;
+}
+
+table.dataTable > tbody tr td:last-child, table.dataTable thead tr th:last-child, table.dataTable thead tr td:last-child
+{
+	border-right: 0;
+}
+
+ 
+.dataTables_wrapper.no-footer .dataTables_scrollBody{
+	
+	 border-bottom-color: #ddd;
+	
+}
+
+
+.dataTables_wrapper .dataTables_length{
+	width: 150px;
+	margin-top: 9px;
+	margin-left: 5px;
+}
+
+
+
+table.dataTable td.number,table.dataTable th.number{
+	text-align: right;
+}
+
+
+table.dataTable td.rownum,table.dataTable th.rownum{
+	text-align: center;
+	font-weight: bold;
+}
+
+

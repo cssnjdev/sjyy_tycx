@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+<meta name="renderer" content="webkit" charset="UTF-8">
+
+<title>定制查询</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+<style type="text/css">
+	
+</style>
+ 
+<script src="/public/js/echarts/jquery.min.js"></script>
+<script src="/public/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="/public/js/bootstrap/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="/public/js/bootstrap/css/bootstrap-multiselect.css" />
+<link href="/public/js/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+<script src="/public/js/bootstrap/js
+<link href="/public/js/bootstrap/css/bootstrap-table.css" type=/bootstrap-table.js"></script>
+"text/css" rel="stylesheet">
+<link rel="stylesheet" href="/public/js/dataTables/media/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/public/js/bootstrap/css/jquery.datetimepicker.css" />
+<script language="javascript" type="text/javascript" src="<%=request.getContextPath()%>/public/js/bootstrap/js/jquery.datetimepicker1.js" ></script>
+<script src="/public/js/common/js/jquery.combo.select.js"></script>
+<script src="/public/js/dataTables/media/js/jquery.dataTables.js"></script>
+<script src="/biz/core/ext/tycx/tycx002/js/tycx002Dzcx_main.js"></script>
+<script src="/biz/core/ext/tycx/tycx002/js/tycx002Dzcx_cxtj.js"></script>
+<script src="/biz/core/ext/tycx/tycx002/js/tycx002Dzcx_cxjg.js"></script>
+<script src="/biz/core/ext/tycx/tycx002/js/tycx002Dzcx_tjcx.js"></script>
+<link rel="stylesheet" type="text/css" href="/public/js/zTree_v3.5/css/zTreeStyle/zTreeueStyle.css"/>
+<link rel="stylesheet" type="text/css" href="/public/js/common/css/combo.select.css"/>
+<script language="javascript" type="text/javascript" src="/public/js/zTree_v3.5/js/jquery.ztree.core-3.5.js"></script>
+<script language="javascript" type="text/javascript" src="/public/js/zTree_v3.5/js/jqry.ztree.excheck-3.5.js"></script>
+<link rel="stylesheet" href="/public/js/common/css/dataTableUtil.css" />
+<script language="javascript" type="text/javascript" src="/public/js/ext/easyui/1.5.1/jquery.easyui.min.js"></script> 
+<link rel="stylesheet" href="/public/js/ext/easyui/1.5.1/themes/insdep/easyui.css" />
+
+<link rel="stylesheet" href="/public/js/common/css/common.css" />
+<link rel="stylesheet" href="/public/js/dataTables/media/css/fixedColumns.dataTables.min.css" />
+<script src="/public/js/dataTables/media/js/dataTables.fixedColumns.min.js"></script>
+<script src="/public/js/common/js/dataTableUtil.js"></script>
+
+
+<script src="/public/js/ext/easyui/1.5.1/locale/easyui-lang-zh_CN.js"></script>
+<script src="/public/js/ext/ace-1.4.0/components/jquery-ui/jquery-ui.min.js"></script>
+
+
+</head>
+<style>
+ 
+body{
+  background:#fff;
+  min-width: 1075px;
+  overflow-x:hidden; 
+} 
+ 
+html,body{
+   padding: 0;
+   margin: 0;
+}
+ 
+.text{
+	 padding:0;
+	 margin-right: -1px;
+	 background:rgb(249, 249, 248);
+	 width:160px;
+}
+ 
+.text span.active{
+	border-right: 1px solid #fff;
+	background-color: #fff;
+    padding-right: 1px; 
+    position: relative;
+    right: -1px;
+}
+
+.text span:hover{background-color: #EFEFE5;}
+.left{padding: 35px 25px;}
+.left div{min-width:350px;height:250px;}
+.left .title{display:block;height:30px;background:rgb(243, 242, 240);}
+.v-top .click{  margin: 20px 0;font-size: 14px;}
+.close{float:right;  height: 28px;}.close img{width:28px;}
+#swjgbar,#nsrztpie,#xydjpie,#hybar,#gdghbar,#hypie{margin: 20px 11px;}
+.close:hover{ transform: rotate(90deg);}
+
+#tb_departments{
+	border:0;
+   border-color: #DDDDDD;
+}
+
+#tb_departments.table-info thead tr{
+   background: #F7F7F7;
+}
+
+#tb_departments.table-info thead th{
+   border-color: #DDDDDD;
+   color:#000;
+   font-weight: bold;
+   font-size:15px;
+   letter-spacing: 1px;
+}
+
+.fixed-table-container{
+   border-color: #DDDDDD; 
+}
+.bootstrap-table .table:not(.table-condensed) > tbody > tr > td{
+ padding: 5px;
+}
+.date_button{ 
+ float: left; width:auto;padding:7px; 
+}
+
+input{
+ 
+ height: 24px;
+ width:200px;
+}
+.combo_content{
+  width:100%;
+  height:360px;
+  position:absolute;
+  top:33px;
+  right:0;
+  background:#fff;
+  border:1px solid #DBD8D3;
+  z-index:9999;
+  display:none;
+  overflow: auto;
+  min-width: 300px;
+}
+
+.panel-info{
+border-color: #ddd;
+}
+
+.panel-info>.panel-heading {
+    color: #fff;
+    background-color: #679DE7;
+    border-color: #ddd;
+}
+
+.btn1 {
+background: #568CE4;
+
+}
+.btn:HOVER {
+	background: #E6F3FA;
+}
+
+
+.combo_box .dropdown{
+  
+  background:#fff url("/biz/core/ext/tycx/images/down.png") center center no-repeat ;
+  height: 25px;
+  width: 24px;
+  position: absolute;
+  right: 1px;
+  top:1px;
+  cursor: pointer;
+  border-left:1px solid #ddd;  
+}
+
+.combo_box.isup .dropdown{
+
+  background-image: url("/biz/core/ext/tycx/images/up.png");
+
+}
+
+.tableCell{
+	width:100%;
+	height:100%;
+}
+
+.panel-default {
+    border: 0;
+    padding:0;
+    border-radius: 4px;
+    box-shadow: 0 1px 0px rgba(0,0,0,0.05);
+}
+
+.panel-default>.panel-heading {
+    padding: 5px 10px;
+    text-transform: uppercase;
+    border:0;
+    border-bottom: 1px solid #DFE1EB;
+    background-color: #FAFAFA;
+}
+
+.panel-default>.panel-body{
+	border:0;
+	padding:0;
+	border-bottom: 1px solid #DFE1EB;
+}
+
+</style>
+<body>
+
+ <div id="box" style="height:100%;width:100%;overflow-x:hidden;">
+ 
+	<div id="top" class="w_p100 top p5_t_b p10_r_l" style="height:50px;">
+	
+	  <div class=" m_center relative" >
+		 <span id="top_help" class="abs_left top_toolbar"  >
+		 <a class="btn btn-sm btn-primary no-radius" id='element' onclick="queryMx();" data-toggle="popover" data-placement="right" data-trigger="hover">查询</a>
+		 <a class="btn btn-sm btn-primary no-radius" id='tj' onclick="viewTjModal();" data-toggle="popover" data-placement="right" data-trigger="hover">统计</a>	  
+		 <a class="btn btn-sm btn-primary no-radius" id='export' onclick="exportExcel(1);" data-toggle="popover" data-placement="right" data-trigger="hover">导出</a>	  
+		 <a class="btn btn-sm btn-primary no-radius" id='export' onclick="saveQueryParams();" data-toggle="popover" data-placement="right" data-trigger="hover">保存查询条件</a>
+		 <a class="btn btn-sm btn-primary no-radius" id='export' onclick="deleteQueryParams();" data-toggle="popover" data-placement="right" data-trigger="hover">删除已保存条件</a>
+		 <c:if test="${execute != 'true'}">
+		 <c:forEach items="${xsgnanArr }" var="xsgnan">
+		  		<c:if test="${xsgnan eq 'JGLSZ' }">
+			  		<a class="btn btn-sm btn-primary no-radius" id='jglsz' onclick="SetResultColumns();" data-toggle="popover" data-placement="right" data-trigger="hover">结果列设置</a>	
+			  	</c:if>
+			  	<c:if test="${xsgnan eq 'XQ' }">
+			 	<!--  <a class="btn btn-sm btn-primary no-radius" id='export' onclick="addColumns();" data-toggle="popover" data-placement="right" data-trigger="hover">增加计算列</a>	  	--> 
+			   		<a class="btn btn-sm btn-primary no-radius" id='xiangqing' onclick="details();" data-toggle="popover" data-placement="right" data-trigger="hover">详情</a>	  	  
+			  	</c:if>
+			  	<c:if test="${xsgnan eq 'SC' }">
+			   		<a class="btn btn-sm btn-primary no-radius" id='export' onclick="alert('建设中');" data-toggle="popover" data-placement="right" data-trigger="hover">收藏</a>	 
+			  	</c:if>
+			  	<c:if test="${xsgnan eq 'PJ' }">
+			    	<a class="btn btn-sm btn-primary no-radius" id='pj' onclick="pj();" data-toggle="popover" data-placement="right" data-trigger="hover">评价</a>	
+			  	</c:if>
+			  	<c:if test="${xsgnan eq 'FK' }">
+			     	<a class="btn btn-sm btn-primary no-radius" id='export' onclick="fk();" data-toggle="popover" data-placement="right" data-trigger="hover">反馈</a>	  	 
+			  	</c:if>
+			  	<c:if test="${xsgnan eq 'TS' }">
+			      	<a class="btn btn-sm btn-primary no-radius" id='export' onclick="tuisong();" data-toggle="popover" data-placement="right" data-trigger="hover">推送</a>	
+			  	</c:if>
+			  	<c:if test="${xsgnan eq 'FX' }">
+			       	<a class="btn btn-sm btn-primary no-radius" id='export' onclick="fenxiang();" data-toggle="popover" data-placement="right" data-trigger="hover">分享</a>
+			  	</c:if>
+			  	<c:if test="${xsgnan eq 'GB' }">
+			       	<a class="btn btn-sm btn-primary no-radius" id='export' onclick="alert('建设中');" data-toggle="popover" data-placement="right" data-trigger="hover">关闭</a>	  	  	    	     	   	    
+			  	</c:if>
+		  </c:forEach>
+		  </c:if>
+		  </span>
+		  
+	  	  <span id="sqlmc" style="margin-right: 40px;font-size: 18px;font-weight: bold;letter-spacing: 3px;float: right;"  id="sqlmc" dataName="sqlmc"> </span>
+		  <input id="sqlxh" type="hidden" value="${sqlxh}" dataName="sqlxh"/>
+		  <input id="djxh" type="hidden" value="${djxh}" dataName="sqlxh"/>
+		  <input id="fxyyid" type="hidden" value="${fxyyid}" dataName="fxyyid"/>
+		  <input id="extraParams" type="hidden" value='${extraParams}' dataName="extraParams"/>
+	 	</div>
+	</div>
+ 
+  
+ 	 <div id="cxtj_panel" class="panel panel-default" style="border-bottom: 0;">
+	  	<div class="panel-body " style="padding:10px;">
+	  	   <div  id="jb_tj" >
+	  	   
+	  	   </div>
+	  	   <div id="tjcx_tj">
+	  	   
+	  	   </div>	
+	  	</div>
+	 </div>
+	 		   
+	 <div id="tool_panel" class="panel panel-default">
+	    	 <div id="tool_head" class="panel-heading" >
+	    		<b>查询结果</b>
+	    	 </div> 
+	    	<div class="panel-body"  >
+	    	      <div id="tb_departments" class=" nowrap display dataTable">
+	    	      
+	    	      </div>
+	    	</div>
+	</div>  
+	
+</div>
+	 
+<div id="dataShow"  onmouseleave="$('#tootip').hide();" style="border:0;width: 100%;padding: 20px 20px 0 20px; height:800px;display:none;">
+  	 	<table id="tb_departments" class="table-info"></table>  
+  	 	
+  	 	  <div id="tootip" style=" position: fixed; display: none;top:0;left:0;padding-left: 10px;">
+             <div style="background: #fff; border:1px solid #ccc; padding:5px;max-width:360px; position: relative;">
+                <div class="glyphicon glyphicon-chevron-left " style="position: absolute;left: -10px;;top:1px;color: #ccc;background: #fff;"> </div>
+                <span></span>
+             </div>
+   		 </div>
+   		 
+</div>	
+
+<div class="modal fade " id="cxjglForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+	<div class="modal-dialog" role="document" style="width: 50%;margin:36px auto;">
+		<div class="modal-content">
+			<div class="modal-header qptab_modal-header" id="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+					<span aria-hidden="true" id="times">×</span>
+				</button>
+				<div class="modal-title qptab_modal-title qptab_modal-title" id="myModalLabel">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span>
+					查询结果列
+				</div>
+			</div>
+			 <div id="top" class="w_p100  box p10_r_l p5_t_b"  >		
+		           <span id="top_help" class=" top_toolbar"  >
+		              <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="queryCxjgl()">
+	                        <span class="glyphicon glyphicon-save"></span>查询
+	                    </a>
+	                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="allCheck()">
+	                        <span class="glyphicon glyphicon-save"></span>全选
+	                    </a>
+	                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="qxAllCheck()">
+	                        <span class="glyphicon glyphicon-save"></span>取消全选
+	                    </a>
+		           </span>		    
+			 </div>
+		 	 <form id="search_ff" role = "form" class="form-inline" style="margin:0px" >
+                	<input type="hidden" name="sqlxh" id="sqlxh" value="${sqlxh}" />
+                	<div id="jgl" class=" m_t_0p_c" style="margin:0px auto; background:none; min-width: 1360px;  width: 92%; padding-top:10px; border: none; display: block;height: auto; ">
+ 
+             		</div>	                
+                </form>			
+		</div>
+	</div>
+</div>
+		
+	 <div class="modal fade " id="tjModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+			<div class="modal-dialog" role="document" style="width: 50%;margin:36px auto;">
+				<div class="modal-content">
+					<div class="modal-header qptab_modal-header" id="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+							<span aria-hidden="true" id="times">×</span>
+						</button>
+						<div class="modal-title qptab_modal-title qptab_modal-title" id="myModalLabel">
+							<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span>
+							统计
+						</div>
+					</div>
+					 <div id="top" class="w_p100  box p10_r_l p5_t_b"  >		
+			           <span id="top_help" class=" top_toolbar"  >
+			              <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="executeStatistic()">
+		                        <span class="glyphicon glyphicon-save"></span>执行统计
+		                    </a>
+		                  
+			           </span>		    
+		</div>
+		<table>  
+       <tr>  
+          <td>
+          <SELECT id="fzlleft" name="fzlleft" size="15" multiple style="width:180px;"   
+           ondblclick="moveSelected(document.all.left,document.all.right)">//双击移动到右边  
+           <OPTION value="1" disabled="true">分组列</OPTION>            
+          </SELECT>
+         </td>  
+        <td WIDTH='83PX' align='center'>  
+              <INPUT type="button"  value="   >   " onClick="moveSelected(document.all.fzlleft,fzlright)"><br><br>  
+          <INPUT type="button" value="   <   "  onClick="moveSelected(document.all.fzlright,document.all.fzlleft)"> <br><br>  
+          <INPUT type="button" value="  >>>  "  onClick="moveAll(document.all.fzlleft,document.all.fzlright)">  <br><br>  
+          <INPUT type="button" value="  <<<  "  onClick="moveAll(document.all.fzlright,document.all.fzlleft)">
+    </td>  
+    <td><SELECT name="fzlright" id="fzlright" size="15" multiple style="width:180px; ">
+     <OPTION value="1" disabled="true">已选分组列</OPTION>      
+     </SELECT>  
+    </td>  
+     <td>
+          <SELECT name="tjlleft" id="tjlleft" size="15" multiple style="width:180px;margin-left:10px"   
+           ondblclick="moveSelected(document.all.left,document.all.right)">//双击移动到右边  
+            <OPTION value="1" disabled="true">统计列</OPTION>            
+          </SELECT>
+         </td>  
+        <td WIDTH='83PX' align='center'>  
+              <INPUT type="button"  value="   >   " onClick="moveSelected(document.all.tjlleft,document.all.tjlright)"><br><br>  
+          <INPUT type="button" value="   <   "  onClick="moveSelected(document.all.tjlright,document.all.tjlleft)"> <br><br>  
+           <INPUT type="button" value="  >>>  "  onClick="moveAll(document.all.tjlleft,document.all.tjlright)">  <br><br>  
+          <INPUT type="button" value="  <<<  "  onClick="moveAll(document.all.tjlright,document.all.tjlleft)"> 
+    </td>  
+    <td><SELECT name="tjlright" id="tjlright" size="15" multiple style="width:180px; "> 
+     <OPTION value="1" disabled="true">已选统计列</OPTION>      
+     </SELECT>  
+    </td>  
+</tr>  
+</table>  		
+				</div>
+			</div>
+		</div>
+	<div class="modal fade " id="tjResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+			<div class="modal-dialog" role="document" style="width: 50%;margin:36px auto;">
+				<div class="modal-content">
+					<div class="modal-header qptab_modal-header" id="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+							<span aria-hidden="true" id="times">×</span>
+						</button>
+						<div class="modal-title qptab_modal-title qptab_modal-title" id="myModalLabel">
+							<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span>
+							统计结果
+						</div>
+					
+					</div>
+					<div id="top" class="w_p100  box p10_r_l p5_t_b"  >		
+			           <span id="top_help" class=" top_toolbar"  >
+			              <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="exportExcel(4)">
+		                        <span class="glyphicon glyphicon-save"></span>导出
+		                    </a>
+		                  <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="executeStatistic()">
+		                        <span class="glyphicon glyphicon-save"></span>柱形图
+		                    </a>
+			           </span>		    
+		</div>
+          <table id="tb_tjResult" class=" nowrap display dataTable"></table>
+         </div>
+		</div>
+		</div>
+		<div class="modal fade " id="jsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+			<div class="modal-dialog" role="document" style="width: 50%;margin:36px auto;">
+				<div class="modal-content">
+					<div class="modal-header qptab_modal-header" id="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+							<span aria-hidden="true" id="times">×</span>
+						</button>
+						<div class="modal-title qptab_modal-title qptab_modal-title" id="myModalLabel">
+							<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span>
+							计算
+						</div>
+					</div>
+					 <div id="top" class="w_p100  box p10_r_l p5_t_b"  >		
+			           <span id="top_help" class=" top_toolbar"  >
+			              <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="executeJs()">
+		                        <span class="glyphicon glyphicon-save"></span>执行计算
+		                    </a>
+		                  
+			           </span>		    
+		</div>
+		<table>  
+       <tr>  
+          <td>
+         <select name="jslleft" id="jslleft" class="form-control populate" >
+			<option value="" ></option>
+ 		</select>	
+         </td>  
+         <td>
+           <select name="bds" id="bds" class="form-control populate" >
+			<option value="+" >+</option>
+			<option value="-" >-</option>
+			<option value="*" >-</option>
+			<option value="/" >/</option>
+ 		</select>	
+         </td> 
+    <td> <select name="jslright" id="jslright" class="form-control populate" >
+		 <option value="" ></option>
+ 		</select>  
+    </td>        
+</tr>  
+</table>  		
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade " id="jsResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+			<div class="modal-dialog" role="document" style="width: 50%;margin:36px auto;">
+				<div class="modal-content">
+					<div class="modal-header qptab_modal-header" id="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+							<span aria-hidden="true" id="times">×</span>
+						</button>
+						<div class="modal-title qptab_modal-title qptab_modal-title" id="myModalLabel">
+							<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span>
+							计算结果
+						</div>
+					
+					</div>
+					<div id="top" class="w_p100  box p10_r_l p5_t_b"  >		
+			           <span id="top_help" class=" top_toolbar"  >
+			              <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="exportExcel(4)">
+		                        <span class="glyphicon glyphicon-save"></span>导出
+		                    </a>
+		                 
+			           </span>		    
+		</div>
+          <table id="tb_jsResult" class=" nowrap display dataTable"></table>
+         </div>
+		</div>
+		</div>
+<ul id="listgroup" class="list-group"  style="display:none;position: fixed; top:200px; left: 100px;cursor: pointer;">
+ 
+</ul>
+	<!-- 详情弹出框start -->
+	<div class="modal fade " id="xiangqingDialog" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document"
+			style="width: 80%;margin:36px auto;">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+	<!-- 详情弹出框end -->
+	<div class="modal fade " id="fankuiDialog" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document"
+			style="width: 80%;margin:36px auto;">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+	
+	<div class="modal fade " id="pingjiaDialog" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document"
+		 style="width:80%;margin:36px auto;">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+	<!-- 推送 -->
+	<div class="modal fade " id="tuisongDialog" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" id="myModal"
+		 style="width:80%;margin:36px auto;">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+	<!-- 分享 -->
+	<div class="modal fade " id="fenxiangDialog" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" id="myModal"
+		 style="width:50%;margin:36px auto;">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+</body>
+</html>

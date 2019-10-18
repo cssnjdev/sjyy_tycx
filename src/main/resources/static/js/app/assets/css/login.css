@@ -1,0 +1,123 @@
+.card-title{
+
+	float: left;
+}
+.card-tools{
+	float: right;
+	width: 150px;
+	text-align: right;
+}
+
+
+@media screen and (max-width: 780px){
+body{
+	background-color: #fff;
+}
+.card{
+	background-color: #fff;
+	border:none;
+	box-shadow: none;
+}
+.card-title{
+	font-size: 22px !important;
+	padding-left: 5px;
+}
+
+.card .card-header, .card-light .card-header{
+	border-bottom: 1px solid #fff !important;
+	width: 90%;margin:0 auto;
+	padding:0px !important;
+
+}
+.card .card-body, .card-light .card-body{
+	padding-left: 0px;
+}
+#logtab,#zctab{
+	width: 45% !important;
+}
+#logtab .card-title{
+	width: 100px;
+	float: left;
+}
+#logtab .card-tools{
+	width: 150px;
+	float: right;
+	text-align: right;
+}
+
+.telinput{
+	width: 60%;
+	
+}
+.fsyzm{
+	width: 40%;
+	float: right;
+}
+.zhuce_return_other ul li{
+	width: 33%;
+}
+
+
+}
+
+
+
+@media screen and (max-width: 991px){
+body{
+	background-color: #fff;
+}
+.card-title{
+	font-size: 22px !important;
+	padding-left: 5px;
+}
+
+.card{
+	width: 100% !important;
+	background-color: #fff;
+	border:none;
+	box-shadow: none;
+}
+.content{
+	 background:none !important;
+}
+.card .card-body, .card-light .card-body{
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+.form-control{
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-radius: 0px;
+	padding:15px 0px;
+}
+.card .card-header, .card-light .card-header{
+	border-bottom: 1px solid #fff !important;
+	width: 90%;margin:0 auto;padding:0px !important;
+}
+#logtab,#zctab{
+	width: 100% !important;
+	background-color: none;
+}
+#logtab .card-title{
+	width: 100px;
+	float: left;
+}
+#logtab .card-tools{
+	width: 150px;
+	float: right;
+	text-align: right;
+}
+.telinput{
+	width: 60%;
+	
+}
+.fsyzm{
+	width: 40%;
+	float: right;
+}
+.zhuce_return_other ul li{
+	width: 33%;
+}
+}

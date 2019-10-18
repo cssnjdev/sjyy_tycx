@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizsys.xtgl.dao.QxGwXtgnMapper">
+    <resultMap id="qxGwXtgnPojoMap" type="com.cwks.bizsys.xtgl.domain.QxGwXtgnPojo">
+        <result column="gw_dm" property="gw_dm" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="uuid" property="uuid" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="xtgn_dm" property="xtgn_dm" />
+        <result column="yx_bj" property="yx_bj" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        gw_dm,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        uuid,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        xtgn_dm,
+        yx_bj
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizsys.xtgl.domain.QxGwXtgnPojo" resultType="com.cwks.bizsys.xtgl.domain.QxGwXtgnPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  QX_GW_XTGN t
+        <trim prefix="WHERE" prefixOverrides="and">
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="qxGwXtgnPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from QX_GW_XTGN
+        where
+        uuid=#{uuid}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizsys.xtgl.domain.QxGwXtgnPojo">
+        delete from QX_GW_XTGN
+        where
+                gw_dm=#{gw_dm}
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizsys.xtgl.domain.QxGwXtgnPojo" >
+        insert into QX_GW_XTGN (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Column_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizsys.xtgl.domain.QxGwXtgnPojo" >
+        insert into QX_GW_XTGN
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="gw_dm != null" >
+                gw_dm,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="uuid != null" >
+                uuid,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+            <if test="xtgn_dm != null" >
+                xtgn_dm,
+            </if>
+            <if test="yx_bj != null" >
+                yx_bj,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="gw_dm != null" >
+                    #{gw_dm},
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                    #{lrr_dm},
+            </if>
+            <if test="uuid != null" >
+                    #{uuid},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                    #{xgr_dm},
+            </if>
+            <if test="xtgn_dm != null" >
+                    #{xtgn_dm},
+            </if>
+            <if test="yx_bj != null" >
+                    #{yx_bj},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizsys.xtgl.domain.QxGwXtgnPojo" >
+        update QX_GW_XTGN
+        <trim prefix="set" suffixOverrides="," >
+            gw_dm =#{gw_dm},
+            lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            lrr_dm =#{lrr_dm},
+            uuid =#{uuid},
+            xgrq =to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            xgr_dm =#{xgr_dm},
+            xtgn_dm =#{xtgn_dm},
+            yx_bj =#{yx_bj},
+        </trim>
+        where
+        uuid=#{uuid}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizsys.xtgl.domain.QxGwXtgnPojo" >
+        update T_XT_DEV_CODE_DM
+        <if test="gw_dm != null" >
+        set DM_ID = #{gw_dm},
+        </if>
+        <if test="lrrq != null" >
+        set DM_ID = #{lrrq},
+        </if>
+        <if test="lrr_dm != null" >
+        set DM_ID = #{lrr_dm},
+        </if>
+        <if test="uuid != null" >
+        set DM_ID = #{uuid},
+        </if>
+        <if test="xgrq != null" >
+        set DM_ID = #{xgrq},
+        </if>
+        <if test="xgr_dm != null" >
+        set DM_ID = #{xgr_dm},
+        </if>
+        <if test="xtgn_dm != null" >
+        set DM_ID = #{xtgn_dm},
+        </if>
+        <if test="yx_bj != null" >
+        set DM_ID = #{yx_bj}
+        </if>
+        where
+        uuid=#{uuid}
+    </update>
+</mapper>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+<meta name="renderer" content="webkit" charset="UTF-8">
+
+<title th:text="${cxmc}"></title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+<style type="text/css">
+	.dataTables_scroll{
+	  overflow:auto;
+	}
+</style>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap-multiselect.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/combo.select.css}" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/tycx_dataTable.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/tycx_common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/sington.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/tycx_demo1_commom.css}" />
+
+	<script type="text/javascript"  data-th-src="@{/js/tycx/echarts_v4/echarts.min.js}"></script>
+<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+	<script type="text/javascript"   data-th-src="@{/js/tycx/jscolor.js}"></script>
+	<script type="text/javascript"   data-th-src="@{/js/tycx/bootstrap-multiselect.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.combo.select.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+
+
+
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/dataTables.fixedColumns.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/echarts_v4/thame/subject_1.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/tycx_dataTable.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cxUtil.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/service.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/toolbar.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cxtj.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/loadCharts.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/loadTable.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/tycx_demo1_main.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/loadSington.js}"></script>
+
+
+
+
+</head>
+
+<style>
+ 
+ 
+</style>
+
+<body>
+
+    <input th:id="sqlxh"  type="hidden" th:value="${sqlxh}" dataName="sqlxh"/>
+	<input th:id="djxh"   type="hidden" th:value="${djxh}" dataName="sqlxh"/>
+	<input th:id="fxyyid" type="hidden" th:value="${fxyyid}" dataName="fxyyid"/>
+  
+   
+  <div id="north"  >
+  
+	<div id="top" class="w_p100 top" style="height:auto;padding:0;margin:0;display: inline-block; ">
+	
+	  	<div class="w_p100" style="border-bottom: 1px #E0E0E0 solid; padding-right: 10px;" >
+		  <h4 style="padding:10px;margin:0;width:50%;display: inline-block;" th:value="${cxmc}"></h4>
+ 	 	  
+<!-- 	 	  <div id="moreBox" style="float: right;display: inline-block;width:0; padding:10px;position:relative; ">-->
+<!-- 	 	     <a class="glyphicon glyphicon-align-justify" onclick = "" href="javascript:void(0)"></a>-->
+<!--&lt;!&ndash; 	 	     <a class="glyphicon glyphicon-align-justify" onclick = "$('#moreBtn').toggle();" href="javascript:void(0)"></a>&ndash;&gt;-->
+<!-- 	 	     <ul id="moreBtn" class="list-group" style="position: absolute;right:15px;top:10px;z-index: 999;width:80px;cursor: pointer;display:none;" >-->
+<!--			   	<li class="list-group-item" onclick="tuisong();" ><a><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;推送</a></li>-->
+<!--			    <li class="list-group-item" onclick="details();" ><a><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;详情</a></li>-->
+<!--			    <li class="list-group-item" onclick="shoucang();" ><a><i class="fa fa-star" aria-hidden="true"></i>&nbsp;收藏</a></li>-->
+<!--			    <li class="list-group-item" onclick="pj();" ><a><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;评价</a></li>-->
+<!--			    <li class="list-group-item" onclick="fenxiang();" ><a><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;分享</a></li>-->
+<!--			    &lt;!&ndash; <li class="list-group-item" onclick="fk();" ><a><i class="fa fa-rotate-left" aria-hidden="true"></i>&nbsp;反馈</a></li> &ndash;&gt;-->
+<!-- 			 </ul> -->
+<!-- 	 	  </div>-->
+ 	 	  
+ 	 	</div>
+ 	  
+	  	<div  id="cxtj_panel" class=" w_p100" style="padding:0px;display:inline-block;background:#fff; margin:0;">
+	  	   <div id="jb_tj" style="padding:10px; display: inline-block;"  >
+	  	   	 
+	  	   </div>
+	  	   <div id="yc_tj" style="display:none;">
+	  	   </div>
+	  	   <div id="more_tj" style="position: relative; width:100%; display:inline-block; height:auto; " >
+	  	      <div id="show_more_tj" class="w_p100" 
+	  	          style="padding:10px;position:absolute;z-index:600;
+		  	      		 top:0;left:0;background: #fff;border-bottom:1px solid #ddd;
+		  	      		 border-top:1px solid #ddd;display:none;">
+	  	      </div>
+	  	   </div>	
+	  	</div>
+			  
+	  </div>
+  
+	  <div class="panel panel-default w_p100" style="border:0; margin:0;">
+	 
+	    	 <div id="tool_head" class="panel-heading w_p100" style="border:0;line-height:100%;display: inline-block;padding:0;" >
+	    	     <span class="left_span">
+	    	     	<a onclick="exportExcel(1)" href="#" title="导出excel数据"><i class="fa fa-download" aria-hidden="true"></i>&nbsp;导出</a>
+	    	     </span>
+	    	     <span class="left_span"><strong>当前位置</strong></span>
+	    	     <span id="sqlList" class="left_span">  </span>
+		    	 <span id="fzTool" style="float:left; display:none;" >
+	    		 	<table class='tj_table'  cellspacing='0' cellpadding='0'>
+					 <tbody>   
+					    <tr>
+							<!--分析角度用于group by 查询，维度和度量同时勾选才会出现图形-->
+					      <td class="right" width='100'>分析角度&nbsp;</td>
+					      <td width='200'>
+					         <div style="width:200px;position: relative;">
+					            <input id ="tj_fzxm" class='form-control'  type="hidden" />
+					            <input id ="tj_fzxmmc" class="form-control" type="text" style="width:177px;background:#fefefe;" onfocus="$('#tj_ul').slideDown();$(this).next().removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');" readonly="readonly"/>
+					            <span class="glyphicon glyphicon-chevron-down toggleDownAndUp" onclick="$('#tj_ul').slideToggle();$(this).toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-up');"></span>
+					            <ul class="tj_ul" id="tj_ul" style="display: none;" >
+					             
+					            </ul>
+					         </div> 
+					       </td> 
+					    </tr>  
+					  </tbody>   
+					</table>
+	    		 </span>
+	    		 <span id="chartTool" class="chartTool" style="float: right;width:200px;padding-top: 5px;">
+	    		   <label><input type="radio" name="chartType" value="pie"/><a  class="pie" title="饼状图"></a></label>
+	    		   <label><input type="radio" name="chartType" value="bar"/><a  class="bar" title="条形图"></a></label>
+	    		   <label><input type="radio" name="chartType" checked="checked" value="line"/><a class="line" title="柱线图"></a></label>
+	    		   <label><input type="radio" name="chartType" value="list"/><a  class="list" title="报表"></a></label>
+	    		 </span>
+	    		
+	    	 </div> 
+		
+		</div>
+	
+</div> 		
+	
+  
+<div id="center"  class="panel panel-default" style="border:0;">
+    	 <div id="scrollBox" class="panel-body" style="padding:0px;"  >
+    	        <div id="chart_departments" class="f_right" style="width:49%;height:400px;">
+
+    	        </div>
+<!--    	        <div th:id="tb_departments" oncreatedRow="tycx_createRow" class="f_left" style="width:100%;height:auto;overflow-x:auto;">-->
+    	        <div th:id="tb_departments" oncreatedRow="tycx_createRow" class="f_left" style="width:100%;border:1px solid #ddd;height:auto;overflow-x:auto;">
+
+    	        </div>
+    	 </div>
+    	 
+    	 <div id="singTonBox" class="panel-body" style="display: none;height:auto;padding: 10px; ">
+    	 
+    	 
+    	 </div>
+</div>  
+   
+   
+</body>
+</html>

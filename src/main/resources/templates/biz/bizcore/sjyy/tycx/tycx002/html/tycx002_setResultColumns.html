@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <title>结果列设置</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+    <script type="text/javascript" language="javascript">
+        var ctx = [[@{/}]];
+    </script>
+    <script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+    <script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+    <!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+    <script  data-th-src="@{/js/tycx/common.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+    <script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+    <script type="text/javascript"   data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+    <script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+<!--    <% String sqlxh=request.getParameter("sqlxh");%>-->
+    <script language="javascript" type="text/javascript">
+    var tr_len=0;
+  var sqlxh='';
+ $(function() {
+   sqlxh='${sqlxh}';
+	$.ajax({
+		url:ctx+"tykf/request?tld=Tycx002DzcxService_setResultColumns",
+		async : false,
+		data : {
+			"sqlxh" : sqlxh
+		},
+		dataType : 'json',
+		success : function(data, textStatus, jqXHR) {
+			for(var i=0;i<data.length;i++){
+			 var cxjgl=data[i];
+			 var table='';
+			  if(i%5==0){			  
+			   $("#jgl").append('<tr>');
+			   tr_len=0;
+			  }
+			   table = table+'<td style="width:150px"><input type="checkbox"  name="'+cxjgl.lmc+'" value="'+cxjgl.lmc+'">'+cxjgl.lms +'</td>';
+			    if(tr_len==4){
+			     $("#jgl").append('</tr>');
+			    }
+	           $("#jgl").append(table) ;
+	           tr_len++;
+			}
+		},
+		error : function(xhr, textStatus) {
+
+		}
+	});
+	 
+})
+function queryCxjgl(){
+      var cxjgl_checked='';
+	  $.each($("input:checkbox:checked"),function(){
+	     cxjgl_checked=cxjgl_checked+$(this).val()+",";
+	  });
+	  var cxtj=window.parent.cxtj;
+	  var cxtjParams = new Array();
+	  cxtjParams =  window.parent.getCxtjParams(cxtj);
+	  var obj = {
+			"name":"cxjgl_checked",
+			"type":"string",
+			"value":cxjgl_checked 
+		} ;
+	    cxtjParams.push(obj);
+	  $("#tb_departments",window.parent).dataTable().fnDestroy();
+	    window.parent.initTable("#tb_departments",sqlxh,cxtjParams);
+	 }
+</script>
+</head>
+<body class="no-skin">
+<div class="main-container ace-save-state" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner" >
+
+            <div class="col-xs-12" style="padding-left: 0px;padding-right: 0px;">
+                <div id="ttbar" style="padding:5px 10px">
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="queryCxjgl()">
+                        <span class="glyphicon glyphicon-search"></span>查询
+                    </a>                  
+                </div>
+                <div style="padding:5px 10px">
+                  <form id="search_ff" role = "form" class="form-inline" style="margin:0px" >
+                  <input type="hidden" name="sqlxh" id="sqlxh" value="${sqlxh}">
+                  <div id="jgl" class=" m_t_0p_c" style="margin:0px auto; background:none; min-width: 1360px;  width: 92%; padding-top:10px; border: none; display: block;height: auto; ">
+		 
+	              </div>	                
+                  </form>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>

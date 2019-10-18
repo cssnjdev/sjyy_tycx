@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <title>一户式管理</title>
+	<!-- jsp.header.html-->
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/themes/insdep/easyui.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/easyui_animation.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/easyui_plus.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/insdep_theme_default.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/icon.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.easyui.min.js}"></script>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/themes/insdep/jquery.insdep-extend.min.js}"></script>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/locale/easyui-lang-zh_CN.js}"></script>
+	<script  data-th-src="@{/js/tycx/js/common.js}"></script>
+	<script  data-th-src="@{/js/app/system/xtgl/codejs/common_easyui.js}"></script>
+	<script  data-th-src="@{/js/app/system/xtgl/codejs/common_alert.js}"></script>
+	<!-- jsp.header.html-->
+
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/jsTree/metroStyle.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jedate.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/bootstrap-table/bootstrap-table.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/tycx/js/style_fzfx.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/bootstrap/bootstrap-modal.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/biz/bizcore/sjyy/tycx/tycx004/html/tycx004_yhsxt.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.jedate.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/bootstrap/bootstrap-table.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/bootstrap-table/locale/bootstrap-table-zh-CN.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/bootstrap/bootstrap-transition.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/biz/bizcore/sjyy/tycx/tycx004/html/tycx004_yhscxmx.js}"></script>
+
+
+ 
+ 
+</head>
+ 
+ <style>
+ 
+ body{
+	 background:#fff;
+ 	 min-width: 1075px;
+  } 
+ 
+ html,body{
+   padding: 0;
+   margin: 0;
+ }
+ 
+ .text{
+	 padding:0;
+	 margin-right: -1px;
+	 background:rgb(249, 249, 248);
+	 width:160px;
+ }
+ 
+ .text span.active{
+	border-right: 1px solid #fff;
+	background-color: #fff;
+    padding-right: 1px; 
+    position: relative;
+    right: -1px;
+}
+
+.text span:hover{background-color: #EFEFE5;}
+.left{padding: 35px 25px;}
+.left div{min-width:350px;height:250px;}
+.left .title{display:block;height:30px;background:rgb(243, 242, 240);}
+.v-top .click{  margin: 20px 0;font-size: 14px;}
+.close{float:right;  height: 28px;}.close img{width:28px;}
+#swjgbar,#nsrztpie,#xydjpie,#hybar,#gdghbar,#hypie{margin: 20px 11px;}
+.close:hover{ transform: rotate(90deg);}
+
+#tb_departments{
+	border:0;
+   border-color: #DDDDDD;
+}
+
+#tb_departments.table-info thead tr{
+   background: #F7F7F7;
+}
+
+#tb_departments.table-info thead th{
+   border-color: #DDDDDD;
+   color:#000;
+   font-weight: bold;
+   font-size:15px;
+   letter-spacing: 1px;
+}
+
+.fixed-table-container{
+   border-color: #DDDDDD; 
+}
+.bootstrap-table .table:not(.table-condensed) > tbody > tr > td{
+ padding: 5px;
+}
+
+.date_button{ 
+ float: left; width:auto;padding:7px; 
+}
+
+input{
+ 
+ height: 32px;
+
+}
+.combo_content{
+  width:100%;
+  height:360px;
+  position:absolute;
+  top:33px;
+  right:0;
+  background:#fff;
+  border:1px solid #DBD8D3;
+  z-index:9999;
+  display:none;
+  overflow: auto;
+  min-width: 300px;
+}
+
+.panel-info{
+border-color: #ddd;
+}
+
+.panel-info>.panel-heading {
+    color: #fff;
+    background-color: #679DE7;
+    border-color: #ddd;
+}
+
+.btn {
+background: #568CE4;
+
+}
+.btn:HOVER {
+	background: #E6F3FA;
+}
+
+
+.combo_box .dropdown{
+  
+  background:#fff url("/img/image/down.png") center center no-repeat ;
+  height: 30px;
+  width: 24px;
+  position: absolute;
+  right: 1px;
+  top:1px;
+  cursor: pointer;
+  border-left:1px solid #ddd;  
+}
+
+.combo_box.isup .dropdown{
+
+  background-image: url("/img/image/up.png");
+
+}
+
+.tableCell{
+	width:100%;
+	height:100%;
+}
+
+</style>
+
+<script type="text/javascript" language="javascript">
+	var ctx = [[@{/}]];
+</script>
+
+ <body >
+   
+   <div class="modal" id="mymodal">
+	    <div class="modal-dialog" style="width:90%" id="modalDialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" onclick="closeModal()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<div style="background:url(/img/image/u365.png) center no-repeat;width:60px;height:30px;float:left;margin-top:-2px"></div><h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body" style="height:100%">
+					<iframe src="" width="100%" height="460px" frameborder="0" id="iframeTab"></iframe>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<div style="width: 100%;padding: 0 20px 0 20px;" id="bodyTop">
+	
+   	   <div style="height: 20px;"></div>
+   	   
+	   <div >
+		   <a class="btn" id='element' onclick="queryMx();" data-toggle="popover" data-placement="right" data-trigger="hover">查询</a>
+		    <a class="btn" id='export' onclick="exportExcel();" data-toggle="popover" data-placement="right" data-trigger="hover">导出</a>	  
+	  	  <span id="sqlmc" style="margin-right: 40px;font-size: 18px;font-weight: bold;letter-spacing: 3px;float: right;"  id="sqlmc" dataName="sqlmc"> </span>
+	   </div>
+	
+	   <div id="cxtj_panel" class="panel panel-info" style="display: none;padding: 0;margin: 20px 0 0 0 ;">
+ 			<div id="collapseOne" class="panel-collapse collapse in">  
+				 <div class="panel-body"> 
+				 
+				    <table id="cxtjTable" width="100%" cellspacing="3" cellpadding="3" >
+				      <thead >
+				        <tr>
+					        <th width="13%"></th>
+					        <th width="20%"></th>
+					        <th width="13%"></th>
+					        <th width="20%"></th>
+					        <th width="13%"></th>
+					        <th width="20%"></th>
+				        </tr>
+				      </thead> 
+				      <tbody id = "cxtjTableBody">
+				      		
+				      </tbody> 
+				      <tfoot style="display: none;">
+				        <tr>
+				          <td id="cxtjYctj"></td>
+				        </tr>
+				      </tfoot>
+				    </table>
+				    
+				 </div>
+			</div>
+	   </div>
+		
+	</div>
+	<div id="dataShow"  onmouseleave="$('#tootip').hide();" style="border:0;width: 100%;padding: 20px 20px 0 20px; height:80px;">
+  	 	<table id="tb_departments" class="table-info"></table>  
+  	 	
+  	 	  <div id="tootip" style=" position: fixed; display: none;top:0;left:0;padding-left: 10px;">
+             <div style="background: #fff; border:1px solid #ccc; padding:5px;max-width:360px; position: relative;">
+                <div class="glyphicon glyphicon-chevron-left " style="position: absolute;left: -10px;;top:1px;color: #ccc;background: #fff;"> </div>
+                <span></span>
+             </div>
+   		 </div>
+   		 
+    </div>
+ </body>
+</html>

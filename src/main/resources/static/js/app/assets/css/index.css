@@ -1,0 +1,23 @@
+#model-my-page {
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    min-width: 90%;
+    overflow: visible; /*属性规定当内容溢出元素框时发生的事情 visible:内容不会被修剪，会呈现在元素框之外*/
+    bottom: inherit;
+    right: inherit;
+}
+
+#model-updatepass{
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    min-width: 90%;
+    overflow: visible; /*属性规定当内容溢出元素框时发生的事情 visible:内容不会被修剪，会呈现在元素框之外*/
+    bottom: inherit;
+    right: inherit;
+}
+/*
+.sidebar .nav>.nav-item a i {
+    line-height: 25px;
+}*/

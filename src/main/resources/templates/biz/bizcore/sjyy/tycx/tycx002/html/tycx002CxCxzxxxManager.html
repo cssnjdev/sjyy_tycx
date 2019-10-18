@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <title>查询日志信息</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+    <script type="text/javascript" language="javascript">
+        var ctx = [[@{/}]];
+    </script>
+    <script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+    <script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+    <!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+    <script  data-th-src="@{/js/tycx/common.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+    <script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+    <script type="text/javascript" src="<%=request.getContextPath()%>/biz/core/ext/tycx/tycx002/js/tycx002CxCxzxxxManager.js"></script>
+</head>
+<body>
+<div class="easyui-layout" fit="true" >
+    <div region="center" border="false" >
+        <table id="tt" ></table>
+    </div>
+</div>
+<div id="ttbar" style="padding:5px 10px">
+    <div >
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" onclick="submit_search_ff()">查询</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="append()">新增</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="modify()">编辑</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'" onclick="remove()">删除</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-excel'" onclick="expExcel('<%=request.getContextPath()%>/cssnj/exportExcle.action?tld=tycx002CxCxzxxxService_expExcel','#search_ff','#tt')">导出当前页</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-excel'" onclick="expExcel('<%=request.getContextPath()%>/cssnj/exportExcle.action?tld=tycx002CxCxzxxxService_expExcel','#search_ff','')">导出全部</a>
+    </div>
+    <div style="">
+        <form id="search_ff" style="margin:0px">
+        </form>
+    </div>
+</div>
+<div id="append_modify" class="easyui-dialog" data-options="iconCls:'icon-save',closed:true,modal:true,maximizable:true,collapsible:true,resizable:true" style="width:90%;height:90%;padding: 6px;" buttons="#dlg_buttons">
+    <form id="append_modify_ff" >
+        <table class="formtable" align="center">
+            <tr>
+                <th><label>CXSJ：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="cxsj" id="f_cxsj" /></td>
+                <th><label>CXY：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="cxy" id="f_cxy" /></td>
+            </tr>
+            <tr>
+                <th><label>CXZXSJ：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="cxzxsj" id="f_cxzxsj" /></td>
+                <th><label>CZRY_DM：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="czry_dm" id="f_czry_dm" /></td>
+            </tr>
+            <tr>
+                <th><label>FHJGS：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="fhjgs" id="f_fhjgs" /></td>
+                <th><label>LRRQ：</label></th>
+                <td ><input class="easyui-textbox" missingMessage="请填写LRRQ！" data-options="required:true"  style="width:200px;" name="lrrq" id="f_lrrq" /></td>
+            </tr>
+            <tr>
+                <th><label>LRR_DM：</label></th>
+                <td ><input class="easyui-textbox" missingMessage="请填写LRR_DM！" data-options="required:true"  style="width:200px;" name="lrr_dm" id="f_lrr_dm" /></td>
+                <th><label>SESSIONID：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sessionid" id="f_sessionid" /></td>
+            </tr>
+            <tr>
+                <th><label>SJGSDQ：</label></th>
+                <td ><input class="easyui-textbox" missingMessage="请填写SJGSDQ！" data-options="required:true"  style="width:200px;" name="sjgsdq" id="f_sjgsdq" /></td>
+                <th><label>SJGSRQ：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sjgsrq" id="f_sjgsrq" /></td>
+            </tr>
+            <tr>
+                <th><label>SQLSTR：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sqlstr" id="f_sqlstr" /></td>
+                <th><label>SQLXH：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sqlxh" id="f_sqlxh" /></td>
+            </tr>
+            <tr>
+                <th><label>THREADID：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="threadid" id="f_threadid" /></td>
+                <th><label>TJCSSTR：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="tjcsstr" id="f_tjcsstr" /></td>
+            </tr>
+            <tr>
+                <th><label>UUID：</label></th>
+                <td ><input class="easyui-textbox" missingMessage="请填写UUID！" data-options="required:true"  style="width:200px;" name="uuid" id="f_uuid" /></td>
+                <th><label>XGRQ：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="xgrq" id="f_xgrq" /></td>
+            </tr>
+            <tr>
+                <th><label>XGR_DM：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="xgr_dm" id="f_xgr_dm" /></td>
+                <th><label>ZTLX_DM：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="ztlx_dm" id="f_ztlx_dm" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dlg_buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" id="append_modify_btn" >保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#append_modify').dialog('close')">取消</a>
+</div>
+</body>
+</html>

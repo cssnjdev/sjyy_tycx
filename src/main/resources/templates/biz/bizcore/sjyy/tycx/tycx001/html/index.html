@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+<!-[if lt IE 9]>
+<!--防止ie8的兼容模式使用ie7加载 -->
+<meta http-equiv="X-UA-Compatible" content="IE=8" /> 
+<![endif]->
+<meta name="keywords" content="jquery,ui,easy,easyui,web">
+<meta name="description" content="easyui help you build your web page easily!">
+<title>${xtcsInfo.TITLE}</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+<th:if test="${hasLogin eq 0}" >
+<script type="text/javascript">
+   	 window.location.href="/" ;
+	 var ctx = [[@{/}]];
+</script>
+</th:if>
+ 
+<link rel="stylesheet" href="/public/js/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/public/js/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" >
+
+<link rel="stylesheet" type="text/css" href="/raqsoft/easyui/themes/bootstrap/easyui.css" />
+<link rel="stylesheet" type="text/css" href="/raqsoft/easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="/public/js/common/css/easyui-icons-extends.css" />
+<link rel="stylesheet" type="text/css" href="/public/js/common/css/common.css" />
+
+<script type="text/javascript" src="/raqsoft/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/raqsoft/easyui/jquery.easyui.min.js"></script>
+<script src="/public/js/bootstrap/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="/public/js/common/js/cssnjAlert.js" > </script>
+
+<script language="javascript" type="text/javascript" src="/sys/main/cssnj/js/index.js"></script>
+ 
+ <style>
+   
+	input#yymc{
+	   width:280px;
+	   border: 0;
+	   padding:0 5px 0 5px;
+	   height: 28px;
+	   line-height:28px; margin:0;float: left; color: #666;font-size: 16px;
+	 }
+	 
+    input#yymc:FOCUS {
+		background: none;
+		border: 0;
+	}
+ 
+ 	.list-group-item{
+ 	  cursor: pointer;
+ 	}
+	
+	.fg{
+		float: left;
+		margin:5px 15px 15px 0px; 
+	}
+ 	
+ 	.top_word{
+ 	  cursor: pointer;
+ 	  float: left;
+ 	  height:21px;
+	  font-size:14px;
+ 	  line-height: 21px;
+	  margin-top:5px; 
+	  margin-right:15px;
+ 	  color: white;
+ 	  text-decoration: none;
+	  
+ 	}
+ 
+   .top_word:HOVER {
+	 color: white;
+	 text-decoration: none;
+   }
+   
+   .tabs-title{font-size: 14px;letter-spacing:2px;}
+ 
+   .tabs-header {padding-top: 5px;}
+   
+   .tabs-header, .tabs-tool {
+	    background-color: #fff;
+	}
+	
+	.tabs li a.tabs-inner:hover {
+	  background: none;
+	  color: #5071D0;
+	  filter: none;
+	}
+	
+	.tabs li a.tabs-inner {
+	  border-color: transparent;
+	  background: transparent;
+	  filter: none;
+	  color: #333;
+	  font-weight:normal;
+	}
+	
+	.tabs li.tabs-selected a.tabs-inner {
+   		background:none;
+        border:0;
+        color:#5582EC;
+        font-weight:normal;
+	    border-bottom: 3px solid #5582EC;
+	}
+    
+   .tabs li a.tabs-close{
+        font-size: 16px;
+    }
+    
+    .tabs li a.tabs-close:HOVER {
+	  color: red;
+	}
+      
+ </style>
+ 
+ 
+</head>
+
+<body class="easyui-layout">
+	
+	<div id="top" data-options="region:'north',border:false" style="height:60px;line-height:50px; background:#517FDC;margin-left:0px;border-radius:0px;overflow:hidden;width: 100%;position: relative;">
+		 <div style="position: absolute; height:60px;line-height:60px; "> 
+			 <img style="margin-top:2px;float:left;" src="/img/image/login/common/tb2.gif">
+<!-- 		 	 <img style="margin-top:10px;margin-left:-5px;float:left;" src="/public/js/image/login/${xtcsInfo.IMAGEURL}/index_title.png">-->
+ 		 	 <img style="margin-top:10px;margin-left:-5px;float:left;" src="/img/image/login/cz/index_title.png">
+		 </div>
+		 
+		 <div style="float: right;width: auto; display: inline;color:#fff;padding:15px;padding-right: 25px;">
+		      
+		       <div style="border: 1px solid #fff; background: #fff; height:30px;border-radius:30px;margin-right:20px; padding: 0 5px 0 12px; overflow: visible;display: inline-block;float: left; ">
+		         
+		          <input id="yymc" style=" " placeholder="请输入查询信息"/>
+		          <a onclick="searchYy();" style="height:28px;line-height:28px;margin:2px 3px 0 3px; float: left;color: #aaa;font-size: 18px;" href="javascript:void(0);">
+		               <span class="glyphicon glyphicon-search"></span>
+		          </a>
+		       </div>
+		        
+		        <span  class="top_word" style="position: relative;">
+			         <span id="editUser"  style="cursor: pointer;position: relative;" onclick="$('#dropdown-menu').slideToggle();" >
+						<img src="/img/image/mlzy/user_icon.png" style="width:18px;height:18px">&nbsp;${userInfo.rysfmc}<b classs="caret"></b>
+					</span>
+		        </span>
+				 <image class="fg" src="/img/image/mlzy/Line.png" />
+		        <span class="top_word" onclick="window.location.href='/tykf/request_http?tld=SyService_init'">
+		     		<img src="/img/image/login/common/sya2.png" style="width:18px;height:18px">&nbsp;切换
+		     	</span>
+				<image class="fg" src="/img/image/mlzy/Line.png" />
+ 		     	<span class="top_word" onclick="loginOut();">
+		     		<img src="/img/image/login/common/sya3.png" style="width:18px;height:18px;">&nbsp;退出
+		     	</span>
+
+		 </div>
+
+	</div>
+	
+	<div id="center" data-options="region:'center',title:''" style="border-radius:0px;height: 100%;">
+		<div id="tabs" class="easyui-tabs" data-options="tools:'#tab-tools'" style="width:100%;height:100%;border-radius:0px;" fit="true">
+			<div title="首页" style="border-radius:0px;height: 100%;" id="index_content">
+			</div>
+			<!--<div title="任务中心" style="border-radius:0px;height: 100%;display:none" id="rwzx_content">
+			</div-->
+			
+		</div>
+	</div>
+   
+    <ul id="dropdown-menu" style="z-index:999999;position:fixed;background: #fff;display: none;clear: both;right:200px; top:40px;padding: 0;border:1px #eee solid;border-bottom: 0;font-size:13px; ">
+	    <li style="width:80px; list-style: none;padding:8px;border-bottom: 1px #eee solid;"><a href="javascript:void(0)" onclick="alert(22)">设置</a></li>
+	    <li style="width:80px; list-style: none;padding:8px;border-bottom: 1px #eee solid;"><a href="javascript:void(0)" onclick="alert(22)">切换身份</a></li>
+    </ul>
+ 
+    <ul class="list-group" id="rcmenu" style="position: fixed; display: none;width:120px;margin:0;padding:0;">
+		<li class="list-group-item" onclick="closethis()"  id="closethis"> <a>关闭当前项</a></li>   
+   	 	<li class="list-group-item" onclick="closeall()"   id="closeall">  <a>关闭所有项</a></li>
+   	 	<li class="list-group-item" onclick="closeother()" id="closeother"><a>关闭其他项</a></li>
+    </ul>
+ 
+   <div id="tab-tools" style="padding-top: 5px;" title="全屏当前页">
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-fullscreen'" onclick="fullscreen()" ></a>
+ 	</div>
+    
+   <div id="fullscreen_exit" style="padding: 5px;position:fixed;top:0;right: 0;z-index: 300;display: none;height:39px;border:1px solid #ddd;background:rgba(256,256,256,0.7); ">
+      <a href="javascript:void(0)" class="icon-fullscreen_exit" style="width:20px;height:20px;display: inline-block;" onclick="fullscreen_exit();">&nbsp;</a>
+   </div> 
+    
+   
+   <div style="display: none;">
+     <form id="userInfo" >
+      	   <input type="hidden" name ="swryxm" value="${userInfo.swryxm}"/>     
+           <input type="hidden" name ="swry_dm" value="${userInfo.swry_dm}"/>     
+           <input type="hidden" name ="swrysf_dm" value="${userInfo.swrysf_dm}"/>     
+           <input type="hidden" name ="rysfmc" value="${userInfo.rysfmc}"/>     
+      </form>
+   </div> 
+   
+    
+</body>
+</html>

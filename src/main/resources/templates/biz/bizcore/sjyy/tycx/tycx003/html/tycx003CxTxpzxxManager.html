@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <title>图形配置信息</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+    <script type="text/javascript" language="javascript">
+        var ctx = [[@{/}]];
+    </script>
+    <script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+    <script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+    <!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+    <script  data-th-src="@{/js/tycx/common.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+    <script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+    <script type="text/javascript"   data-th-src="@{/js/tycx/tycx003CxTxpzxxManager.js}"></script>
+
+
+</head>
+<body>
+<div class="easyui-layout" fit="true" >
+    <div region="center" border="false" >
+        <table id="tt" ></table>
+    </div>
+</div>
+<div id="ttbar" style="padding:5px 10px">
+    <div >
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" onclick="submit_search_ff()">查询</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="append()">新增</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="modify()">编辑</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'" onclick="remove()">删除</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-excel'" onclick="expExcel('<%=request.getContextPath()%>/cssnj/exportExcle.action?tld=tycx003CxTxpzxxService_expExcel','#search_ff','#tt')">导出当前页</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-excel'" onclick="expExcel('<%=request.getContextPath()%>/cssnj/exportExcle.action?tld=tycx003CxTxpzxxService_expExcel','#search_ff','')">导出全部</a>
+    </div>
+    <div style="">
+        <form id="search_ff" style="margin:0px">
+        </form>
+    </div>
+</div>
+<div id="append_modify" class="easyui-dialog" data-options="iconCls:'icon-save',closed:true,modal:true,maximizable:true,collapsible:true,resizable:true" style="width:90%;height:90%;padding: 6px;" buttons="#dlg_buttons">
+    <form id="append_modify_ff" >
+            <input type="hidden" name="uuid"  />
+        <table class="formtable" align="center">
+            <tr>
+                <th><label>字体大小：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="fontsize" id="f_fontsize" /></td>
+                <th><label>横坐标：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="hzb" id="f_hzb" /></td>
+            </tr>
+            <tr>
+                <th><label>横坐标名称：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="hzbmc" id="f_hzbmc" /></td>
+                <th><label>数据源类型：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sjylx" id="f_sjylx" /></td>
+            </tr>
+            <tr>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sql" id="f_sql" /></td>
+                <th><label>SQLXH：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sqlxh" id="f_sqlxh" /></td>
+            </tr>
+            <tr>
+                <th><label>标题：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="title" id="f_title" /></td>
+                <th><label>图形类型,txlx=barAndLine：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="txlx" id="f_txlx" /></td>
+            </tr>
+            <tr>
+                <th><label>纵坐标：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="zzb" id="f_zzb" /></td>
+                <th><label>纵坐标单位：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="zzbdw" id="f_zzbdw" /></td>
+            </tr>
+            <tr>
+                <th><label>纵坐标名称：</label></th>
+                <td colspan="3"><input class="easyui-textbox"   style="width:200px;" name="zzbmc" id="f_zzbmc" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dlg_buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" id="append_modify_btn" >保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#append_modify').dialog('close')">取消</a>
+</div>
+</body>
+</html>

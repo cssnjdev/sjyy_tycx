@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>问题反馈管理</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+
+<!-- <script type="text/javascript" src="/workflow_client/config/workflow_config.js"></script>-->
+<!--   <script type="text/javascript" src="/workflow_client/core/workflow.js"></script>-->
+<!--	 <script type="text/javascript" src="/workflow_client/ext/workflow_ext.js"></script>-->
+<style>
+</style>
+</head>
+
+<body>
+
+	<div class="modal-header qptab_modal-header" id="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close" style="opacity: 1;">
+			<span aria-hidden="true" id="times">×</span>
+		</button>
+		<div class="modal-title qptab_modal-title qptab_modal-title"
+			id="myModalLabel">
+			<span class="glyphicon glyphicon-th-list" aria-hidden="true"
+				style="margin-left: 5px;margin-right:5px;"></span> 问题反馈管理
+		</div>
+	</div>
+
+	<div class="modal-body">
+		<div style="height:650px;overflow:auto;">
+			<div id="top" class="w_p100 top box" >
+		 	    <div class="w_p96 m_center relative " id="workflow_toolbar">
+			    	<!--  <span id="top_help" class="abs_left top_toolbar"  >
+			        	  <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="savedWtfk();">
+		                	<span class="glyphicon glyphicon-save"></span>保存
+		                </a>
+		                <a href="javascript:void(0);" disabled class="btn btn-sm btn-primary no-radius" onclick="">
+		                	<span class="glyphicon glyphicon-ok"></span>提交
+		                </a>
+		               <a href="javascript:void(0);" id="uploadtoftp" disabled class="btn btn-sm btn-primary no-radius" onclick="showAddfj()">
+		                	<span class="glyphicon glyphicon-save"></span>添加附件
+		                </a>-->
+					<!-- </span>-->
+			        <span id="top_title" class="abs_right top_title"  >
+			        	问题反馈管理
+			        </span>
+			    </div>
+			</div>
+			
+			<ul id="jgTab_1" class="nav nav-tabs jgTab ">
+			  <li  class="active"><a href='#recent11'  data-toggle='tab' >基本信息</a></li> 
+			  <li  ><a href='#recent21'  data-toggle='tab' >附件</a></li> 
+			</ul>
+			
+			<div class="ui-layout-center jgTab tab-content" id="tab-content" style="margin: 0 auto;min-height: 500px;">
+				<div id="recent11" class="tab-pane fade in active" style="padding: 0;border-bottom:1px #ddd solid; ">
+					<jsp:useBean id="date" class="java.util.Date"></jsp:useBean>
+					<fmt:formatDate var="currDatetime" value="${date }" type="both" dateStyle="long" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<form id="wtfkForm"   class="form-horizontal"  >
+						<table class="table" border="0" cellpadding="5" cellspacing="0" style="margin: 0 auto; width: 100%;">
+						<input type="hidden" name="lcslh" id="lcslh" value="${wtfkList.lcslh}"   />
+						<input type="hidden" name="workItemId" id="workItemId" value="${wtfkList.workItemId}"   />
+						<input type="hidden" name="fxyyid" id="fxyyid" value="${fxyyid}"   />
+							<tr>
+	                			<td width="20%" align="right"  >
+	                				<strong>问题类型：</strong>
+	                			</td>
+	                			<td width="30%" >
+				               		<select name="wt_lx" id="wt_lx" value="" class="form-control">
+				                        <option value=""></option>
+										<c:forEach items="${wtlxList}" var="item" varStatus="status" >
+				            			 	<option value="${item.code}" <c:if  test="${item.caption eq wtfkList.wt_lx}">selected="selected"</c:if> >${item.caption}</option>
+				            			</c:forEach>
+				            		</select>
+				                </td>
+	                			<td width="20%" align="right"  >
+	                				<strong>优先级：</strong>
+	                			</td>
+	                			<td width="30%" >
+				               		<select name="yxj" id="yxj" value="" class="form-control">
+				                        <option value=""></option>
+										<c:forEach items="${yxjList}" var="item" varStatus="status" >
+				            			 	<option value="${item.code}" <c:if  test="${item.caption eq wtfkList.yxj}">selected="selected"</c:if> >${item.caption}</option>
+				            			</c:forEach>
+				            		</select>
+				                </td>
+	                		</tr>
+							<tr>
+	                			<td width="20%" align="right"  >
+	                				<strong>重现规律：</strong>
+	                			</td>
+	                			<td width="30%" >
+				               		<select name="cxgl" id="cxgl" value="" class="form-control">
+				                        <option value=""></option>
+										<c:forEach items="${cxglList}" var="item" varStatus="status" >
+				            			 	<option value="${item.code}" <c:if  test="${item.caption eq wtfkList.cxgl}">selected="selected"</c:if> >${item.caption}</option>
+				            			</c:forEach>
+				            		</select>
+				                </td>
+	                			<td width="20%" align="right"  >
+	                				<strong>严重程序：</strong>
+	                			</td>
+	                			<td width="30%" >
+				               		<select name="yzcd" id="yzcd" value="" class="form-control">
+				                        <option value=""></option>
+										<c:forEach items="${yzcdList}" var="item" varStatus="status" >
+				            			 	<option value="${item.code}" <c:if  test="${item.caption eq wtfkList.yzcd}">selected="selected"</c:if> >${item.caption}</option>
+				            			</c:forEach>
+				            		</select>
+				                </td>
+	                		</tr>
+							<tr>
+	                			<td width="20%" align="right"  >
+	                				<strong>问题处理状态：</strong>
+	                			</td>
+	                			<td width="30%" >
+				               		<select name="zt" id="zt" value="" class="form-control">
+				                        <option value=""></option>
+										<c:forEach items="${wtclztList}" var="item" varStatus="status" >
+				            			 	<option value="${item.code}" <c:if  test="${item.caption eq wtfkList.zt}">selected="selected"</c:if> >${item.caption}</option>
+				            			</c:forEach>
+				            		</select>
+				                </td>
+	                		<!--  	<td width="20%" align="right"  >
+	                				<strong>推送人员：</strong>
+	                			</td>
+	                			<td width="30%" >
+				               		<input type="text" name="" id="" value="" class="form-control"  disabled />
+				               		
+				                </td>-->
+	                		</tr>
+	                		<tr>
+	                			<td width="20%" align="right">
+	                				<strong>问题描述：</strong>
+	                			</td>
+	                			<td width="80%" align="right" colspan="3">
+	                				<textarea name="nr" id="nr" class="form-control" bizvalidate="false" widget="true" style="width: 99.9%; height: 165px; float: left;">${wtfkList.nr }</textarea>
+	                			</td>
+	                		</tr>
+	                		<tr>
+	                			<td width="20%" align="right">
+	                				<strong>注释：</strong>
+	                			</td>
+	                			<td width="80%" align="right" colspan="3">
+	                				<textarea name="zs" id="zs" class="form-control" bizvalidate="false" widget="true" style="width: 99.9%; height: 165px; float: left;">${wtfkList.zs }&#10;_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#10;999999CSSNJ，${currDatetime }&#10;</textarea>
+	                			</td>
+	                		</tr>
+						</table>
+					</form>
+				</div>
+				<div id="recent21" class="tab-pane fade in" style="padding: 0;border-bottom:1px #ddd solid; ">
+					<table id="fj" class="display nowrap dataTable " isfy="true" selectType="1"  orderby='order by ywkmc' rowDblclick = "rowDblclick" style="text-align:center;border-collapse:collapse;" cellspacing="0" width="100%"   oncreatedRow="oncreatedRow">
+						<thead style="font-weight:bold;">
+							<tr>
+								<!-- <td width="10%"><input type="checkbox"/></td> -->
+								<td name="fj_id" width="30%" classname="leftAlign">序号</td>
+								<td name="fj_mc" width="30%" classname="leftAlign">附件名称</td>
+								<!-- <td name="fjlx_dm" width="10%" classname="leftAlign">附件类型</td> -->
+								<td name="fjgs" width="10%" classname="leftAlign">格式</td>
+								<td name="fjdx" width="10%" classname="leftAlign">大小</td>
+								<td name="option" width="10%"  do_onclick="downloadFile">操作</td>
+							</tr>
+						</thead>
+						<%-- <tbody>
+							<c:forEach items="${fjList }" var="fj" varStatus="index">
+								<tr>
+									<!-- <td></td> --><!-- <input type="checkbox"/> -->
+									<td>${fj.fj_id }</td>
+									<td>${fj.fj_mc }</td>
+									<td>${fj.fjlx_dm }</td>
+									<td>${fj.fjgs }</td>
+									<td>${fj.fjdx }</td>
+									<td><a href="javascript:void(0);"  onclick="ftpDownload('${fj.fj_id }')">下载</a></td>
+								</tr>
+							</c:forEach>
+						</tbody> --%>
+					</table>
+					<div id="fileDiv" style="display: none;padding-bottom: 5px;" >
+						<form id="fileForm" name="fileForm" >
+							<div>
+						        <label>上传文件名:</label>
+						        <input type="file" id="uploadId" name="uploadId"/>
+						        <input type="button" onclick="addfj()" value="上 传" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script language="javascript" type="text/javascript" src="<%=request.getContextPath()%>/public/js/core/comm/ajaxfileupload.js"></script>
+	<script language="javascript" type="text/javascript">
+		var id="${id}";
+		var workItemid="";
+		$(function(){
+		    cssnj_workflow_init();
+			var data={'id':id};
+			
+			//获取附件
+			$("#fj").dataTable().fnDestroy();
+			var cxjgTable = $("#fj").fyTable(ctx+"tykf/request?tld=Tycx002DzcxService_searchFj&a=" + Math.random(),data);
+			
+			$('#jgTab_1 li').each(function(i){
+				/* li从0开始 */
+				$(this).click(function(){
+					if(i == 1){
+						if(id.length == 0){
+							alert("请先保存基本信息……");
+							return;
+						}
+						$('#uploadtoftp').attr("disabled",false);
+					}else{
+						$('#uploadtoftp').attr("disabled",true);
+					}
+				});
+			});
+		});
+		
+	
+		
+		
+		
+//保存前
+function cssnj_workflow_save_before() {
+		//表单验证
+		
+		if (cssnj_workflow_lcslh == null || cssnj_workflow_lcslh == "") {
+			
+			//启动工作流
+			var dataObj = new Object();
+			
+			dataObj.bizId = "3320120170401";
+			dataObj.bizMc = "南京中软-通用开发平台";
+			
+			dataObj.lcdyid = "wtfkwj";
+			dataObj.lcjgdm = "23201001000";
+			dataObj.qdgw = "232000000037";
+			dataObj.qdjg = "23201001000";
+			dataObj.qdry = "23201000186"; // 启动人员
+			//dataObj.ywlcid = '1';
+			// 自定义参数无限扩展 （流程扩展信息，存入流程变量）
+			// dataObj.cssnj_workflow_params_abc = "1"; //自定义扩展参数 参数名前必须添加
+			// cssnj_workflow_params_abc; 后台实际取的 参数名为 abc.
+			dataObj.cssnj_workflow_params_id=id;
+			cssnj_workflow_start_self(dataObj);
+		} else {
+			//保存业务方法
+			savedWtfk();
+		}
+	
+}
+//启动成功后事件
+function cssnj_workflow_start_after_success(lcslh, workItemId) {
+	//alert("页面重载start After方法 " + lcslh);
+	lcslid = lcslh;
+	workItemid=workItemId;
+	$("#lcslid").val(lcslid);
+	savedWtfk();
+}
+		function savedWtfk(){
+			var formData = $("#wtfkForm").cssnjGetFormData();			
+			var sqlxh="${sqlxh}";
+			var id="${id}";
+			$.ajax({  
+				type : "POST",  //提交方式  
+				dataType:'json',
+				async:false,
+				url:ctx+"tykf/request?tld=Tycx002DzcxService_savedWtfk&sqlxh="+sqlxh+"&id="+id+"&lcslh="+lcslid+"&workItemId="+workItemid,//路径  &sqlxh="+sqlxh
+				data:formData,
+				success : function(result) {//返回数据根据结果进行相应的处理
+					/* $.cssnj.alert(result.mess); */
+					alert("保存成功!");			
+				},
+				error:function(e){
+					alert("保存失败!");			
+				} 
+		 });
+		}
+		//显示添加附件功能
+		function showAddfj(){
+			/* cssnj_iframe("添加附件","/tykf/request_http?tld=Tycx002DzcxService_addFjJsp","1"); */
+			$('#fileDiv').show();
+		}
+		//添加附件
+		function addfj() {
+			var id="${id}";
+			var data={'id':id};
+			var path = $('#uploadId').val();
+			if ($.trim(path) == "") {
+				alert("请选择要上传的文件……");
+				return;
+			}
+	
+			$.ajaxFileUpload({
+				url : '/cssnj/upload.action?tld=Tycx002DzcxService_uploadFj',
+				type : 'post',
+				secureuri : false,
+				fileElementId : 'uploadId',
+				dataType : 'json',
+				data:data,
+				success : function(data) {
+					if (data.result) {
+						//上传成功，将附件信息保存到数据库
+						var id=data.id;
+						var fileName=data.fileName;
+						var userName=data.userName;
+						var password=data.password;
+						var filePath=data.filePath;
+						var fileData={'id':id,'fileName':fileName,'userName':userName,'password':password,'filePath':filePath};
+						$.ajax({
+							type : "POST",  //提交方式  
+							dataType:'json',
+							async:false,
+							url:ctx+"tykf/request?tld=Tycx002DzcxService_savedWtfkFj",
+							data:fileData,
+							success : function(result) {//返回数据根据结果进行相应的处理
+								var data={'id':id};
+								/* $("#fj").dataTable().fnDestroy(); */
+								var cxjgTable = $("#fj").fyTable(ctx+"tykf/request?tld=Tycx002DzcxService_searchFj&a=" + Math.random(),data);
+							} 
+						});
+						$('#fileDiv').hide();
+						alert(data.msg);
+					} else {
+						alert(data.msg);
+					}
+				},
+				error : function(data, status, e) {
+					alert("错误：上传组件错误，请检查网络……");
+				}
+			});
+		}
+		/* function ftpDownload(fjid){
+			var data={'fjid':fjid};
+			$.ajax({
+				type : "POST",  
+				dataType:'json',
+				async:false,
+				url:ctx+"tykf/request?tld=Tycx002DzcxService_downloadFj",
+				data:data,
+				success : function(data) {
+					alert(data.msg);
+				} 
+			});
+		} */
+		function downloadFile(rowData,rowEl,el){
+			var fjid=rowData.fj_id;
+			var data={'fjid':fjid};
+			$.ajax({
+				type : "POST",  //提交方式  
+				dataType:'json',
+				async:false,
+				url:ctx+"tykf/request?tld=Tycx002DzcxService_downloadFj",
+				data:data,
+				success : function(data) {//返回数据根据结果进行相应的处理
+					alert(data.msg);
+				} 
+			});
+		}
+	</script>
+	
+</body>
+
+
+</html>

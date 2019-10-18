@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta name="renderer" content="webkit" charset="UTF-8">
+<title>Echarts</title>
+  <link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+<style type="text/css">
+</style>
+  <script type="text/javascript" language="javascript">
+    var ctx = [[@{/}]];
+  </script>
+  <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+  <script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.js}"></script>
+  <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.css}" />
+  <script type="text/javascript"  data-th-src="@{/js/tycx/echarts_v4/echarts.min.js}"></script>
+  <script type="text/javascript"  data-th-src="@{/js/bootstrap/bootstrap-table.js}"></script>
+  <link rel="stylesheet" type="text/css" data-th-href="@{/css/bootstrap-table/bootstrap-table.css}" />
+  <script type="text/javascript"  data-th-src="@{/js/tycx/sjyzl.js}"></script>
+</head>
+<body>
+<div id="barAndLine" style="width:100%;height:450px;overflow:hidden;  float:left;margin-top:5%"></div>  
+<div id="bar" style="width:45%;height:450px;overflow:hidden;  float:right;margin-top:50%"></div>  
+  <div id="main" style="height:400px"></div> 
+</body>

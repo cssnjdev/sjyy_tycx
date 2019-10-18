@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<title>标签管理</title>
+<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+<script type="text/javascript" language="javascript">
+	var ctx = [[@{/}]];
+</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+	<script type="text/javascript"   data-th-src="@{/js/yyfb/yyfwBqgl.js}"></script>
+
+	</script>
+
+<style type="">
+
+.panel{
+  margin-bottom: 0;
+  margin-top: 10px;
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+.panel .panel-body{
+ padding: 10px;
+}
+
+.bq{
+  border: 1px solid #ddd;
+  margin:5px;
+  padding:5px 10px 5px 10px;
+  float: left;
+}
+
+.bq label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 0px;
+    font-weight: 600;
+    cursor: pointer;
+}
+</style>
+
+</head>
+
+<body>
+ 
+<div id="north"  class="ui-layout-north"   >
+ <div style="width: 100%;padding:8px;height:40px;">
+     <form id="addForm">
+        <input  name="bq_mc" id="bq_mc"  class="form-control" style="width:150px;float: left;margin-right:8px;" />
+     	<select name="bqfl" id="bqfl" class="form-control populate" style="width:150px;float: left;margin-right:8px;" >
+ 		</select>&nbsp;&nbsp;
+ 		<a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius"  onclick="add()"  style="float:left;">
+            <span class="glyphicon glyphicon-plus"></span>添加标签
+         </a>
+     </form>
+ </div>
+</div>
+<div id="center" class="ui-layout-center" style="border: 0; padding: 10px; padding-top: 0;">
+ 
+</div>
+<div id="south" class="ui-layout-south" style="border-top: 1px #ccc dashed;">
+	<div style="width: 100%;padding:15px 15px 15px 15px;">
+	     <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="save()" style="float: right;margin-bottom: 10px;">
+            <span class="glyphicon glyphicon-save"></span>确定
+         </a>
+	</div>
+</div>
+ 
+<input type="hidden" id="fxyy_id" value="${fxyy_id}" />
+ 
+</body>
+
+
+</html>

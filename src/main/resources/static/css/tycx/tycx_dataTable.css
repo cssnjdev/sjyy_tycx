@@ -1,0 +1,224 @@
+table.dataTable{
+	margin: 0 0 0 0;
+	margin-top:0px !important;
+} 
+
+table.dataTable thead th,
+table.dataTable thead td {
+    font:12px "΢���ź�", Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    letter-spacing:1pt;
+    line-height:15px;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left : 10px;
+    padding-right: 10px;
+    border-bottom:1px solid #ddd;
+    border-right :1px dotted #adcfdc
+}
+
+table.dataTable tbody td{
+   padding: 8px 10px;
+   font:12px "΢���ź�", Arial, Helvetica, sans-serif;
+   min-width: 100px;
+}
+
+table.dataTable{
+	border-collapse: collapse;
+}
+
+table.dataTable.row-border tbody th, 
+table.dataTable.row-border tbody td, 
+table.dataTable.display tbody th, 
+table.dataTable.display tbody td {
+   border-top:none;
+   border-right:1px dotted #adcfdc; 
+   border-left:1px dotted #adcfdc; 
+   border-bottom:1px solid #ddd;
+}
+
+table.dataTable.row-border tbody tr {
+	border-bottom:1px solid #ddd;
+}
+
+table.dataTable.hover tbody tr:hover,table.dataTable.display tbody tr:hover {
+  background-color:#def1df;
+}
+
+table.dataTable>tbody>tr.odd.selected_1,table.dataTable>tbody>tr.even.selected_1,table.dataTable>tbody>tr.selected_1{ 
+  background-color: #ffc
+}
+
+table.dataTable > tbody tr td:first-child,
+table.dataTable thead tr td:first-child,
+table.dataTable thead tr td:first-child
+{
+	border-left: 0;
+} 
+ 
+table.dataTable > tbody tr td:last-child,
+table.dataTable thead tr th:last-child,
+table.dataTable thead tr td:last-child
+{
+	border-right: 0;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody{
+	 border-bottom-color: #ddd;
+}
+
+.dataTables_wrapper .dataTables_length{
+	width: 150px;
+	font-size:13px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+div.dataTables_wrapper div.dataTables_info{
+	margin-left: 10px;
+	font-size:14px;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+
+div.dataTables_wrapper div.dataTables_length select{
+ 	margin: 2px 0;
+ 	padding: 0px;
+ 	font-size:13px;
+ 	height: 20px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+	height: 26px;
+	padding: 0 10px 0 10px;;
+	line-height: 26px;
+	margin-top: 2px;
+}
+
+table.dataTable>tbody td{
+	text-align: left;
+}
+
+table.dataTable>tbody td.number{
+	text-align: right;
+}
+
+table.dataTable td.rownum,table.dataTable th.rownum{
+	text-align: center;
+	font-weight: bold;
+}
+
+
+.dataTable input.dataTable_check{
+	
+	padding: 0;margin: 0;
+	width: 20px;
+	position: static;
+}
+
+.dt_chk_lab{
+	
+	cursor:pointer;
+	width: 99%;
+	height: 99%;
+	margin: 0 auto;
+}
+
+
+input.dt_input{
+	
+	background: none;
+	border: 0;
+	width: 99%;
+	margin: 0 auto;
+	padding: 3px 6px 3px 6px;
+	cursor: text;
+	
+}
+
+input.dt_input:FOCUS { 
+	background: #fff;
+}
+
+input.dt_input.error_data{
+	border: 1px solid red;
+	background: #feeeee
+}
+
+td.dt_number> a{
+	text-align: right;
+}
+table.dataTable >tbody td.dt_number,table.dataTable>tbody td.dt_number .dt_input, td.dt_number> a{
+	text-align: right;
+}
+
+ 
+table.dataTable >tbody td.dt_string{
+	text-align: left;
+}
+
+.dt_checkbox,.dt_checkbox label{
+	text-align: center;
+}
+
+.dt_select{
+	width: 100%;
+   	border: 0;
+  	padding: 3px;
+}
+
+.show_pointer{
+  cursor: pointer;	
+}
+
+.datatables-footer{
+	padding:0;
+	margin:0;
+}
+
+.datatables-footer>.col-sm-12, .datatables-footer>.col-md-6{
+	padding:0;
+ 
+}
+.datatables-header{
+	padding:0;
+	margin:0;
+}
+.datatables-header>.col-sm-12, .datatables-header>.col-md-6{
+	padding:0;
+}
+
+table.dataTable >tbody td.overflow_td{
+	position: relative;
+}
+
+table.dataTable >tbody td.overflow_td span{
+   overflow: hidden;
+   display: inline-block;
+   text-overflow:ellipsis;	 
+}
+
+ 
+tr.namesTr{
+	height: 0px;
+	border: 0;
+}
+ table.dataTable>thead>tr.hideTr>td , table.dataTable>thead>tr.hideTr>th {
+	padding-top: 0;
+	padding-bottom: 0;
+ 	border: 0;
+ 	height: 0px;
+ 	overflow: hidden;
+}
+
+ table.dataTable>tbody>tr.hj_tr>td{
+   background: #E3DBF7;
+ }
+ 
+ .hj_td{
+ background:  #E3DBF7;
+ }
+ 
+.td_hidden{
+	display: none;
+}

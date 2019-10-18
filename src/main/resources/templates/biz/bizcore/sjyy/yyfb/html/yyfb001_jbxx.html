@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>应用发布信息</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+	<script type="text/javascript"   data-th-src="@{/js/yyfb/yyfb001_jbxx.js}"></script>
+
+
+<style> 
+.table>tbody>tr>td{
+border: 1px solid #C4D3F0;
+}
+ 
+.import{
+  color:red;
+}
+
+div.solidDown{
+	position:absolute;top:20px; left:0; width:280px;height:300px;border:solid 1px #ddd;background: #fff;padding: 10px;
+}
+
+
+.bq{
+  border: 1px solid #C4D3F0;
+  background:#F0F2F5;
+  margin:5px;
+  padding:5px 10px 5px 10px;
+  float: left;
+  position: relative;
+}
+
+.bq .glyphicon-remove{
+	color: #F50843;
+	cursor: pointer;
+	position:absolute;
+	top:-6px;
+	right:-10px;
+}
+ 
+</style>	
+
+<script language="javascript" type="text/javascript" >
+ 
+</script>
+ 	 
+</head>
+
+<body>
+
+ <div class="ui-layout-north clear-border"     >
+
+	<div id="top" class="w_p100 top box p10_r_l">
+		
+		 	   <div class="w_p100 m_center relative ">
+		 	     
+			           <span id="top_help" class="abs_left top_toolbar">
+			            	<a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="parent.search_dataTable();cssnj_windowBack();">
+		                       <i class="fa fa-mail-reply" aria-hidden="true"></i>返回
+		                    </a>  
+			                <a  class="btn btn-sm btn-primary no-radius" onclick="save()">
+		                        <span class="glyphicon glyphicon-save"></span>保存
+		                    </a>
+		                    <a href="javascript:void(0);" id="fb" class="btn btn-sm btn-primary no-radius" onclick="fbFxyy()">
+		                        <span class="glyphicon glyphicon-eject"></span>发布
+		                    </a>
+		                    <a href="javascript:void(0);" id="fb" class="btn btn-sm btn-primary no-radius" onclick="tyFxyy()">
+		                        <span class="glyphicon glyphicon-stop"></span>停用
+		                    </a>
+			             	<a href="javascript:void(0);" id ='tjfj' class="btn btn-sm btn-primary no-radius" disabled onclick="addfj()">
+		                        <span class="glyphicon glyphicon-plus"></span>添加附件
+		                    </a>	
+		                    <a href="javascript:void(0);" id ='xzsjy'class="btn btn-sm btn-primary no-radius" disabled onclick="addSjdy()">
+		                        <span class="glyphicon glyphicon-plus"></span>新增数据元
+		                    </a>	
+		                    <a href="javascript:void(0);" id ='scsjy'class="btn btn-sm btn-primary no-radius" disabled onclick="delSjdy()">
+		                        <span class="glyphicon glyphicon-remove"></span>删除数据元
+		                    </a>	
+			           </span>
+			           <span id="top_title" class="abs_right top_title">
+			               	应用发布信息
+			           </span>
+			    </div>
+		</div>
+
+		<ul id="jgTab_1" class="nav nav-tabs jgTab"  >
+		  <li class="active"><a href='#popular1' data-toggle='tab' >基本信息</a></li> 
+		  <li ><a href='#recent1'  data-toggle='tab' >开发信息</a></li> 
+		  <li ><a href='#recent2'  data-toggle='tab' >数据来源</a></li> 
+		</ul>
+		
+</div> 
+
+<div class="ui-layout-center jgTab tab-content" id="tab-content" style="margin: 0 auto;min-height: 500px;">
+	
+	<div id="popular1" class="tab-pane fade in active" style="padding: 0;border-bottom:1px #ddd solid; ">
+
+ 	  <form id="fxyyForm"   class="form-horizontal" action="javascript:saveFxyy();"  >
+ 	    <table class="table" border="0" cellpadding="5" cellspacing="0" style="margin: 0 auto; width: 100%;">
+           <tbody>
+              <tr>
+                <td width="20%" align="right"  >
+					<strong><span class="import">*</span> 应用类型:</strong>
+                </td>
+                <td width="30%" >
+               		<input type="hidden" name="fxyy_id" th:id="fxyy_id" th:value="${FXYY_ID}">
+					<input type="hidden" name="li_index" id="li_index" value="" />
+					<input type="hidden" id="gy_valid" value="${GY_VALID}">
+					<select name="fxyylx_dm" id="fxyylx_dm" class="form-control populate" >
+						<option th:selected="${FXYYLX_DM eq c.fxyylxDm}"  th:each="c:${fxyylxList}"  th:value="${c.fxyylxDm}" th:text="${c.fxyylxMc}" value="1"></option>
+
+ 					</select>
+                </td>
+                <td width="20%" align="right" >
+					<strong><span class="import">*</span>应用名称:</strong>
+                </td>
+                <td width="30%" >
+                    <input type="text" th:name="fxyy_mc" th:id="fxyy_mc" th:value="${FXYY_MC}" required="required" class="form-control" placeholder="请输入应用名称"  />
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" align="right" >
+					<strong>应用链接</strong>
+                </td>
+                <td width="80%" colspan="3">
+					<textarea rows="3" cols="10" th:name="yyurl" th:id="yyurl" class="form-control"  required="required" th:value="${YYURL}" placeholder="请输入应用链接" ></textarea>
+	        	    <div style="position: relative;">
+	        	       <a onclick="$('#cssmBox').slideToggle();" href="javascript:void(0);">参数说明</a>
+	        	       <div id="cssmBox" style="position:absolute;top:20px;left:0;width:300px;height:300px;
+	        	       			   border:solid 1px #ddd;background: #fff;padding: 10px;display: none;"
+	        	       >
+	        	         <b>应用链接参数替换说明：</b></br>
+	        	                【CSSNJ_YYID】:替换成当前应用的id,用于获取应用的基本信息；<br/>
+	        	                【CSSNJ_SWRYSF】:替换为当前税务人员身份代码；<br/>
+	        	                【CSSNJ_SWRY】:替换为当前税务人员代码；<br/>
+	        	       </div>
+	        	    </div>
+	        	</td>
+              </tr>   
+              <tr>
+                 <td width="20%" align="right" >
+                    <strong>概要展现</strong>
+                 </td>
+                 <td width="80%" colspan="3">
+                        <label> <input type="radio" value="Y" name="gy_valid" onclick="$('#gyTr').slideDown();"/> 支持</label>
+                        <label> <input type="radio" value="N" name="gy_valid" onclick="$('#gyTr').slideUp();" checked="checked"/> 不支持</label>
+                 </td>
+              </tr>
+              <tr id="gyTr" style="display: none;">
+                <td width="20%" align="right" >
+					<strong><span class="import">*</span>概要展现链接</strong>
+                </td>
+                <td width="80%" colspan="3">
+					<textarea rows="3" cols="10" name="gyurl" id="gyurl" class="form-control" th:text="${GYURL}" value="${GYURL}" placeholder="请输入概要展现链接" ></textarea>
+	        	    <strong>说明：</strong>参数替换规则同应用链接，数据的展现要支持 400px*300px
+	        	</td>
+              </tr>   
+              <tr>
+              	 <td width="20%" align="right" >
+              	   <strong>发布链接</strong>
+              	 </td>
+              	 <td width="80%" colspan="3">
+              	   <input id="cdUrl" readonly="readonly" class="form-control" />
+              	 </td>
+              </tr>
+              <tr>
+                 <td width="20%" align="right"  >
+                 	<strong>发布人:</strong>
+                 </td>
+                 <td width="30%">
+                    <input type="text" th:name="fbrmc" th:id="fbrmc" th:value="${FBRMC}" class="form-control"  readonly="readonly" />
+                    <input type="hidden" th:name="fbrdm" th:id="fbrdm" th:value="${FBRDM}" class="form-control"  />
+ 				 </td>
+                 <td width="20%" align="right" >
+                 	<strong>发布时间:</strong>
+                 </td>
+                 <td width="30%">
+                     <input type="text" th:name="fb_sj" th:id="fb_sj" th:value="${FBSJ}" class="form-control" readonly="readonly" />
+            	</td>
+              </tr>
+              <tr>
+                 <td width="20%" align="right"  >
+                 	<span class="import">*</span><strong>版本:</strong>
+                 </td>
+                 <td width="30%">
+                     <input type="text" th:name="banben" th:id="banben" th:value="${BANBEN}" class="form-control" placeholder="请输入版本" required  />
+                     	            
+ 				 </td>
+                 <td width="20%" align="right" >
+                 	<strong>状态:</strong>
+                 </td>
+                 <td width="30%">
+                    <select name="zt_bj" id="zt_bj" class="form-control populate" disabled="disabled" >
+						<option  th:selected="${ZT_BJ eq c.id}" th:each="c:${fbztList}"  th:value="${c.id}" th:text="${c.text}" value="1"></option>
+
+ 					</select>
+            	</td>
+              </tr>
+              <tr>
+                 <td width="20%" align="right" >
+                 	<strong>功能描述:</strong>
+                 </td>
+                 <td width="80%" colspan="3">
+					<textarea rows="3" cols="10" th:name="gnms" th:id="gnms" class="form-control" th:text="${GNMS}" th:value="${GNMS}" placeholder="请输入功能描述" ></textarea>
+	        	  </td>
+              </tr>
+               <tr>
+                 <td  align="right"  >
+                 	<span class="import">*</span><strong>功能分类:</strong>
+                 </td>
+                 <td colspan="2" >
+                 	 <input type="hidden" th:name="gnlj" th:id="gnlj" th:text="${gnlj}" th:value="${gnlj}"  />
+                     <input type="text" th:name="gnljmc" th:id="gnljmc" th:text="${gnljmc}" th:value="${gnljmc}" class="form-control" readonly="readonly" />
+ 				 </td>
+ 				 <td >
+ 				    <a class="btn btn-sm btn-primary" onclick="$('#treebox').modal('show')">更改</a>
+ 				 </td>
+ 				</tr>
+ 				<tr> 
+                 <td align="right">
+                 	<strong>标签:</strong>
+                 </td>
+                 <td  colspan="2">
+                    <div id="bqbox">
+                         
+                    </div>
+            	</td>
+            	<td >
+            	    <input type="hidden" th:name="bq" th:id="bq" th:value="${BQ}"  class="form-control" />
+ 				    <a class="btn btn-sm btn-primary" onclick="addBq()">添加</a>
+ 				 </td>
+               </tr>
+               </tbody>
+           </table>						
+		</form>	
+	</div>
+	
+	<div id="recent1" class="tab-pane fade in" >
+	   			
+	   <form id="kfxxForm1"   class="form-horizontal" action="javascript:saveKfxx();" >
+	    <table class="table" border="0" cellpadding="5" cellspacing="0" style="margin: 0 auto; width: 100%;">
+              <tr>
+                <td width="20%" align="right"  >
+					<strong> 需求单位:</strong>
+                </td>
+                <td width="30%" >
+               		<input type="hidden" name="fxyy_id" id="xq_fxyy_id" th:value="${FXYY_ID}">
+ 					<input type="text" name="xqdw_dm" id="xqdw_dm" th:text="${XQDW_DM}" th:value="${XQDW_DM}" class="form-control"/>
+                </td>
+                <td width="20%" align="right" >
+					<strong>开发单位:</strong>
+                </td>
+                <td width="30%" >
+ 					<select name="kfdw_dm" id="kfdw_dm" class="form-control populate" >
+ 					   <option value=""></option>
+						<option  th:selected="${KFDW_DM eq c.dwDm}" th:each="c:${yhdwList}"  th:value="${c.dwDm}" th:text="${c.mc}" value="1"></option>
+
+			 	   </select>
+                </td>
+              </tr>
+              <tr>
+                <td  align="right" >
+					<strong>需求人员:</strong>
+                </td>
+                <td >
+                  <input type="text" name="xqry_dm" id="xqry_dm" th:text="${XQRY_DM}" th:value="${XQRY_DM}" class="form-control"/>
+                </td>
+                 <td  align="right"  >
+                 	<strong>开发人员:</strong>
+                 </td>
+                 <td>
+                     <input type="text" name="kfry_dm" id="kfry_dm" th:text="${KFRY_DM}" th:value="${KFRY_DM}" class="form-control"/>
+ 				 </td>
+ 			  </tr>
+              <tr>
+                 <td width="20%" align="right" >
+                 	<strong>联系电话:</strong>
+                 </td>
+                 <td width="30%">
+                     <input type="text" name="kfrlxdh" id="kfrlxdh" th:text="${KFRLXDH}" th:value="${KFRLXDH}" class="form-control"/>
+            	</td>
+                 <td width="20%" align="right"  >
+                 	<strong>联系方式:</strong>
+                 </td>
+                 <td width="30%">
+                     <input type="text" name="kfrlxfs" id="kfrlxfs" th:text="${KFRLXFS}" th:value="${KFRLXFS}" class="form-control"/>
+ 				 </td>
+                
+              </tr>
+              <tr>
+               <td width="20%" align="right" >
+                 	<strong>技术口径:</strong>
+                 </td>
+                 <td width="80%" colspan="3">
+                    <textarea  name="jskj" id="jskj" rows="4" cols="5"  class="form-control" th:value="${JSKJ}" th:text="${JSKJ}" style="overflow: visible;" ></textarea>
+
+            	</td>
+            	</tr>           	
+              <tr>
+                 <td width="20%" align="right" >
+                 	<strong>业务口径:</strong>
+                 </td>
+                 <td width="80%" colspan="3">
+					<textarea  name="ywkj" id="ywkj" rows="4" cols="5" class="form-control" style="overflow: visible;"  th:text="${YWKJ}" th:value="${YWKJ}"></textarea>
+	        	  </td>
+              </tr>
+               
+           </table>
+					
+				  </form>	
+
+    
+ 	<table id ="kfxx_fj" class="display nowrap dataTable " style="text-align:center;border-collapse:collapse;width:1500px" cellspacing="0" width="100%"  rowDblclick = "rowDblclick">
+ 	 	<thead >
+	          <tr role="row">
+					<td name="check"  dataType="dt_checkbox" width="30" ></td>  
+					<td  width="100" name="FJMC" className="leftAlign" > 附件名称  </td>
+					<td  width="100" name="FJLXDM" className="leftAlign"  > 附件类别  </td>
+					<td  width="100" name="FJGS" className="leftAlign"> 格式  </td>
+					<td  width="100" name="FJDX" className="leftAlign"> 大小  </td>
+					<td  width="100"  name="CZ" className="leftAlign" do_onclick="ftpDownload">操作</td>
+					
+	          </tr>
+      	</thead>
+      
+     </table>
+ 
+
+	</div>
+	
+    <div id="recent2" class="tab-pane fade in" style="width: 100%;height: 99%;">	   				
+		<div id="center" class="ui-layout-center" >
+	       		
+			 	<table id="sjyTable" class="display nowrap dataTable " style="text-align: center; border-collapse: collapse; width: 100%; margin-left: 0px;" cellspacing="0" role="grid">
+			 	 	<thead >
+				          <tr role="row">
+								 <td name="checkbox" dataType="dt_checkbox"  width="5"> </td>
+								 <td name="NUM"      dataType="number" width="100" do_onclick="openMx" onclick="">序号</td>
+					             <td name="OWNER"    dataType="String" width="100" >用户名</td>
+					             <td name="EN_NAME"  dataType="String" width="100"  >表名</td>
+					             <td name="ZH_NAME"  dataType="String" width="100" >中文名</td>
+					             <td name="SM"       dataType="String"  width="100" >说明</td>
+					             <td name="DATAUNIT_ID" dataType="String" visible="F"></td>
+				          </tr>
+			      	</thead>
+			  
+			     </table>
+			 
+			  
+		 </div>
+	</div>
+
+</div> 
+
+<div class="modal fade in" id="treebox" tabindex="3" role="dialog" aria-labelledby="myModalLabel"  >
+	
+	<div class="modal-dialog" role="document" style=" width:402px;margin:36px auto;">
+		
+		<div class="modal-content">
+		
+			<div class="modal-header" style="opacity: 1;padding: 5px;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+					<span aria-hidden="true" style="font-size: 24px;" id="times">×</span>
+				</button>
+				<h5 class="modal-title" id="myModalLabel">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>目录
+				</h5>
+			</div>
+			
+			<div class="modal-body" style="padding:0px;padding-bottom:5px; height:500px;">
+				<ul id="treeDemo" class="ztree">
+				
+				</ul>
+			</div>	
+			
+		</div>
+		
+	</div>
+	
+</div>
+
+ 
+ 
+
+
+ 	
+</body>
+
+ 
+</html>

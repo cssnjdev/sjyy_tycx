@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>分析应用详情</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+</head>
+
+<body>
+
+	<div class="modal-header qptab_modal-header" id="modal-header">
+		<div class="modal-title qptab_modal-title qptab_modal-title"
+			id="myModalLabel">
+			<h4>${xiangqing.fxyymc }</h4>
+		</div>
+	</div>
+
+	<div class="modal-body" style="padding:0;">
+
+		<div class="ui-layout-north clear-border">
+
+			<ul id="jgTab_1" class="nav nav-tabs jgTab ">
+				<li class="active"><a href='#popular1' data-toggle='tab'>基本信息</a></li>
+				<li><a href='#recent1' data-toggle='tab'>开发信息</a></li>
+				<li><a href='#recent2' data-toggle='tab'>数据来源</a></li>
+			</ul>
+		</div>
+		<div class="ui-layout-center jgTab tab-content" id="tab-content"
+			style="margin: 0 auto;min-height: 550px;">
+
+			<div id="popular1" class="tab-pane fade in active"
+				style="padding: 0;border-bottom:1px #ddd solid; ">
+
+				<form id="fxyyForm" class="form-horizontal">
+					<table class="table" border="0" cellpadding="5" cellspacing="0"
+						style="margin: 0 auto; width: 100%;">
+						<tr>
+							<td width="20%" align="right"><strong> 应用类型:</strong></td>
+							<td width="30%"><input type="hidden" name="fxyy_id"
+								id="fxyy_id" value="${fxyyId }"> <input type="hidden"
+									name="li_index" id="li_index" value=""> <input
+										type="hidden" name="gnlj" id="gnlj" value="${gnlj }">
+											<select name="fxyylx_dm" id="fxyylx_dm"
+											class="form-control populate" disabled="disabled">
+												<c:forEach items="${fxyylxList}" var="node">
+													<option value="${node.id}"
+														<c:if test="${xiangqing.fxyylxdm eq node.id}">selected='selected'</c:if>>${node.text}</option>
+												</c:forEach>
+										</select></td>
+							<td width="20%" align="right"><strong>应用名称:</strong></td>
+							<td width="30%"><input type="text" name="fxyy_mc"
+								id="fxyy_mc" value="${xiangqing.fxyymc }" class="form-control"
+								placeholder="请输入应用名称" readonly="readonly" /></td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>发布人:</strong></td>
+							<td width="30%"><input type="text" name="fbrdm" id="fbrdm"
+								value="${xiangqing.fbrdm }" class="form-control"
+								placeholder="请输入发布人" readonly="readonly"/></td>
+							<td width="20%" align="right"><strong>发布时间:</strong></td>
+							<td width="30%"><input type="text" name="fb_sj" id="fb_sj"
+								value="${xiangqing.fbsj}" class="form-control"
+								placeholder="请输入发布时间" readonly="readonly" /></td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>版本:</strong></td>
+							<td width="30%"><input type="text" name="banben" id="banben"
+								value="${xiangqing.banben}" class="form-control"
+								placeholder="请输入版本"  readonly="readonly"/></td>
+							<td width="20%" align="right"><strong>状态:</strong></td>
+							<td width="30%"><select name="zt_bj" id="zt_bj"
+								class="form-control populate" disabled="disabled">
+									<c:forEach items="${fbztList}" var="node">
+										<option value="${node.id}"
+											<c:if test="${xiangqing.ztbj eq node.id}">selected='selected'</c:if>>${node.text}</option>
+									</c:forEach>
+							</select></td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>功能描述:</strong></td>
+							<td width="80%" colspan="3"><textarea rows="3" cols="10"
+									name="gnms" id="gnms" class="form-control" value=""
+									placeholder="请输入功能描述" readonly="readonly">${xiangqing.gnms}</textarea></td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>功能分类:</strong></td>
+							<td width="30%"><input type="text" name="gnlj" id="gnlj"
+								value="${gnlj }" class="form-control" readonly="readonly" /></td>
+							<td width="20%" align="right"><strong>标签:</strong></td>
+							<td width="30%"><input type="text" name="bq" id="bq"
+								value="" class="form-control" readonly="readonly" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+
+			<div id="recent1" class="tab-pane fade in">
+
+				<form id="kfxxForm1" class="form-horizontal">
+					<table class="table" border="0" cellpadding="5" cellspacing="0"
+						style="margin: 0 auto; width: 100%;">
+						<tr>
+							<td width="20%" align="right"><strong> 需求单位:</strong></td>
+							<td width="30%"><input type="hidden" name="fxyy_id"
+								id="fxyy_id" value="${fxyyId}"> <input type="hidden"
+									name="gnlj" id="gnlj" value="${xiangqing.gnlj }"> <input
+										type="text" name="xqdw_dm" id="xqdw_dm"
+										value="${xiangqing.xqdwdm}" class="form-control"
+										readonly="readonly" /></td>
+							<td width="20%" align="right"><strong>开发单位:</strong></td>
+							<td width="30%"><select name="kfdw_dm" id="kfdw_dm"
+								class="form-control populate" disabled="disabled">
+									<option value=""></option>
+									<c:forEach items="${yhdwList}" var="node">
+										<option value="${node.id}"
+											<c:if test="${xiangqing.kfdwdm eq node.id}">selected='selected'</c:if>>${node.text}</option>
+									</c:forEach>
+							</select></td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>需求人员:</strong></td>
+							<td width="80%" colspan="3"><input type="text"
+								name="xqry_dm" id="xqry_dm" value="${xiangqing.xqrydm}"
+								class="form-control" readonly="readonly" /></td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>开发人员:</strong></td>
+							<td width="30%"><input type="text" name="kfry_dm"
+								id="kfry_dm" value="${xiangqing.kfrydm }" class="form-control"
+								readonly="readonly" /></td>
+							<td width="20%" align="right"><strong>联系电话:</strong></td>
+							<td width="30%"><input type="text" name="kfrlxdh"
+								id="kfrlxdh" value="${xiangqing.kfrlxdh }" class="form-control"
+								readonly="readonly" /></td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>联系方式:</strong></td>
+							<td width="30%"><input type="text" name="kfrlxfs"
+								id="kfrlxfs" value="${xiangqing.kfrlxfs }" class="form-control"
+								readonly="readonly" /></td>
+
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>技术口径:</strong></td>
+							<td width="80%" colspan="3"><textarea name="jskj" id="jskj"
+									rows="4" cols="5" class="form-control"
+									style="overflow: visible;" readonly="readonly">${xiangqing.jskj}</textarea>
+
+							</td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><strong>业务口径:</strong></td>
+							<td width="80%" colspan="3"><textarea name="ywjk" id="ywkj"
+									rows="4" cols="5" class="form-control"
+									style="overflow: visible;" readonly="readonly">${xiangqing.ywkj }</textarea>
+							</td>
+						</tr>
+
+					</table>
+
+				</form>
+
+
+				<table id="kfxx_fj" class="display nowrap dataTable "
+					style="text-align:center;border-collapse:collapse;width:1500px"
+					cellspacing="0" width="100%">
+					<thead>
+						<tr role="row">
+							<td width="5" className="leftAlign" style="text-align:left;">
+								<input onclick="checkAll(this)" type="checkbox" />
+							</td>
+							<td width="100" style="width: 163px;" name="index"
+								className="leftAlign">序号</td>
+							<td width="100" name="fjmc" className="leftAlign">附件名称</td>
+							<td width="100" name="fjlxdm" className="leftAlign">附件类别</td>
+							<td width="100" name="fjgs" className="leftAlign">格式</td>
+							<td width="100" name="fjdx" className="leftAlign">大小</td>
+							<td width="100" name="cz" className="leftAlign">操作</td>
+						</tr>
+					</thead>
+
+				</table>
+
+
+			</div>
+
+			<div id="recent2" class="tab-pane fade in"
+				style="width: 100%;height: 99%;">
+				<div id="center" class="ui-layout-center">
+
+					<table id="sjyTable" class="display nowrap dataTable "
+						style="text-align: center; border-collapse: collapse; width: 100%; margin-left: 0px;"
+						cellspacing="0" role="grid">
+						<thead>
+							<tr role="row">
+
+								<td name="NUM" dataType="number" width="100" do_onclick="openMx"
+									onclick="">序号</td>
+								<td name="OWNER" dataType="String" width="100">用户名</td>
+								<td name="EN_NAME" dataType="String" width="100">表名</td>
+								<td name="SJLY" dataType="String" width="100">中文名</td>
+								<td name="DATASOURCE" dataType="String" width="100">说明</td>
+								<td name="SJLY_DM" dataType="String" visible="F"></td>
+							</tr>
+						</thead>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+		
+	</div>
+	
+	<script language="javascript" type="text/javascript">
+		$(function(){
+			
+			var fxyy_id="${fxyyId}";
+			var data={'fxyy_id':fxyy_id};
+			
+			$("#kfxx_fj").dataTable().fnDestroy();
+			var cxjgTable = $("#kfxx_fj").fyTable(ctx+"tykf/request?tld=YyfbService_queryFjxx&a=" + Math.random(),data);
+			
+			$("#sjyTable").dataTable().fnDestroy();
+			var cxjgTable = $("#sjyTable").fyTable(ctx+"tykf/request?tld=YyfbService_querySjdy&a=" + Math.random(),data);
+		});
+	</script>
+	
+</body>
+
+
+</html>

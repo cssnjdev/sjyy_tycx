@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sqlfile>
+	<!--Author:胡锐  function:纳税人画像-->
+	<sql id="SQL_CX_QUERYSQLXH" describ="查询sqlxh" isLoad="true">
+        select T.* from cx_txpzxx t WHERE T.UUID=? 
+	</sql>
+	<sql id="SQL_CX_QUERYSEQUERY" describ="查询sqlxh" isLoad="true">
+        select getSqlxh.Nextval from dual
+	</sql>
+	<sql id="SQL_CX_QUERYCXDY" describ="查询sqlxh" isLoad="true">
+        select * from cx_cxdy where sqlxh=?
+	</sql>
+	<sql id="SQL_CX_QUERYSJY" describ="查询数据源" isLoad="true">
+	   select t.datasource_id id ,t.ds_name name from sys_datasource t
+	</sql>
+	<sql id="SQL_CX_QUERYTXPZXX" describ="查询图形配置信息" isLoad="true">
+	SELECT fontsize,hzb,hzbmc,sjylx,sql,sqlxh,title,txlx,t.uuid,zzb,zzbdw,zzbmc,x,y,x2,y2,xqxds,yqxds,ccgcmc  FROM CX_TXPZXX t   WHERE T.uuid= ?
+	</sql>
+	<sql id="SQL_CX_YHSCXWJJ" describ="一户式查询文件夹" isLoad="true">
+	select t.*,'true' isParent from cx_ztcxxm t where t.ztlx_dm='01'and t.jdlb='1' and t.sjcxxmdm is null order by xh
+	</sql>
+	 <sql id="cx_yhscx_queryYhscxZxm" describ="一户式查询文件夹" isLoad="true">
+	 select t.cxxmmc,t.sqlxh,t.cxrqqtjlmc,t.cxrqztjlmc,t2.sjymc,t.sjcxxmdm,t.cxxm_dm,t1.cxlx,t.jdlb,'true' isParent
+   from cx_ztcxxm t,cx_cxdy t1,cx_sjyxx t2
+    where t.ztlx_dm = ?
+   and t.sqlxh=t1.sqlxh(+)
+   and t1.sjylx=t2.uuid(+)
+   and t.sjcxxmdm=? order by t.xh
+   </sql>
+   
+   <sql id="cx_yhscx_queryYhscxList" describ="一户式查询文件夹" isLoad="true">
+   select t.cxxmmc,t.sqlxh,t.cxrqqtjlmc,t.cxrqztjlmc,t2.sjymc,t.sjcxxmdm,t.cxxm_dm,'true' isParent
+  from cx_ztcxxm t,cx_cxdy t1,cx_sjyxx t2
+ where t.ztlx_dm = ?
+   and t.sqlxh=t1.sqlxh(+)
+   and t1.sjylx=t2.uuid(+)
+   </sql>
+   <sql id="cx_yhs_jbxx" describ="一户式查询基本信息" isLoad="true">
+   select t.* from r_yhs_jcxx t
+   </sql>
+</sqlfile>
+

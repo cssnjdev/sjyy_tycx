@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizsys.xtgl.dao.TXtGnsMapper">
+    <resultMap id="tXtGnsPojoMap" type="com.cwks.bizsys.xtgl.domain.TXtGnsPojo">
+        <result column="cdlx" property="cdlx" />
+        <result column="cdxh" property="cdxh" />
+        <result column="gn_cj" property="gn_cj" />
+        <result column="gn_dm" property="gn_dm" />
+        <result column="gn_jc" property="gn_jc" />
+        <result column="gn_mc" property="gn_mc" />
+        <result column="gn_url" property="gn_url" />
+        <result column="icon" property="icon" />
+        <result column="lr_sj" property="lr_sj" />
+        <result column="opentype" property="opentype" />
+        <result column="sjgn_dm" property="sjgn_dm" />
+        <result column="xg_sj" property="xg_sj" />
+        <result column="xy_bj" property="xy_bj" />
+        <result column="yx_bj" property="yx_bj" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        cdlx,
+        cdxh,
+        gn_cj,
+        gn_dm,
+        gn_jc,
+        gn_mc,
+        gn_url,
+        icon,
+        to_char(lr_sj,'yyyy-mm-dd hh24:mi:ss') lr_sj,
+        opentype,
+        sjgn_dm,
+        to_char(xg_sj,'yyyy-mm-dd hh24:mi:ss') xg_sj,
+        xy_bj,
+        yx_bj
+    </sql>
+    <sql id="Base_Param_List" >
+        #{cdlx},
+        #{cdxh},
+        #{gn_cj},
+        #{gn_dm},
+        #{gn_jc},
+        #{gn_mc},
+        #{gn_url},
+        #{icon},
+        #{lr_sj},
+        #{opentype},
+        #{sjgn_dm},
+        #{xg_sj},
+        #{xy_bj},
+        #{yx_bj}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizsys.xtgl.domain.TXtGnsPojo" resultType="com.cwks.bizsys.xtgl.domain.TXtGnsPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  T_XT_GNS t
+        <trim prefix="WHERE" prefixOverrides="and">
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="tXtGnsPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from T_XT_GNS
+        where
+        gn_dm=#{gn_dm}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizsys.xtgl.domain.TXtGnsPojo">
+        delete from T_XT_GNS
+        where
+                gn_dm=#{gn_dm}
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizsys.xtgl.domain.TXtGnsPojo" >
+        insert into T_XT_GNS (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizsys.xtgl.domain.TXtGnsPojo" >
+        insert into T_XT_GNS
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="cdlx != null" >
+                cdlx,
+            </if>
+            <if test="cdxh != null" >
+                cdxh,
+            </if>
+            <if test="gn_cj != null" >
+                gn_cj,
+            </if>
+            <if test="gn_dm != null" >
+                gn_dm,
+            </if>
+            <if test="gn_jc != null" >
+                gn_jc,
+            </if>
+            <if test="gn_mc != null" >
+                gn_mc,
+            </if>
+            <if test="gn_url != null" >
+                gn_url,
+            </if>
+            <if test="icon != null" >
+                icon,
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj,
+            </if>
+            <if test="opentype != null" >
+                opentype,
+            </if>
+            <if test="sjgn_dm != null" >
+                sjgn_dm,
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj,
+            </if>
+            <if test="xy_bj != null" >
+                xy_bj,
+            </if>
+            <if test="yx_bj != null" >
+                yx_bj,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="cdlx != null" >
+                    #{cdlx},
+            </if>
+            <if test="cdxh != null" >
+                    #{cdxh},
+            </if>
+            <if test="gn_cj != null" >
+                    #{gn_cj},
+            </if>
+            <if test="gn_dm != null" >
+                    #{gn_dm},
+            </if>
+            <if test="gn_jc != null" >
+                    #{gn_jc},
+            </if>
+            <if test="gn_mc != null" >
+                    #{gn_mc},
+            </if>
+            <if test="gn_url != null" >
+                    #{gn_url},
+            </if>
+            <if test="icon != null" >
+                    #{icon},
+            </if>
+            <if test="lr_sj != null" >
+                    to_date(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="opentype != null" >
+                    #{opentype},
+            </if>
+            <if test="sjgn_dm != null" >
+                    #{sjgn_dm},
+            </if>
+            <if test="xg_sj != null" >
+                    to_date(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xy_bj != null" >
+                    #{xy_bj},
+            </if>
+            <if test="yx_bj != null" >
+                    #{yx_bj},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizsys.xtgl.domain.TXtGnsPojo" >
+        update T_XT_GNS
+        <trim prefix="set" suffixOverrides="," >
+            <if test="cdlx != null" >
+                cdlx =#{cdlx},
+            </if>
+            <if test="cdxh != null" >
+                cdxh =#{cdxh},
+            </if>
+            <if test="gn_cj != null" >
+                gn_cj =#{gn_cj},
+            </if>
+            <if test="gn_dm != null" >
+                gn_dm =#{gn_dm},
+            </if>
+            <if test="gn_jc != null" >
+                gn_jc =#{gn_jc},
+            </if>
+            <if test="gn_mc != null" >
+                gn_mc =#{gn_mc},
+            </if>
+            <if test="gn_url != null" >
+                gn_url =#{gn_url},
+            </if>
+            <if test="icon != null" >
+                icon =#{icon},
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj =to_date(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="opentype != null" >
+                opentype =#{opentype},
+            </if>
+            <if test="sjgn_dm != null" >
+                sjgn_dm =#{sjgn_dm},
+            </if>
+                xg_sj = sysdate,
+            <if test="xy_bj != null" >
+                xy_bj =#{xy_bj},
+            </if>
+            <if test="yx_bj != null" >
+                yx_bj =#{yx_bj},
+            </if>
+        </trim>
+        where
+        gn_dm=#{gn_dm}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizsys.xtgl.domain.TXtGnsPojo" >
+        update  T_XT_GNS set
+        <if test="cdlx != null" >
+            cdlx = #{cdlx},
+        </if>
+        <if test="cdxh != null" >
+            cdxh = #{cdxh},
+        </if>
+        <if test="gn_cj != null" >
+            gn_cj = #{gn_cj},
+        </if>
+        <if test="gn_dm != null" >
+            gn_dm = #{gn_dm},
+        </if>
+        <if test="gn_jc != null" >
+            gn_jc = #{gn_jc},
+        </if>
+        <if test="gn_mc != null" >
+            gn_mc = #{gn_mc},
+        </if>
+        <if test="gn_url != null" >
+            gn_url = #{gn_url},
+        </if>
+        <if test="icon != null" >
+            icon = #{icon},
+        </if>
+        <if test="lr_sj != null" >
+            lr_sj = #{lr_sj},
+        </if>
+        <if test="opentype != null" >
+            opentype = #{opentype},
+        </if>
+        <if test="sjgn_dm != null" >
+            sjgn_dm = #{sjgn_dm},
+        </if>
+        <if test="xg_sj != null" >
+            xg_sj = #{xg_sj},
+        </if>
+        <if test="xy_bj != null" >
+            xy_bj = #{xy_bj},
+        </if>
+        <if test="yx_bj != null" >
+            yx_bj = #{yx_bj}
+        </if>
+        where
+        gn_dm=#{gn_dm}
+    </update>
+</mapper>

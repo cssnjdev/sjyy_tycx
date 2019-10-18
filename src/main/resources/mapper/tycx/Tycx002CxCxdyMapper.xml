@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Tycx002DzcxMapper">
+    <resultMap id="tycx002DzcxPojoMap" type="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002DzcxPojo">
+        <result column="ccgcmc" property="ccgcmc" />
+        <result column="cjjg_dm" property="cjjg_dm" />
+        <result column="cxfl" property="cxfl" />
+        <result column="cxlx" property="cxlx" />
+        <result column="cxms" property="cxms" />
+        <result column="exportmax" property="exportmax" />
+        <result column="fybj" property="fybj" />
+        <result column="gxfs" property="gxfs" />
+        <result column="headsql" property="headsql" />
+        <result column="hjxsbz" property="hjxsbz" />
+        <result column="jgsj" property="jgsj" />
+        <result column="limttime" property="limttime" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="mbxh" property="mbxh" />
+        <result column="myjls" property="myjls" />
+        <result column="pagelayout" property="pagelayout" />
+        <result column="queryplugin" property="queryplugin" />
+        <result column="sjgsdq" property="sjgsdq" />
+        <result column="sjylx" property="sjylx" />
+        <result column="sm" property="sm" />
+        <result column="sqllx" property="sqllx" />
+        <result column="sqlmc" property="sqlmc" />
+        <result column="sqlstr" property="sqlstr" />
+        <result column="sqlxh" property="sqlxh" />
+        <result column="ssjg_dm" property="ssjg_dm" />
+        <result column="txzs" property="txzs" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="xybz" property="xybz" />
+        <result column="yssjsj" property="yssjsj" />
+        <result column="ywy" property="ywy" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        ccgcmc,
+        cjjg_dm,
+        cxfl,
+        cxlx,
+        cxms,
+        exportmax,
+        fybj,
+        gxfs,
+        headsql,
+        hjxsbz,
+        jgsj,
+        limttime,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        mbxh,
+        myjls,
+        pagelayout,
+        queryplugin,
+        sjgsdq,
+        sjylx,
+        sm,
+        sqllx,
+        sqlmc,
+        sqlstr,
+        sqlxh,
+        ssjg_dm,
+        txzs,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        xybz,
+        yssjsj,
+        ywy
+    </sql>
+    <sql id="Base_Param_List" >
+        #{ccgcmc},
+        #{cjjg_dm},
+        #{cxfl},
+        #{cxlx},
+        #{cxms},
+        #{exportmax},
+        #{fybj},
+        #{gxfs},
+        #{headsql},
+        #{hjxsbz},
+        #{jgsj},
+        #{limttime},
+        #{lrrq},
+        #{lrr_dm},
+        #{mbxh},
+        #{myjls},
+        #{pagelayout},
+        #{queryplugin},
+        #{sjgsdq},
+        #{sjylx},
+        #{sm},
+        #{sqllx},
+        #{sqlmc},
+        #{sqlstr},
+        #{sqlxh},
+        #{ssjg_dm},
+        #{txzs},
+        #{xgrq},
+        #{xgr_dm},
+        #{xybz},
+        #{yssjsj},
+        #{ywy}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002DzcxPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002DzcxPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  CX_CXDY t
+        <trim prefix="WHERE" prefixOverrides="and">
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="tycx002DzcxPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from CX_CXDY
+        where
+        sqlxh=#{sqlxh}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002DzcxPojo">
+        delete from CX_CXDY
+        where
+                sqlxh=#{sqlxh}
+            
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002DzcxPojo" >
+        insert into CX_CXDY (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002DzcxPojo" >
+        insert into CX_CXDY
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ccgcmc != null" >
+                ccgcmc,
+            </if>
+            <if test="cjjg_dm != null" >
+                cjjg_dm,
+            </if>
+            <if test="cxfl != null" >
+                cxfl,
+            </if>
+            <if test="cxlx != null" >
+                cxlx,
+            </if>
+            <if test="cxms != null" >
+                cxms,
+            </if>
+            <if test="exportmax != null" >
+                exportmax,
+            </if>
+            <if test="fybj != null" >
+                fybj,
+            </if>
+            <if test="gxfs != null" >
+                gxfs,
+            </if>
+            <if test="headsql != null" >
+                headsql,
+            </if>
+            <if test="hjxsbz != null" >
+                hjxsbz,
+            </if>
+            <if test="jgsj != null" >
+                jgsj,
+            </if>
+            <if test="limttime != null" >
+                limttime,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="mbxh != null" >
+                mbxh,
+            </if>
+            <if test="myjls != null" >
+                myjls,
+            </if>
+            <if test="pagelayout != null" >
+                pagelayout,
+            </if>
+            <if test="queryplugin != null" >
+                queryplugin,
+            </if>
+            <if test="sjgsdq != null" >
+                sjgsdq,
+            </if>
+            <if test="sjylx != null" >
+                sjylx,
+            </if>
+            <if test="sm != null" >
+                sm,
+            </if>
+            <if test="sqllx != null" >
+                sqllx,
+            </if>
+            <if test="sqlmc != null" >
+                sqlmc,
+            </if>
+            <if test="sqlstr != null" >
+                sqlstr,
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh,
+            </if>
+            <if test="ssjg_dm != null" >
+                ssjg_dm,
+            </if>
+            <if test="txzs != null" >
+                txzs,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+            <if test="xybz != null" >
+                xybz,
+            </if>
+            <if test="yssjsj != null" >
+                yssjsj,
+            </if>
+            <if test="ywy != null" >
+                ywy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ccgcmc != null" >
+                    #{ccgcmc},
+            </if>
+            <if test="cjjg_dm != null" >
+                    #{cjjg_dm},
+            </if>
+            <if test="cxfl != null" >
+                    #{cxfl},
+            </if>
+            <if test="cxlx != null" >
+                    #{cxlx},
+            </if>
+            <if test="cxms != null" >
+                    #{cxms},
+            </if>
+            <if test="exportmax != null" >
+                    #{exportmax},
+            </if>
+            <if test="fybj != null" >
+                    #{fybj},
+            </if>
+            <if test="gxfs != null" >
+                    #{gxfs},
+            </if>
+            <if test="headsql != null" >
+                    #{headsql},
+            </if>
+            <if test="hjxsbz != null" >
+                    #{hjxsbz},
+            </if>
+            <if test="jgsj != null" >
+                    #{jgsj},
+            </if>
+            <if test="limttime != null" >
+                    #{limttime},
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                    #{lrr_dm},
+            </if>
+            <if test="mbxh != null" >
+                    #{mbxh},
+            </if>
+            <if test="myjls != null" >
+                    #{myjls},
+            </if>
+            <if test="pagelayout != null" >
+                    #{pagelayout},
+            </if>
+            <if test="queryplugin != null" >
+                    #{queryplugin},
+            </if>
+            <if test="sjgsdq != null" >
+                    #{sjgsdq},
+            </if>
+            <if test="sjylx != null" >
+                    #{sjylx},
+            </if>
+            <if test="sm != null" >
+                    #{sm},
+            </if>
+            <if test="sqllx != null" >
+                    #{sqllx},
+            </if>
+            <if test="sqlmc != null" >
+                    #{sqlmc},
+            </if>
+            <if test="sqlstr != null" >
+                    #{sqlstr},
+            </if>
+            <if test="sqlxh != null" >
+                    #{sqlxh},
+            </if>
+            <if test="ssjg_dm != null" >
+                    #{ssjg_dm},
+            </if>
+            <if test="txzs != null" >
+                    #{txzs},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                    #{xgr_dm},
+            </if>
+            <if test="xybz != null" >
+                    #{xybz},
+            </if>
+            <if test="yssjsj != null" >
+                    #{yssjsj},
+            </if>
+            <if test="ywy != null" >
+                    #{ywy},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002DzcxPojo" >
+        update CX_CXDY
+        <trim prefix="set" suffixOverrides="," >
+            <if test="ccgcmc != null" >
+                ccgcmc =#{ccgcmc},
+            </if>
+            <if test="cjjg_dm != null" >
+                cjjg_dm =#{cjjg_dm},
+            </if>
+            <if test="cxfl != null" >
+                cxfl =#{cxfl},
+            </if>
+            <if test="cxlx != null" >
+                cxlx =#{cxlx},
+            </if>
+            <if test="cxms != null" >
+                cxms =#{cxms},
+            </if>
+            <if test="exportmax != null" >
+                exportmax =#{exportmax},
+            </if>
+            <if test="fybj != null" >
+                fybj =#{fybj},
+            </if>
+            <if test="gxfs != null" >
+                gxfs =#{gxfs},
+            </if>
+            <if test="headsql != null" >
+                headsql =#{headsql},
+            </if>
+            <if test="hjxsbz != null" >
+                hjxsbz =#{hjxsbz},
+            </if>
+            <if test="jgsj != null" >
+                jgsj =#{jgsj},
+            </if>
+            <if test="limttime != null" >
+                limttime =#{limttime},
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm =#{lrr_dm},
+            </if>
+            <if test="mbxh != null" >
+                mbxh =#{mbxh},
+            </if>
+            <if test="myjls != null" >
+                myjls =#{myjls},
+            </if>
+            <if test="pagelayout != null" >
+                pagelayout =#{pagelayout},
+            </if>
+            <if test="queryplugin != null" >
+                queryplugin =#{queryplugin},
+            </if>
+            <if test="sjgsdq != null" >
+                sjgsdq =#{sjgsdq},
+            </if>
+            <if test="sjylx != null" >
+                sjylx =#{sjylx},
+            </if>
+            <if test="sm != null" >
+                sm =#{sm},
+            </if>
+            <if test="sqllx != null" >
+                sqllx =#{sqllx},
+            </if>
+            <if test="sqlmc != null" >
+                sqlmc =#{sqlmc},
+            </if>
+            <if test="sqlstr != null" >
+                sqlstr =#{sqlstr},
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh =#{sqlxh},
+            </if>
+            <if test="ssjg_dm != null" >
+                ssjg_dm =#{ssjg_dm},
+            </if>
+            <if test="txzs != null" >
+                txzs =#{txzs},
+            </if>
+            <if test="xgrq != null" >
+                xgrq =to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm =#{xgr_dm},
+            </if>
+            <if test="xybz != null" >
+                xybz =#{xybz},
+            </if>
+            <if test="yssjsj != null" >
+                yssjsj =#{yssjsj},
+            </if>
+            <if test="ywy != null" >
+                ywy =#{ywy},
+            </if>
+        </trim>
+        where
+        sqlxh=#{sqlxh}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002DzcxPojo" >
+        update  CX_CXDY set
+        ccgcmc = #{ccgcmc},
+        cjjg_dm = #{cjjg_dm},
+        cxfl = #{cxfl},
+        cxlx = #{cxlx},
+        cxms = #{cxms},
+        exportmax = #{exportmax},
+        fybj = #{fybj},
+        gxfs = #{gxfs},
+        headsql = #{headsql},
+        hjxsbz = #{hjxsbz},
+        jgsj = #{jgsj},
+        limttime = #{limttime},
+        lrrq = #{lrrq},
+        lrr_dm = #{lrr_dm},
+        mbxh = #{mbxh},
+        myjls = #{myjls},
+        pagelayout = #{pagelayout},
+        queryplugin = #{queryplugin},
+        sjgsdq = #{sjgsdq},
+        sjylx = #{sjylx},
+        sm = #{sm},
+        sqllx = #{sqllx},
+        sqlmc = #{sqlmc},
+        sqlstr = #{sqlstr},
+        sqlxh = #{sqlxh},
+        ssjg_dm = #{ssjg_dm},
+        txzs = #{txzs},
+        xgrq = #{xgrq},
+        xgr_dm = #{xgr_dm},
+        xybz = #{xybz},
+        yssjsj = #{yssjsj},
+        ywy = #{ywy}
+        where
+        sqlxh=#{sqlxh}
+    </update>
+</mapper>

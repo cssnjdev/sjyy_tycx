@@ -1,0 +1,29 @@
+.combo_box{
+	position: relative;
+	width: 100%;
+}
+
+.combo_content {
+	position: absolute;
+	top:100%;
+	left: 0;
+ 	width:100%;
+	z-index: 999;
+	min-width: 280px;
+	background: #fff;
+	border: 1px solid #eee;
+    display: none;	
+}
+
+
+.f_left{
+	float: left;
+}
+
+.f_right{
+	float:right;
+}
+
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select > div > .xdsoft_option {
+    padding: 8px 10px 8px 10px;
+}

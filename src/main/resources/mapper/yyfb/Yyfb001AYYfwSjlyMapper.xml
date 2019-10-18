@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.yyfb.mapping.mapper.Yyfb001AYYfwSjlyMapper">
+    <resultMap id="yyfb001AYYfwSjlyPojoMap" type="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwSjlyPojo">
+        <result column="fxyy_id" property="fxyy_id" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrry_dm" property="lrry_dm" />
+        <result column="sjly_dm" property="sjly_dm" />
+        <result column="sjly_mc" property="sjly_mc" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgry_dm" property="xgry_dm" />
+        <result column="xybj" property="xybj" />
+        <result column="version" property="version" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        fxyy_id,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrry_dm,
+        sjly_dm,
+        sjly_mc,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgry_dm,
+        xybj,
+        version
+    </sql>
+    <sql id="Base_Param_List" >
+        #{fxyy_id},
+        #{lrrq},
+        #{lrry_dm},
+        #{sjly_dm},
+        #{sjly_mc},
+        #{xgrq},
+        #{xgry_dm},
+        #{xybj},
+        #{version}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwSjlyPojo" resultType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwSjlyPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  t_YYFW_SJLY t
+        <trim prefix="WHERE" prefixOverrides="and">
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="yyfb001AYYfwSjlyPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from t_YYFW_SJLY
+        where
+        
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwSjlyPojo">
+        delete from t_YYFW_SJLY
+        where
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwSjlyPojo" >
+        insert into t_YYFW_SJLY (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwSjlyPojo" >
+        insert into t_YYFW_SJLY
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="fxyy_id != null" >
+                fxyy_id,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm,
+            </if>
+            <if test="sjly_dm != null" >
+                sjly_dm,
+            </if>
+            <if test="sjly_mc != null" >
+                sjly_mc,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm,
+            </if>
+            <if test="xybj != null" >
+                xybj,
+            </if>
+            <if test="version != null" >
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="fxyy_id != null" >
+                    #{fxyy_id},
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrry_dm != null" >
+                    #{lrry_dm},
+            </if>
+            <if test="sjly_dm != null" >
+                    #{sjly_dm},
+            </if>
+            <if test="sjly_mc != null" >
+                    #{sjly_mc},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgry_dm != null" >
+                    #{xgry_dm},
+            </if>
+            <if test="xybj != null" >
+                    #{xybj},
+            </if>
+            <if test="version != null" >
+                    #{version},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwSjlyPojo" >
+        update t_YYFW_SJLY
+        <trim prefix="set" suffixOverrides="," >
+            <if test="fxyy_id != null" >
+                fxyy_id =#{fxyy_id},
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm =#{lrry_dm},
+            </if>
+            <if test="sjly_dm != null" >
+                sjly_dm =#{sjly_dm},
+            </if>
+            <if test="sjly_mc != null" >
+                sjly_mc =#{sjly_mc},
+            </if>
+            <if test="xgrq != null" >
+                xgrq =to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm =#{xgry_dm},
+            </if>
+            <if test="xybj != null" >
+                xybj =#{xybj},
+            </if>
+        </trim>
+        where
+        
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwSjlyPojo" >
+        update  t_YYFW_SJLY set
+        fxyy_id = #{fxyy_id},
+        lrrq = #{lrrq},
+        lrry_dm = #{lrry_dm},
+        sjly_dm = #{sjly_dm},
+        sjly_mc = #{sjly_mc},
+        xgrq = #{xgrq},
+        xgry_dm = #{xgry_dm},
+        xybj = #{xybj}
+        where
+        
+    </update>
+</mapper>

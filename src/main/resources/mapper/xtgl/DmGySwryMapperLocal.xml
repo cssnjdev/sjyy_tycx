@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizsys.xtgl.dao.local.DmGySwryMapperLocal">
+    <resultMap id="dmGySwryPojoMap" type="com.cwks.bizsys.xtgl.domain.DmGySwryPojo">
+        <result column="dzxx" property="dzxx" />
+        <result column="jrswjsj" property="jrswjsj" />
+        <result column="lkswjsj" property="lkswjsj" />
+        <result column="lxdh" property="lxdh" />
+        <result column="sfzjhm" property="sfzjhm" />
+        <result column="swryxm" property="swryxm" />
+        <result column="swry_dm" property="swry_dm" />
+        <result column="xb_dm" property="xb_dm" />
+        <result column="yxbz" property="yxbz" />
+        <result column="zc_dm" property="zc_dm" />
+        <result column="zw" property="zw" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        dzxx,
+        to_char(jrswjsj,'yyyy-mm-dd hh24:mi:ss') jrswjsj,
+        to_char(lkswjsj,'yyyy-mm-dd hh24:mi:ss') lkswjsj,
+        lxdh,
+        sfzjhm,
+        swryxm,
+        swry_dm,
+        xb_dm,
+        yxbz,
+        zc_dm,
+        zw
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwryPojo" resultType="com.cwks.bizsys.xtgl.domain.DmGySwryPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  DM_GY_SWRY_LOCAL t
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="swryxm != null and swryxm != ''">
+            swryxm like '%${swryxm}%'
+            </if>
+            <if test="swry_dm != null and swry_dm != ''">
+            and swry_dm like '%${swry_dm}%'
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="dmGySwryPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from DM_GY_SWRY_LOCAL
+        where
+        swry_dm=#{swry_dm}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwryPojo">
+        delete from DM_GY_SWRY_LOCAL
+        where
+                swry_dm=#{swry_dm}
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwryPojo" >
+        insert into DM_GY_SWRY_LOCAL (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Column_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwryPojo" >
+        insert into DM_GY_SWRY_LOCAL
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="dzxx != null" >
+                dzxx,
+            </if>
+            <if test="jrswjsj != null" >
+                jrswjsj,
+            </if>
+            <if test="lkswjsj != null" >
+                lkswjsj,
+            </if>
+            <if test="lxdh != null" >
+                lxdh,
+            </if>
+            <if test="sfzjhm != null" >
+                sfzjhm,
+            </if>
+            <if test="swryxm != null" >
+                swryxm,
+            </if>
+            <if test="swry_dm != null" >
+                swry_dm,
+            </if>
+            <if test="xb_dm != null" >
+                xb_dm,
+            </if>
+            <if test="yxbz != null" >
+                yxbz,
+            </if>
+            <if test="zc_dm != null" >
+                zc_dm,
+            </if>
+            <if test="zw != null" >
+                zw,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="dzxx != null" >
+                    #{dzxx},
+            </if>
+            <if test="jrswjsj != null" >
+                    to_date(#{jrswjsj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lkswjsj != null" >
+                    to_date(#{lkswjsj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lxdh != null" >
+                    #{lxdh},
+            </if>
+            <if test="sfzjhm != null" >
+                    #{sfzjhm},
+            </if>
+            <if test="swryxm != null" >
+                    #{swryxm},
+            </if>
+            <if test="swry_dm != null" >
+                    #{swry_dm},
+            </if>
+            <if test="xb_dm != null" >
+                    #{xb_dm},
+            </if>
+            <if test="yxbz != null" >
+                    #{yxbz},
+            </if>
+            <if test="zc_dm != null" >
+                    #{zc_dm},
+            </if>
+            <if test="zw != null" >
+                    #{zw},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwryPojo" >
+        update DM_GY_SWRY_LOCAL
+        <trim prefix="set" suffixOverrides="," >
+            <if test="dzxx != null" >
+                dzxx =#{dzxx},
+            </if>
+            <if test="jrswjsj != null" >
+                jrswjsj =to_date(#{jrswjsj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lkswjsj != null" >
+                lkswjsj =to_date(#{lkswjsj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lxdh != null" >
+                lxdh =#{lxdh},
+            </if>
+            <if test="sfzjhm != null" >
+                sfzjhm =#{sfzjhm},
+            </if>
+            <if test="swryxm != null" >
+                swryxm =#{swryxm},
+            </if>
+            <if test="swry_dm != null" >
+                swry_dm =#{swry_dm},
+            </if>
+            <if test="xb_dm != null" >
+                xb_dm =#{xb_dm},
+            </if>
+            <if test="yxbz != null" >
+                yxbz =#{yxbz},
+            </if>
+            <if test="zc_dm != null" >
+                zc_dm =#{zc_dm},
+            </if>
+            <if test="zw != null" >
+                zw =#{zw},
+            </if>
+        </trim>
+        where
+        swry_dm=#{swry_dm}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizsys.xtgl.domain.DmGySwryPojo" >
+        update  DM_GY_SWRY_LOCAL set
+        <if test="dzxx != null" >
+            dzxx = #{dzxx},
+        </if>
+        <if test="jrswjsj != null" >
+            jrswjsj = #{jrswjsj},
+        </if>
+        <if test="lkswjsj != null" >
+            lkswjsj = #{lkswjsj},
+        </if>
+        <if test="lxdh != null" >
+            lxdh = #{lxdh},
+        </if>
+        <if test="sfzjhm != null" >
+            sfzjhm = #{sfzjhm},
+        </if>
+        <if test="swryxm != null" >
+            swryxm = #{swryxm},
+        </if>
+        <if test="swry_dm != null" >
+            swry_dm = #{swry_dm},
+        </if>
+        <if test="xb_dm != null" >
+            xb_dm = #{xb_dm},
+        </if>
+        <if test="yxbz != null" >
+            yxbz = #{yxbz},
+        </if>
+        <if test="zc_dm != null" >
+            zc_dm = #{zc_dm},
+        </if>
+        <if test="zw != null" >
+            zw = #{zw}
+        </if>
+        where
+        swry_dm=#{swry_dm}
+    </update>
+</mapper>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.yyfb.mapping.mapper.Yyfb001AYYfwFolderMapper">
+    <resultMap id="yyfb001AYYfwFolderPojoMap" type="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwFolderPojo">
+        <result column="folderlx_dm" property="folderlx_dm" />
+        <result column="folder_id" property="folder_id" />
+        <result column="lrry_dm" property="lrry_dm" />
+        <result column="lr_sj" property="lr_sj" />
+        <result column="mc" property="mc" />
+        <result column="mc_j" property="mc_j" />
+        <result column="pfolder_id" property="pfolder_id" />
+        <result column="pxxh" property="pxxh" />
+        <result column="ssswjg_dm" property="ssswjg_dm" />
+        <result column="xgry_dm" property="xgry_dm" />
+        <result column="xg_sj" property="xg_sj" />
+        <result column="xybj" property="xybj" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        folderlx_dm,
+        folder_id,
+        lrry_dm,
+        to_char(lr_sj,'yyyy-mm-dd hh24:mi:ss') lr_sj,
+        mc,
+        mc_j,
+        pfolder_id,
+        pxxh,
+        ssswjg_dm,
+        xgry_dm,
+        to_char(xg_sj,'yyyy-mm-dd hh24:mi:ss') xg_sj,
+        xybj
+    </sql>
+    <sql id="Base_Param_List" >
+        #{folderlx_dm},
+        #{folder_id},
+        #{lrry_dm},
+        #{lr_sj},
+        #{mc},
+        #{mc_j},
+        #{pfolder_id},
+        #{pxxh},
+        #{ssswjg_dm},
+        #{xgry_dm},
+        #{xg_sj},
+        #{xybj}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwFolderPojo" resultType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwFolderPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  t_yyfw_FOLDER t
+        <trim prefix="WHERE" prefixOverrides="and">
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="yyfb001AYYfwFolderPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from t_yyfw_FOLDER
+        where
+        
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwFolderPojo">
+        delete from t_yyfw_FOLDER
+        where
+        folder_id =#{folder_id}
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwFolderPojo" >
+        insert into t_yyfw_FOLDER (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwFolderPojo" >
+        insert into t_yyfw_FOLDER
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="folderlx_dm != null" >
+                folderlx_dm,
+            </if>
+            <if test="folder_id != null" >
+                folder_id,
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm,
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj,
+            </if>
+            <if test="mc != null" >
+                mc,
+            </if>
+            <if test="mc_j != null" >
+                mc_j,
+            </if>
+            <if test="pfolder_id != null" >
+                pfolder_id,
+            </if>
+            <if test="pxxh != null" >
+                pxxh,
+            </if>
+            <if test="ssswjg_dm != null" >
+                ssswjg_dm,
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm,
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj,
+            </if>
+            <if test="xybj != null" >
+                xybj,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="folderlx_dm != null" >
+                    #{folderlx_dm},
+            </if>
+            <if test="folder_id != null" >
+                    #{folder_id},
+            </if>
+            <if test="lrry_dm != null" >
+                    #{lrry_dm},
+            </if>
+            <if test="lr_sj != null" >
+                    to_date(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="mc != null" >
+                    #{mc},
+            </if>
+            <if test="mc_j != null" >
+                    #{mc_j},
+            </if>
+            <if test="pfolder_id != null" >
+                    #{pfolder_id},
+            </if>
+            <if test="pxxh != null" >
+                    #{pxxh},
+            </if>
+            <if test="ssswjg_dm != null" >
+                    #{ssswjg_dm},
+            </if>
+            <if test="xgry_dm != null" >
+                    #{xgry_dm},
+            </if>
+            <if test="xg_sj != null" >
+                    to_date(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xybj != null" >
+                    #{xybj},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwFolderPojo" >
+        update t_yyfw_FOLDER
+        <trim prefix="set" suffixOverrides="," >
+            <if test="folderlx_dm != null" >
+                folderlx_dm =#{folderlx_dm},
+            </if>
+            <if test="folder_id != null" >
+                folder_id =#{folder_id},
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm =#{lrry_dm},
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj =to_date(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="mc != null" >
+                mc =#{mc},
+            </if>
+            <if test="mc_j != null" >
+                mc_j =#{mc_j},
+            </if>
+            <if test="pfolder_id != null" >
+                pfolder_id =#{pfolder_id},
+            </if>
+            <if test="pxxh != null" >
+                pxxh =#{pxxh},
+            </if>
+            <if test="ssswjg_dm != null" >
+                ssswjg_dm =#{ssswjg_dm},
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm =#{xgry_dm},
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj =to_date(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xybj != null" >
+                xybj =#{xybj},
+            </if>
+        </trim>
+        where
+        folder_id =#{folder_id}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.Yyfb001AYYfwFolderPojo" >
+        update  t_yyfw_FOLDER set
+        folderlx_dm = #{folderlx_dm},
+        folder_id = #{folder_id},
+        lrry_dm = #{lrry_dm},
+        lr_sj = #{lr_sj},
+        mc = #{mc},
+        mc_j = #{mc_j},
+        pfolder_id = #{pfolder_id},
+        pxxh = #{pxxh},
+        ssswjg_dm = #{ssswjg_dm},
+        xgry_dm = #{xgry_dm},
+        xg_sj = #{xg_sj},
+        xybj = #{xybj}
+        where
+        
+    </update>
+</mapper>

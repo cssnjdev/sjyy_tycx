@@ -1,0 +1,118 @@
+div{
+	line-height: 0;
+}
+
+.dataTables_sizing{
+	display: none;
+}
+#cxtj_panel{
+	margin:0;
+	border: none;
+}
+
+#jg_panel{
+	margin:0;
+}
+
+#jg_panel .panel-body{
+	padding:0;
+}
+
+.chartTool>label{
+	float: right;
+}
+
+.chartTool>label input{
+	display: none;
+}
+ 
+.chartTool a{
+    display: block;
+    width: 22px;
+    height: 17px;
+    background: url(ctx+"/img/image/icon-sprite.png") no-repeat;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.chartTool a.pie{
+	    background-position: 0 -115px;
+}
+
+.chartTool a.bar {
+    background-position: 0 -134px;
+}
+
+.chartTool a.line {
+    background-position: 0 -77px;
+} 
+
+.chartTool a.list {
+    background-position: 0 -58px;
+}
+.chartTool a.radar {
+    background: url("/public/js/image/radar_icon.png") no-repeat;
+} 
+ #sqlList{
+    
+ }
+ 
+#sqlList a{
+ 	 font-weight: bold;
+} 
+
+
+.showmore{
+	margin:0 auto;height:10px;width:51px;display: inline-block;background:url('/biz/core/ext/tycx_jy/demo1/image/down.png');
+}
+
+.showmore.up{
+	 background:url('/biz/core/ext/tycx_jy/demo1/image/up.png');
+	 border: 0;
+}
+
+.tj_table{
+	float:left; height:auto;
+	height:32px;
+}
+
+.tj_table .right{
+	text-align: right;
+	padding-right: 10px;
+}
+
+
+ul.tj_ul{
+	
+	position: absolute;top:28px;left:0;list-style: none;
+	z-index: 990;
+	background: #fff;
+	width: 100%;
+	padding: 0;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+	
+}
+
+ul.tj_ul li{
+	height: 26px;
+	line-height: 26px;
+	border-bottom: 1px solid #eee;
+	padding-left:20px;
+}
+ul.tj_ul li label{
+	width:100%;
+	height:26px;
+}
+
+.toggleDownAndUp{
+	width:20px;height:100%;border:1px solid #eee;padding-top:7px;text-align:center; position: absolute;right: 0;top:0;background: #fff;cursor:pointer;
+}
+
+ 
+.left_span{
+	float:left;
+	height:32px;
+	line-height: 32px;
+	padding-left:10px;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlfile>
+	<!--Author:胡锐  function:系统登陆-->
+	<sql id="SQL_SYS_LOGIN_INFO" describ="根据人员身份代码获取人员基本信息" isLoad="true">
+		select a.dlzh_dm,a.dlzhkl,a.swry_dm, b.swryxm, b.sfzjhm, b.xb_dm, b.zw, c.swrysf_dm, c.rysfmc
+		from QX_DLZHXX a, DM_GY_SWRY b, DM_QX_SWRYSF c where a.swry_dm = b.swry_dm and b.swry_dm = c.swry_dm
+		and a.yxbz='Y' and b.yxbz='Y' and c.yxbz='Y' and c.swrysf_dm = ?
+	</sql>
+
+	<sql id="SQL_SYS_LOGIN_INFO_BY_RYSFDM" describ="根据人员代码和身份代码查询人员基本信息" isLoad="true">
+		select a.dlzh_dm,a.dlzhkl,a.swry_dm userid, b.swryxm, b.sfzjhm, b.xb_dm, b.zw, c.swrysf_dm, c.rysfmc,jg.swjg_dm swrysfjg,jg.swjgmc
+		from QX_DLZHXX a, DM_GY_SWRY b, DM_QX_SWRYSF c ,dm_gy_swjg jg where a.swry_dm = b.swry_dm and b.swry_dm = c.swry_dm and c.sfswjg_dm=jg.swjg_dm
+		and a.yxbz='Y' and b.yxbz='Y' and c.yxbz='Y' and a.swry_dm=? and c.swrysf_dm = ?
+	</sql>
+</sqlfile>

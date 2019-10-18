@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>应用问题反馈</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+    <script type="text/javascript" language="javascript">
+        var ctx = [[@{/}]];
+    </script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+	<script type="text/javascript"   data-th-src="@{/js/yyfb/yyfb001_jbxx.js}"></script>
+
+<style>
+</style>
+</head>
+
+<body>
+
+		<div style="height:800px;overflow:auto;">
+			<div id="top" class="w_p100 top box">
+		 	    <div class="w_p96 m_center relative " >
+			           <span id="top_help" class="abs_left top_toolbar"  >
+			              <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="queryWtfk()">
+		                        <span class="glyphicon glyphicon-search"></span>查询
+		                    </a>
+		                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="openForm()">
+		                        <span class="glyphicon glyphicon-plus"></span>新增
+		                    </a>
+			           </span>
+			            <span id="top_title" class="abs_right top_title"  >
+			               	应用问题反馈
+			           </span>
+			    </div>
+			</div>
+			
+			<div id="cxtj_box" class="w_p100 box cxtj_box" >
+			   <div class="w_p96 m_center over_hidden" >
+			    <form id="cxtj_form">
+				   <table  class="jb_tj"  cellpadding="0" cellspacing="0"> 
+					    <tbody><tr>
+					        <td>问题类型</td> 
+					        <td width="200">
+					        	<select id="wtlx" name="wtlx" class="form-control populate">
+					        		<option value="0">全部</option>
+					        		<c:forEach items="${wtlxList}" var="wtlx" varStatus="status" >
+						        		<option value="${wtlx.code }">${wtlx.caption }</option>
+					        		</c:forEach>
+					        	</select>
+				 	        </td>
+					    </tr></tbody>
+					 </table>
+					  
+					 <table  class="jb_tj"  cellpadding="0" cellspacing="0"> 
+					    <tbody>
+						    <tr>
+						        <td>处理状态</td> 
+						        <td width="200">
+						        	<select id="wtclzt" name="wtclzt" class="form-control populate">
+						        		<option value="0">全部</option>
+						        		<c:forEach items="${wtclztList}" var="wtclzt" varStatus="status" >
+							        		<option value="${wtclzt.code }">${wtclzt.caption }</option>
+						        		</c:forEach>
+						        	</select>
+					 	        </td>
+						    </tr>
+					    </tbody>
+					 </table>
+				 </form> 
+			   </div>
+			</div>
+			
+			<div id="main" class="w_p100" style="background: none;">
+			    <div class="w_p96 m_center main_box">
+			    	<!-- <table id="examplea" class="display nowrap dataTable " isfy="true"  style="text-align: center; border-collapse: collapse; width: 100%; margin-left: 0px;"   selectType="1"  orderby='order by lr_sj' rowDblclick = "rowDblclick"  cellspacing="0" role="grid" oncreatedRow="oncreatedRow"> -->
+			    	<table id="examplea" class="display nowrap dataTable " isfy="true" selectType="1"  orderby='order by lr_sj' rowDblclick = "rowDblclick" style="text-align:center;border-collapse:collapse;" cellspacing="0" width="100%"   oncreatedRow="oncreatedRow">
+						<thead style="font-weight:bold;">
+				            <tr role="row">
+				            	<input type="hidden" id="id" name="id" />
+				            	<!-- <input type="hidden" id="id" name="id" /> -->
+			                	<td name="wt_lx" width="10%" classname="leftAlign" >问题类型</td><!-- selectData="wtfkLxData" -->
+			                	<td name="nr" width="60%" classname="leftAlign" do_onclick="openWtfkMx" onclick="" >问题描述</td>
+		                    	<td name="zt" width="10%" classname="leftAlign" >处理状态</td>
+		                    	<td name="lr_sj" width="10%" classname="leftAlign"  >录入时间</td>
+		                    	<td name="lrry_dm" width="10%" classname="leftAlign" >录入人员</td>		                   
+				            </tr>
+			        	</thead>
+					</table>
+			    </div>
+				<%-- <div class="cssnj_data" dataname="wtfkLxData" datajson="${wtlxListJSON }"></div> --%>
+			</div>
+		</div>
+	
+	<div class="modal fade " id="fankuiMxDialog" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document"
+			style="width: 80%;margin:36px auto;">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+	
+	
+	<script language="javascript" type="text/javascript">
+		$(function(){
+			queryFankui();
+		});
+		
+		var cxjgTable=null;
+		function queryFankui(){
+			var sqlxh="${sqlxh}";
+			var data={'sqlxh':sqlxh};
+			
+			/* $("#examplea").dataTable().fnDestroy(); */
+			if(cxjgTable == null){
+				cxjgTable = $("#examplea").fyTable(ctx+"tykf/request?tld=Tycx002DzcxService_queryFankui&a=" + Math.random(),data);
+			}else{
+				cxjgTable.reload(data);	
+			}
+		}
+		function queryWtfk(){
+			var sqlxh="${sqlxh}";
+			var wtlx=$('#wtlx').val();
+			var wtclzt=$('#wtclzt').val();
+			var data={'wtlx':wtlx,'wtclzt':wtclzt,'sqlxh':sqlxh};
+			/* $("#examplea").dataTable().fnDestroy(); */
+			var cxjgTable = $("#examplea").fyTable(ctx+"tykf/request?tld=Tycx002DzcxService_queryFankui&a=" + Math.random(),data);
+		}
+		function openWtfkMx(rowData,rowEl,el,colparam){
+			var id=rowData.id;
+			var sqlxh="${sqlxh}";
+			$("#fankuiMxDialog").removeData("bs.modal").find(".modal-content").empty();
+			$("#fankuiMxDialog").modal({
+				remote:'/tykf/request_http?tld=Tycx002DzcxService_openFKMX&id='+id+'&sqlxh='+sqlxh
+			});
+			$("#fankuiMxDialog").modal('show');
+		}
+		function openForm(){
+			var sqlxh="${sqlxh}";
+			$("#fankuiMxDialog").removeData("bs.modal").find(".modal-content").empty();
+			$("#fankuiMxDialog").modal({
+				remote:'/tykf/request_http?tld=Tycx002DzcxService_openFKMX&sqlxh='+sqlxh
+			});
+			$("#fankuiMxDialog").modal('show');
+		}
+	</script>
+	
+</body>
+
+
+</html>

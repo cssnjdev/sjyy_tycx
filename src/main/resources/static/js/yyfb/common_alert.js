@@ -1,0 +1,135 @@
+var _ALERT_WIDTH = '280px';
+var _ALERT_HEIGHT = '150px';
+var _ALERT_TIMEOUT = 4000;
+function alertTopLeftAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'show',
+        style:{
+            right:'',
+            left:0,
+            top:document.body.scrollTop+document.documentElement.scrollTop,
+            bottom:''
+        }
+    });
+}
+function alertTopCenterAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'slide',
+        style:{
+            right:'',
+            top:document.body.scrollTop+document.documentElement.scrollTop,
+            bottom:''
+        }
+    });
+}
+function alertTopRightAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'show',
+        style:{
+            left:'',
+            right:0,
+            top:document.body.scrollTop+document.documentElement.scrollTop,
+            bottom:''
+        }
+    });
+}
+function alertCenterLeftAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'fade',
+        style:{
+            left:0,
+            right:'',
+            bottom:''
+        }
+    });
+}
+function alertCenterAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'fade',
+        style:{
+            right:'',
+            bottom:''
+        }
+    });
+}
+function alertCenterRightAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'fade',
+        style:{
+            left:'',
+            right:0,
+            bottom:''
+        }
+    });
+}
+function alertBottomLeftAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'show',
+        style:{
+            left:0,
+            right:'',
+            top:'',
+            bottom:-document.body.scrollTop-document.documentElement.scrollTop
+        }
+    });
+}
+function alertBottomCenterAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'slide',
+        style:{
+            right:'',
+            top:'',
+            bottom:-document.body.scrollTop-document.documentElement.scrollTop
+        }
+    });
+}
+function alertBottomRightAutoClose(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        timeout:_ALERT_TIMEOUT,
+        width:_ALERT_WIDTH,
+        height:_ALERT_HEIGHT,
+        showType:'show'
+    });
+}

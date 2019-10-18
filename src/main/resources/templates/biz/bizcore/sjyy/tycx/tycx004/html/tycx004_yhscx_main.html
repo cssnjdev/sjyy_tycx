@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <title>一户式查询</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+    <<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/tycx/js/leftTree.css}" />
+
+ 	<script type="text/javascript" language="javascript">
+	 
+		var nsrsbh,djxh,gwssswjg,gwxh,zndm  ;
+		
+		$(window).resize(function() {
+		    $("#tab_left").height($(window).height()-4);
+		});
+		
+		$(document).ready(function(){
+		    $("#tab_left").height($(window).height()-4);
+		});	
+		
+		
+		function getQueryString(name){
+	
+			var reg = new RegExp("(^|&)"+name+"=([^&*])(&|$)","ig");
+			 
+		    var  url = window.location.href;
+		   
+		    if(url.indexOf("?")>-1){
+		    	
+		    	url = url.substring(url.indexOf("?")+1, url.length);
+		    	 
+		    	var arr = url.split("&");
+		    	
+		    	for(var i =0;i<arr.length;i++){
+		    		
+		    		if(name==arr[i].split("=")[0]){ 
+		    			return arr[i].split("=")[1] 
+		    		} 								 
+		    				
+		    	}			
+		    				
+		    } 				
+		    				
+		    return null;	
+		      
+		}
+		
+		
+		function bindTree(){
+		
+		  
+		      	 $("#yhscx li .t").click(function(){
+		      	        
+		      	        if(!$(this).hasClass("selected")){
+		      	        
+                                  var id = $(this).attr("id");
+				                  
+				                  var obj = this;
+				                         
+					              $.ajax({
+								      url:ctx+"tykf/request?tld=tycx004YhsService_initView",
+								      async:false,
+								      data:{
+								      	"djxh":djxh,
+								      	"cxlx":'01',
+								      	"lx":'0',
+								      	"sjjdDm":id
+								      },
+								      dataType:'json',
+								      success:function(data,textStatus,jqXHR){ 
+								          
+								          if(data.length>0){
+								             
+								              $(obj).parent().append('<div class="txt"></div>');
+								              $(obj).addClass("selected");
+											  $(obj).toggleClass("hover");
+											  $(obj).next(".txt").slideToggle();  
+								          
+								              var txt = '<div class="txt">'; 
+									      	  $(data).each(function(){  
+									      	  var jdlb=this.jdlb;									      	 
+									      	  if(jdlb=="1"){
+									      	    $(obj).next(".txt").append("<div class='content'><div class='d' id='"+this.CXXM_DM+"'  type='01'"+" title='"+this.CXXMMC+"' onclick='openTxt(this);' ><i>&nbsp;&nbsp;&nbsp;&nbsp;</i><a>"+this.CXXMMC+"</a></div> <div class='txt'  ></div> </div>");
+									      	  }else{
+									      	 	$(obj).next(".txt").append('<p title="'+this.CXXMMC+'" ><a href="/tykf/request_http?tld=Tycx002DzcxService_initView&djxh='+djxh+'&sqlxh='+this.SQLXH+'&a='+Math.random()+'" target="view_frame">'+this.CXXMMC+'</a></p>');
+									      	  }
+									      	  }); 
+											
+								          }else{
+								            $(obj).unbind("click");
+								            $(obj).addClass("nodata");
+								          }
+								       
+								      	 
+								      }, error:function(xhr,textStatus){
+									    
+									  } 
+								 });
+                                 
+                                  
+ 									
+		      	        }else{
+		      	            
+							$(this).toggleClass("hover");
+							$(this).next(".txt").slideToggle();
+		      	        	
+		      	        }
+		      	 
+				 });
+		
+		}
+		
+		
+		function openTxt(obj){
+		
+			  if(!$(obj).hasClass("selected")){
+			  			
+			  			
+			  			var id = $(obj).attr("id");
+ 		                         
+			              $.ajax({
+						      url:ctx+"tykf/request?tld=tycx004YhsService_initView",
+						      async:false,
+						      data:{
+						      	"djxh":djxh,
+						      	"cxlx":'01',
+						      	"lx":'0',
+						      	"sjjdDm":id
+						      },
+						      dataType:'json',
+						      success:function(data,textStatus,jqXHR){ 
+						          
+						          if(data.length>0){
+						             // $(obj).parent().append('<div class="txt"></div>');
+						              $(obj).addClass("selected");
+									  $(obj).toggleClass("hover");
+									  $(obj).next(".txt").slideToggle();  								     
+						              var txt = '<div class="txt">'; 
+							      	  $(data).each(function(){  
+								      	  var jdlb=this.jdlb;		
+								      	  if(jdlb=="1"){
+								      	    $(obj).next(".txt").append("<div class='content'><div class='ul t' id='"+this.CXXM_DM+"'  type='01'"+" title='"+this.CXXMMC+"' onclick='openTxt(this);' ><i>&nbsp;&nbsp;&nbsp;&nbsp;</i><a>"+this.CXXMMC+"</a></div> <div class='txt'  ></div> </div>");
+								      	  }else{
+								      	 	$(obj).next(".txt").append('<p title="'+this.CXXMMC+'" ><a href="/biz/core/ext/tycx/tycx004/jsp/tycx004_yhscxmx.jsp?djxh='+djxh+'&sqlxh='+this.SQLXH+'&a='+Math.random()+'" target="view_frame">'+this.CXXMMC+'</a></p>');						      	 
+								      	  }
+							      	  }); 
+							       
+									
+						          }else{
+						            $(obj).unbind("click");
+						            $(obj).addClass("nodata");
+						          }
+						       
+						      	 
+						      }, error:function(xhr,textStatus){
+							    
+							  } 
+						 });
+                                  
+ 									
+      	        }else{
+      	            
+					$(obj).toggleClass("hover");
+					$(obj).next(".txt").slideToggle();
+      	        	
+      	        }
+			  
+		
+		}
+		$(function(){ 
+		    nsrsbh = getQueryString("nsrsbh");
+		    djxh = getQueryString("djxh");
+		    gwssswjg = getQueryString("gwssswjg");
+		    gwxh = getQueryString("gwxh");
+		    zndm = getQueryString("zndm");
+		    $.ajax({
+		      url:ctx+"tykf/request?tld=tycx004YhsService_initView",
+		      async:false,
+		      data:{
+		      	"djxh":djxh,
+		      	"cxlx":'01',
+		      	"lx":'1'
+		      },
+		      dataType:'json',
+		      success:function(data,textStatus,jqXHR){ 
+		      	 $(data).each(function(){ 
+		      	 
+		      	 	//$("#yhscx").append("<a class='list-group-item' id='"+this.sqlxh+"' type='01'"+" title='"+this.cxxmmc+"' >"+this.cxxmmc+"</a>");  
+		      		$("#yhscx ul").append("<li><div class='t' id='"+this.CXXM_DM+"'  type='01'"+" title='"+this.CXXMMC+"' ><i></i><a  >"+this.CXXMMC+"</a></div></li>");
+		      	 
+		      	 }); 
+		      	 
+		      	 bindTree();
+		      	 
+		      },
+			  error:function(xhr,textStatus){
+			    
+			  } 
+		 });
+		  
+		 
+       
+          
+	});
+	
+	
+
+	 
+	</script>
+
+    <style>
+		
+		 html,body{
+			 background: #fff ;
+			 padding: 0;
+			 margin: 0;
+		 }
+		 
+		 .list-group-item{
+		   cursor: pointer;
+		 }
+		 
+		 .list-group-item{
+			 border-color: #CEDDE8;
+		 }
+		 
+	     .list-group-item.actives{
+			background:#D9EDF7;
+ 			border-color: #CEDDE8;
+	     }
+	     
+	     .list-group-item.actives:HOVER{
+			background:#D3E8F2;
+ 	     }
+	     
+	     .panel-body{
+	      	 padding: 0 ;
+	     }
+         
+         #jbxx_tab{
+         
+           border-collapse: collapse;
+         }
+         
+         #jbxx_tab td{
+           border: 1px solid #BCE8F1;
+          padding: 5px;
+         }
+         #jbxx_tab .form_left{
+         
+          text-align: right;
+          background: #EAF5FA;
+         }
+         
+         .slideUp{
+            background: #EAF5FA center center no-repeat;
+            background-image: url('/img/image/up.png');
+         }
+         
+         .slideUp.slideDown{
+            background-image: url('/img/image/down.png');
+         }
+         
+	</style>
+  
+</head>
+ 
+<body style="overflow-y: auto; padding: 0;margin: 0; ">
+   
+  
+   <table id="lay_tab" border="0" style="width: 100%;border-collapse:collapse; padding: 0;">
+      
+	  <tr>
+		<td id="tab_left" style="width: 230px;  vertical-align: top;border-right: 1px solid #DDDFDE; padding:0px;   "   >
+			
+				<div id='yhscx' class=" left_nav" style="height: 100%;  overflow-y: auto; border: 0;"  >
+				       <ul>
+				       
+				       </ul>									  	
+				</div>                                             
+		
+		</td>
+		
+		<td id="tab_right" style="padding:0px;  vertical-align: top;">
+			<iframe id="view_frame" name="view_frame" style="border: none;   background-color: #fff;    width: 100%;    height: 500px;"  src=""></iframe>
+		</td>
+	  </tr>
+	  
+   </table>
+
+   <input id="djxh" value="10123213001048114429" type="hidden" />
+ 
+</body>
+ 
+</html>

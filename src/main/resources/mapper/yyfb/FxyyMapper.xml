@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.yyfb.mapping.mapper.FxyyMapper">
+    <resultMap id="FxyyPojoMap" type="com.cwks.bizcore.yyfb.mapping.pojo.FxyyPojo">
+        <result column="banben" property="banben" />
+        <result column="fbrdm" property="fbrdm" />
+        <result column="fb_sj" property="fb_sj" />
+        <result column="fxyylx_dm" property="fxyylx_dm" />
+        <result column="fxyy_id" property="fxyy_id" />
+        <result column="fxyy_mc" property="fxyy_mc" />
+        <result column="gjz" property="gjz" />
+        <result column="gnlj" property="gnlj" />
+        <result column="gnms" property="gnms" />
+        <result column="jskj" property="jskj" />
+        <result column="kfdw_dm" property="kfdw_dm" />
+        <result column="kfrlxdh" property="kfrlxdh" />
+        <result column="kfrlxfs" property="kfrlxfs" />
+        <result column="kfry_dm" property="kfry_dm" />
+        <result column="lrjg_dm" property="lrjg_dm" />
+        <result column="lrry_dm" property="lrry_dm" />
+        <result column="lr_sj" property="lr_sj" />
+        <result column="procedure_name" property="procedure_name" />
+        <result column="xgjg_dm" property="xgjg_dm" />
+        <result column="xgry_dm" property="xgry_dm" />
+        <result column="xg_sj" property="xg_sj" />
+        <result column="xqdw_dm" property="xqdw_dm" />
+        <result column="xqry_dm" property="xqry_dm" />
+        <result column="xtgndm" property="xtgndm" />
+        <result column="xtsjcd" property="xtsjcd" />
+        <result column="ywkj" property="ywkj" />
+        <result column="yxbj" property="yxbj" />
+        <result column="yyurl" property="yyurl" />
+        <result column="zt_bj" property="zt_bj" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        banben,
+        fbrdm,
+        to_char(fb_sj,'yyyy-mm-dd') fb_sj,
+        fxyylx_dm,
+        fxyy_id,
+        fxyy_mc,
+        gjz,
+        gnlj,
+        gnms,
+        jskj,
+        kfdw_dm,
+        kfrlxdh,
+        kfrlxfs,
+        kfry_dm,
+        lrjg_dm,
+        lrry_dm,
+        to_char(lr_sj,'yyyy-mm-dd hh24:mi:ss') lr_sj,
+        procedure_name,
+        xgjg_dm,
+        xgry_dm,
+        to_char(xg_sj,'yyyy-mm-dd hh24:mi:ss') xg_sj,
+        xqdw_dm,
+        xqry_dm,
+        xtgndm,
+        xtsjcd,
+        ywkj,
+        yxbj,
+        yyurl,
+        zt_bj
+    </sql>
+    <sql id="Base_Param_List" >
+        #{banben},
+        #{fbrdm},
+        #{fb_sj},
+        #{fxyylx_dm},
+        #{fxyy_id},
+        #{fxyy_mc},
+        #{gjz},
+        #{gnlj},
+        #{gnms},
+        #{jskj},
+        #{kfdw_dm},
+        #{kfrlxdh},
+        #{kfrlxfs},
+        #{kfry_dm},
+        #{lrjg_dm},
+        #{lrry_dm},
+        #{lr_sj},
+        #{procedure_name},
+        #{xgjg_dm},
+        #{xgry_dm},
+        #{xg_sj},
+        #{xqdw_dm},
+        #{xqry_dm},
+        #{xtgndm},
+        #{xtsjcd},
+        #{ywkj},
+        #{yxbj},
+        #{yyurl},
+        #{zt_bj}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.FxyyPojo" resultType="com.cwks.bizcore.yyfb.mapping.pojo.FxyyPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  t_yyfw_fxyy t
+       where yxbj='Y'
+         <if test="fxyy_mc != null" >
+             and fxyy_mc like '%'||#{fxyy_mc}||'%'
+            </if>
+            <if test="fxyylx_dm != null and fxyylx_dm !=''"   >
+             and fxyylx_dm =#{fxyylx_dm}
+            </if>
+            <if test="zt_bj != null and zt_bj !=''" >
+             and zt_bj =#{zt_bj}
+            </if>
+             <if test="gnlj != null and gnlj !=''" >
+             and gnlj =#{gnlj}
+            </if>
+       
+    </select>
+
+    <select id="selectByPKey" resultMap="FxyyPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from t_yyfw_fxyy
+        where
+        fxyy_id=#{fxyy_id}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.FxyyPojo">
+        delete from t_yyfw_fxyy
+        where
+                fxyy_id=#{fxyy_id}
+            
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.FxyyPojo" >
+        insert into t_yyfw_fxyy (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.FxyyPojo" >
+        insert into t_yyfw_fxyy
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="banben != null" >
+                banben,
+            </if>
+            <if test="fbrdm != null" >
+                fbrdm,
+            </if>
+            <if test="fb_sj != null" >
+                fb_sj,
+            </if>
+            <if test="fxyylx_dm != null" >
+                fxyylx_dm,
+            </if>
+            <if test="fxyy_id != null" >
+                fxyy_id,
+            </if>
+            <if test="fxyy_mc != null" >
+                fxyy_mc,
+            </if>
+            <if test="gjz != null" >
+                gjz,
+            </if>
+            <if test="gnlj != null" >
+                gnlj,
+            </if>
+            <if test="gnms != null" >
+                gnms,
+            </if>
+            <if test="jskj != null" >
+                jskj,
+            </if>
+            <if test="kfdw_dm != null" >
+                kfdw_dm,
+            </if>
+            <if test="kfrlxdh != null" >
+                kfrlxdh,
+            </if>
+            <if test="kfrlxfs != null" >
+                kfrlxfs,
+            </if>
+            <if test="kfry_dm != null" >
+                kfry_dm,
+            </if>
+            <if test="lrjg_dm != null" >
+                lrjg_dm,
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm,
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj,
+            </if>
+            <if test="procedure_name != null" >
+                procedure_name,
+            </if>
+            <if test="xgjg_dm != null" >
+                xgjg_dm,
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm,
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj,
+            </if>
+            <if test="xqdw_dm != null" >
+                xqdw_dm,
+            </if>
+            <if test="xqry_dm != null" >
+                xqry_dm,
+            </if>
+            <if test="xtgndm != null" >
+                xtgndm,
+            </if>
+            <if test="xtsjcd != null" >
+                xtsjcd,
+            </if>
+            <if test="ywkj != null" >
+                ywkj,
+            </if>
+            <if test="yxbj != null" >
+                yxbj,
+            </if>
+            <if test="yyurl != null" >
+                yyurl,
+            </if>
+            <if test="zt_bj != null" >
+                zt_bj,
+            </if>
+            
+            <if test="gy_valid != null" >
+                gy_valid,
+            </if>
+            
+            <if test="gyurl != null" >
+                gyurl,
+            </if>
+            
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="banben != null" >
+                    #{banben},
+            </if>
+            <if test="fbrdm != null" >
+                    #{fbrdm},
+            </if>
+            <if test="fb_sj != null" >
+                    to_date(#{fb_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="fxyylx_dm != null" >
+                    #{fxyylx_dm},
+            </if>
+            <if test="fxyy_id != null" >
+                    #{fxyy_id},
+            </if>
+            <if test="fxyy_mc != null" >
+                    #{fxyy_mc},
+            </if>
+            <if test="gjz != null" >
+                    #{gjz},
+            </if>
+            <if test="gnlj != null" >
+                    #{gnlj},
+            </if>
+            <if test="gnms != null" >
+                    #{gnms},
+            </if>
+            <if test="jskj != null" >
+                    #{jskj},
+            </if>
+            <if test="kfdw_dm != null" >
+                    #{kfdw_dm},
+            </if>
+            <if test="kfrlxdh != null" >
+                    #{kfrlxdh},
+            </if>
+            <if test="kfrlxfs != null" >
+                    #{kfrlxfs},
+            </if>
+            <if test="kfry_dm != null" >
+                    #{kfry_dm},
+            </if>
+            <if test="lrjg_dm != null" >
+                    #{lrjg_dm},
+            </if>
+            <if test="lrry_dm != null" >
+                    #{lrry_dm},
+            </if>
+            <if test="lr_sj != null" >
+                    to_date(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="procedure_name != null" >
+                    #{procedure_name},
+            </if>
+            <if test="xgjg_dm != null" >
+                    #{xgjg_dm},
+            </if>
+            <if test="xgry_dm != null" >
+                    #{xgry_dm},
+            </if>
+            <if test="xg_sj != null" >
+                    to_date(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xqdw_dm != null" >
+                    #{xqdw_dm},
+            </if>
+            <if test="xqry_dm != null" >
+                    #{xqry_dm},
+            </if>
+            <if test="xtgndm != null" >
+                    #{xtgndm},
+            </if>
+            <if test="xtsjcd != null" >
+                    #{xtsjcd},
+            </if>
+            <if test="ywkj != null" >
+                    #{ywkj},
+            </if>
+            <if test="yxbj != null" >
+                    #{yxbj},
+            </if>
+            <if test="yyurl != null" >
+                    #{yyurl},
+            </if>
+            <if test="zt_bj != null" >
+                    #{zt_bj},
+            </if>
+            <if test="gy_valid != null" >
+                    #{gy_valid},
+            </if>
+            <if test="gyurl != null" >
+                    #{gyurl},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.FxyyPojo" >
+        update t_yyfw_fxyy
+        <trim prefix="set" suffixOverrides="," >
+            <if test="banben != null" >
+                banben =#{banben},
+            </if>
+            <if test="fbrdm != null" >
+                fbrdm =#{fbrdm},
+            </if>
+            <if test="fb_sj != null" >
+                fb_sj =to_date(#{fb_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="fxyylx_dm != null" >
+                fxyylx_dm =#{fxyylx_dm},
+            </if>
+            <if test="fxyy_id != null" >
+                fxyy_id =#{fxyy_id},
+            </if>
+            <if test="fxyy_mc != null" >
+                fxyy_mc =#{fxyy_mc},
+            </if>
+            <if test="gjz != null" >
+                gjz =#{gjz},
+            </if>
+            <if test="gnlj != null" >
+                gnlj =#{gnlj},
+            </if>
+            <if test="gnms != null" >
+                gnms =#{gnms},
+            </if>
+            <if test="jskj != null" >
+                jskj =#{jskj},
+            </if>
+            <if test="kfdw_dm != null" >
+                kfdw_dm =#{kfdw_dm},
+            </if>
+            <if test="kfrlxdh != null" >
+                kfrlxdh =#{kfrlxdh},
+            </if>
+            <if test="kfrlxfs != null" >
+                kfrlxfs =#{kfrlxfs},
+            </if>
+            <if test="kfry_dm != null" >
+                kfry_dm =#{kfry_dm},
+            </if>
+            <if test="lrjg_dm != null" >
+                lrjg_dm =#{lrjg_dm},
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm =#{lrry_dm},
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj =to_date(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="procedure_name != null" >
+                procedure_name =#{procedure_name},
+            </if>
+            <if test="xgjg_dm != null" >
+                xgjg_dm =#{xgjg_dm},
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm =#{xgry_dm},
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj =to_date(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xqdw_dm != null" >
+                xqdw_dm =#{xqdw_dm},
+            </if>
+            <if test="xqry_dm != null" >
+                xqry_dm =#{xqry_dm},
+            </if>
+            <if test="xtgndm != null" >
+                xtgndm =#{xtgndm},
+            </if>
+            <if test="xtsjcd != null" >
+                xtsjcd =#{xtsjcd},
+            </if>
+            <if test="ywkj != null" >
+                ywkj =#{ywkj},
+            </if>
+            <if test="yxbj != null" >
+                yxbj =#{yxbj},
+            </if>
+            <if test="yyurl != null" >
+                yyurl =#{yyurl},
+            </if>
+            <if test="zt_bj != null" >
+                zt_bj =#{zt_bj},
+            </if>
+             <if test="gy_valid != null" >
+                 gy_valid=#{gy_valid},
+            </if>
+            <if test="gyurl != null" >
+                 gyurl= #{gyurl},
+            </if>
+            
+        </trim>
+        where
+        fxyy_id=#{fxyy_id}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.FxyyPojo" >
+        update  t_yyfw_fxyy set
+        banben = #{banben},
+        fbrdm = #{fbrdm},
+        fb_sj = #{fb_sj},
+        fxyylx_dm = #{fxyylx_dm},
+        fxyy_id = #{fxyy_id},
+        fxyy_mc = #{fxyy_mc},
+        gjz = #{gjz},
+        gnlj = #{gnlj},
+        gnms = #{gnms},
+        jskj = #{jskj},
+        kfdw_dm = #{kfdw_dm},
+        kfrlxdh = #{kfrlxdh},
+        kfrlxfs = #{kfrlxfs},
+        kfry_dm = #{kfry_dm},
+        lrjg_dm = #{lrjg_dm},
+        lrry_dm = #{lrry_dm},
+        lr_sj = #{lr_sj},
+        procedure_name = #{procedure_name},
+        xgjg_dm = #{xgjg_dm},
+        xgry_dm = #{xgry_dm},
+        xg_sj = #{xg_sj},
+        xqdw_dm = #{xqdw_dm},
+        xqry_dm = #{xqry_dm},
+        xtgndm = #{xtgndm},
+        xtsjcd = #{xtsjcd},
+        ywkj = #{ywkj},
+        yxbj = #{yxbj},
+        yyurl = #{yyurl},
+        zt_bj = #{zt_bj}
+        where
+        fxyy_id=#{fxyy_id}
+    </update>
+</mapper>

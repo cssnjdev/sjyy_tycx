@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <title>主题查询项目</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+    <!-- jsp.header.html-->
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/themes/insdep/easyui.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/easyui_animation.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/easyui_plus.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/insdep_theme_default.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/icon.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/scss/common.css}" />
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.easyui.min.js}"></script>
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/themes/insdep/jquery.insdep-extend.min.js}"></script>
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/locale/easyui-lang-zh_CN.js}"></script>
+    <script  data-th-src="@{/js/tycx/js/common.js}"></script>
+    <script  data-th-src="@{/js/app/system/xtgl/codejs/common_easyui.js}"></script>
+    <script  data-th-src="@{/js/app/system/xtgl/codejs/common_alert.js}"></script>
+    <!-- jsp.header.html-->
+    <script type="text/javascript" language="javascript">
+        var ctx = [[@{/}]];
+    </script>
+    <script  data-th-src="@{/js/tycx/js/tycx004CxZtcxxmManager.js}"></script>
+</head>
+<body>
+<div class="easyui-layout" fit="true" >
+    <div region="center" border="false" >
+        <table id="tt" ></table>
+    </div>
+</div>
+<div id="ttbar" style="padding:5px 10px">
+    <div >
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" onclick="submit_search_ff()">查询</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="append()">新增</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="modify()">编辑</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'" onclick="remove()">删除</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-excel'" onclick="expExcel('<%=request.getContextPath()%>/cssnj/exportExcle.action?tld=tycx004CxZtcxxmService_expExcel','#search_ff','#tt')">导出当前页</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-excel'" onclick="expExcel('<%=request.getContextPath()%>/cssnj/exportExcle.action?tld=tycx004CxZtcxxmService_expExcel','#search_ff','')">导出全部</a>
+    </div>
+    <div style="">
+        <form id="search_ff" style="margin:0px">
+        </form>
+    </div>
+</div>
+<div id="append_modify" class="easyui-dialog" data-options="iconCls:'icon-save',closed:true,modal:true,maximizable:true,collapsible:true,resizable:true" style="width:90%;height:90%;padding: 6px;" buttons="#dlg_buttons">
+    <form id="append_modify_ff" >
+            <input type="hidden" name="cxxm_dm"  />
+        <table class="formtable" align="center">
+            <tr>
+                <th><label>BBH：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="bbh" id="f_bbh" /></td>
+                <th><label>BBID：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="bbid" id="f_bbid" /></td>
+            </tr>
+            <tr>
+                <th><label>CXRQQTJLMC：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="cxrqqtjlmc" id="f_cxrqqtjlmc" /></td>
+                <th><label>CXRQZTJLMC：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="cxrqztjlmc" id="f_cxrqztjlmc" /></td>
+            </tr>
+            <tr>
+                <th><label>CXXMMC：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="cxxmmc" id="f_cxxmmc" /></td>
+                <th><label>DYLX：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="dylx" id="f_dylx" /></td>
+            </tr>
+            <tr>
+                <th><label>JDLB：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="jdlb" id="f_jdlb" /></td>
+                <th><label>LRRQ：</label></th>
+                <td ><input class="easyui-textbox" missingMessage="请填写LRRQ！" data-options="required:true"  style="width:200px;" name="lrrq" id="f_lrrq" /></td>
+            </tr>
+            <tr>
+                <th><label>LRR_DM：</label></th>
+                <td ><input class="easyui-textbox" missingMessage="请填写LRR_DM！" data-options="required:true"  style="width:200px;" name="lrr_dm" id="f_lrr_dm" /></td>
+                <th><label>MRXSBZ：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="mrxsbz" id="f_mrxsbz" /></td>
+            </tr>
+            <tr>
+                <th><label>SJCXXMDM：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sjcxxmdm" id="f_sjcxxmdm" /></td>
+                <th><label>SQLXH：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="sqlxh" id="f_sqlxh" /></td>
+            </tr>
+            <tr>
+                <th><label>TJCSSTR：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="tjcsstr" id="f_tjcsstr" /></td>
+                <th><label>URL：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="url" id="f_url" /></td>
+            </tr>
+            <tr>
+                <th><label>XGRQ：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="xgrq" id="f_xgrq" /></td>
+                <th><label>XGR_DM：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="xgr_dm" id="f_xgr_dm" /></td>
+            </tr>
+            <tr>
+                <th><label>XH：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="xh" id="f_xh" /></td>
+                <th><label>YWFL_DM：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="ywfl_dm" id="f_ywfl_dm" /></td>
+            </tr>
+            <tr>
+                <th><label>ZTLXMX_DM：</label></th>
+                <td ><input class="easyui-textbox"   style="width:200px;" name="ztlxmx_dm" id="f_ztlxmx_dm" /></td>
+                <th><label>ZTLX_DM：</label></th>
+                <td ><input class="easyui-textbox" missingMessage="请填写ZTLX_DM！" data-options="required:true"  style="width:200px;" name="ztlx_dm" id="f_ztlx_dm" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dlg_buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" id="append_modify_btn" >保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#append_modify').dialog('close')">取消</a>
+</div>
+</body>
+</html>

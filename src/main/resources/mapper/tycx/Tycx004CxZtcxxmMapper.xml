@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Tycx004CxZtcxxmMapper">
+    <resultMap id="tycx004CxZtcxxmPojoMap" type="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo">
+        <result column="bbh" property="bbh" />
+        <result column="bbid" property="bbid" />
+        <result column="cxrqqtjlmc" property="cxrqqtjlmc" />
+        <result column="cxrqztjlmc" property="cxrqztjlmc" />
+        <result column="cxxmmc" property="cxxmmc" />
+        <result column="cxxm_dm" property="cxxm_dm" />
+        <result column="dylx" property="dylx" />
+        <result column="jdlb" property="jdlb" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="mrxsbz" property="mrxsbz" />
+        <result column="sjcxxmdm" property="sjcxxmdm" />
+        <result column="sqlxh" property="sqlxh" />
+        <result column="tjcsstr" property="tjcsstr" />
+        <result column="url" property="url" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="xh" property="xh" />
+        <result column="ywfl_dm" property="ywfl_dm" />
+        <result column="ztlxmx_dm" property="ztlxmx_dm" />
+        <result column="ztlx_dm" property="ztlx_dm" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        bbh,
+        bbid,
+        cxrqqtjlmc,
+        cxrqztjlmc,
+        cxxmmc,
+        cxxm_dm,
+        dylx,
+        jdlb,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        mrxsbz,
+        sjcxxmdm,
+        sqlxh,
+        tjcsstr,
+        url,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        xh,
+        ywfl_dm,
+        ztlxmx_dm,
+        ztlx_dm
+    </sql>
+    <sql id="Base_Param_List" >
+        #{bbh},
+        #{bbid},
+        #{cxrqqtjlmc},
+        #{cxrqztjlmc},
+        #{cxxmmc},
+        #{cxxm_dm},
+        #{dylx},
+        #{jdlb},
+        #{lrrq},
+        #{lrr_dm},
+        #{mrxsbz},
+        #{sjcxxmdm},
+        #{sqlxh},
+        #{tjcsstr},
+        #{url},
+        #{xgrq},
+        #{xgr_dm},
+        #{xh},
+        #{ywfl_dm},
+        #{ztlxmx_dm},
+        #{ztlx_dm}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  CX_ZTCXXM t
+         where t.ztlx_dm='01'and t.jdlb='1' and t.sjcxxmdm is null order by xh
+    </select>
+ <select id="selectCxxmBySjdm" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo" >
+       select t.cxxmmc,t.sqlxh,t.cxrqqtjlmc,t.cxrqztjlmc,t2.sjymc,t.sjcxxmdm,t.cxxm_dm,t1.cxlx,t.jdlb
+  from cx_ztcxxm t,cx_cxdy t1,cx_sjyxx t2
+ where t.ztlx_dm = #{ztlx_dm}
+   and t.sqlxh=t1.sqlxh(+)
+   and t1.sjylx=t2.uuid(+)
+   and t.sjcxxmdm=#{sjcxxmdm} order by t.xh
+    </select>
+    <select id="selectByPKey" resultMap="tycx004CxZtcxxmPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from CX_ZTCXXM
+        where
+        cxxm_dm=#{cxxm_dm}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo">
+        delete from CX_ZTCXXM
+        where
+                cxxm_dm=#{cxxm_dm}
+            
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo" >
+        insert into CX_ZTCXXM (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo" >
+        insert into CX_ZTCXXM
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="bbh != null" >
+                bbh,
+            </if>
+            <if test="bbid != null" >
+                bbid,
+            </if>
+            <if test="cxrqqtjlmc != null" >
+                cxrqqtjlmc,
+            </if>
+            <if test="cxrqztjlmc != null" >
+                cxrqztjlmc,
+            </if>
+            <if test="cxxmmc != null" >
+                cxxmmc,
+            </if>
+            <if test="cxxm_dm != null" >
+                cxxm_dm,
+            </if>
+            <if test="dylx != null" >
+                dylx,
+            </if>
+            <if test="jdlb != null" >
+                jdlb,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="mrxsbz != null" >
+                mrxsbz,
+            </if>
+            <if test="sjcxxmdm != null" >
+                sjcxxmdm,
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh,
+            </if>
+            <if test="tjcsstr != null" >
+                tjcsstr,
+            </if>
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+            <if test="xh != null" >
+                xh,
+            </if>
+            <if test="ywfl_dm != null" >
+                ywfl_dm,
+            </if>
+            <if test="ztlxmx_dm != null" >
+                ztlxmx_dm,
+            </if>
+            <if test="ztlx_dm != null" >
+                ztlx_dm,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="bbh != null" >
+                    #{bbh},
+            </if>
+            <if test="bbid != null" >
+                    #{bbid},
+            </if>
+            <if test="cxrqqtjlmc != null" >
+                    #{cxrqqtjlmc},
+            </if>
+            <if test="cxrqztjlmc != null" >
+                    #{cxrqztjlmc},
+            </if>
+            <if test="cxxmmc != null" >
+                    #{cxxmmc},
+            </if>
+            <if test="cxxm_dm != null" >
+                    #{cxxm_dm},
+            </if>
+            <if test="dylx != null" >
+                    #{dylx},
+            </if>
+            <if test="jdlb != null" >
+                    #{jdlb},
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                    #{lrr_dm},
+            </if>
+            <if test="mrxsbz != null" >
+                    #{mrxsbz},
+            </if>
+            <if test="sjcxxmdm != null" >
+                    #{sjcxxmdm},
+            </if>
+            <if test="sqlxh != null" >
+                    #{sqlxh},
+            </if>
+            <if test="tjcsstr != null" >
+                    #{tjcsstr},
+            </if>
+            <if test="url != null" >
+                    #{url},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                    #{xgr_dm},
+            </if>
+            <if test="xh != null" >
+                    #{xh},
+            </if>
+            <if test="ywfl_dm != null" >
+                    #{ywfl_dm},
+            </if>
+            <if test="ztlxmx_dm != null" >
+                    #{ztlxmx_dm},
+            </if>
+            <if test="ztlx_dm != null" >
+                    #{ztlx_dm},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo" >
+        update CX_ZTCXXM
+        <trim prefix="set" suffixOverrides="," >
+            <if test="bbh != null" >
+                bbh =#{bbh},
+            </if>
+            <if test="bbid != null" >
+                bbid =#{bbid},
+            </if>
+            <if test="cxrqqtjlmc != null" >
+                cxrqqtjlmc =#{cxrqqtjlmc},
+            </if>
+            <if test="cxrqztjlmc != null" >
+                cxrqztjlmc =#{cxrqztjlmc},
+            </if>
+            <if test="cxxmmc != null" >
+                cxxmmc =#{cxxmmc},
+            </if>
+            <if test="cxxm_dm != null" >
+                cxxm_dm =#{cxxm_dm},
+            </if>
+            <if test="dylx != null" >
+                dylx =#{dylx},
+            </if>
+            <if test="jdlb != null" >
+                jdlb =#{jdlb},
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm =#{lrr_dm},
+            </if>
+            <if test="mrxsbz != null" >
+                mrxsbz =#{mrxsbz},
+            </if>
+            <if test="sjcxxmdm != null" >
+                sjcxxmdm =#{sjcxxmdm},
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh =#{sqlxh},
+            </if>
+            <if test="tjcsstr != null" >
+                tjcsstr =#{tjcsstr},
+            </if>
+            <if test="url != null" >
+                url =#{url},
+            </if>
+            <if test="xgrq != null" >
+                xgrq =to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm =#{xgr_dm},
+            </if>
+            <if test="xh != null" >
+                xh =#{xh},
+            </if>
+            <if test="ywfl_dm != null" >
+                ywfl_dm =#{ywfl_dm},
+            </if>
+            <if test="ztlxmx_dm != null" >
+                ztlxmx_dm =#{ztlxmx_dm},
+            </if>
+            <if test="ztlx_dm != null" >
+                ztlx_dm =#{ztlx_dm},
+            </if>
+        </trim>
+        where
+        cxxm_dm=#{cxxm_dm}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx004CxZtcxxmPojo" >
+        update  CX_ZTCXXM set
+        bbh = #{bbh},
+        bbid = #{bbid},
+        cxrqqtjlmc = #{cxrqqtjlmc},
+        cxrqztjlmc = #{cxrqztjlmc},
+        cxxmmc = #{cxxmmc},
+        cxxm_dm = #{cxxm_dm},
+        dylx = #{dylx},
+        jdlb = #{jdlb},
+        lrrq = #{lrrq},
+        lrr_dm = #{lrr_dm},
+        mrxsbz = #{mrxsbz},
+        sjcxxmdm = #{sjcxxmdm},
+        sqlxh = #{sqlxh},
+        tjcsstr = #{tjcsstr},
+        url = #{url},
+        xgrq = #{xgrq},
+        xgr_dm = #{xgr_dm},
+        xh = #{xh},
+        ywfl_dm = #{ywfl_dm},
+        ztlxmx_dm = #{ztlxmx_dm},
+        ztlx_dm = #{ztlx_dm}
+        where
+        cxxm_dm=#{cxxm_dm}
+    </update>
+</mapper>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizsys.xtgl.dao.DmQxGwflMapper">
+    <resultMap id="dmQxGwflPojoMap" type="com.cwks.bizsys.xtgl.domain.DmQxGwflPojo">
+        <result column="gwflmc" property="gwflmc" />
+        <result column="gwfl_dm" property="gwfl_dm" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="swjg_dm" property="swjg_dm" />
+        <result column="uuid" property="uuid" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="yxbz" property="yxbz" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        gwflmc,
+        gwfl_dm,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        swjg_dm,
+        uuid,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        yxbz
+    </sql>
+    <sql id="Base_Param_List" >
+        #{gwflmc},
+        #{gwfl_dm},
+        #{lrrq},
+        #{lrr_dm},
+        #{swjg_dm},
+        #{uuid},
+        #{xgrq},
+        #{xgr_dm},
+        #{yxbz}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwflPojo" resultType="com.cwks.bizsys.xtgl.domain.DmQxGwflPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  DM_QX_GWFL t
+        <trim prefix="WHERE" prefixOverrides="and">
+        </trim>
+    </select>
+
+    <select id="selectByPKey" resultMap="dmQxGwflPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from DM_QX_GWFL
+        where
+        uuid=#{uuid}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwflPojo">
+        delete from DM_QX_GWFL
+        where
+                uuid=#{uuid}
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwflPojo" >
+        insert into DM_QX_GWFL (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwflPojo" >
+        insert into DM_QX_GWFL
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="gwflmc != null" >
+                gwflmc,
+            </if>
+            <if test="gwfl_dm != null" >
+                gwfl_dm,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="swjg_dm != null" >
+                swjg_dm,
+            </if>
+            <if test="uuid != null" >
+                uuid,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+            <if test="yxbz != null" >
+                yxbz,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="gwflmc != null" >
+                    #{gwflmc},
+            </if>
+            <if test="gwfl_dm != null" >
+                    #{gwfl_dm},
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                    #{lrr_dm},
+            </if>
+            <if test="swjg_dm != null" >
+                    #{swjg_dm},
+            </if>
+            <if test="uuid != null" >
+                    #{uuid},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                    #{xgr_dm},
+            </if>
+            <if test="yxbz != null" >
+                    #{yxbz},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwflPojo" >
+        update DM_QX_GWFL
+        <trim prefix="set" suffixOverrides="," >
+            <if test="gwflmc != null" >
+                gwflmc =#{gwflmc},
+            </if>
+            <if test="gwfl_dm != null" >
+                gwfl_dm =#{gwfl_dm},
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm =#{lrr_dm},
+            </if>
+            <if test="swjg_dm != null" >
+                swjg_dm =#{swjg_dm},
+            </if>
+            <if test="uuid != null" >
+                uuid =#{uuid},
+            </if>
+                xgrq = sysdate ,
+            <if test="xgr_dm != null" >
+                xgr_dm =#{xgr_dm},
+            </if>
+            <if test="yxbz != null" >
+                yxbz =#{yxbz},
+            </if>
+        </trim>
+        where
+        uuid=#{uuid}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwflPojo" >
+        update  DM_QX_GWFL set
+        <if test="gwflmc != null" >
+            gwflmc = #{gwflmc},
+        </if>
+        <if test="gwfl_dm != null" >
+            gwfl_dm = #{gwfl_dm},
+        </if>
+        <if test="lrrq != null" >
+            lrrq = #{lrrq},
+        </if>
+        <if test="lrr_dm != null" >
+            lrr_dm = #{lrr_dm},
+        </if>
+        <if test="swjg_dm != null" >
+            swjg_dm = #{swjg_dm},
+        </if>
+        <if test="uuid != null" >
+            uuid = #{uuid},
+        </if>
+        <if test="xgrq != null" >
+            xgrq = #{xgrq},
+        </if>
+        <if test="xgr_dm != null" >
+            xgr_dm = #{xgr_dm},
+        </if>
+        <if test="yxbz != null" >
+            yxbz = #{yxbz}
+        </if>
+        where
+        uuid=#{uuid}
+    </update>
+</mapper>

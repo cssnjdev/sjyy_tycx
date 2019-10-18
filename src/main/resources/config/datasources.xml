@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <ds id="dataSource_default" type="DB" des="吴江地税数据仓库平台库">
+        <driverClassName>oracle.jdbc.OracleDriver</driverClassName>
+        <url>jdbc:oracle:thin:@221.226.106.171:51521:orcl</url>
+        <username>db_cssnj</username>
+        <password>db_cssnj</password>
+        <initialSize>1</initialSize>
+        <minIdle>1</minIdle>
+        <maxActive>50</maxActive>
+        <maxWait>60000</maxWait>
+        <timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+        <minEvictableIdleTimeMillis>300000</minEvictableIdleTimeMillis>
+        <validationQuery>SELECT 'x' from dual</validationQuery>
+        <testWhileIdle>false</testWhileIdle>
+        <testOnBorrow>false</testOnBorrow>
+        <testOnBorrow>false</testOnBorrow>
+        <testOnReturn>false</testOnReturn>
+        <poolPreparedStatements>true</poolPreparedStatements>
+        <maxPoolPreparedStatementPerConnectionSize>25</maxPoolPreparedStatementPerConnectionSize>
+        <filters>stat</filters>
+        <!-- 超过时间限制是否回收 -->
+        <removeAbandoned>true</removeAbandoned>
+        <!-- 超时时间；单位为秒。1200秒=20分钟 -->
+        <removeAbandonedTimeout>1200</removeAbandonedTimeout>
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <logAbandoned>true</logAbandoned>
+    </ds>
+    <ds id="jssqxfk" type="DB" des="苏州地税下发库">
+        <driverClassName>oracle.jdbc.OracleDriver</driverClassName>
+        <url>jdbc:oracle:thin:@141.16.51.209:1521:DW</url>
+        <username>db_wjds</username>
+        <password>db_wjds</password>
+        <initialSize>1</initialSize>
+        <minIdle>1</minIdle>
+        <maxActive>50</maxActive>
+        <maxWait>60000</maxWait>
+        <timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+        <minEvictableIdleTimeMillis>300000</minEvictableIdleTimeMillis>
+        <validationQuery>SELECT 'x' from dual</validationQuery>
+        <testWhileIdle>false</testWhileIdle>
+        <testOnBorrow>false</testOnBorrow>
+        <testOnBorrow>false</testOnBorrow>
+        <testOnReturn>false</testOnReturn>
+        <poolPreparedStatements>true</poolPreparedStatements>
+        <maxPoolPreparedStatementPerConnectionSize>25</maxPoolPreparedStatementPerConnectionSize>
+        <filters>stat</filters>
+        <!-- 超过时间限制是否回收 -->
+        <removeAbandoned>true</removeAbandoned>
+        <!-- 超时时间；单位为秒。1200秒=20分钟 -->
+        <removeAbandonedTimeout>1200</removeAbandonedTimeout>
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <logAbandoned>true</logAbandoned>
+    </ds>
+
+
+    <ds id="dataSource_sjjkptcs" type="DB" des="数据监控平台测试">
+        <driverClassName>oracle.jdbc.OracleDriver</driverClassName>
+        <url>jdbc:oracle:thin:@221.226.106.171:50032:dw</url>
+        <username>db_wjds</username>
+        <password>db_wjds</password>
+        <initialSize>1</initialSize>
+        <minIdle>1</minIdle>
+        <maxActive>50</maxActive>
+        <maxWait>60000</maxWait>
+        <timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+        <minEvictableIdleTimeMillis>300000</minEvictableIdleTimeMillis>
+        <validationQuery>SELECT 'x' from dual</validationQuery>
+        <testWhileIdle>false</testWhileIdle>
+        <testOnBorrow>false</testOnBorrow>
+        <testOnBorrow>false</testOnBorrow>
+        <testOnReturn>false</testOnReturn>
+        <poolPreparedStatements>true</poolPreparedStatements>
+        <maxPoolPreparedStatementPerConnectionSize>25</maxPoolPreparedStatementPerConnectionSize>
+        <filters>stat</filters>
+        <!-- 超过时间限制是否回收 -->
+        <removeAbandoned>true</removeAbandoned>
+        <!-- 超时时间；单位为秒。1200秒=20分钟 -->
+        <removeAbandonedTimeout>1200</removeAbandonedTimeout>
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <logAbandoned>true</logAbandoned>
+    </ds>
+
+</resources>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>应用评价信息</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+<script type="text/javascript" src="/public/js/jquery/jquery-1.11.3/jquery.min.js"     > </script>						
+
+<link href="/public/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+<script src="/public/js/bootstrap/js/bootstrap.min.js"  language="javascript" type="text/javascript" > </script>	
+<link   rel="stylesheet" type="text/css" href="/pages/yyfw/css/fxyy_gn_pj.css"/>
+
+
+<script src="/pages/yyfw/js/comment.js" type="text/javascript" ></script> 
+<script type="text/javascript" src="/public/js/bootstrap/content/Scripts/fileinput.min.js"></script>
+<script type="text/javascript" src="/public/js/bootstrap/content/Scripts/fileinput_locale_zh.js"></script>
+<script src="/public/js/dataTables/media/js/jquery.nicescroll.js"></script> 
+<script language="javascript" type="text/javascript" src="/public/js/common/js/cssnjAlert.js" > </script>
+<style type="text/css" >
+.form-control{
+height: 26px;
+line-height: 26px;
+border-radius: 3px;
+border: 1px solid #e0e0e0;
+font-size: 13px;
+padding: 0px 6px 0 6px;
+}
+
+.pjbfbbar{
+ border: 1px solid #ccc;
+ background:#fcfcfc;
+ position: relative;
+ width:100%;
+ height:16px;
+ text-align: center;
+}
+.pjback{
+ height:100%;
+ background: #90D3FF;
+ position: absolute;
+ top:0;
+ left:0;
+}
+.bfb{
+  position:absolute;
+  left:50%;
+  right:50%;
+  z-index: 10;
+  color:#6f6f6f;
+  font-weight: bold;
+}
+.table tbody tr td{
+	padding: 5px 4px 5px 4px;
+}
+.table tbody tr td{
+    border-top: 0;
+	border-bottom:  1px solid #DDDDDD;
+}
+  label.selectPj {
+    font-weight: normal;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+  label.selectPj span{
+    color: #999;
+  }
+</style> 
+<script type="text/javascript">
+$(function(){
+ 	 var zhmyd=${zhmyd};
+	 lightStar(zhmyd);
+	 var point1=toPoint(${percent1})
+	 //var tdWidth=$(".pjbfbbar").width();
+	 var windowWidth=window.innerWidth;
+	 var tcWidth=windowWidth*0.8-2;
+	 var tableWidth=tcWidth*0.84-12;
+	 var tdWidth=tableWidth*0.55-10;
+	var ykxdiv=tdWidth*point1;
+	$("#ykxdiv").width(ykxdiv+"px");
+	$("#ykxdiv").css("background-color","yellow");
+	 var point2=toPoint(${percent2});
+	 var lkxdiv=tdWidth*point2;
+	 $("#lkxdiv").width(lkxdiv+"px");
+	 $("#lkxdiv").css("background-color","yellow");
+	 var point3=toPoint(${percent3});
+	 var skxdiv=tdWidth*point3;
+	 $("#skxdiv").width(skxdiv+"px");
+	 $("#skxdiv").css("background-color","yellow");
+	 var point4=toPoint(${percent4});
+	 var sikxdiv=tdWidth*point4;
+	 $("#sikxdiv").width(sikxdiv+"px");
+	 $("#sikxdiv").css("background-color","yellow");
+	 var point5=toPoint(${percent5});
+	 var wkxdiv=tdWidth*point5;
+	$("#wkxdiv").width(wkxdiv+"px");
+	$("#wkxdiv").css("background-color","yellow");
+	selectPj("");
+	
+  	 
+});
+	var curvalue;  //满意度值
+	var fxyy_id='${fxyy_id}';
+	var pageNum=1;
+	var pjdj="";
+	function toPoint(percent){
+		var str=percent;
+		str=str/100;
+		var n=parseFloat(str.toFixed(2));
+		return n;
+	}
+	function tijiaopinjia(){
+		if(typeof(curvalue)=="undefined"){
+			$.cssnj.alert("请选择满意度");
+			return false;
+		}
+		var pjyj=$("#opinion").val();
+		pjyj=pjyj.replace("/[\r\n]/ig",'');
+		
+		$.post(ctx+"tykf/request?tld=YyfwService_insertPj",
+			{'pjjg':curvalue,'pjyj':pjyj,'fxyy_id':'${fxyy_id}'},
+			 function(data){
+			    if(data.state){
+			    
+			       cssnj_messager("","评价成功!",{
+			         "showDel":false,
+			         "showCancel":false,
+			         "onOk":function(){
+			            window.location.reload();
+			         }
+			       });
+			    }else{
+			       cssnj_alert("发布评价失败!");
+			    }
+				 
+		   },
+		   "json"
+		);
+		
+	}
+	function lightStar(str){
+		var val=parseInt(str);
+		for(var i=1;i<=val;i++){
+			$("#star"+i).attr("src","/public/js/image/yyfw/star-on-big.png");
+		}
+	}
+	function selectPj(value){
+		 $.ajax({
+				url:ctx+"tykf/request?tld=YyfwService_selectPj",    //请求的url地址
+		        dataType: "json",   //返回格式为json
+		        data:{
+		           "pjdj" : value,
+		           "fxyy_id":'${fxyy_id}'
+		        },
+		        async:false,
+		        type: "POST",   //请求方式
+		        success: function(data){
+			        if(data.length>0){
+			        $("#pjnr").show();
+			        }else{
+			        	 $("#pjnr").hide();
+				        }
+			        $("#pjnr").empty();
+		  			for(var i=0;i<data.length;i++){
+	                $("#pjnr").append("</p>"+"用户:"+data[i].pjrxm+" "+"评价时间:"+data[i].pjsj+"</br>"+data[i].pjnr+"</p>");
+			  	     }
+		  			$("#center").getNiceScroll().resize().show();
+		        },
+		        error:function(require){
+		           
+		        }
+		 });
+		
+	}
+	
+	</script>
+
+</head>
+<body>
+<div class="modal-header qptab_modal-header" id="modal-header">
+		<div class="modal-title qptab_modal-title qptab_modal-title" id="myModalLabel">
+			<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span> 应用评价信息
+		</div>
+</div>
+<div class='ui-layout-center nicesrc' id="center" style="overflow: auto;background: #f9f9f9;">
+   
+   <div  style="width:84%;max-width: 960px;min-width:700px;margin: 0 auto;background: #fff;" >
+   
+		  
+		  <div class="panel panel-primary" style="width: 100%;margin-bottom: 10px;margin:15px auto; border-color: #e5e5e5;">
+		  
+			     <div class="panel-heading"  style="border-bottom: 1px solid #e5e5e5;background: #f6f6f6;height: 36px;">
+			        <h3 class="panel-title" style="color:#333;font-size:18px;font-family:'宋体','微软雅黑',Arial,Times New Roman;font-weight:normal;">
+			                               我来评价                 
+			        </h3>
+			     </div>
+			     
+			     <div class="penel-body  " style="width: 100%">
+			 
+				      <table cellpadding="0" cellspacing="0"  class="table" style="margin-bottom: 0;">
+						   <tr style="outline: none;">
+						    <td class="helpLeft" colspan="2" width="20%"><span>应用类型：</span></td>
+						    <td class="helpRight" colspan="3" width="30%"><span>${fxyylxmc}</span></td>
+						    <td class="helpLeft" colspan="2" width="20%"><span>应用名称：</span></td>
+						    <td class="helpRight" colspan="3" width="30%"><span>${fxyymc}</span></td>
+						   </tr>
+						     <tr  >
+						    <td class="helpLeft" colspan="2" width="20%"><span>开发人员：</span></td>
+						    <td class="helpRight" colspan="3" width="30%"><span></span></td>
+						    <td class="helpLeft" colspan="2" width="20%"><span></span></td>
+						    <td class="helpRight" colspan="3" width="30%"><span></span></td>
+						   </tr>	
+					</table>
+			        
+			        <table cellpadding="0" cellspacing="0"  class="table"  style="margin-bottom: 0;">
+			        
+			             <tr >
+						        <td width="10%"><span class="star_l">满意度：</span></td>
+						    	<td width="90%">
+						    		<div class="goods-comm" style="height: 30px">
+				    					<div class="goods-comm-stars">
+											<div id="rate-comm-1" class="rate-comm">
+											</div>
+										</div>
+				    				</div>
+						    	</td> 
+						   </tr> 
+			            <tr>
+			              <td>
+			                	评价说明：
+			              </td>
+			              <td>
+			               <input id="pjdj" type="hidden"  value="${pjxx.pjdj_dm}"/>
+			               <textarea rows="10"  id="opinion" class="opinion"
+			                style="border-color: #ddd;
+			                	   width:100%;
+								   height:100px;
+								   overflow: auto;
+								   padding: 0;
+								   font-size:16px;
+								   letter-spacing: 1px;
+								   font-family:  '微软雅黑','宋体',Arial,Times New Roman;" 
+						    >${pjxx.pjnr}</textarea>
+			              </td>
+			            </tr>
+			            <tr>
+			              <td colspan="2" style="border: 0;"> 
+			              	    <label style="margin-top:3px;margin-left:3px;"><button type="button" class="btn btn-default" onclick="tijiaopinjia()" style="padding: 3px 3px 3px 3px;float: right;margin-bottom: 3px;margin-top: 3px">发表</button></label>
+			              </td>
+			            </tr>
+			        </table>
+			     </div>
+		   </div>
+		   
+		   <div class="panel panel-primary" style="width: 100%;margin-bottom: 10px;margin:15px auto; border-color: #e5e5e5;">
+		     <div class="panel-heading" style="border-bottom: 1px solid #e5e5e5;background: #f6f6f6;height: 36px;">
+		        <h3 class="panel-title" style="color:#333;font-size:18px;font-family:'宋体','微软雅黑',Arial,Times New Roman;font-weight:normal;">
+		                             评价总览
+		        </h3>
+		     </div>
+		     <div class="penel-body " style="padding: 0 5px 0 5px;">
+		       <table class="table" style="margin-top: 5px;border: 1px solid #DDDDDD;border-bottom: 0;margin-bottom: 0"  >
+			         <tbody>
+			         <tr>
+			             <td rowspan="5" width="18%" style="border-right: 1px solid #DDDDDD; " valign="middle">
+			                 	累计评价：<font style="font-weight: bold;color: #ff4400;"><span id="count">${total }</span></font>次<br/>
+			                 	综合满意度：<span id="zhmyd">${zhmyd}</span> <br/>
+			                 	<img class="starzhmyd" id="star1" src="/public/js/image/yyfw/star-off-big.png"  />
+			             	    <img class="starzhmyd" id="star2" src="/public/js/image/yyfw/star-off-big.png"  />
+			             	    <img class="starzhmyd" id="star3" src="/public/js/image/yyfw/star-off-big.png"  />
+			             	    <img class="starzhmyd" id="star4" src="/public/js/image/yyfw/star-off-big.png"  />
+			             		<img class="starzhmyd" id="star5" src="/public/js/image/yyfw/star-off-big.png"  />
+			             </td>
+			             <td width="20%" align="right" >
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png" style="width:15px;" />
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             </td>
+				         <td width="55%"><div class="pjbfbbar" id="wkxwkx"> <div class="pjback" id="wkxdiv"></div><div class="bfb" id="wkx">${percent5}%</div></div></td>
+				         <td width="7%"> <span id="fcmy">${pjdj5}</span> </td>
+			         </tr>
+			         <tr>
+		              <td width="20%" align="right" >
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             </td>
+		              <td width="55%" ><div class="pjbfbbar" id="sikxsikx"> <div class="pjback" id="sikxdiv"></div><div class="bfb" id="sikx">${percent4}%</div></div></td>
+		              <td width="7%" style="padding-left: 5px;"><span id="my">${pjdj4}</span></td>
+		             </tr>
+		             <tr>
+		              <td width="20%" align="right" >
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             </td>
+		              <td width="55%"><div class="pjbfbbar" id="skxskx"> <div class="pjback" id="skxdiv"></div><div class="bfb" id="skx">${percent3}%</div></div></td>
+		             <td width="7%" style="padding-left: 5px;"><span id="yb">${pjdj3}</span></td>
+		             </tr>
+		                <tr>
+		              <td width="20%" align="right" >
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             </td>
+		              <td width="55%"><div class="pjbfbbar" id="lkxlkx"> <div class="pjback" id="lkxdiv"></div><div class="bfb" id="lkx">${percent2}%</div></div></td>
+		             <td width="7%" style="padding-left: 5px;"><span id="bmy">${pjdj2}</span></td>
+		             </tr>
+		             <tr>
+		              <td width="20%" align="right" >
+			             	<img class="star" src="/public/js/image/yyfw/star.png"  style="width:15px;"/>
+			             </td>
+		              <td width="55%"><div class="pjbfbbar" id="ykxykx"> <div class="pjback" id="ykxdiv"></div><div class="bfb" id="ykx">${percent1}%</div></div></td>
+		              <td width="7%" style="padding-left: 5px;"><span id="fcbmy">${pjdj1}</span></td>
+		             </tr>
+		             </tbody>
+			       </table>
+			       
+			       <table class="table" style="margin-top: 5px;margin-bottom: 5px;" id="pjtable"  >
+			          <thead>
+			            <tr>
+				            <th colspan="2" style="border: 1px solid #DDDDDD;  background: #E8F2F7;padding: 5px;" > 
+				                 <label class="selectPj"><input name="myd" type="radio" class="radiomyd" value=""  onclick="selectPj(this.value)"  checked="checked" style="vertical-align: middle;margin-top:3px;margin-left:3px;margin-top:5px;margin-left: 5px;"/>&nbsp;全部<span>(${total})</span></label>&nbsp;&nbsp;&nbsp;
+				                 <label class="selectPj"><input name="myd" type="radio" class="radiomyd" value="5" onclick="selectPj(this.value)" style="vertical-align: middle;margin-top:3px;margin-left:3px;margin-top:5px;margin-left: 5px;"/>&nbsp;非常满意<span>(${pjdj5})</span></label>&nbsp;&nbsp;&nbsp;
+				                 <label class="selectPj"><input name="myd" type="radio" class="radiomyd" value="4" onclick="selectPj(this.value)" style="vertical-align: middle;margin-top:3px;margin-left:3px;margin-top:5px;margin-left: 5px;"/>&nbsp;满意<span>(${pjdj4})</span></label>&nbsp;&nbsp;&nbsp;
+				                 <label class="selectPj"><input name="myd" type="radio" class="radiomyd" value="3" onclick="selectPj(this.value)" style="vertical-align: middle;margin-top:3px;margin-left:3px;margin-top:5px;margin-left: 5px;"/>&nbsp;一般<span>(${pjdj3})</span></label>&nbsp;&nbsp;&nbsp;
+				                 <label class="selectPj"><input name="myd" type="radio" class="radiomyd" value="2" onclick="selectPj(this.value)" style="vertical-align: middle;margin-top:3px;margin-left:3px;margin-top:5px;margin-left: 5px;"/>&nbsp;不满意<span>(${pjdj2})</span></label>&nbsp;&nbsp;&nbsp;
+				                 <label class="selectPj"><input name="myd" type="radio" class="radiomyd" value="1" onclick="selectPj(this.value)" style="vertical-align: middle;margin-top:3px;margin-left:3px;margin-top:5px;margin-left: 5px;"/>&nbsp;非常不满意<span>(${pjdj1})</span></label>&nbsp;&nbsp;&nbsp;
+				            </th>
+			            </tr>
+			          </thead>
+			           <tbody id="pjlb">
+			          </tbody>
+			          <tfoot>
+			            <tr>
+                           <td colspan="2" align="left" id="pjfy">
+                            <div id="pjnr" style="width:100%;overflow-y:scroll;height:100px;">
+                            </div>
+                           </td>			            
+			            </tr>
+			          </tfoot>
+			       </table>
+		     </div>
+	       </div>
+   </div>
+</div>
+</html>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Tycx002XiangqingMapper">
+
+<select id="getXiangqing" parameterType="String" resultMap="xiangqingList">
+	SELECT
+	<include refid="Base_Column_List" />
+	FROM t_yyfw_fxyy t
+	<trim prefix="WHERE" prefixOverrides="and">
+		t.FXYY_ID = #{fxyyId}
+	</trim>
+</select>
+
+<resultMap type="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002XiangqingPojo" id="xiangqingList">
+	<id column="FXYY_ID" property="fxyyid" />
+	<result column="FXYY_MC" property="fxyymc" />
+	<result column="FXYYLX_DM" property="fxyylxdm" />
+	<result column="YWKJ" property="ywkj" />
+	<result column="JSKJ" property="jskj" />
+	<result column="YXBJ" property="yxbj" />
+	<result column="LR_SJ" property="lrsj" />
+	<result column="XG_SJ" property="xgsj" />
+	<result column="LRRY_DM" property="lrrydm" />
+	<result column="XGRY_DM" property="xgrydm" />
+	<result column="LRJG_DM" property="lrjgdm" />
+	<result column="XGJG_DM" property="xgjgdm" />
+	<result column="YYURL" property="yyurl" />
+	<result column="FBRDM" property="fbrdm" />
+	<result column="FB_SJ" property="fbsj" />
+	<result column="BANBEN" property="banben" />
+	<result column="ZT_BJ" property="ztbj" />
+	<result column="GNMS" property="gnms" />
+	<result column="GNLJ" property="gnlj" />
+	<result column="XQDW_DM" property="xqdwdm" />
+	<result column="XQRY_DM" property="xqrydm" />
+	<result column="KFDW_DM" property="kfdwdm" />
+	<result column="KFRY_DM" property="kfrydm" />
+	<result column="KFRLXDH" property="kfrlxdh" />
+	<result column="KFRLXFS" property="kfrlxfs" />
+	<result column="GJZ" property="gjz" />
+	<result column="PROCEDURE_NAME" property="procedurename" />
+	<result column="XTGNDM" property="xtgndm" />
+	<result column="XTSJCD" property="xtsjcd" />
+</resultMap>
+
+<sql id="Base_Column_List">
+	FXYY_ID, 
+	FXYY_MC, 
+	FXYYLX_DM, 
+	YWKJ, 
+	JSKJ, 
+	YXBJ, 
+	LR_SJ, 
+	XG_SJ, 
+	LRRY_DM, 
+	XGRY_DM, 
+	LRJG_DM, 
+	XGJG_DM, 
+	YYURL, 
+	FBRDM, 
+	FB_SJ, 
+	BANBEN, 
+	ZT_BJ, 
+	GNMS, 
+	GNLJ, 
+	XQDW_DM, 
+	XQRY_DM, 
+	KFDW_DM, 
+	KFRY_DM, 
+	KFRLXDH, 
+	KFRLXFS, 
+	GJZ, 
+	PROCEDURE_NAME, 
+	XTGNDM, 
+	XTSJCD
+</sql>
+
+
+
+
+</mapper>
+
+
+
+

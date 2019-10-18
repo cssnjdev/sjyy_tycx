@@ -1,0 +1,67 @@
+table.formtable {
+    width:99%;
+    /*font-family: verdana,arial,sans-serif;*/
+    font-size:12px;
+    /*border: 1px solid #000;*/
+    border-color: #999999;
+    border-collapse: collapse;
+}
+table.formtable tbody th {
+    width:100px;
+    height:20px;
+    text-align:left;
+    /*background-color:#D1E9E9;*/
+    /*border-width: 1px;*/
+    padding: 6px;
+    /*border-style: solid;*/
+    border-color: #999999;
+}
+table.formtable tbody td {
+    text-align:left;
+    height:20px;
+    /*border-width: 1px;*/
+    padding: 6px;
+    /*border-style: solid;*/
+    border-color: #999999;
+}
+textarea{
+    border:0;
+    background-color:transparent;
+    scrollbar-arrow-color:yellow;
+    scrollbar-base-color:lightsalmon;
+    overflow: hidden;
+    color: #666464;
+    height: auto;
+}
+.default-table {
+    border-top: 1px solid #95b8e7;
+    border-left: 1px solid #95b8e7;
+    font-size: 12px;
+    text-align: center;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.default-table td {
+    border-bottom: 1px solid #95b8e7;
+    border-right: 1px solid #95b8e7;
+    height: 30px;
+}
+
+.default-table th {
+    border-bottom: 1px solid #95b8e7;
+    border-right: 1px solid #95b8e7;
+    font-weight: normal;
+    background: #F1F6FF;
+    height: 30px;
+}
+
+.default-table th:last-child {
+    border-right: 1px solid #95b8e7;
+}
+
+.default-table input[type=text],.default-table input[type=number],.default-table input[type=password],.default-table input[type=date],.default-table input[type=url]
+{
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,414 @@
+html,body{
+   background:  #fff;
+   height: 100%;
+   font-size:   13px;
+}
+ 
+html,body{
+   margin: 0;
+   padding: 0;
+   overflow: auto;
+}
+
+div{
+	width: auto;
+	height:auto;
+	display: block;
+}
+
+.box{
+	background: #fff;
+}
+.box_border{
+	border: 1px solid #ddd;
+}
+.main_box{
+	background: #fff;
+	border: 1px solid #ddd;
+	margin-top: 20px;
+}  
+
+.over_hidden{
+	overflow: hidden;
+}
+
+ 
+.m_center{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+.w_p100 { width: 100%;  }
+.w_min_1360 { min-width: 1360px; }
+.w_min_1240 { min-width: 1240px; }
+
+.w_p94 {width:94%;}
+.w_p96 {width:96%;}
+ 
+.top { background: #F7F7FF;  height:38px; box-sizing:border-box;border-bottom: 1px solid #D6D6D6;}
+ 
+.top_title {height: 38px;line-height: 38px; font-size:20px; font-weight: bold;color: #317BB5;margin-right: 10px;}
+.top_title_xs{
+	height:28px;line-height:28px;font-size:18px; font-weight: bold;color: #317BB5; margin-right: 10px;
+}
+.top_toolbar { color: #333;top:5px; font-size: 13px;}
+ 
+.top_toolbar .btn-primary{ border-color: #337AB7; }
+ 
+.relative { position: relative; }
+
+.abs_left { position: absolute; left: 0; }
+
+.abs_right { position: absolute; right: 0; }
+
+.cxtj_box{
+	width: 100%;border-bottom: 1px dashed #DEDEDE;overflow: auto;
+}
+.toolbar_box{
+	width: 100%; border-bottom: 1px solid #ddd; 
+}
+.form-control{
+   height:26px;
+   line-height:26px;
+   border-radius: 3px;
+   border: 1px solid #e0e0e0;
+   font-size: 13px;
+   padding: 0px 6px 0 6px;
+}
+  
+  
+table.jb_tj{
+	float:left; 
+	height:auto;
+    margin-left: 10px;
+    margin-right: 20px;
+    white-space: nowrap;
+}
+ 
+table.jb_tj td.jb_tj_title{
+	text-align: right;
+}
+
+table.jb_tj td.jb_tj_value{
+	
+}
+ 
+table.jb_tj>tbody>tr>td{
+    height:40px;
+    vertical-align:middle;
+    font-size: 13px;
+    padding: 0 5px 0 5px;
+}
+    
+/* table.jb_tj>tbody>tr>td.title{ 
+  width: 100px;
+  text-align: right;
+}
+
+table.jb_tj>tbody>tr>td.info{ 
+  width: 200px;
+}
+ */
+table.jb_tj>tbody>tr>td .add{
+    font-size:10px;
+    color:#666;
+    background: #eee;
+    position: absolute;
+    right: 0;
+    top:0;
+    height: 26px;
+    line-height:26px;
+    width:25px;
+    text-align: center;
+    cursor: pointer;
+}
+
+table.jb_tj>tbody>tr>td .border{
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+}
+
+table.jb_tj>tbody>tr>td .border .form-control{
+   border: none;
+}
+
+
+
+
+.text-right{
+	text-align: right;
+}
+.p10_r_l{
+	padding-left:10px ;
+    padding-right:10px;
+}
+.p5_t_b{
+	padding-top: 5px ;
+	padding-bottom:5px;
+}
+.p-all-20{
+	padding: 20px 20px 20px 20px;
+}
+
+
+.modal{
+	background: rgba(100,100,100,0.5);
+}  
+.form_container.container .row{
+	overflow:visible;
+}
+
+.form_container.container .row>div{
+	height: 40px;
+	padding: 5px;
+	overflow: visible;
+}
+.cursor_pointer{
+	cursor: pointer;
+}
+ 
+.cssnj_data{
+	display: none;
+} 
+ 
+ .dataTable [visible="F"]{
+   display: none;
+ }
+ 
+ span.glyphicon{
+   margin-right:3px;
+ }
+
+
+
+div.north-title {
+    margin: 0px;
+    padding:0px;
+    padding-left:10px;
+    font-weight: bold;
+    font-size: 13px;
+    height: 35px;
+    line-height: 35px;
+}
+ 
+
+/*.layout*/
+.ui-layout-north .cxtj_box{
+	width: 100%;border-bottom: none;overflow: auto;
+}
+ .ui-layout-pane{
+ 	border: none;
+ }
+ 
+.ui-layout-north{
+	border-bottom: 1px solid #DEDEDE;
+}
+.ui-layout-north.clear-border{
+	border: 0;
+}
+.ui-layout-west{
+   border-right: 1px #DEDEDE solid;
+}
+ 
+.ui-layout-east{
+  border-left: 1px #DEDEDE solid;
+} 
+ 
+ body>.ui-layout-center{
+   border-left: 1px #DEDEDE solid;
+}
+ 
+
+.ui-layout-toggler-west-open{
+ background: #AED2F2 url('/public/js/image/s_l.png') no-repeat center center; 
+ border-bottom: 1px solid #90CCE6;
+ border-top: 1px solid #DEDEDE;
+}
+
+.ui-layout-toggler-west-closed{
+  background: #AED2F2 url('/public/js/image/s_r.png') no-repeat center center;
+  border-bottom: 1px solid #90CCE6;
+  border-top: 1px solid #DEDEDE;
+}
+
+/**
+*下面是针对 ztree的样式
+*/
+
+.allfolder.ztree li span.button.ico_docu {
+    background-position: -110px 0;
+    background-image: url("/public/js/zTree_v3.5/css/zTreeStyle/img/zTreeStandard.png");
+}
+
+
+/*重置 bootstrap*/
+.modal-header {
+    min-height: 16px;
+    padding: 8px 10px 8px 10px;
+    border-bottom: 1px solid #e5e5e5;
+   /* background: #337AB7;  color: #fff;*/
+   
+}
+ 
+.close:focus, .close:hover {
+
+}
+  
+  
+.jgTab.nav-tabs{
+ 	background: #f0f0f0;
+ 	border-bottom:1px solid #d9d9d9;
+ 	padding: 8px 8px 0 8px;
+}
+
+.jgTab.nav-tabs>li>a{
+	border: 0;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.jgTab.nav-tabs>li.active>a{
+	
+}
+
+.jgTab.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 5px 10px;
+}
+
+.jgTab.nav-tabs>li.active>a,
+.jgTab.nav-tabs>li.active>a:focus,
+.jgTab.nav-tabs>li.active>a:hover {
+    border: 1px solid #d9d9d9;
+    border-bottom: 0;
+    height: auto;
+}
+
+.jgTab.tab-content{
+	position: relative;
+}
+
+.jgTab.tab-content>.tab-pane{
+	display: block;
+ 	width: 100%;
+	height:100%;
+	position: absolute;
+ 	top: 0;
+	left: 0;
+	background: #fff;
+	padding: 0;
+	overflow: auto;
+	 
+}
+
+.jgTab.tab-content>.tab-pane.active{
+  overflow: visible;
+}
+ 
+.no-border.table>tbody>tr>td{
+	border: 0;
+}
+
+.form-control.select2-container {
+	padding: 0;
+	background: none;
+}
+
+.form-control.select2-container-active .select2-choice {
+	padding: 0;
+	background: none;
+}
+
+.form-control.select2-container .select2-choice {
+	border: 0;
+	background: none;
+}
+
+
+
+.form-control.select2-container .select2-choice .select2-arrow {
+	background: none;
+	border-left-color:#ddd; 
+}
+
+/**
+* 其他自定义样式
+*/
+
+/**/
+.modal-footer-center-toolbar{
+	 margin: 0 auto;
+	 width: 0;
+	 overflow: visible;
+}
+
+.dataTable_inp{
+ margin:0px 0px 0px 0px;
+ height:25px;
+ width:100%;
+ border:0px
+}
+ 
+.iframe_maxsize,.iframe_restore{
+	margin-right: 5px;
+	float: right;
+	padding:0;
+	border: 0;
+	background: none;
+}
+
+.iframe_restore{
+	display: none;
+}
+
+.redbgNumb{
+	font-size: 7px;
+	color:white;
+	letter-spacing:0;
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	min-width: 15px;
+	height: 15px;
+	border-radius:8px;
+	background: red;  
+	z-index: 100;
+}
+ 
+.modal .modal-content{
+	background: #fff;
+	border-radius:6px;
+}
+.modal-body{
+ overflow-y:visible
+}
+
+.cssnj_form{
+  margin: 0;
+}
+
+.cssnj_from_container{
+  width: 100%;
+}
+
+.cssnj_from_container .cssnj_cxtj_col{
+  padding: 0;
+  overflow: visible;
+  width: auto;
+}
+
+.cssnj_cxtj_title,.cssnj_cxtj_val{
+    padding:5px;
+	float: left;
+}
+.cssnj_cxtj_title{
+  line-height: 36px;
+  padding-left: 20px;
+}
+
+.cssnj_from_container>.cssnj_cxjt_row:FIRST-CHILD {
+	margin-top:8px;
+} 
+ 

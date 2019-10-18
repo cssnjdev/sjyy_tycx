@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizsys.xtgl.dao.DmQxGwMapper">
+    <resultMap id="dmQxGwPojoMap" type="com.cwks.bizsys.xtgl.domain.DmQxGwPojo">
+        <result column="aqkzlb_dm" property="aqkzlb_dm" />
+        <result column="gwfl_dm" property="gwfl_dm" />
+        <result column="gwmc" property="gwmc" />
+        <result column="gwms" property="gwms" />
+        <result column="gw_dm" property="gw_dm" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="swjg_dm" property="swjg_dm" />
+        <result column="wqsygwjgjgjc" property="wqsygwjgjgjc" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="xsxh" property="xsxh" />
+        <result column="yxbz" property="yxbz" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        aqkzlb_dm,
+        gwfl_dm,
+        gwmc,
+        gwms,
+        gw_dm,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        swjg_dm,
+        wqsygwjgjgjc,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        xsxh,
+        yxbz
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwPojo" resultType="com.cwks.bizsys.xtgl.domain.DmQxGwPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  DM_QX_GW t
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="gwmc != null and gwmc != ''">
+            gwmc like '%${gwmc}%'
+            </if>
+            <if test="gwms != null and gwms != ''">
+            and gwms like '%${gwms}%'
+            </if>
+            <if test="gw_dm != null and gw_dm != ''">
+            and gw_dm like '%${gw_dm}%'
+            </if>
+        </trim>
+         order by gwfl_dm,gw_dm
+    </select>
+
+    <select id="selectByPKey" resultMap="dmQxGwPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from DM_QX_GW
+        where
+        gw_dm=#{gw_dm}
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwPojo">
+        delete from DM_QX_GW
+        where
+                gw_dm=#{gw_dm}
+
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwPojo" >
+        insert into DM_QX_GW (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Column_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwPojo" >
+        insert into DM_QX_GW
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="aqkzlb_dm != null" >
+                aqkzlb_dm,
+            </if>
+            <if test="gwfl_dm != null" >
+                gwfl_dm,
+            </if>
+            <if test="gwmc != null" >
+                gwmc,
+            </if>
+            <if test="gwms != null" >
+                gwms,
+            </if>
+            <if test="gw_dm != null" >
+                gw_dm,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="swjg_dm != null" >
+                swjg_dm,
+            </if>
+            <if test="wqsygwjgjgjc != null" >
+                wqsygwjgjgjc,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+            <if test="xsxh != null" >
+                xsxh,
+            </if>
+            <if test="yxbz != null" >
+                yxbz,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="aqkzlb_dm != null" >
+                    #{aqkzlb_dm},
+            </if>
+            <if test="gwfl_dm != null" >
+                    #{gwfl_dm},
+            </if>
+            <if test="gwmc != null" >
+                    #{gwmc},
+            </if>
+            <if test="gwms != null" >
+                    #{gwms},
+            </if>
+            <if test="gw_dm != null" >
+                    #{gw_dm},
+            </if>
+            <if test="lrrq != null" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                    #{lrr_dm},
+            </if>
+            <if test="swjg_dm != null" >
+                    #{swjg_dm},
+            </if>
+            <if test="wqsygwjgjgjc != null" >
+                    #{wqsygwjgjgjc},
+            </if>
+            <if test="xgrq != null" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                    #{xgr_dm},
+            </if>
+            <if test="xsxh != null" >
+                    #{xsxh},
+            </if>
+            <if test="yxbz != null" >
+                    #{yxbz},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwPojo" >
+        update DM_QX_GW
+        <trim prefix="set" suffixOverrides="," >
+            <if test="aqkzlb_dm != null" >
+            aqkzlb_dm =#{aqkzlb_dm},
+            </if>
+            <if test="gwfl_dm != null" >
+            gwfl_dm =#{gwfl_dm},
+            </if>
+            <if test="gwmc != null" >
+            gwmc =#{gwmc},
+            </if>
+            <if test="gwms != null" >
+            gwms =#{gwms},
+            </if>
+            <if test="gw_dm != null" >
+            gw_dm =#{gw_dm},
+            </if>
+            <if test="lrr_dm != null" >
+            lrr_dm =#{lrr_dm},
+            </if>
+            <if test="swjg_dm != null" >
+            swjg_dm =#{swjg_dm},
+            </if>
+            <if test="wqsygwjgjgjc != null" >
+            wqsygwjgjgjc =#{wqsygwjgjgjc},
+            </if>
+
+            xgrq =SYSDATE,
+
+            <if test="xgr_dm != null" >
+            xgr_dm =#{xgr_dm},
+            </if>
+            <if test="xsxh != null" >
+            xsxh =#{xsxh},
+            </if>
+            <if test="yxbz != null" >
+            yxbz =#{yxbz},
+            </if>
+        </trim>
+        where
+        gw_dm=#{gw_dm}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizsys.xtgl.domain.DmQxGwPojo" >
+        update T_XT_DEV_CODE_DM
+        <if test="aqkzlb_dm != null" >
+        set DM_ID = #{aqkzlb_dm},
+        </if>
+        <if test="gwfl_dm != null" >
+        set DM_ID = #{gwfl_dm},
+        </if>
+        <if test="gwmc != null" >
+        set DM_ID = #{gwmc},
+        </if>
+        <if test="gwms != null" >
+        set DM_ID = #{gwms},
+        </if>
+        <if test="gw_dm != null" >
+        set DM_ID = #{gw_dm},
+        </if>
+        <if test="lrrq != null" >
+        set DM_ID = #{lrrq},
+        </if>
+        <if test="lrr_dm != null" >
+        set DM_ID = #{lrr_dm},
+        </if>
+        <if test="swjg_dm != null" >
+        set DM_ID = #{swjg_dm},
+        </if>
+        <if test="wqsygwjgjgjc != null" >
+        set DM_ID = #{wqsygwjgjgjc},
+        </if>
+        <if test="xgrq != null" >
+        set DM_ID = #{xgrq},
+        </if>
+        <if test="xgr_dm != null" >
+        set DM_ID = #{xgr_dm},
+        </if>
+        <if test="xsxh != null" >
+        set DM_ID = #{xsxh},
+        </if>
+        <if test="yxbz != null" >
+        set DM_ID = #{yxbz}
+        </if>
+        where
+        gw_dm=#{gw_dm}
+    </update>
+</mapper>

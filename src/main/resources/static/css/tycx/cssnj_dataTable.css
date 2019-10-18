@@ -1,0 +1,91 @@
+
+/**
+* datatables ²¿·Ö ÑùÊ½
+*/
+ table.dataTable,body {
+   border-collapse:collapse;
+}
+
+.dataTables_wrapper .dataTables_length{
+	width: 150px;
+	padding-top: 8px;
+}
+
+.dataTables_wrapper .dataTables_length select{
+   height: 20px;	
+}
+
+.dataTables_paginate.paging_simple_numbers {
+  display: none;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom:1px solid #90CCE6;
+}
+.dataTables_wrapper.no-footer {
+	 border-bottom:1px solid #90CCE6
+}
+ 
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+  background-color: white;
+}
+
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.even {
+  background-color: #e4eeff;
+}
+
+table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+   border-top:none;
+   border-right:1px dotted #adcfdc; 
+}
+
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.even.selected{
+	background-color:#FFE6B0;
+}
+
+table.dataTable.stripe tbody tr.odd.selected, table.dataTable.display tbody tr.odd.selected{
+	background-color:#FFE6B0;
+}
+
+table.dataTable tbody td{
+   padding: 5px 8px;
+   font:12px "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif;
+   border-bottom: 1px  solid #a7bce0;
+}
+
+table.dataTable.hover tbody tr:hover,table.dataTable.display tbody tr:hover {
+  background-color:#def1df;
+}
+
+table.dataTable.hover tbody tr:hover,table.dataTable.display tbody tr:hover td {
+  border-bottom:1px solid #a7d6a9;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    font:12px "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    letter-spacing:1pt;
+    line-height:15px;
+    background:#CDE8F3;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left: 18px;
+    padding-right: 18px;
+    border-bottom:1px solid #aecbf1;
+}
+ 
+ 
+ 
+table.dataTable > tbody tr td:last-child{
+	border-right: 0;
+}
+
+#tableInfo{
+	float: right;z-index: 999;position: absolute;bottom: 3px;right:10px;font: 13px;letter-spacing: 1px;
+}
+
+#tableInfo #count{
+	color:red;
+} 
+ 

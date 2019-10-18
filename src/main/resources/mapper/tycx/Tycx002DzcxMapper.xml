@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Tycx002DzcxMapper">
+    <sql id="Base_Column_List_czy" >
+        fxyypjxh,
+        fxyy_id,
+        pjdj_dm,
+        pjnr,
+        pjr_dm,
+        pjsj,
+        xybj,
+        lr_sj,
+        xg_sj,
+        lrry_dm,
+        xgry_dm,
+        lrjg_dm,
+        xgjg_dm,
+        lcslh,
+        workItemId,
+        fxyyid
+    </sql>
+    <sql id="Base_Param_List_czy" >
+        #{fxyypjxh},
+        #{fxyy_id},
+        #{pjdj_dm},
+        #{pjnr},
+        #{pjr_dm},
+        to_date(#{pjsj},'yyyy-mm-dd hh24:mi:ss'),
+        #{xybj},
+        to_date(#{lrsj},'yyyy-mm-dd hh24:mi:ss'),
+        to_date(#{xgsj},'yyyy-mm-dd hh24:mi:ss'),
+        #{lrry_dm},
+        #{xgry_dm},
+        #{lrjg_dm},
+        #{xgjg_dm},
+        #{lcslh},
+        #{workItemId},
+        #{fxyyid}
+    </sql>
+    <insert id="insertPj" parameterType="com.cwks.bizcore.yyfb.mapping.pojo.YyfwPjPojo" >
+        insert into t_yyfw_PJ
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+    	      pjsj,
+            <if test="fxyypjxh != null" >
+                fxyypjxh,
+            </if>
+            <if test="fxyyid != null" >
+                fxyy_id,
+            </if>
+            <if test="pjdj_dm != null" >
+                pjdj_dm,
+            </if>
+            <if test="pjnr != null" >
+                pjnr,
+            </if>
+            <if test="pjr_dm != null" >
+                pjr_dm,
+            </if>
+
+            <if test="xybj != null" >
+                xybj,
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj,
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj,
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm,
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm,
+            </if>
+            <if test="lrjg_dm != null" >
+                lrjg_dm,
+            </if>
+            <if test="xgjg_dm != null" >
+                xgjg_dm,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            sysdate,
+            <if test="fxyypjxh != null" >
+                #{fxyypjxh},
+            </if>
+            <if test="fxyyid != null" >
+                #{fxyyid},
+            </if>
+            <if test="pjdj_dm != null" >
+                #{pjdj_dm},
+            </if>
+            <if test="pjnr != null" >
+                #{pjnr},
+            </if>
+            <if test="pjr_dm != null" >
+                #{pjr_dm},
+            </if>
+            <if test="lr_sj != null" >
+               to_timestamp(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xg_sj != null" >
+                to_timestamp(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrry_dm != null" >
+                #{lrry_dm},
+            </if>
+            <if test="xgry_dm != null" >
+                #{xgry_dm},
+            </if>
+            <if test="lrjg_dm != null" >
+                #{lrjg_dm},
+            </if>
+            <if test="xgjg_dm != null" >
+                #{xgjg_dm},
+            </if>
+        </trim>
+
+
+    </insert>
+    <select id="searchPj" parameterType="java.lang.String" resultType="int">
+    select count(1) from t_yyfw_PJ where pjdj_dm=#{pjdj}
+    </select>
+    <select id="selectPj" parameterType="java.lang.String" resultType="com.cwks.bizcore.yyfb.mapping.pojo.YyfwPjPojo">
+   select  pjsj,pjnr,
+   (select swryxm from dm_gy_swry where swry_dm=pjr_dm) pjrxm
+    from t_yyfw_PJ
+    <where>
+    <if test="_parameter!=null and _parameter!=''">
+    pjdj_dm=#{pjdj}
+    </if>
+    </where>
+    order by pjsj desc
+    </select>
+    <select id="countPj" resultType="int" parameterType="java.lang.String">
+     select count(1) from t_yyfw_PJ where fxyy_id=#{fxyyid}
+    </select>
+    <select id="fxyymc" parameterType="java.lang.String" resultType="java.lang.String">
+    select fxyy_mc from t_yyfw_fxyy where fxyy_id=#{fxyyid}
+    </select>
+    <select id="fxyylxmc" parameterType="java.lang.String" resultType="java.lang.String">
+    select fxyylx_mc from dm_yyfw_fxyylx where fxyylx_dm=#{fxyylxdm}
+    </select>
+    <select id="fxyylxdm" parameterType="java.lang.String" resultType="java.lang.String">
+    select fxyylx_dm from t_yyfw_fxyy where fxyy_id=#{fxyyid}
+    </select>
+    <select id="searchWtfk" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002WtfkPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002WtfkPojo">
+		select
+		       t.id,
+		       t.sqlxh,
+		       t.lrry_dm,
+		       t.nr,
+		       t.lr_sj,
+		       t.bt,
+		       (select a.caption from t_wtfk_cxgl a where a.code=t.cxgl) cxgl,
+		       (select b.caption from t_wtfk_wtclzt b where b.code=t.zt) zt,
+		       (select c.caption from t_wtfk_wtlx c where c.code=t.wt_lx) wt_lx,
+		       (select d.caption from t_wtfk_yxj d where d.code=t.yxj) yxj,
+		       (select e.caption from t_wtfk_yzcd e where e.code=t.yzcd) yzcd,
+		       t.clry_dm,
+		       t.cl_sj,
+		       t.xg_sj,
+		       t.fxyylx_dm,
+		       t.zs,
+		       t.yxbj,
+		        t.lcslh,
+           t.workitemid
+		from t_wtfk t
+		<where>
+			<if test="sqlxh != null and sqlxh != ''" >
+				and t.sqlxh=#{sqlxh }
+			</if>
+			<if test="id != null and id != ''">
+				and t.id=#{id }
+			</if>
+			<if test="wt_lx != null and wt_lx != '' and wt_lx != 0">
+				and t.wt_lx=#{wt_lx }
+			</if>
+			<if test="zt != null and zt != '' and zt != 0">
+				and t.zt=#{zt }
+			</if>
+			<if test="fxyyid != null and fxyyid != ''">
+				and t.fxyyid=#{fxyyid }
+			</if>
+			<if test="lcslh != null and lcslh != ''">
+				and t.lcslh=#{lcslh}
+			</if>
+
+		</where>
+		order by t.lr_sj desc
+    </select>
+    <select id="queryTS" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002TuisongPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002TuisongPojo">
+    select * from t_dzcx_wtts t    where t.lcslh=#{lcslh}
+    </select>
+    <select id="searchFj" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002FjPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002FjPojo">
+    	select
+    		t.FJ_ID,
+    		t.WTFK_ID,
+    		t.FJ_MC,
+    		t.CCLXBJ,
+    		t.FTPUSERNAME,
+    		t.FTPPASSWORD,
+    		t.FJURL,
+    		t.XYBJ,
+    		t.LR_SJ,
+    		t.XG_SJ,
+    		t.LRRY_DM,
+    		t.XGRY_DM,
+    		t.LRJG_DM,
+    		t.XGJG_DM,
+    		t.FJGS,
+    		t.FJDX
+    	from t_wtfk_fj t
+    	<where>
+    		<if test="fj_id != null">
+    			and t.FJ_ID=#{fj_id}
+    		</if>
+    		<if test="wtfk_id != null">
+    			and t.WTFK_ID=#{wtfk_id}
+    		</if>
+    	</where>
+    	order by t.lr_sj desc
+    </select>
+    <insert id="insertWtfk" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002WtfkPojo">
+    	insert into t_wtfk
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh,
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm,
+            </if>
+            <if test="nr != null" >
+                nr,
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj,
+            </if>
+            <if test="bt != null" >
+                bt,
+            </if>
+            <if test="yzcd != null" >
+                yzcd,
+            </if>
+            <if test="cxgl != null" >
+                cxgl,
+            </if>
+            <if test="zt != null" >
+                zt,
+            </if>
+            <if test="wt_lx != null" >
+                wt_lx,
+            </if>
+            <if test="yxj != null" >
+                yxj,
+            </if>
+            <if test="clry_dm != null" >
+                clry_dm,
+            </if>
+            <if test="cl_sj != null" >
+                cl_sj,
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj,
+            </if>
+            <if test="fxyylx_dm != null" >
+                fxyylx_dm,
+            </if>
+            <if test="zs != null" >
+                zs,
+            </if>
+            <if test="yxbj != null" >
+                yxbj,
+            </if>
+            <if test="lcslh != null" >
+                lcslh,
+            </if>
+            <if test="workItemId != null" >
+                workItemId,
+            </if>
+            <if test="fxyyid != null" >
+                fxyyid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id},
+            </if>
+            <if test="sqlxh != null" >
+                #{sqlxh},
+            </if>
+            <if test="lrry_dm != null" >
+                #{lrry_dm},
+            </if>
+            <if test="nr != null" >
+                #{nr},
+            </if>
+            <if test="lr_sj != null" >
+                to_timestamp(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="bt != null" >
+                #{bt},
+            </if>
+            <if test="yzcd != null" >
+               	#{yzcd},
+            </if>
+            <if test="cxgl != null" >
+                #{cxgl},
+            </if>
+            <if test="zt != null" >
+                #{zt},
+            </if>
+            <if test="wt_lx != null" >
+                #{wt_lx},
+            </if>
+            <if test="yxj != null" >
+                #{yxj},
+            </if>
+            <if test="clry_dm != null" >
+                #{clry_dm},
+            </if>
+            <if test="cl_sj != null" >
+                to_timestamp(#{cl_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xg_sj != null" >
+                to_timestamp(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="fxyylx_dm != null" >
+                #{fxyylx_dm},
+            </if>
+            <if test="zs != null" >
+                #{zs},
+            </if>
+            <if test="yxbj != null" >
+                #{yxbj},
+            </if>
+            <if test="lcslh != null" >
+                #{lcslh},
+            </if>
+             <if test="workItemId != null" >
+                #{workItemId},
+            </if>
+            <if test="fxyyid != null" >
+                #{fxyyid},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertFj" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002FjPojo">
+    	insert into t_wtfk_fj
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="fj_id != null" >
+                fj_id,
+            </if>
+            <if test="wtfk_id != null" >
+                wtfk_id,
+            </if>
+            <if test="fj_mc != null" >
+                fj_mc,
+            </if>
+            <if test="fjlx_dm != null" >
+                fjlx_dm,
+            </if>
+            <if test="cclxbj != null" >
+                cclxbj,
+            </if>
+            <if test="fjnr != null" >
+                fjnr,
+            </if>
+            <if test="ftpusername != null" >
+                ftpusername,
+            </if>
+            <if test="ftppassword != null" >
+                ftppassword,
+            </if>
+            <if test="fjurl != null" >
+                fjurl,
+            </if>
+            <if test="xybj != null" >
+                xybj,
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj,
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj,
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm,
+            </if>
+            <if test="xgry_dm != null" >
+                xgry_dm,
+            </if>
+            <if test="lrjg_dm != null" >
+                lrjg_dm,
+            </if>
+            <if test="xgjg_dm != null" >
+                xgjg_dm,
+            </if>
+            <if test="fjgs != null" >
+                fjgs,
+            </if>
+            <if test="fjdx != null" >
+                fjdx,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="fj_id != null" >
+                #{fj_id},
+            </if>
+            <if test="wtfk_id != null" >
+                #{wtfk_id},
+            </if>
+            <if test="fj_mc != null" >
+                #{fj_mc},
+            </if>
+            <if test="fjlx_dm != null" >
+                #{fjlx_dm},
+            </if>
+            <if test="cclxbj != null" >
+                #{cclxbj},
+            </if>
+            <if test="fjnr != null" >
+               	#{fjnr},
+            </if>
+            <if test="ftpusername != null" >
+                #{ftpusername},
+            </if>
+            <if test="ftppassword != null" >
+                #{ftppassword},
+            </if>
+            <if test="fjurl != null" >
+                #{fjurl},
+            </if>
+            <if test="xybj != null" >
+                #{xybj},
+            </if>
+            <if test="lr_sj != null" >
+                to_timestamp(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xg_sj != null" >
+                to_timestamp(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrry_dm != null" >
+                #{lrry_dm},
+            </if>
+            <if test="xgry_dm != null" >
+                #{xgry_dm},
+            </if>
+            <if test="lrjg_dm != null" >
+                #{lrjg_dm},
+            </if>
+            <if test="xgjg_dm != null" >
+                #{xgjg_dm},
+            </if>
+            <if test="fjgs != null" >
+                #{fjgs},
+            </if>
+            <if test="fjdx != null" >
+                #{fjdx},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertTS" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002TuisongPojo">
+    	insert into t_dzcx_wtts
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ts_id != null" >
+                ts_id,
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh,
+            </if>
+            <if test="cxtj != null" >
+                cxtj,
+            </if>
+            <if test="wtms != null" >
+                wtms,
+            </if>
+            <if test="wtimg != null" >
+                wtimg,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="jsry_dm != null" >
+                jsry_dm,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="clbj != null" >
+                clbj,
+            </if>
+            <if test="clsj != null" >
+                clsj,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+             <if test="fxyyid != null" >
+                fxyyid,
+            </if>
+            <if test="lcslh != null" >
+                lcslh,
+            </if>
+            <if test="workItemId != null" >
+                workItemId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ts_id != null" >
+                #{ts_id},
+            </if>
+            <if test="sqlxh != null" >
+                #{sqlxh},
+            </if>
+            <if test="cxtj != null" >
+                #{cxtj},
+            </if>
+            <if test="wtms != null" >
+                #{wtms},
+            </if>
+            <if test="wtimg != null" >
+                empty_blob(),
+            </if>
+            <if test="lrr_dm != null" >
+               	#{lrr_dm},
+            </if>
+            <if test="jsry_dm != null" >
+                #{jsry_dm},
+            </if>
+            <if test="lrrq != null" >
+                to_timestamp(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="clbj != null" >
+                #{clbj},
+            </if>
+            <if test="clsj != null" >
+                to_timestamp(#{clsj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgrq != null" >
+                to_timestamp(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                #{xgr_dm},
+            </if>
+            <if test="fxyyid != null" >
+                #{fxyyid},
+            </if>
+             <if test="lcslh != null" >
+                #{lcslh},
+            </if>
+            <if test="workItemId != null" >
+                #{workItemId},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertFX" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002FenxiangPojo">
+    	insert into t_gnfx
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="fx_id != null" >
+                fx_id,
+            </if>
+            <if test="fxly != null" >
+                fxly,
+            </if>
+            <if test="fxurl != null" >
+                fxurl,
+            </if>
+            <if test="jsr_dm != null" >
+                jsr_dm,
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm,
+            </if>
+            <if test="lrrq != null" >
+                lrrq,
+            </if>
+            <if test="xgrq != null" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="fx_id != null" >
+                #{fx_id},
+            </if>
+            <if test="fxly != null" >
+                #{fxly},
+            </if>
+            <if test="fxurl != null" >
+                #{fxurl},
+            </if>
+            <if test="jsr_dm != null" >
+                #{jsr_dm},
+            </if>
+            <if test="lrr_dm != null" >
+               	#{lrr_dm},
+            </if>
+            <if test="lrrq != null" >
+                to_timestamp(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgrq != null" >
+                to_timestamp(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                #{xgr_dm},
+            </if>
+        </trim>
+    </insert>
+    <update id="insertWtimg" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002TuisongPojo">
+    	update t_dzcx_wtts set wtimg=#{wtimg} where ts_id=#{ts_id}
+    </update>
+    <update id="updateWtfk" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx002WtfkPojo">
+    	update t_wtfk
+    	<trim prefix="set" suffix="where id=#{id}" suffixOverrides="," >
+            <if test="sqlxh != null" >
+                sqlxh=#{sqlxh},
+            </if>
+            <if test="lrry_dm != null" >
+                lrry_dm=#{lrry_dm},
+            </if>
+            <if test="nr != null" >
+                nr=#{nr},
+            </if>
+            <if test="lr_sj != null" >
+                lr_sj=to_timestamp(#{lr_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="bt != null" >
+                bt=#{bt},
+            </if>
+            <if test="yzcd != null" >
+                yzcd=#{yzcd},
+            </if>
+            <if test="cxgl != null" >
+                cxgl=#{cxgl},
+            </if>
+            <if test="zt != null" >
+                zt=#{zt},
+            </if>
+            <if test="wt_lx != null" >
+                wt_lx=#{wt_lx},
+            </if>
+            <if test="yxj != null" >
+                yxj=#{yxj},
+            </if>
+            <if test="clry_dm != null" >
+                clry_dm=#{clry_dm},
+            </if>
+            <if test="cl_sj != null" >
+                cl_sj=to_timestamp(#{cl_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xg_sj != null" >
+                xg_sj=to_timestamp(#{xg_sj},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="fxyylx_dm != null" >
+                fxyylx_dm=#{fxyylx_dm},
+            </if>
+            <if test="zs != null" >
+                zs=#{zs},
+            </if>
+            <if test="yxbj != null" >
+                yxbj=#{yxbj},
+            </if>
+             <if test="lcslh != null" >
+                lcslh=#{lcslh},
+            </if>
+            <if test="workItemId != null" >
+                workItemId=#{workItemId},
+            </if>
+             <if test="fxyyid != null" >
+                fxyyid=#{fxyyid},
+            </if>
+        </trim>
+    </update>
+</mapper>

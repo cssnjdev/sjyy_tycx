@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <title>查询结果定义</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+    <script type="text/javascript" language="javascript">
+        var ctx = [[@{/}]];
+    </script>
+    <script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+    <script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+    <!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+    <script  data-th-src="@{/js/tycx/common.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+    <script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+    <script type="text/javascript" src="<%=request.getContextPath()%>/biz/core/ext/tycx/tycx001/js/tycx001CxCxjgdyManager.js"></script>
+</head>
+<body class="no-skin">
+<div class="main-container ace-save-state" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner" >
+
+            <div class="col-xs-12" style="padding-left: 0px;padding-right: 0px;">
+                <div id="ttbar" style="padding:5px 10px">
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="submit_search_ff()">
+                        <span class="glyphicon glyphicon-search"></span>查询
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="append()">
+                        <span class="glyphicon glyphicon-plus"></span>新增
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="modify()">
+                        <span class="glyphicon glyphicon-pencil"></span>编辑
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="remove()">
+                        <span class="glyphicon glyphicon-remove"></span>删除
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="expExcelForJqGrid('<%=request.getContextPath()%>/cssnj/exportExcle.action?tld=tycx001CxCxjgdyService_expExcel','#search_ff','#tt')">
+                        <span class="glyphicon glyphicon-list-alt"></span>导出当前页
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="expExcelForJqGrid('<%=request.getContextPath()%>/cssnj/exportExcle.action?tld=tycx001CxCxjgdyService_expExcel','#search_ff','')">
+                        <span class="glyphicon glyphicon-list-alt"></span>导出全部
+                    </a>
+                </div>
+                <div style="padding:5px 10px">
+                    <form id="search_ff" role = "form" class="form-inline" style="margin:0px" >
+                    </form>
+                </div>
+                <table id="tt"></table>
+                <div id="tt_pager" style=" position: fixed;bottom: 0px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="append_modify">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 800px;margin:auto;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" ><span id="append_modify_title"></span></h4>
+            </div>
+            <div class="modal-body" style="max-height: 500px;overflow-y: scroll">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal" role="form" id="append_modify_ff">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_dmsql">DMSQL</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_dmsql" name="dmsql" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_dqfs">DQFS</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_dqfs" name="dqfs" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_dyghbbj">DYGHBBJ</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_dyghbbj" name="dyghbbj" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_glbj">GLBJ</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_glbj" name="glbj" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_jcbzdlx">JCBZDLX</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_jcbzdlx" name="jcbzdlx" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_kzlx">KZLX</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_kzlx" name="kzlx" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_lbm">LBM</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_lbm" name="lbm" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_lkd">LKD</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_lkd" name="lkd" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_llx">LLX</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_llx" name="llx" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_lmc">LMC</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_lmc" name="lmc" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_lms">LMS</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_lms" name="lms" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_lrrq">LRRQ</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_lrrq" name="lrrq" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_lrr_dm">LRR_DM</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_lrr_dm" name="lrr_dm" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_mbbz">MBBZ</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_mbbz" name="mbbz" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_sdbj">SDBJ</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_sdbj" name="sdbj" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_sjgsdq">SJGSDQ</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_sjgsdq" name="sjgsdq" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_sjlmc">SJLMC</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_sjlmc" name="sjlmc" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_sqlxh">SQLXH</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_sqlxh" name="sqlxh" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_tjlx">TJLX</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_tjlx" name="tjlx" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_url">URL</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_url" name="url" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_uuid">UUID</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_uuid" name="uuid" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_xgrq">XGRQ</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_xgrq" name="xgrq" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_xgr_dm">XGR_DM</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_xgr_dm" name="xgr_dm" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_xh">XH</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_xh" name="xh" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_xsgs">XSGS</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_xsgs" name="xsgs" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_xsxh">XSXH</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_xsxh" name="xsxh" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_xzcs">XZCS</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_xzcs" name="xzcs" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_ycbj">YCBJ</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_ycbj" name="ycbj" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="f_zsfs">ZSFS</label>
+                                    <div class="col-sm-9">
+                                        <input id="f_zsfs" name="zsfs" type="text" placeholder="" class="input-xlarge" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <input type="reset" name="freset" style="display: none;" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="append_modify_btn" onclick="">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>

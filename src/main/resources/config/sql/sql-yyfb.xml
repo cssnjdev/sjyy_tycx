@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlfile>
+	<!--Author:胡锐  function:应用发布-->
+	<sql id="SQL_YYFB_QUERYWJJ" describ="查询文件夹" isLoad="true">
+		select folder_id id, pfolder_id pid, mc name,pxxh from t_yyfw_FOLDER  where folderlx_dm = '02' order by pxxh
+	</sql>
+	<sql id="SQL_YYFB_queryYyById" describ="根据点击的文件夹，查询该文件夹下的应用" isLoad="true">
+		select a.fxyy_id, 
+       fxyy_mc,  
+       a.fxyylx_dm,
+       a.lr_sj, 
+       a.lrry_dm, 
+       a.fb_sj, 
+       a.fbrdm,  
+        decode( a.zt_bj,'0','新建','1','停用','已发布' ) rwzt, 
+         b.fxyylx_mc,v.swryxm fbrmc,v2.swryxm lryymc 
+        from t_yyfw_fxyy a, dm_yyfw_fxyylx b,DM_GY_SWRY v,DM_GY_SWRY v2 
+         where ( a.gnlj = '' or (a.gnlj is null and '' is null) ) 
+       and a.fxyylx_dm = b.fxyylx_dm and a.fbrdm=v.swry_dm(+) and a.lrry_dm=v2.swry_dm(+)
+	</sql>
+	<sql id="" describ="根据fxyyid查询基本信息" isLoad="true">
+	select t.fxyy_id,
+       t.fxyy_mc,
+       t.fxyylx_dm,
+       t.banben,
+       t.gnms,
+       t.gnlj,
+       to_char(t.fb_sj, 'yyyy-mm-dd') fbsj,
+       t.zt_bj,
+       t.fbrdm,
+       t.gjz,
+       t.yyurl,
+       v.swryxm fbrmc
+  from  t_yyfw_fxyy t, DM_GY_SWRY v
+ where t.fbrdm = v.swry_dm(+)
+   and fxyy_id = ?
+	</sql>
+	<sql id="SQL_YYFB_queryYylj" describ="查询应用路径" isLoad="true">
+	select mc
+  from t_yyfw_FOLDER
+connect by prior pfolder_id = folder_id
+ start with folder_id = ?
+	</sql>
+	<sql id="SQL_YYFB_queryKfxx" describ="查询开发信息" isLoad="true">
+	select xqdw_dm, xqry_dm, kfdw_dm, kfry_dm, kfrlxdh, kfrlxfs, jskj, ywkj
+  from  t_yyfw_fxyy
+ where fxyy_id = ? 
+	</sql>
+	<sql id="SQL_YYFB_querySjly" describ="查询数据来源" isLoad="true">
+	SELECT A.ZH_NAME     ZHNAME,
+       A.EN_NAME     ENNAME,
+       A.SM,
+       A.DATAUNIT_ID DATAUNITID,
+       B.PCODE,
+       B.CODE,
+       LV,
+       C.MC
+       FROM SYS_DATAUNIT A,
+       (select *
+       from (SELECT DATAUNIT_ID PCODE, PREDATAUNIT_ID CODE, LEVEL LV
+       FROM SYS_dataunit_PRE
+       CONNECT BY PRIOR DATAUNIT_ID = PREDATAUNIT_ID
+       START WITH DATAUNIT_ID in
+       (select a.dataunit_id
+       from SYS_DATAUNIT   a,
+       T_YYFW_SJLY  b,
+       sys_datasource d
+       where b.sjly_dm = a.dataunit_id
+       and b.fxyy_id =?
+       and a.datasource_id = d.datasource_id(+)))
+       where lv > 1        union all
+       select a.dataunit_id PCODE, '' CODE, 1 lv
+      from SYS_DATAUNIT a, T_YYFW_SJLY b
+       where b.sjly_dm = a.dataunit_id
+       and b.fxyy_id = ?)
+       B, sys_datasource C
+        WHERE A.DATAUNIT_ID = B.PCODE
+       AND A.DATASOURCE_ID = C.DATASOURCE_ID(+)
+       AND A.IS_LAST_VERSION = 'Y'
+	</sql>
+	<sql id="SQL_YYFB_queryBq" describ="查询标签" isLoad="true">
+	select a.bqid, b.bq_mc bqmc
+       from t_yyfw_fxyy_bq a, t_yyfw_bq b
+       where a.bqid = b.bq_id and a.fxyyid = ?
+	</sql>
+	<sql id="SQL_YYFB_queryFxyy" describ="查询分析应用" isLoad="true">
+	select *
+  from t_yyfw_fxyy t
+ where (1 = ? or t.fxyy_mc like ?)
+   and (1 = ? or t.fxyylx_dm = ?)
+   and (1 = ? or t.zt_bj = ?)
+	</sql>
+	<sql id="SQL_YYFB_queryFjxx" describ="查询附件信息" isLoad="true">
+	select fj_mc fjmc,fjlx_dm fjlxdm,fjgs,fjdx,cclxbj,fj_id fjid ,'下载' AS CZ from t_YYFW_FXYY_FJ where fxyy_id=? and xybj=1
+	</sql>
+	<sql id="SQL_YYFB_querySjdy" describ="查询数据单元" isLoad="true">
+	   select rownum num,
+       a.dataunit_id  ,
+       a.owner,
+       a.zh_name sjly,
+       a.en_name,
+       d.ds_name datasource
+       from sys_dataunit a, t_YYFW_SJLY b ,sys_datasource d
+       where b.sjly_dm = a.dataunit_id
+        and a.version_id=b.version
+       and b.fxyy_id = ?
+       and a.datasource_id = d.datasource_id(+)
+	</sql>
+	<sql id="SQL_YYFB_querySjk" describ="查询数据库" isLoad="true">
+	select datasource_id code , ds_name caption 
+       from sys_datasource t 
+       where upper(is_valid) = upper('Y')
+       and not exists  (select 1  
+       from sys_xtcs g  
+       where upper(csbm) = upper('YWK_DATASOURCE') 
+       and instr(g.csz, t.datasource_id) > 0 )  
+	</sql>
+	<sql id="SQL_YYFB_querySjdyByCxtj" describ="查询数据单元根据查询条件" isLoad="true">
+	select * from (   
+        select  t.* , rownum rn  from( 
+        select nvl(a.owner, '') owner,
+        a.en_name,   
+        a.zh_name,     
+        a.du_desc sm,              
+        version_id version, 
+        a.dataunit_id   sjly_dm 
+        from sys_dataunit a  
+        where  ( 1 = ? or a.datasource_id =?  )      
+        and (1 =? or a.owner =? )              
+        and (1 = ? or upper(a.en_name) like '%' || upper(?) || '%' ) 
+        and (1 = ? or a.zh_name like ?  ) 
+        and  a.dataunit_id not in(select b.sjly_dm from t_YYFW_SJLY b where b.fxyy_id=?)                 
+       ) t   )
+	</sql>
+	<sql id="SQL_YYFB_querySjWjjByFolder" describ="查询上级文件夹" isLoad="true">
+	select mc  	 from t_yyfw_FOLDER  connect by prior pfolder_id = folder_id 
+	  start with folder_id = ?
+	</sql>
+	<sql id="SQL_YYFB_queryJbxx" describ="根据fxyyid查询基本信息" isLoad="true">
+	select t.fxyy_id,
+       t.fxyy_mc,
+       t.fxyylx_dm,
+       t.banben,
+       t.gnms,
+       t.gnlj,
+       to_char(t.fb_sj, 'yyyy-mm-dd') fbsj,
+       t.zt_bj,
+       t.fbrdm,
+       t.gjz,
+       t.yyurl,
+       v.swryxm fbrmc,
+       nvl(t.gy_valid,'N') gy_valid,
+       t.gyurl
+  from t_yyfw_fxyy t, DM_GY_SWRY v
+ where t.fbrdm = v.swry_dm(+)
+   and fxyy_id = ?
+	</sql>
+	<sql id="SQL_YYFB_DEL_SJLY" describ="根据fxyyid sjly_dm 删除应用的数据来源" isLoad="true">
+	 	delete t_YYFW_SJLY t where t.fxyy_id=? and sjly_dm=?  
+	</sql>
+</sqlfile>

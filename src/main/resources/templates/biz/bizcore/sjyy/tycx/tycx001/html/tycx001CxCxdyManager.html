@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>查询定义</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap-multiselect.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+
+
+
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+	<script type="text/javascript"   data-th-src="@{/js/tycx/jscolor.js}"></script>
+	<script type="text/javascript"   data-th-src="@{/js/tycx/bootstrap-multiselect.js}"></script>
+
+	<script  data-th-src="@{/js/tycx/js/tycx001CxCxdyManager.js}"></script>
+
+   </head>
+<body >
+<div class="ui-layout-north clear-border"     >
+
+	<div id="top" class="w_p100 top box p10_r_l">
+		
+		 	   <div class="w_p100 m_center relative ">
+		 	          <span class=" top_toolbar"  >
+			              <a href="javascript:void(0);"th:id="baocun" class="btn btn-sm btn-primary no-radius" onclick="saveOrUpdate()">
+		                       <span class="glyphicon glyphicon-save"></span>保存
+		                    </a>
+			           </span>
+			            <span class=" top_toolbar"  >
+			              <a href="javascript:void(0);"th:id="cshjgl"class="btn btn-sm btn-primary no-radius" disabled onclick="initResult()">
+		                        <span class="glyphicon glyphicon-save"></span>初始化结果列
+		                    </a>
+			           </span>	
+			            <span class=" top_toolbar"  >
+			              <a href="javascript:void(0);"th:id="zdyjgl"class="btn btn-sm btn-primary no-radius" disabled onclick="addZdyCxJgl()">
+		                        <span class="glyphicon glyphicon-save"></span>自定义结果列
+		                    </a>
+			           </span>	
+			            <span   class=" top_toolbar"  >
+			              <a href="javascript:void(0);"th:id="cshtjl"class="btn btn-sm btn-primary no-radius" disabled onclick="initCxtjl()">
+		                        <span class="glyphicon glyphicon-save"></span>初始化条件列
+		                    </a>
+			           </span>	
+			            <span class=" top_toolbar"  >
+			              <a href="javascript:void(0);"th:id="addTxpz"class="btn btn-sm btn-primary no-radius" disabled onclick="newAddTxpz()">
+		                        <span class="glyphicon glyphicon-save"></span>新增图形配置
+		                    </a>
+			           </span>
+				       <span class=" top_toolbar"  >
+			              <a href="javascript:void(0);"th:id="deleteA"class="btn btn-sm btn-primary no-radius" disabled onclick="deleteA()">
+		                        <span class="glyphicon glyphicon-remove"></span>删除
+		                    </a>
+			           </span>
+			            <span  class=" top_toolbar"  >
+			              <a href="javascript:void(0);"th:id="yulan"class="btn btn-sm btn-primary no-radius"  onclick="view()">
+		                        <span class="glyphicon glyphicon-save"></span>预览
+		                    </a>
+			           </span>
+			           <span  class="top_toolbar">
+			                <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="cssnj_windowBack()">
+		                        <span class="glyphicon glyphicon-back"></span>返回
+		                    </a>
+			           </span>
+			           <span id="top_title" class="abs_right top_title">
+			               	查询定义
+			           </span>
+			           
+			    </div>
+		    
+		         
+		</div>
+
+		<ul id="jgTab_1" class="nav nav-tabs jgTab ">
+		  <li  class="active"><a href='#popular1' data-toggle='tab' >查询定义</a></li> 
+		  <li  ><a href='#recent1'  data-toggle='tab' >查询结果</a></li> 
+		  <li  ><a href='#recent2'  data-toggle='tab' >查询条件</a></li> 
+		  <li  ><a href='#recent3'  data-toggle='tab' >图形配置</a></li> 
+<!--		  <li  ><a href='#recent4'  data-toggle='tab' >应用发布</a></li>-->
+		</ul>
+</div> 
+
+<div class="ui-layout-center jgTab tab-content"th:id="tab-content" style="margin: 0 auto;min-height: 500px;">
+
+	<div id="popular1" class="tab-pane fade in active" style="padding: 0;border-bottom:1px #ddd solid; ">
+
+ 	  <form id="cxdyForm"   class="form-horizontal"  >
+			<table class="table" border="0" cellpadding="5" cellspacing="0" style="margin: 0 auto; width: 100%;">
+              <tr>
+                <td width="20%" align="right"  >
+					<strong>SQLXH</strong>
+                </td>
+                <td width="30%" >
+               		<input type="text" th:name="sqlxh"th:id="sqlxh" th:value="${SQLXH}" class="form-control"  disabled />
+                </td>
+                <td width="20%" align="right" >
+					<strong>查询名称:</strong>
+                </td>
+                <td width="30%" >
+               		<input type="text" th:name="sqlmc"th:id="sqlmc" th:value="${SQLMC}" class="form-control" placeholder="请输入查询名称" required  />
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" align="right" >
+					<strong>查询描述:</strong>
+                </td>
+                <td width="80%" colspan="3">
+					<textarea rows="3" cols="10" th:name="cxms"th:id="cxms" class="form-control" th:value="${CXMS}" th:text="${CXMS}" placeholder="请输入查询描述" ></textarea>
+	        	  </td>
+              </tr>           
+              <tr>
+                 <td width="20%" align="right"  >
+                 	<strong>是否显示合计:</strong>
+                 </td>
+                 <td width="30%">
+                    <select name="hjxsbz"th:id="hjxsbz" class="form-control populate" >
+         			<option th:selected="${HJXSBZ=='1'}" value="1">是</option>
+         			<option th:selected="${HJXSBZ=='0'}" value="0">否</option>
+ 					</select>
+ 				 </td>
+                 <td width="20%" align="right" >
+                 	<strong>业务分类:</strong>
+                 </td>
+                 <td width="30%">
+                    <select name="ywy" th:id="ywy" th:value="${ywy}" class="form-control">
+                        <option value=""></option>
+						<option th:selected="${YWY eq c.code}"  th:each="c:${ywflList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+            		</select>
+            	</td>
+              </tr>
+              <tr>
+                 <td width="20%" align="right"  >
+                 	<strong>查询类型:</strong>
+                 </td>
+                 <td width="30%">
+                     <select name="cxlx" th:id="cxlx" th:value="${cxlx}"  class="form-control"  onchange="displayJgl(this.value)">
+                     <option value=""></option>
+						 <option th:selected="${CXLX eq c.code}"    th:each="c:${cxlxList2}"  th:value="${c.code}" th:text="${c.caption}"></option>
+            		</select>
+ 				 </td>
+                 <td align="right">
+                   	<strong>统计分组方式:</strong>
+                 </td>
+                 <td>
+                    <select name="tjfzfs"th:id="tjfzfs"  class="form-control" >
+                       <option  th:selected="${TJFZFS=='0'}"  value="0">单选</option>
+                       <option  th:selected="${TJFZFS=='1'}"  value="1"> 多选</option>
+                    </select>
+                 </td>
+              </tr>
+              <tr>
+                  <td width="20%" align="right">
+                     <strong>显示功能按钮:</strong>
+                  </td>
+                  <td colspan="3">
+                                <input style="margin-left:5px;vertical-align: middle;" type="checkbox" th:name="jglsz"th:value="JGLSZ" th:id="jglsz"/><span id="jglsz1">结果列设置</span>
+						        <input style="margin-left:5px;vertical-align: middle;" type="checkbox" th:name="xq"th:value="XQ" checked="checked"/>详情
+						        <input style="margin-left:5px;vertical-align: middle;" type="checkbox" th:name="sc"th:value="SC" checked="checked"/>收藏
+						        <input style="margin-left:5px;vertical-align: middle;" type="checkbox" th:name="pj"th:value="PJ" checked="checked"/>评价
+						        <input style="margin-left:5px;vertical-align: middle;" type="checkbox" th:name="fk"th:value="FK" checked="checked"/>反馈
+						        <input style="margin-left:5px;vertical-align: middle;" type="checkbox" th:name="ts"th:value="TS" checked="checked"/>推送
+						        <input style="margin-left:5px;vertical-align: middle;" type="checkbox" th:name="fx"th:value="FX" checked="checked"/>分享
+						        <input style="margin-left:5px;vertical-align: middle;" type="checkbox" th:name="gb"th:value="GB" checked="checked"/>关闭
+                  </td>
+              </tr>
+              <tr>
+                 <td width="20%" align="right" >
+                 	<strong>数据源类型:</strong>
+                 </td>
+                 <td width="30%">
+                    <select name="sjylx"th:id="sjylx"th:value="${SJYLX}" class="form-control">
+                    <option value="" ></option>
+						<option   th:selected="${SJYLX eq c.id}"   th:each="c:${sjyList}"  th:value="${c.id}" th:text="${c.name}"></option>
+
+            		</select>
+
+            	</td>
+            	<td width="20%" align="right" >
+                 	<strong>存储过程名称:</strong>
+                 </td>
+                 <td width="30%" >
+					 <input type="text" th:name="ccgcmc"th:id="ccgcmc" class="form-control" th:value="${CCGCMC}" placeholder="请输入存储过程名称"/>
+	        	  </td>
+               </tr>
+              <tr>
+                 <td width="20%" align="right" >
+                 	<strong>SQL/报表名称:</strong>
+                 </td>
+                 <td width="80%" colspan="3">
+					<textarea rows="10" cols="10" th:name="sqlstr"th:id="sqlstr" class="form-control" th:value="${SQLSTR}" th:text="${SQLSTR}" placeholder="请输入SQL/报表名称" ></textarea>
+	        	  </td>
+              </tr>
+              <tr>
+                  <td width="20%" align="right">
+                      <strong>校验按钮:</strong>
+                  </td>
+                  <td colspan="2">
+                  <input type="button"th:value="校验" onclick="checkSqlAndBbmc();"/>
+                  </td>
+              </tr>
+           </table>
+           <input type="hidden"th:id="sqlxh" th:name="sqlxh"th:value="${SQLXH}" />
+				  </form>
+	</div>
+
+	<div id="recent1" class="tab-pane fade in" style="width: 100%;height: 99%;">
+
+		<div class="w_p100" style="background: none;">
+			<div class="w_p96 m_center main_box">
+				<table id="cxjgl" class="display nowrap dataTable "
+					style="text-align: center; border-collapse: collapse; width: 100%; margin-left: 0px;"
+					cellspacing="0" role="grid">
+					<thead style="font-weight:bold;">
+						<tr role="row">
+							<td width="15%" th:name="lmc" classname="leftAlign"
+								do_onclick="openCxjglMx" onclick="openCxjglMx()">字段名</td>
+							<td width="15%" th:name="lms" classname="leftAlign">显示标题</td>
+							<td width="10%" th:name="sjbt" classname="leftAlign">上级标题</td>
+							<td width="10%" th:name="llx" classname="leftAlign" selectData="llxData">列类型</td>
+							<td width="10%" th:name="dqfs" classname="leftAlign"
+								selectData="dqfsData">对齐方式</td>
+							<td width="10%" th:name="tjlx" classname="leftAlign"
+								selectData="tjlxData">统计类型</td>
+							<td width="10%" th:name="xsxh" classname="leftAlign">显示顺序</td>
+							<td width="10%" th:name="zdybj" visible="F">zdybj</td>
+							<td width="10%" th:name="uuid" visible="F">uuid</td>
+						</tr>
+					</thead>
+
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+    <div id="recent2" class="tab-pane fade in" style="width: 100%;height: 99%;">
+		<div class="w_p100" style="background: none;">
+		<div  class="w_p96 m_center main_box" >
+	   <table th:id="cxtjl" class="display nowrap dataTable " style="text-align: center; border-collapse: collapse; width: 100%; margin-left: 0px;" cellspacing="0" role="grid">
+		 	 	<thead>
+			          <tr role="row">
+							<td width="25%" th:name="lmc" classname="leftAlign" do_onclick="openCxtjlMx" onclick=""> 字段名 </td>
+							<td width="25%" th:name="tjmc" classname="leftAlign"> 中文名称  </td>
+							<td width="15%" th:name="llx" classname="leftAlign" selectData="llxData"> 条件类型  </td>
+							<td width="15%" th:name="dmsql" classname="leftAlign"> 翻译结果集  </td>
+							<td width="15%" th:name="xsxh" classname="leftAlign"> 显示顺序  </td>
+							<td width="10%" th:name="uuid" visible="F"> uuid  </td>
+			          </tr>
+		      	</thead>
+
+	     	</table>
+ </div>
+ </div>
+	</div>
+
+	 <div id="recent3" class="tab-pane fade in" style="width: 100%;height: 99%;">
+	  <div class="w_p100" style="background: none;">
+		<div  class="w_p96 m_center main_box" >
+	   		<table th:id="txpzxx" class="display nowrap dataTable " style="text-align: center; border-collapse: collapse; width: 100%; margin-left: 0px;" cellspacing="0" role="grid">
+		 	 	<thead>
+			          <tr role="row">
+						    <td name="checkbox"  dataType="dt_checkbox"  width="5"> </td>
+							<td width="25%" th:name="title" classname="leftAlign" do_onclick="addTxpz" > 标题</td>
+							<td width="25%" th:name="txlx" classname="leftAlign" selectData="txlxData"> 图形类型  </td>
+							<td width="15%" th:name="hzb" classname="leftAlign" > 横坐标 </td>
+							<td width="15%" th:name="zzb" classname="leftAlign" > 纵坐标 </td>
+							<td width="15%" th:name="fontsize" classname="leftAlign"> 字体大小  </td>
+							<td width="10%" th:name="uuid" visible="F"> uuid  </td>
+			          </tr>
+		      	</thead>
+
+	     	</table>
+    	</div>
+ 	  </div>
+	 </div>
+
+<!--	<div id="recent4" class="tab-pane fade in" style="width: 100%;height: 99%;">-->
+
+<!--	</div>-->
+
+</div>
+<div class="modal fade " th:id="cxjgForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+
+	<div class="modal-dialog" role="document" style="width: 50%;left:0;right: 0;margin:0 auto;">
+				<div class="modal-content">
+					<div class="modal-header qptab_modal-header" th:id="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+							<span aria-hidden="true" th:id="times">×</span>
+						</button>
+						<div class="modal-title qptab_modal-title qptab_modal-title" th:id="myModalLabel">
+							<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span>
+							查询结果详细信息
+						</div>
+					</div>
+					<form id="cxjgform1"   class="form-horizontal"  >
+					<div class="modal-body " style="padding: 0;	overflow: visible; ">
+
+						<div class="container form_container" style="width: 96%	;overflow: visible;">
+
+	 					   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	 列名称:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						         <input type="hidden"  th:name="uuid" th:id="uuid" >
+						          <input type="hidden"  th:name="sqlxh" th:id="sqlxh" th:value="${sqlxh }">
+									<input type="text"  th:name="lmc" th:id="lmc" class="form-control" required="" readonly="readonly">
+						        </div>
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	 列别名:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="lbm"th:id="lmb" class="form-control" required="">
+						        </div>
+						   </div>
+						<div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	显示标题:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="lms"th:id="lms" class="form-control" required="">
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	上级标题:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="sjlmc"th:id="sjlmc" class="form-control" required="">
+						        </div>
+						   </div>
+
+						   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	列类型:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<label><input th:name="jgllx" type="radio"th:value="VARCHAR2"/>字符型</label>
+									<label><input th:name="jgllx" type="radio"th:value="DATE"/>日期型</label>
+									<label><input th:name="jgllx" type="radio"th:value="NUMBER"/>数值型</label>
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	对齐方式:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<label><input th:name="dqfs2" type="radio"th:value="0"/>居左</label>
+									<label><input th:name="dqfs2" type="radio"th:value="1"/>居中</label>
+									<label><input th:name="dqfs2" type="radio"th:value="2"/>居右</label>
+						        </div>
+						   </div>
+                            <div class="row"th:id="DateDiv" style="display:none">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	日期显示格式:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select th:name="xsgs1"th:id="xsgs1"th:value="${XSGS}" class="form-control">
+                                      <option value="" ></option>
+										<option  th:selected="${XSGS eq c.code}"  th:each="c:${xsgsDateList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+
+            		                </select>
+						        </div>
+
+						   </div>
+						   <div class="row"th:id="NumberDiv" style="display:none">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	数值显示格式:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select th:name="xsgs2"th:id="xsgs2"th:value="${XSGS}" class="form-control">
+                                      <option value="" ></option>
+										<option th:selected="${XSGS eq c.code}"  th:each="c:${xsgsNumList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+
+            		                </select>
+						        </div>
+
+						   </div>
+ 	 					    <div class="row" >
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	代码表名称:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="dmsql"th:id="dmsql" class="form-control" required="">
+						        </div>
+
+						   </div>
+						   <div class="row" style="height:60px;">
+						     <div class="text-right col-sm-2 col-xs-2">
+						      	统计类型:
+						        </div>
+						        <div class="col-sm-9 col-xs-9">
+									<label><input th:name="tjlx2" type="radio"th:value="0"/>不统计</label>
+									<label><input th:name="tjlx2" type="radio"th:value="1"/>分组列</label>
+									<label><input th:name="tjlx2" type="radio"th:value="2"/>统计列-求和</label>
+									<label><input th:name="tjlx2" type="radio"th:value="3"/>统计列-平均</label>
+									<label><input th:name="tjlx2" type="radio"th:value="4"/>统计列-最大值</label>
+									<label><input th:name="tjlx2" type="radio"th:value="5"/>统计列-最小值</label>
+						        </div>
+						   </div>
+						   <div class="row"th:id="zsfsDiv" style="display:none">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	 横向/纵向合计:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select  th:name="zsfs"th:id="zsfs"th:value="${ZSFS}" class="form-control">
+                                      <option value="" ></option>
+                                      <option value="0" >横向合计</option>
+                                      <option value="1" >纵向合计</option>
+                                    </select>
+						        </div>
+						   </div>
+						   <div class="row"th:id="jcbzdlxDiv" style="display:none">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	交叉表字段类型:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select  th:name="jcbzdlx"th:id="jcbzdlx"th:value="${JCBZDLX}" class="form-control" onchange="changeKzlx()">
+                                      <option value="" ></option>
+                                      <option value="0" >普通横向字段</option>
+                                      <option value="1" >横向扩展字段</option>
+                                    </select>
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	  扩展方式:
+						        </div>
+						        <div class="col-sm-3 col-xs-3" >
+									<select  th:name="kzlx"th:id="kzlx"th:value="${KZLX}" class="form-control" readonly="readonly">
+                                      <option value="" ></option>
+                                      <option value="0" >全部扩展</option>
+                                      <option value="1" >仅扩展有数据的</option>
+                                    </select>
+						        </div>
+						   </div>
+						    <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	隐藏标记:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<label><input  th:name="ycbj2" type="radio"th:value="0"/>隐藏</label>
+									<label><input  th:name="ycbj2" type="radio"th:value="1"/>不隐藏</label>
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	锁定标记:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<label><input  th:name="sdbj7" type="radio" th:value="0"/>不锁定</label>
+									<label><input  th:name="sdbj7" type="radio" th:value="1"/>锁定</label>
+						        </div>
+						   </div>
+						   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	层进下钻查询:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="url"th:id="url" class="form-control" required="">
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	下钻参数:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<select  th:name="xzcs"th:id="xzcs"th:value="${XZCS }" th:type="checkbox" class="multiselect" multiple="multiple">
+						          		<!-- <option value="0"></option> -->
+<!--										<option th:selected="${XSGS eq c.code}"  th:each="c:${xzcsList}"  th:value="${c.code}" th:text="${c.caption}"></option>-->
+
+										<option th:checked="${xzcsList eq c}"  th:each="c:${xzcsList}"  th:value="${c}" th:text="${c}"></option>
+
+<!--										<c:forEach items="${xzcsList }" var="node">-->
+<!--						          			<option value="${node }">${node }</option>-->
+<!--						          		</c:forEach>-->
+						          	</select>
+						        </div>
+						   </div>
+						    <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	预警范围:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="yjfw"th:id="yjfw" class="form-control" required="">
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	预警颜色:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="color"th:id="color" class="text color {required:false, hash:true}">
+						        </div>
+						   </div>
+						     <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	技术口径:
+						        </div>
+						        <div class="col-sm-8 col-xs-8" style="height:90px">
+									<textarea  th:name="jskj"th:id="jskj" rows="3" cols="5" class="form-control" style="overflow: visible;" ></textarea>
+
+						        </div>
+
+						   </div>
+			               <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	业务口径:
+						        </div>
+						        <div class="col-sm-8 col-xs-8" style="height:90px">
+									<textarea  th:name="ywkj"th:id="ywkj" rows="3" cols="5" class="form-control" style="overflow: visible;" ></textarea>
+
+						        </div>
+
+						   </div>
+						   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	显示宽度:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="lkd"th:id="lkd" class="form-control" required="">
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	 显示顺序:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="xsxh"th:id="xsxh" class="form-control" required="">
+						        </div>
+						   </div>
+
+					  </div>
+
+					</div>
+
+					<div class="modal-footer">
+ 							<button id="saveBtn" class="btn" type="button" onclick="saveCxjgl();">
+								保存
+							</button>
+ 					</div>
+
+				  </form>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade "th:id="cxtjForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+			<div class="modal-dialog" role="document" style="width: 50%;margin:36px auto;">
+				<div class="modal-content">
+					<div class="modal-header qptab_modal-header"th:id="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+							<span aria-hidden="true"th:id="times">×</span>
+						</button>
+						<div class="modal-title qptab_modal-title qptab_modal-title"th:id="myModalLabel">
+							<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span>
+							查询条件详细信息1
+						</div>
+					</div>
+					<form id="cxtjform1"   class="form-horizontal"  >
+					<div class="modal-body " style="padding: 0;	overflow: visible; ">
+
+						<div class="container form_container" style="width: 96%	;overflow: visible;">
+
+	 					   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	 列名称:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						         <input type="hidden" th:name="uuid"th:id="uuid">
+						          <input type="hidden" th:name="sqlxh"th:id="sqlxh"th:value="${SQLXH }">
+									<input type="text" th:name="lmc"th:id="lmc" class="form-control" required="" disabled="disabled">
+						        </div>
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	显示标题:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="tjmc"th:id="tjmc" class="form-control" required="">
+						        </div>
+						   </div>
+						<div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	上级关联列名称:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select name="sjtjl"th:id="sjtjl" class="form-control populate">
+			 	                       <option value="" ></option>
+										<option  th:selected="${SJTJL eq c.tjmc}" th:each="c:${cxtjlist}"  th:value="${c.tjmc}" th:text="${c.tjmc}"></option>
+
+<!--										<c:forEach items="${cxtjlist}" var="item" varStatus="status" >-->
+<!--            			                 	<option value="${item.tjmc}"  <c:if  test="${item.uuid eq SJTJL}">selected="selected"</c:if> >${item.tjmc}</option>-->
+<!--            			                 </c:forEach>-->
+ 									</select>
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	条件类型:
+						        </div>
+						        <div class="col-sm-3 col-xs-3" style="width:35%;">
+									<input name="tjxylx2" type="radio"th:value="0"/>可选条件
+									<input name="tjxylx2" type="radio"th:value="1"/>必须条件
+									<input name="tjxylx2" type="radio"th:value="2"/>隐藏条件
+						        </div>
+						        </div>
+						   </div>
+
+						   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	列类型:
+						        </div>
+						        <div class="col-sm-6 col-xs-6" style="width:70%;height:35px">
+									<label><input name="tjllx" type="radio" th:value="VARCHAR2"/>字符型</label>
+									<label><input name="tjllx" type="radio"th:value="DATE"/>日期型</label>
+									<label><input name="tjllx" type="radio"th:value="NUMBER"/>数值型</label>
+									<label><input name="tjllx" type="radio"th:value="SELECT"/>单选</label>
+									<label><input name="tjllx" type="radio"th:value="MULTI"/>多选</label>
+									<label><input name="tjllx" type="radio"th:value="SINGLETREE" />单选树</label>
+									<label><input name="tjllx" type="radio"th:value="TREE" />多选树</label>
+						        </div>
+
+						   </div>
+						    <div class="row"th:id="cxtjRqMrzDiv" style="display:none">
+                               <div class="text-right col-sm-2 col-xs-2" style="height:35px">
+						      	默认值:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select name="mrz"th:id="mrz" class="form-control populate" >
+			 	                            <option value="" ></option>
+										<option  th:selected="${MRZ eq c.code}" th:each="c:${mrzList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+
+<!--										<c:forEach items="${mrzList}" var="node">-->
+<!--			 	                              <option value="${node.code}" <c:if test="${MRZ eq node.code}">selected='selected'</c:if>>${node.caption}</option>-->
+<!--			 	                            </c:forEach>-->
+ 										</select>
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2" style="height:35px">
+						      	显示格式:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select name="xsgs"th:id="xsgs" class="form-control populate" >
+			 	                            <option value="" ></option>
+
+										<option th:selected="${XSGS eq c.code}"  th:each="c:${xsgsDateList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+
+<!--										<c:forEach items="${xsgsDateList}" var="node">-->
+<!--			 	                              <option value="${node.code}" <c:if test="${XSGS eq node.code}">selected='selected'</c:if>>${node.caption}</option>-->
+<!--			 	                            </c:forEach>-->
+<!-- 										</select>	-->
+									</select>
+						        </div>
+						    </div>
+		                   <div class="row"th:id="cxtjVarMrzDiv" style="display:none">
+                               <div class="text-right col-sm-2 col-xs-2" style="height:35px">
+						      	默认值:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select name="mrz2"th:id="mrz2" class="form-control populate" >
+			 	                            <option value="" ></option>
+										<option  th:selected="${MRZ eq c.code}"  th:each="c:${zdyList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+
+<!--										<c:forEach items="${zdyList}" var="node">-->
+<!--			 	                              <option value="${node.code}" <c:if test="${MRZ eq node.code}">selected='selected'</c:if>>${node.caption}</option>-->
+<!--			 	                            </c:forEach>-->
+ 										</select>
+						        </div>
+						    </div>
+ 	 					    <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	下拉项目SQL:
+						        </div>
+						        <div class="col-sm-8 col-xs-8" style="height:170px">
+									<textarea  th:name="cxtjdmsql"th:id="cxtjdmsql" rows="6" cols="5" class="form-control" style="overflow: visible;" ></textarea>
+
+						        </div>
+
+						   </div>
+						    <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	自定义参数:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select name="zdycs"th:id="zdycs" class="form-control populate" >
+			 	                            <option value="" ></option>
+										<option  th:selected="${zdycs eq c.code}" th:each="c:${zdyList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+
+<!--										<c:forEach items="${zdyList}" var="node">-->
+<!--			 	                              <option value="${node.code}" <c:if test="${zdycs eq node.code}">selected='selected'</c:if>>${node.code}@${node.caption}</option>-->
+<!--			 	                            </c:forEach>-->
+ 										</select>
+						        </div>
+						          <div class="text-right col-sm-2 col-xs-2">
+						      	 显示顺序:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="xsxh"th:id="xsxh" class="form-control" required="">
+						        </div>
+						   </div>
+
+
+					  </div>
+
+					<div class="modal-footer">
+ 							<button class="btn" type="button" onclick="saveCxtjl();">
+								保存
+							</button>
+ 					</div>
+
+				  </form>
+				</div>
+			</div>
+		</div>
+<div class="modal fade "th:id="txpzxxForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+			<div class="modal-dialog" role="document" style="width: 50%;margin:36px auto;">
+				<div class="modal-content">
+					<div class="modal-header qptab_modal-header"th:id="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+							<span aria-hidden="true"th:id="times">×</span>
+						</button>
+						<div class="modal-title qptab_modal-title qptab_modal-title"th:id="myModalLabel">
+						  <span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-left: 5px;margin-right:5px;"></span>
+							<span id="xztxpzxx">图形配置信息</span>
+						</div>
+					</div>
+					<form id="txpzxxxx"   class="form-horizontal"  >
+					<div class="modal-body " style="padding: 0;	overflow: visible; ">
+
+						<div class="container form_container" style="width: 96%	;overflow: visible;">
+
+	 					   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	 标题:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						        <input type="hidden" th:name="uuid"th:id="uuid">
+						        <input type="hidden" th:name="sqlxh"th:id="sqlxh"th:value="${SQLXH }">
+								<input type="text" th:name="title"th:id="title" class="form-control" required="" readonly="readonly">
+						        </div>
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	 是否显示标题:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select name="visbletitle"th:id="visbletitle" class="form-control populate" >
+			 	                       <option value="0" >不显示</option>
+			 	                       <option value="1" >显示</option>
+ 									</select>
+						        </div>
+						   </div>
+						   <div class="row">
+
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	 图形类型:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<select name="txlx"th:id="txlx" class="form-control populate" >
+			 	                       <option value="" ></option>
+										<option   th:each="c:${txlxList}"  th:value="${c.code}" th:text="${c.caption}"></option>
+
+<!--										<c:forEach items="${txlxList}" var="item" varStatus="status" >-->
+<!--            			                 	<option value="${item.code}"  <c:if  test="${item.code eq txlx}">selected="selected"</c:if> >${item.caption}</option>-->
+<!--            			                 </c:forEach>-->
+ 									</select>
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	 数据源:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+								 <select name="sjylx"th:id="sjylx"th:value="${SJYLX}" class="form-control">
+                                  <option value="" ></option>
+									 <option   th:each="c:${sjyList}"  th:value="${c.id}" th:text="${c.name}"></option>
+
+
+<!--									 <c:forEach items="${sjyList}" var="node">-->
+<!--			 	                     <option value="${node.id}" <c:if test="${SJYLX eq node.id}">selected='selected'</c:if>>${node.name}</option>-->
+<!--			 	                   </c:forEach>	-->
+            		             </select>
+						        </div>
+						   </div>
+						<div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	横坐标:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<!-- <input type="text" th:name="hzb"th:id="hzb" class="form-control" required=""> -->
+									<select name="hzb"th:id="hzb"th:value="${XZCS }" class="form-control">
+						          	     <option value=""></option>
+										<option   th:each="c:${xzcsList}"  th:value="${c}" th:text="${c}"></option>
+
+						          	</select>
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	横坐标单位:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="hzbdw"th:id="hzbdw" class="form-control" required="">
+						        </div>
+						   </div>
+
+						   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	纵坐标:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<!--<input type="text" th:name="zzb"th:id="zzb" class="form-control" required="">-->
+									<select name="zzb"th:id="zzb"th:value="${XZCS }" class="form-control">
+						          	     <option value=""></option>
+										<option   th:each="c:${xzcsList}"  th:value="${c}" th:text="${c}"></option>
+
+<!--										<c:forEach items="${xzcsList }" var="node">-->
+<!--						          			<option value="${node }">${node }</option>-->
+<!--						          		</c:forEach>-->
+						          	</select>
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	纵坐标单位:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="zzbdw"th:id="zzbdw" class="form-control" required="">
+						        </div>
+						   </div>
+                          <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	纵坐标名称:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="zzbmc"th:id="zzbmc" class="form-control" required="">
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	横坐标名称:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="hzbmc"th:id="hzbmc" class="form-control" required="">
+						        </div>
+						   </div>
+						    <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	横坐标倾斜度:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="xqxds"th:id="xqxds" class="form-control" required="" onblur="checkNumber(this.value);">
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	纵坐标倾斜度:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="yqxds"th:id="yqxds" class="form-control" required="" onblur="checkNumber(this.value);">
+						        </div>
+						   </div>
+						   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	左边距:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="x"th:id="x" class="form-control" required="" onblur="checkNumber(this.value);">														
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	右边距:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="x2"th:id="x2" class="form-control" required="" onblur="checkNumber(this.value);">
+						        </div>
+						   </div>
+						   <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	上边距:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="y"th:id="y" class="form-control" required="" onblur="checkNumber(this.value);">
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	下边距:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+						          	<input type="text" th:name="y2"th:id="y2" class="form-control" required="" onblur="checkNumber(this.value);">
+						        </div>
+						   </div>
+ 	 					    <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	字体大小:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="fontsize"th:id="fontsize" class="form-control" required="" onblur="checkNumber(this.value);">
+						        </div>
+						         <div class="text-right col-sm-2 col-xs-2">
+						      	存储过程:
+						        </div>
+						        <div class="col-sm-3 col-xs-3">
+									<input type="text" th:name="ccgcmc"th:id="ccgcmc" class="form-control" required="">
+						        </div>
+						   </div>						    						  
+						     <div class="row">
+						        <div class="text-right col-sm-2 col-xs-2">
+						      	SQL:
+						        </div>
+						        <div class="col-sm-8 col-xs-8" style="height:90px">
+									<textarea  th:name="sql"th:id="sql" rows="3" cols="5" class="form-control" style="overflow: visible;" ></textarea>
+
+						        </div>
+						   </div>
+					  </div>
+					</div>		
+					<div class="modal-footer">
+ 							<button class="btn" type="button" onclick="selectModifyOrSave();">   
+								保存
+							</button>
+ 					</div>	
+				  </form>				
+				</div>
+			</div>
+		</div>
+<div class="cssnj_data" dataname="tjlxData"  th:id="tjlxData"  th:text="${tjlxData}" th:value=${tjlxData}></div>
+
+<div class="cssnj_data" dataname="llxData" th:id="llxData" th:text="${llxData}" th:value=${llxData}></div>
+<div class="cssnj_data" dataname="dqfsData" th:id="dqfsData" th:text="${dqfsData}" th:value=${dqfsData}></div>
+<div class="cssnj_data" dataname="txlxData" th:id="txlxData" th:text="${txlxData}" th:value=${txlxData}></div>
+</body>
+
+
+</html>

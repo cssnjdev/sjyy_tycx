@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwks.bizcore.tycx.core.mapping.mapper.Tycx001CxCxtjdyMapper">
+    <resultMap id="tycx001CxCxtjdyPojoMap" type="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxtjdyPojo">
+        <result column="dmsql" property="dmsql" />
+        <result column="fzzdbz" property="fzzdbz" />
+        <result column="jgcj" property="jgcj" />
+        <result column="jglx" property="jglx" />
+        <result column="jssjzd" property="jssjzd" />
+        <result column="jylx" property="jylx" />
+        <result column="jys" property="jys" />
+        <result column="jyzh" property="jyzh" />
+        <result column="llx" property="llx" />
+        <result column="lmc" property="lmc" />
+        <result column="lrrq" property="lrrq" />
+        <result column="lrr_dm" property="lrr_dm" />
+        <result column="mbbz" property="mbbz" />
+        <result column="mrz" property="mrz" />
+        <result column="mrzxsbz" property="mrzxsbz" />
+        <result column="sjgsdq" property="sjgsdq" />
+        <result column="sjtjl" property="sjtjl" />
+        <result column="sm" property="sm" />
+        <result column="sqlxh" property="sqlxh" />
+        <result column="swjgtreescgz" property="swjgtreescgz" />
+        <result column="tjmc" property="tjmc" />
+        <result column="tjxylx" property="tjxylx" />
+        <result column="uuid" property="uuid" />
+        <result column="xgrq" property="xgrq" />
+        <result column="xgr_dm" property="xgr_dm" />
+        <result column="xh" property="xh" />
+        <result column="xsgs" property="xsgs" />
+        <result column="xsxh" property="xsxh" />
+        <result column="zdycs" property="zdycs" />
+        <result column="zdykd" property="zdykd" />
+        <result column="znxz" property="znxz" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        dmsql,
+        fzzdbz,
+        jgcj,
+        jglx,
+        jssjzd,
+        jylx,
+        jys,
+        jyzh,
+        llx,
+        lmc,
+        to_char(lrrq,'yyyy-mm-dd hh24:mi:ss') lrrq,
+        lrr_dm,
+        mbbz,
+        mrz,
+        mrzxsbz,
+        sjgsdq,
+        sjtjl,
+        sm,
+        sqlxh,
+        swjgtreescgz,
+        tjmc,
+        tjxylx,
+        uuid,
+        to_char(xgrq,'yyyy-mm-dd hh24:mi:ss') xgrq,
+        xgr_dm,
+        xh,
+        xsgs,
+        xsxh,
+        zdycs,
+        zdykd,
+        znxz
+    </sql>
+    <sql id="Base_Param_List" >
+        #{dmsql},
+        #{fzzdbz},
+        #{jgcj},
+        #{jglx},
+        #{jssjzd},
+        #{jylx},
+        #{jys},
+        #{jyzh},
+        #{llx},
+        #{lmc},
+        #{lrrq},
+        #{lrr_dm},
+        #{mbbz},
+        #{mrz},
+        #{mrzxsbz},
+        #{sjgsdq},
+        #{sjtjl},
+        #{sm},
+        #{sqlxh},
+        #{swjgtreescgz},
+        #{tjmc},
+        #{tjxylx},
+        #{uuid},
+        #{xgrq},
+        #{xgr_dm},
+        #{xh},
+        #{xsgs},
+        #{xsxh},
+        #{zdycs},
+        #{zdykd},
+        #{znxz}
+    </sql>
+
+    <select id="select" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxtjdyPojo" resultType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxtjdyPojo" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  CX_CXTJDY t
+       where 1=1
+            and  t.sqlxh = #{sqlxh}  order by t.xsxh
+    </select>
+
+    <select id="selectByPKey" resultMap="tycx001CxCxtjdyPojoMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from CX_CXTJDY
+        where 1=1  
+         <if test="uuid != null" >
+              and  uuid = #{uuid}
+            </if>
+    </select>
+    <!--根据主键删除-->
+    <delete id="deleteByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxtjdyPojo">
+        delete from CX_CXTJDY t
+        where
+         t.sqlxh = #{sqlxh}
+    </delete>
+    <insert id="insert" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxtjdyPojo" >
+        insert into CX_CXTJDY (
+        <include refid="Base_Column_List" />
+        )
+        values (<include refid="Base_Param_List" />)
+    </insert>
+    <insert id="insertSelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxtjdyPojo" >
+        insert into CX_CXTJDY
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="dmsql != null and dmsql != ''" >
+                dmsql,
+            </if>
+            <if test="fzzdbz != null and fzzdbz != ''" >
+                fzzdbz,
+            </if>
+            <if test="jgcj != null and jgcj != ''" >
+                jgcj,
+            </if>
+            <if test="jglx != null and jglx != ''" >
+                jglx,
+            </if>
+            <if test="jssjzd != null and jssjzd != ''" >
+                jssjzd,
+            </if>
+            <if test="jylx != null and jylx != ''" >
+                jylx,
+            </if>
+            <if test="jys != null and jys != ''" >
+                jys,
+            </if>
+            <if test="jyzh != null and jyzh != ''" >
+                jyzh,
+            </if>
+            <if test="llx != null and llx != ''" >
+                llx,
+            </if>
+            <if test="lmc != null and lmc != ''" >
+                lmc,
+            </if>
+            <if test="lrrq != null and lrrq != ''" >
+                lrrq,
+            </if>
+            <if test="lrr_dm != null and lrr_dm != ''" >
+                lrr_dm,
+            </if>
+            <if test="mbbz != null and mbbz != ''" >
+                mbbz,
+            </if>
+            <if test="mrz != null and mrz != ''" >
+                mrz,
+            </if>
+            <if test="mrzxsbz != null and mrzxsbz != ''" >
+                mrzxsbz,
+            </if>
+            <if test="sjgsdq != null and sjgsdq != ''" >
+                sjgsdq,
+            </if>
+            <if test="sjtjl != null and sjtjl != ''" >
+                sjtjl,
+            </if>
+            <if test="sm != null and sm != ''" >
+                sm,
+            </if>
+            <if test="sqlxh != null and sqlxh != ''" >
+                sqlxh,
+            </if>
+            <if test="swjgtreescgz != null and swjgtreescgz != ''" >
+                swjgtreescgz,
+            </if>
+            <if test="tjmc != null and tjmc != ''" >
+                tjmc,
+            </if>
+            <if test="tjxylx != null and tjxylx != ''" >
+                tjxylx,
+            </if>
+            <if test="uuid != null and uuid != ''" >
+                uuid,
+            </if>
+            <if test="xgrq != null and xgrq != ''" >
+                xgrq,
+            </if>
+            <if test="xgr_dm != null and xgr_dm != ''" >
+                xgr_dm,
+            </if>
+            <if test="xh != null and xh != ''" >
+                xh,
+            </if>
+            <if test="xsgs != null and xsgs != ''" >
+                xsgs,
+            </if>
+            <if test="xsxh != null and xsxh != ''" >
+                xsxh,
+            </if>
+            <if test="zdycs != null and zdycs != ''" >
+                zdycs,
+            </if>
+            <if test="zdykd != null and zdykd != ''" >
+                zdykd,
+            </if>
+            <if test="znxz != null and znxz != ''" >
+                znxz,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="dmsql != null and dmsql != ''" >
+                    #{dmsql},
+            </if>
+            <if test="fzzdbz != null and fzzdbz != ''" >
+                    #{fzzdbz},
+            </if>
+            <if test="jgcj != null and jgcj != ''" >
+                    #{jgcj},
+            </if>
+            <if test="jglx != null and jglx != ''" >
+                    #{jglx},
+            </if>
+            <if test="jssjzd != null and jssjzd != ''" >
+                    #{jssjzd},
+            </if>
+            <if test="jylx != null and jylx != ''" >
+                    #{jylx},
+            </if>
+            <if test="jys != null and jys != ''" >
+                    #{jys},
+            </if>
+            <if test="jyzh != null and jyzh != ''" >
+                    #{jyzh},
+            </if>
+            <if test="llx != null and llx != ''" >
+                    #{llx},
+            </if>
+            <if test="lmc != null and lmc != ''" >
+                    #{lmc},
+            </if>
+            <if test="lrrq != null and lrrq != ''" >
+                    to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null and lrr_dm != ''" >
+                    #{lrr_dm},
+            </if>
+            <if test="mbbz != null and mbbz != ''" >
+                    #{mbbz},
+            </if>
+            <if test="mrz != null and mrz != ''" >
+                    #{mrz},
+            </if>
+            <if test="mrzxsbz != null and mrzxsbz != ''" >
+                    #{mrzxsbz},
+            </if>
+            <if test="sjgsdq != null and sjgsdq != ''" >
+                    #{sjgsdq},
+            </if>
+            <if test="sjtjl != null and sjtjl != ''" >
+                    #{sjtjl},
+            </if>
+            <if test="sm != null and sm != ''" >
+                    #{sm},
+            </if>
+            <if test="sqlxh != null and sqlxh != ''" >
+                    #{sqlxh},
+            </if>
+            <if test="swjgtreescgz != null and swjgtreescgz != ''" >
+                    #{swjgtreescgz},
+            </if>
+            <if test="tjmc != null and tjmc != ''" >
+                    #{tjmc},
+            </if>
+            <if test="tjxylx != null and tjxylx != ''" >
+                    #{tjxylx},
+            </if>
+            <if test="uuid != null and uuid != ''" >
+                    #{uuid},
+            </if>
+            <if test="xgrq != null and xgrq != ''" >
+                    to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null and xgr_dm != ''" >
+                    #{xgr_dm},
+            </if>
+            <if test="xh != null and xh != ''" >
+                    #{xh},
+            </if>
+            <if test="xsgs != null and xsgs != ''" >
+                    #{xsgs},
+            </if>
+            <if test="xsxh != null and xsxh != ''" >
+                    #{xsxh},
+            </if>
+            <if test="zdycs != null and zdycs != ''" >
+                    #{zdycs},
+            </if>
+            <if test="zdykd != null and zdykd != ''" >
+                    #{zdykd},
+            </if>
+            <if test="znxz != null and znxz != ''"  >
+                    #{znxz},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPKeySelective" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxtjdyPojo" >
+        update CX_CXTJDY
+        <trim prefix="set" suffixOverrides="," >
+            <if test="dmsql != null" >
+                dmsql =#{dmsql},
+            </if>
+            <if test="fzzdbz != null" >
+                fzzdbz =#{fzzdbz},
+            </if>
+            <if test="jgcj != null" >
+                jgcj =#{jgcj},
+            </if>
+            <if test="jglx != null" >
+                jglx =#{jglx},
+            </if>
+            <if test="jssjzd != null" >
+                jssjzd =#{jssjzd},
+            </if>
+            <if test="jylx != null" >
+                jylx =#{jylx},
+            </if>
+            <if test="jys != null" >
+                jys =#{jys},
+            </if>
+            <if test="jyzh != null" >
+                jyzh =#{jyzh},
+            </if>
+            <if test="llx != null" >
+                llx =#{llx},
+            </if>
+            <if test="lmc != null" >
+                lmc =#{lmc},
+            </if>
+            <if test="lrrq != null" >
+                lrrq =to_date(#{lrrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="lrr_dm != null" >
+                lrr_dm =#{lrr_dm},
+            </if>
+            <if test="mbbz != null" >
+                mbbz =#{mbbz},
+            </if>
+            <if test="mrz != null" >
+                mrz =#{mrz},
+            </if>
+            <if test="mrzxsbz != null" >
+                mrzxsbz =#{mrzxsbz},
+            </if>
+            <if test="sjgsdq != null" >
+                sjgsdq =#{sjgsdq},
+            </if>
+            <if test="sjtjl != null" >
+                sjtjl =#{sjtjl},
+            </if>
+            <if test="sm != null" >
+                sm =#{sm},
+            </if>
+            <if test="sqlxh != null" >
+                sqlxh =#{sqlxh},
+            </if>
+            <if test="swjgtreescgz != null" >
+                swjgtreescgz =#{swjgtreescgz},
+            </if>
+            <if test="tjmc != null" >
+                tjmc =#{tjmc},
+            </if>
+            <if test="tjxylx != null" >
+                tjxylx =#{tjxylx},
+            </if>
+            <if test="uuid != null" >
+                uuid =#{uuid},
+            </if>
+            <if test="xgrq != null" >
+                xgrq =to_date(#{xgrq},'yyyy-mm-dd hh24:mi:ss'),
+            </if>
+            <if test="xgr_dm != null" >
+                xgr_dm =#{xgr_dm},
+            </if>
+            <if test="xh != null" >
+                xh =#{xh},
+            </if>
+            <if test="xsgs != null" >
+                xsgs =#{xsgs},
+            </if>
+            <if test="xsxh != null" >
+                xsxh =#{xsxh},
+            </if>
+            <if test="zdycs != null" >
+                zdycs =#{zdycs},
+            </if>
+            <if test="zdykd != null" >
+                zdykd =#{zdykd},
+            </if>
+            <if test="znxz != null" >
+                znxz =#{znxz},
+            </if>
+        </trim>
+        where
+        uuid=#{uuid}
+    </update>
+    <update id="updateByPKey" parameterType="com.cwks.bizcore.tycx.core.mapping.pojo.Tycx001CxCxtjdyPojo" >
+        update  CX_CXTJDY set
+        dmsql = #{dmsql},
+        fzzdbz = #{fzzdbz},
+        jgcj = #{jgcj},
+        jglx = #{jglx},
+        jssjzd = #{jssjzd},
+        jylx = #{jylx},
+        jys = #{jys},
+        jyzh = #{jyzh},
+        llx = #{llx},
+        lmc = #{lmc},
+        lrrq = #{lrrq},
+        lrr_dm = #{lrr_dm},
+        mbbz = #{mbbz},
+        mrz = #{mrz},
+        mrzxsbz = #{mrzxsbz},
+        sjgsdq = #{sjgsdq},
+        sjtjl = #{sjtjl},
+        sm = #{sm},
+        sqlxh = #{sqlxh},
+        swjgtreescgz = #{swjgtreescgz},
+        tjmc = #{tjmc},
+        tjxylx = #{tjxylx},
+        uuid = #{uuid},
+        xgrq = #{xgrq},
+        xgr_dm = #{xgr_dm},
+        xh = #{xh},
+        xsgs = #{xsgs},
+        xsxh = #{xsxh},
+        zdycs = #{zdycs},
+        zdykd = #{zdykd},
+        znxz = #{znxz}
+        where
+        
+    </update>
+</mapper>

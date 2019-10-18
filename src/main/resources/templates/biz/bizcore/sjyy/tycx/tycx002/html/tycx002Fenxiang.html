@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>功能分享</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+	<script type="text/javascript" language="javascript">
+		var ctx = [[@{/}]];
+	</script>
+	<script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+	<script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+	<script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+	<!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+	<script  data-th-src="@{/js/tycx/common.js}"></script>
+	<script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+	<link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+	<script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+<style type="">
+
+
+.bq{
+  border: 1px solid #C4D3F0;
+  background:#F0F2F5;
+  margin:5px;
+  padding:5px 10px 5px 10px;
+  float: left;
+  position: relative;
+}
+
+.bq .glyphicon-remove{
+	color: #F50843;
+	cursor: pointer;
+	position:absolute;
+	top:-6px;
+	right:-10px;
+}
+ .list-group-item{
+ 	padding:0 10px 0 10px;
+ }
+
+</style>
+
+</head>
+
+<body>
+ 			<div id="top" class="w_p100 top box" >
+		 	    <div class="w_p96 m_center relative " >
+			    	<span id="top_help" class="abs_left top_toolbar"  >
+			        	<a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="saveFenxiang()">
+		                	<span class="glyphicon glyphicon-save"></span>分享
+		                </a>
+					</span>
+			        <span id="top_title" class="abs_right top_title"  >
+			        	功能分享
+			        </span>
+			    </div>
+			</div>
+			
+			<div class="" id="" style="margin: 0 auto;min-height: 300px;">
+				<jsp:useBean id="date" class="java.util.Date"></jsp:useBean>
+				<fmt:formatDate var="currDatetime" value="${date }" type="both" dateStyle="long" pattern="yyyy-MM-dd HH:mm:ss"/>
+				<form id="fxForm"   class="form-horizontal"  >
+					<table class="table" border="0" cellpadding="5" cellspacing="0" style="margin: 0 auto; width: 100%;">
+						<tr>
+                			<td width="20%" align="right"  >
+                				<strong>功能：</strong>
+                			</td>
+                			<td width="70%" >
+                				<input type="hidden" name="fxyyid" id="fxyyid" value="${fxyyid}"  /> 
+			               		<input type="text" name="fxurl" id="fxurl" value="${url}" class="form-control" readonly="readonly" /><!-- ${url } -->
+			                </td>
+			                <td width="10%">
+			                
+			                </td>
+                		</tr>
+						<tr>
+                			<td width="20%" align="right"  >
+                				<strong>分享给：</strong>
+                			</td>
+                			<td width="70%" >
+                			
+ 								<span id="bqbox" style="width: 100%;height: auto;overflow: visible;">
+                   				</span>			               		
+                                
+                    			<input type="hidden" name="jsr_dm" id="jsr_dm"  class="form-control" readonly="readonly" />
+			                </td>
+			                <td width="10%">
+			                    <bottun class="btn btn-sm btn-primary" onclick="$('#fxry').slideDown();"><span class="glyphicon glyphicon-plus"></span> 添加</bottun>
+			                </td>
+                		</tr>
+						<tr>
+                			<td width="20%" align="right"  >
+                				<strong>分享理由：</strong>
+                			</td>
+                			<td width="70%" >
+                			   <div style="width: 100%;height:0;position: relative;">
+                                	<div  id="fxry"  style="display: none; position: absolute;left: 0;top:-10px;height:300px;width: 100%;border: 1px solid #ddd;background: #fff;padding: 8px;">
+                                		 <form>
+                                		     <table width="100%">
+                                		        <tr>
+                                		          <td width="9%" align="right">税务机关&nbsp;</td>
+                                		          <td width="20%">
+                                		           <div style="position: relative; width: 100%;">
+                                		                <input id="n_swjg_mc" type="text" class="form-control" readonly="readonly" onclick="$('#jgbox').slideToggle();"/>
+                                		                <input id="n_swjg_dm" type="hidden"  /> 
+                                		                <div id="jgbox" style="z-index:9999; position: absolute;width:300px;border: 1px solid #dde;background: #fff; overflow: auto; height: 250px;display:none;">
+                                		                     <ul id="treeDemo" class="ztree allfolder ui-layout-center nicesrc " >
+	    													 </ul>
+                                		                </div>
+                                		           </div>
+                                		           
+                                		          </td>
+                                		          <td width="12%" align="right">
+                                		    		  &nbsp;税务人员代码&nbsp;
+                                		          </td>
+                                		          <td width="20%">
+                                		          		<input id="n_swry_dm" type="text" class="form-control" />
+                                		          </td>
+                                		          <td width="12%" align="right">
+                                		           	   &nbsp;税务人员名称&nbsp;
+                                		          </td>
+                                		          <td width="20%">
+                                		          	<input id="n_swry_mc"type="text" class="form-control" />
+                                		          </td>
+                                		          <td width="9%" >
+                                		              &nbsp;<bottun class="btn btn-sm btn-primary" onclick="searchRy();" >查询</bottun>
+                                		          </td>
+                                		        </tr>
+                                		     </table>
+                                		     <div style=" width: 100%;height:200px; border: 1px solid #ddd;margin-top: 8px;overflow: auto;">
+                                		        <ul id="ryUl" class="list-group">
+                                		        	 
+                                		        </ul>
+                                		     </div>
+                                		     <div style=" width: 100%;margin-top: 8px;">
+                                		     		 <bottun class="btn btn-sm btn-success" onclick="quedingTj();">确定</bottun>
+                                		     		 <bottun class="btn btn-sm btn-info"  onclick="$('#fxry').slideUp();" >取消</bottun>
+                                		     </div>
+                                		 </form>
+                                	</div>
+                                </div>
+                			
+			               		<textarea name="fxly" id="fxly" class="form-control" bizvalidate="false" widget="true" style="width: 99.9%; height: 165px; float: left;"></textarea>
+			                </td>
+			                <td width="10%">
+			                
+			                </td>
+                		</tr>
+					</table>
+				</form>
+			</div>
+  	
+  	
+  	<!-- 悬浮层 -->
+	<div class='modal fade' id='loading' tabindex='-1' role='dialog'
+		aria-labelledby='myModalLabel' data-backdrop='static'>
+		<div class='modal-dialog' role='document'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<h4 class='modal-title' id='myModalLabel'>
+						<img src="/sys/Amaze UI Portal2/sy/images/zt.png " width="20px;"
+							style="margin-top: -3px;margin-right: 5px;">提示
+					</h4>
+				</div>
+				<div id='loadingText' class='modal-body'>处理中，请稍候。。。</div>
+			</div>
+		</div>
+	</div>
+	<!-- 消息中心结束 -->
+  	
+	<script language="javascript" type="text/javascript">
+	
+		function saveFenxiang(){
+	
+			setJsr_dm();
+			
+			var formData = $("#fxForm").cssnjGetFormData();
+			
+			showLoading("正在保存。。。");
+						
+			$.ajax({
+				type : "POST",
+				dataType : "json",
+				async : false,
+				url:ctx+"tykf/request?tld=YyfwService_saveFenxiang",
+				data:formData,
+				success : function(result) {
+			 		hideLoading();
+					if(result.state==1){
+						alert("分享成功！")
+					}else{
+						
+						alert("分享失败："+result.message);
+						
+					}
+				},
+				error : function(e) {
+					alert("调用后台查看信息失败：" + errorThrown);
+				}
+			});
+			
+			
+		}
+			
+		function drawBq(obj){
+			 
+			$("#bqbox").append('<div class="bq" id="'+obj["bq_id"]+'" > '+obj["bq_mc"]+' <span class="glyphicon glyphicon-remove" title="删除" onclick=\'removeBq("'+obj["bq_id"]+'")\'></span></div>')
+			 
+		}
+	
+		function removeBq(bqid){
+			$(".bq#"+bqid).remove();
+		}
+		
+		function quedingTj(){
+		   
+		    $('#fxry').slideUp();
+		
+			$("input[name='n_rydm']:checked").each(function(){
+			
+			   var id= this.value;
+			   var mc =this.title;
+ 			   if($(".bq#"+id).length<1){
+			  	  $("#bqbox").append('<div class="bq" id="'+id+'" > '+mc+' <span class="glyphicon glyphicon-remove" title="删除" onclick=\'removeBq("'+id+'")\'></span></div>')
+			   }
+			   
+			});
+	
+		}
+		
+		
+		function setJsr_dm(){
+			
+			var arr = new  Array();
+			
+			$(".bq").each(function(){
+				arr.push(this.id);
+			}); 
+			
+			$("#jsr_dm").val(arr.join(","));
+			
+		}
+		
+	
+		function searchRy(){
+			
+			showLoading("正在查询。。。");
+			
+			$("#jgbox").slideUp();
+			
+			var swjg_dms = $("#n_swjg_dm").val();
+			var swry_dm = $("#n_swry_dm").val();
+			var swry_mc = $("#n_swry_mc").val();
+		   
+		     $.ajax({
+		          cache: false,
+		          type: "POST",
+				  url:ctx+"tykf/request?tld=YyfwService_searchFxRy",
+			      data : {
+						"swjg_dms" : swjg_dms,
+						"swry_dm" : swry_dm,
+						"swry_mc" : swry_mc
+				  },
+		          dataType:'json',
+		          async: false,
+		          error:function(XMLHttpRequest, textStatus, errorThrown) {
+		        	hideLoading();
+					alert("调用后台查看信息失败：" + errorThrown);
+					return;
+		          },
+		          success: function(result){
+		        	  hideLoading();
+		        	  if(result.state==1){
+		        	     
+		        	     var list = result.list;
+		        	     $("#ryUl").empty();
+		        	     for(var i=0;i<list.length;i++){
+		        	     
+		        	     	var node =list[i];
+		        	     	
+		        	     	$("#ryUl").append('<li class="list-group-item"><label><input type="checkbox" name ="n_rydm" value="'+node["SWRY_DM"]+'" title="'+node["RYSFMC"]+'"/>&nbsp;&nbsp;'+node["RYSFMC"]+'</label></li>');
+		        	     	
+		        	     	
+		        	     }
+		        	  	
+		        	  
+		        	  }else{
+		        	  
+		        	  		alert(result.message);
+		        	  
+		        	  }
+				       
+		          }
+		    });
+		       
+		}		
+				
+				
+		// 打开load框
+		function showLoading(str) {
+			$("#loadingText").text(str);
+			$("#loading").modal("show");
+		}
+		
+		// 关闭load框
+		function hideLoading() {
+			$("#loading").modal("hide");
+		}
+				
+				
+	</script>
+	
+	<script language="javascript" type="text/javascript">
+		
+		var treeObj = null;
+		
+		$(function(){
+	 
+				$.fn.zTree.init($("#treeDemo"), setting, jgList); // 右侧树
+	 			treeObj = $.fn.zTree.getZTreeObj("treeDemo"); 
+				treeObj.expandAll(true);
+		});
+
+		function zTreeOnCheck(event, treeId, treeNode) {
+			
+			 var nodes = treeObj.getCheckedNodes(true);
+			 
+			 var mcArr=new Array();
+			 var dmArr =new Array();
+			 for(var i=0;i<nodes.length;i++){
+			 
+			 	var node = nodes[i];
+			 	mcArr.push(node["name"]);
+			 	dmArr.push(node["id"]);
+			 	
+			 }
+			 
+			 $("#n_swjg_mc").val(mcArr.join(","));
+			 $("#n_swjg_mc").attr("title",mcArr.join(","));
+			 $("#n_swjg_dm").val(dmArr.join(","));
+			 
+		}; 
+				
+		var setting = {
+		  view: {
+		    showLine: false,
+		    selectedMulti: false,
+		    dblClickExpand: false
+		  },
+		  data: {
+		    simpleData: {
+		      enable: true,
+		      idKey : "id",
+			  pIdKey: "pid",
+			  rootPId: null
+			}
+		  },
+		  callback: {
+		 	onCheck: zTreeOnCheck
+		  },
+		  check: {
+			enable: true,
+			chkboxType: { "Y": "s", "N": "s" }
+			
+ 		  }
+			  
+		};
+
+
+		var jgList =${jgList};
+
+	</script>
+	
+</body>
+
+
+</html>

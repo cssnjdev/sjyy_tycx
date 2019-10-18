@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>添加附件</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}"/>
+    <script type="text/javascript" language="javascript">
+        var ctx = [[@{/}]];
+    </script>
+    <script  data-th-src="@{/js/ie8html5/html5.min.js}"></script>
+    <script  data-th-src="@{/js/ie8html5/respond.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/js/app/public/js/ext/easyui/1.5.1/plugin/font-awesome-4.7.0/css/font-awesome.css}" />
+    <script  data-th-src="@{/js/app/public/js/ext/easyui/1.5.1/jquery.min.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/easyloader.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTables.bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/fixedColumns.dataTables.min.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.dataTables.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/layout-default-latest.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.layout.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/zTreeStyle.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.ztree.core-3.5.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/jsTree/jquery.ztree.excheck-3.5.js}"></script>
+    <!-- jquery.datetimepicker.full.js和jquery.datetimepicker.js不能正常显示中文 -->
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/jquery.datetimepicker.css}" />
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker.full.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/jquery.datetimepicker1.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/btn.css}" />
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/common.css}" />
+    <script  data-th-src="@{/js/tycx/common.js}"></script>
+    <script type="text/javascript"  data-th-src="@{/js/tycx/cssnjAlert.js}"></script>
+    <link rel="stylesheet" type="text/css" data-th-href="@{/css/tycx/dataTableUtil.css}" />
+    <script type="text/javascript"   data-th-src="@{/js/tycx/dataTableUtil.js}"></script>
+
+    <script type="text/javascript"   data-th-src="@{/js/yyfb/ajaxfileupload.js}"></script>
+
+<script language="javascript" type="text/javascript">
+function doUploadFile(){
+ $.cssnj.alert("建设中!");	
+ return;
+ 
+  
+}
+
+function addfj(){
+        var id="${uploadId}";
+    var path = $('#uploadId').val();
+        var data={'path':path};
+
+        if ($.trim(path) == "") {
+            alert("请选择要上传的文件……");
+            return;
+        }
+        $.ajaxFileUpload({
+            url : '/cssnj/upload.action?tld=YyfbService_uploadFj',
+            // url : '/tykf/request?tld=YyfbService_uploadFj',
+            type : 'post',
+            secureuri : false,
+            fileElementId : 'uploadId',
+            dataType : 'json',
+            data:data,
+            success : function(data) {
+                if (data.result) {
+                    //上传成功，将附件信息保存到数据库
+                    var id=data.id;
+                    var fileName=data.fileName;
+                    var userName=data.userName;
+                    var password=data.password;
+                    var filePath=data.filePath;
+                    var fxyy_id=$("#fxyy_id").val();
+                    var fileData={'id':id,'fileName':fileName,'ftpusername':userName,'ftppassword':password,'filePath':filePath,'fxyy_id':fxyy_id};
+                    $.ajax({
+                        type : "POST",  //提交方式
+                        dataType:'json',
+                        async:false,
+                        url:ctx+"tykf/request?tld=YyfbService_saveFjxx",
+                        data:fileData,
+                        success : function(result) {//返回数据根据结果进行相应的处理
+                            var data1={'fxyy_id':fxyy_id};
+                            $("#kfxx_fj").dataTable().fnDestroy();
+                            $("#kfxx_fj",window.parent.document).fyTable(ctx+"tykf/request?tld=YyfbService_queryFjxx&a=" + Math.random(),data1);
+                        }
+                    });
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error : function(data, status, e) {
+                alert("错误：上传组件错误，请检查网络……");
+            }
+        });
+}
+
+
+function tjfj(){
+}
+</script>
+<style>
+</style>	 	 
+</head>
+
+<body>
+
+<div id="top" class="w_p100 top box p10_r_l">
+		
+   <div class="w_p100 m_center relative ">
+          <span id="top_help" class="abs_left top_toolbar">
+<%--           	  <a  href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="$('#fileForm').submit();">--%>
+           	  <a   class="btn btn-sm btn-primary no-radius" onclick="$('#fileForm').submit();">
+                    <span class="glyphicon glyphicon-open"></span>上传
+              </a> 
+              <a href="javascript:void(0);" class="btn btn-sm btn-primary no-radius" onclick="cssnj_windowBack();">
+	               <span class="glyphicon glyphicon-remove"></span>关闭
+	           </a>  
+          </span>
+          
+   </div>
+    
+</div>		                    
+
+<div class="w_p100  box">
+
+    <form id="fileForm" name="fileForm"  action="javaScript:addfj()">
+     
+           <input type="hidden" name="fxyy_id" id="fxyy_id" value="${fxyy_id}">
+           
+           <table width="100%;">
+              <tr>
+                <td align="right" width="180">
+                 	 上传文件名: 
+                </td>
+                <td>
+                    <input type="file" id="uploadId" name="uploadId"  class="form-control"/>
+                </td>
+              </tr>
+           </table>
+	
+	</form>
+	
+</div>
+</body>
+</html>
