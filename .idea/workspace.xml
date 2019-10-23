@@ -11,19 +11,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx002/js/cx905_yhscxmx.js" line="852" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05f7b0dd-6201-4446-a202-ed0c6428f319" name="Default" comment="20191018">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/getIp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/cssnj-core-dev.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cssnj-core-dev.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/controller/TykfptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/controller/TykfptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/utils/CommUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/utils/CommUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java" afterDir="false" />
+    <list default="true" id="05f7b0dd-6201-4446-a202-ed0c6428f319" name="Default" comment="20191023">
+      <change beforePath="$PROJECT_DIR$/log/info/info.2019-10-23.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/info/info.2019-10-23.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/utils/tycxUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/utils/tycxUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/tycx/cxtj.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/tycx/cxtj.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/tycx/toolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/tycx/toolbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx001/html/tycx_demo1.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx001/html/tycx_demo1.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -67,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="870" column="39" selection-start-line="870" selection-start-column="31" selection-end-line="870" selection-end-column="39" />
+            <state relative-caret-position="186">
+              <caret line="292" column="78" selection-start-line="292" selection-start-column="78" selection-end-line="292" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#67418#67434#0" expanded="true" />
@@ -80,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/getIp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+            <state relative-caret-position="476">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#167#175#0" expanded="true" />
@@ -156,8 +146,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="206" selection-start-line="206" selection-end-line="206" />
+            <state relative-caret-position="173">
+              <caret line="208" column="7" selection-start-line="208" selection-start-column="7" selection-end-line="208" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -177,7 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>idao</find>
       <find>Idao</find>
       <find>SQL_SYS_LOGIN_INFO_BY_RYSFDM</find>
       <find>exceu</find>
@@ -207,6 +196,7 @@
       <find>ia</find>
       <find>getHeader</find>
       <find>ip</find>
+      <find>ip+Constant.rowFG</find>
     </findStrings>
     <replaceStrings>
       <replace>/img/image</replace>
@@ -440,29 +430,6 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="cwks" type="462c0819:PsiDirectoryNode" />
               <item name="bizcore" type="462c0819:PsiDirectoryNode" />
-              <item name="comm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="cwks" type="462c0819:PsiDirectoryNode" />
-              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
-              <item name="comm" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="cwks" type="462c0819:PsiDirectoryNode" />
-              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
               <item name="tycx" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -475,137 +442,20 @@
               <item name="cwks" type="462c0819:PsiDirectoryNode" />
               <item name="bizcore" type="462c0819:PsiDirectoryNode" />
               <item name="tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
               <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="biz" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="tycx" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="biz" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cwks" type="462c0819:PsiDirectoryNode" />
               <item name="bizcore" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="biz" type="462c0819:PsiDirectoryNode" />
-              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
-              <item name="sjyy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="biz" type="462c0819:PsiDirectoryNode" />
-              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
-              <item name="sjyy" type="462c0819:PsiDirectoryNode" />
               <item name="tycx" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="biz" type="462c0819:PsiDirectoryNode" />
-              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
-              <item name="sjyy" type="462c0819:PsiDirectoryNode" />
-              <item name="tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="tycx001" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="biz" type="462c0819:PsiDirectoryNode" />
-              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
-              <item name="sjyy" type="462c0819:PsiDirectoryNode" />
-              <item name="tycx" type="462c0819:PsiDirectoryNode" />
-              <item name="tycx001" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1033,7 +883,7 @@
       <workItem from="1571723159484" duration="1750000" />
       <workItem from="1571732800881" duration="1351000" />
       <workItem from="1571795309147" duration="883000" />
-      <workItem from="1571797499022" duration="18485000" />
+      <workItem from="1571797499022" duration="19425000" />
     </task>
     <task id="LOCAL-00001" summary="admin create">
       <created>1550386762963</created>
@@ -1386,7 +1236,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1206321000" />
+    <option name="totallyTimeSpent" value="1207261000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1413,14 +1263,14 @@
       <window_info id="Capture Tool" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49200428" weight="0.34229138" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.45184135" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.45184135" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.7627932" weight="0.4716714" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49840087" weight="0.3281471" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" sideWeight="0.4989339" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49520257" weight="0.3281471" />
-      <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.4717484" weight="0.30878186" />
+      <window_info active="true" anchor="bottom" id="Messages" order="9" sideWeight="0.4717484" visible="true" weight="0.30878186" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4946695" weight="0.329718" />
       <window_info anchor="bottom" id="JRebel Executor" order="12" sideWeight="0.49412394" weight="0.40520042" />
@@ -1429,7 +1279,7 @@
       <window_info anchor="bottom" id="Spring" order="15" weight="0.32719547" />
       <window_info anchor="bottom" id="Event Log" order="16" sideWeight="0.21313673" side_tool="true" weight="0.2592068" />
       <window_info anchor="bottom" id="Problems" order="17" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run Dashboard" order="18" sideWeight="0.78686327" weight="0.47733712" />
+      <window_info anchor="bottom" id="Run Dashboard" order="18" sideWeight="0.78686327" weight="0.49858356" />
       <window_info anchor="bottom" id="Docker" order="19" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1644,7 +1494,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1180</line>
+          <line>1179</line>
           <properties />
           <option name="timeStamp" value="369" />
         </line-breakpoint>
@@ -1704,37 +1554,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java</url>
-          <line>204</line>
-          <properties />
-          <option name="timeStamp" value="426" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java</url>
           <line>174</line>
           <properties />
           <option name="timeStamp" value="428" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1294</line>
+          <line>1293</line>
           <properties />
           <option name="timeStamp" value="431" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1348</line>
+          <line>1347</line>
           <properties />
           <option name="timeStamp" value="432" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1361</line>
+          <line>1360</line>
           <properties />
           <option name="timeStamp" value="433" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1379</line>
+          <line>1378</line>
           <properties />
           <option name="timeStamp" value="434" />
         </line-breakpoint>
@@ -1752,13 +1596,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>828</line>
+          <line>827</line>
           <properties />
           <option name="timeStamp" value="463" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>389</line>
+          <line>388</line>
           <properties />
           <option name="timeStamp" value="465" />
         </line-breakpoint>
@@ -1775,26 +1619,20 @@
           <option name="timeStamp" value="467" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java</url>
-          <line>206</line>
-          <properties />
-          <option name="timeStamp" value="468" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>336</line>
+          <line>335</line>
           <properties />
           <option name="timeStamp" value="469" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>922</line>
+          <line>921</line>
           <properties />
           <option name="timeStamp" value="470" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>888</line>
+          <line>887</line>
           <properties />
           <option name="timeStamp" value="471" />
         </line-breakpoint>
@@ -1815,6 +1653,18 @@
           <line>34</line>
           <properties />
           <option name="timeStamp" value="488" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>291</line>
+          <properties />
+          <option name="timeStamp" value="493" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>867</line>
+          <properties />
+          <option name="timeStamp" value="494" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/resources/static/js/tycx/dataTableUtil.js</url>
@@ -1844,6 +1694,26 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
+        <expression-string>Tycx002CxCxzxxxPojo</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>addr.getHostName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>addr.getHostAddress()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>addr</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>interfaces.</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
@@ -1865,31 +1735,6 @@
       </expression>
       <expression>
         <expression-string>ni.addrs</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ni</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ipAddrEnum.</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ipAddrEnum</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ipAddrEnum.nextElement()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>addr.getHostName()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -2386,13 +2231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="206" selection-start-line="206" selection-end-line="206" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -2428,17 +2266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="870" column="39" selection-start-line="870" selection-start-column="31" selection-end-line="870" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#67418#67434#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/utils/CommUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-176">
@@ -2451,11 +2278,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/getIp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+        <state relative-caret-position="476">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#167#175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="208" column="7" selection-start-line="208" selection-start-column="7" selection-end-line="208" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="292" column="78" selection-start-line="292" selection-start-column="78" selection-end-line="292" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#67418#67434#0" expanded="true" />
           </folding>
         </state>
       </provider>

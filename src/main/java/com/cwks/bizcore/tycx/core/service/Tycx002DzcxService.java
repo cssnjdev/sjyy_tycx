@@ -277,9 +277,8 @@ public class Tycx002DzcxService  extends BaseServices {
 			Tycx002CxCxzxxxPojo Tycx002CxCxzxxxPojo = new Tycx002CxCxzxxxPojo();
 			String rzuuid = UUIDGenerator.getUUID();
 			long sl = new Date().getTime();
-			InetAddress ia=InetAddress.getLocalHost();
-			String ip=ia.getHostAddress().toString();
-			String address=ia.getHostName().toString();
+			CommUtil commUtil = new CommUtil();
+			ArrayList<String> ip = commUtil.getLocalIpAddr();
 			Tycx002CxCxzxxxPojo.setUuid(rzuuid);
 			Tycx002CxCxzxxxPojo.setSqlxh(dzcxVo.getSqlxh());
 			Tycx002CxCxzxxxPojo.setSqlstr(dzcxVo.getSql());
@@ -290,7 +289,7 @@ public class Tycx002DzcxService  extends BaseServices {
 			Tycx002CxCxzxxxPojo.setCxy(queryType);//查询源
 			Tycx002CxCxzxxxPojo.setSjgsdq(swrysfjg);
 			//Tycx002CxCxzxxxPojo.setSessionid(sessionid);
-			Tycx002CxCxzxxxPojo.setFwip(ip+Constant.rowFG+address);
+			Tycx002CxCxzxxxPojo.setFwip(ip+Constant.rowFG);
 			Tycx002CxCxzxxxPojo.setThreadid(Thread.currentThread().getName());
 			Tycx002CxCxzxxxDao.insertSelective(Tycx002CxCxzxxxPojo);
 			dzcxVo.setRzbUUID(rzuuid);
