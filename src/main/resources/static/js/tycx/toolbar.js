@@ -7,7 +7,7 @@ function queryMx() {
 
 //导出excel
 function exportExcel(queryType){
-
+alert(queryType);
 	if(cxdy.cxlx==4){
 		document.getElementById("bbcxFrame").contentWindow.exportExcel('report1');
 	}else{
@@ -64,16 +64,43 @@ function viewTjModal(){
 
 //导出excel按钮
 function exportExcel(queryType){
+	var SUMMARY_TYPE_MAPPING = {
+		"2" : "sum",
+		"3" : "average",
+		"0" : "合计"
+	};
+	var summaryparams = [];
+	var data = tycx_service.getCxjgl({
+		'sqlxh':cxdy.sqlxh
+	}) ;
+	if(data){
+		var headParams = data.cxjgList;
+		for(var i=0;i<headParams.length;i++){
+			var tdParam = headParams[i];
+			if (tdParam.tjlx == "2" || tdParam.tjlx == "3") { //统计类型
+				summaryparams.push({
+					name : tdParam.lmc,
+					summaryType : SUMMARY_TYPE_MAPPING[tdParam.tjlx]
+				});
+			}
+		}
+	}
 	if(cxdy.cxlx==4){
 		document.getElementById("bbcxFrame").contentWindow.exportExcel('report1');
 	}else{
 	    var queryParams = getCxtjParams(cxtj);
+		// if (cxdy. == "2" || tdParam.tjlx == "3") { //统计类型
+		// 	summaryparams.push({
+		// 		name : tdParam.lmc,
+		// 		summaryType : SUMMARY_TYPE_MAPPING[tdParam.tjlx]
+		// 	});
+		// }
 	    if(cxdy.cxlx==2){
 	    	addParamsTjcxtj(queryParams);
 	    }
 	    var queryParam=JSON.stringify(queryParams).replace(/\"/g,"'");
 		var queryParam1 = encodeURI(encodeURI(queryParam));
-		var downUrl = ctx+"tykf/exportExcle?tld=Tycx002DzcxService_exportFile&sqlxh="+sqlxh+"&queryParams="+queryParam1+"&queryType="+queryType;
+		var downUrl = ctx+"tykf/exportExcle?tld=Tycx002DzcxService_exportFile&sqlxh="+sqlxh+"&queryParams="+queryParam1+"&queryType="+queryType+"&summaryparams="+encodeURI(encodeURI(summaryparams));
 
 	    if(queryType==4){
 	    	var tjcxtj=getTjcxtj();

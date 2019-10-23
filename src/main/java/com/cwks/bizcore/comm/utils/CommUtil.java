@@ -1,6 +1,11 @@
 package com.cwks.bizcore.comm.utils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.UUID;
 
 /**
@@ -26,7 +31,7 @@ public class CommUtil {
      * @param request 
      * @return 
      */  
-    public static String getIpAddress(HttpServletRequest request) {
+    public String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");  
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
             ip = request.getHeader("Proxy-Client-IP");  
@@ -45,7 +50,44 @@ public class CommUtil {
         }  
         return ip;  
     }
+    public static ArrayList<String> getLocalIpAddr()
+    {
+        ArrayList<String> ipList = new ArrayList<String>();
+        InetAddress[] addrList;
+        try
+        {
+            Enumeration interfaces= NetworkInterface.getNetworkInterfaces();
+            while(interfaces.hasMoreElements())
+            {
+                NetworkInterface ni=(NetworkInterface)interfaces.nextElement();
+                Enumeration ipAddrEnum = ni.getInetAddresses();
+                while(ipAddrEnum.hasMoreElements())
+                {
+                    InetAddress addr = (InetAddress)ipAddrEnum.nextElement();
+                    if (addr.isLoopbackAddress() == true)
+                    {
+                        continue;
+                    }
 
+                    String ip = addr.getHostAddress();
+                    if (ip.indexOf(":") != -1)
+                    {
+                        //skip the IPv6 addr
+                        continue;
+                    }
+                    ipList.add(ip);
+                }
+            }
+
+            Collections.sort(ipList);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return ipList;
+    }
     public static String getUUID32(){
         String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
         return uuid;

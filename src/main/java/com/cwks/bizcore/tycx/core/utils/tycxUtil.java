@@ -2,6 +2,7 @@ package com.cwks.bizcore.tycx.core.utils;
 
 import com.cwks.bizcore.utils.DataSourceUtil;
 import com.cwks.common.core.cache.EHCacheManager;
+import com.cwks.common.core.systemConfig.SpringContextUtil;
 import com.cwks.common.core.systemConfig.SystemApplicationContext;
 import com.cwks.common.core.systemConfig.SystemContext;
 import com.cwks.common.dao.JdbcDao;
@@ -19,6 +20,7 @@ public class tycxUtil {
 
     @Autowired
     private JdbcDao jdbcDao;
+    private static JdbcDao idao = (JdbcDao) SpringContextUtil.getBean("JdbcDao");
     public  boolean isEmpty(Object obj) {
         boolean isEmpty = true;
         if (obj != null) {
@@ -58,7 +60,7 @@ public class tycxUtil {
         DataSourceUtil dataSourceUtils = new DataSourceUtil("dataSource_default");
         ArrayList params = new ArrayList();
         params.add(param);
-        Map map = dataSourceUtils.queryformap("select * from  cx_cxjgdmb t where 1=1 and TABLE_NAME=?",params);
+        Map map = idao.queryformap("select * from  cx_cxjgdmb t where 1=1 and TABLE_NAME=?",params);
         return map;
     }
     private List getDataFromDB(String tableName, String filterString) throws Exception {

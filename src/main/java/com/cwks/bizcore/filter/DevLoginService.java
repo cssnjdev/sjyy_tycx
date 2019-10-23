@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 @Service
 public class DevLoginService {
@@ -40,79 +41,95 @@ public class DevLoginService {
         if (request instanceof HttpServletRequest) {
             if (enableDefDev) {
                 String curURL = req.getRequestURI();
-                if(nofilterpath != null && !nofilterpath.equals("")){
+                if (nofilterpath != null && !nofilterpath.equals("")) {
                     String[] urls = nofilterpath.split(",");
-                    String tmpurl=null;
-                    for(int i = 0;i<urls.length;i++){
+                    String tmpurl = null;
+                    for (int i = 0; i < urls.length; i++) {
                         tmpurl = urls[i];
-                        if(tmpurl.indexOf("?") != -1){
+                        if (tmpurl.indexOf("?") != -1) {
                             tmpurl = tmpurl.substring(0, tmpurl.indexOf("?"));
                         }
-                        if(curURL.indexOf(tmpurl) != -1 || curURL.equals(req.getContextPath()+"/")){
+                        if (curURL.indexOf(tmpurl) != -1 || curURL.equals(req.getContextPath() + "/")) {
                             // 继续执行
                             filterChain.doFilter(request, response);
                             return;
                         }
                     }
                 }
-
+                String swry_dm = req.getParameter("swry_dm");
+                String swrysf_dm = req.getParameter("swrysf_dm");
+                String gwxh = req.getParameter("gwxh");
+                if (swry_dm == null || swrysf_dm == null) {
+                    swry_dm = myProperties.getSwry_dm();
+                    swrysf_dm = myProperties.getSwrysf_dm();
+                }
                 UserContext ctx = (UserContext) session.getAttribute("UserContext");
-                if(ctx==null||"".equals(ctx)){
+                if (ctx == null || "".equals(ctx)) {//如果会话为空，重新登录
                     UserContext userContext1 = new UserContext();
-                    String swry_dm = req.getParameter("swry_dm");
-                    String swrysf_dm = req.getParameter("swrysf_dm");
-                    if(swry_dm==null||swrysf_dm==null){
-                        swry_dm=myProperties.getSwry_dm();
-                        swrysf_dm=myProperties.getSwrysf_dm();
+                    List list = jdbcDao.queryforlist("select csz from sys_xtcs t where t.csbm='SQL_SYS_LOGIN_INFO_BY_RYSFDM'");
+                    String sql;
+                    if (list.size() == 0) {
+                        sql = jdbcDao.getSql("SQL_SYS_LOGIN_INFO_BY_RYSFDM");
+                    } else {
+                        Map m = (Map) list.get(0);
+                        if (m.get("csz") != null && m.get("csz") != "") {
+                            sql = m.get("csz").toString();
+                        } else {
+                            sql = jdbcDao.getSql("SQL_SYS_LOGIN_INFO_BY_RYSFDM");
+                        }
+
                     }
-                    String sql = jdbcDao.getSql("SQL_SYS_LOGIN_INFO_BY_RYSFDM");
+
                     ArrayList param = new ArrayList();
                     param.add(swry_dm);
                     param.add(swrysf_dm);
-                    Map map1 = jdbcDao.queryformap(sql,param);
+                    Map map1 = jdbcDao.queryformap(sql, param);
+                    map1.put("gwxh", gwxh);
                     userContext1.setUserinfo(map1);
-                    session.setAttribute("UserContext",userContext1);
+                    session.setAttribute("UserContext", userContext1);
                 }
 
-                //?p_userid=23200300212&p_sfdm=&p_gwdm=&p_znfwdm=&p_zndm=
-                String userid = req.getParameter("p_userid");
-                if(userid!=null && !"".equals(userid)&&ctx!=null&&ctx.getUserinfo().get("swry_dm")!=null&&!userid.equals(ctx.getUserinfo().get("swry_dm"))){
-                    ctx = null;
-                }
-                // 判断是否存在用户会话
-                if(ctx == null && userid!=null && !"".equals(userid)){
-                    ctx = new UserContext();
-                    try {
-                        ResponseEvent resEvent = new ResponseEvent();
-                        resEvent = TykfptController.delegate("toLoginService_devModeLogin","", RequestUtils.requestToMap(req),ctx);
-                        if (resEvent == null) {
-                            session.setAttribute("errmsg","request login user info error");
-                            httpResponse.sendRedirect(req.getContextPath()+"/sys/404/error.jsp");
-                            return;
-                        }else if("1".equals(resEvent.getResMap().get("code").toString())){
-                            UserContext userContext = (UserContext) resEvent.getResMap().get("userContext");
-                            //用户基本信息
-                            session.setAttribute("UserContext", userContext);
-                            filterChain.doFilter(request, response);
-                            return;
-                        }else {
-                            session.setAttribute("UserContext", null);
-                            httpResponse.sendRedirect(req.getContextPath()+"/sys/404/timeout.jsp");
+
+                    //?p_userid=23200300212&p_sfdm=&p_gwdm=&p_znfwdm=&p_zndm=
+                    String userid = req.getParameter("p_userid");
+                    if (userid != null && !"".equals(userid) && ctx != null && ctx.getUserinfo().get("swry_dm") != null && !userid.equals(ctx.getUserinfo().get("swry_dm"))) {
+                        ctx = null;
+                    }
+                    // 判断是否存在用户会话
+                    if (ctx == null && userid != null && !"".equals(userid)) {
+                        ctx = new UserContext();
+                        try {
+                            ResponseEvent resEvent = new ResponseEvent();
+                            resEvent = TykfptController.delegate("toLoginService_devModeLogin", "", RequestUtils.requestToMap(req), ctx);
+                            if (resEvent == null) {
+                                session.setAttribute("errmsg", "request login user info error");
+                                httpResponse.sendRedirect(req.getContextPath() + "/sys/404/error.jsp");
+                                return;
+                            } else if ("1".equals(resEvent.getResMap().get("code").toString())) {
+                                UserContext userContext = (UserContext) resEvent.getResMap().get("userContext");
+                                //用户基本信息
+                                session.setAttribute("UserContext", userContext);
+                                filterChain.doFilter(request, response);
+                                return;
+                            } else {
+                                session.setAttribute("UserContext", null);
+                                httpResponse.sendRedirect(req.getContextPath() + "/sys/404/timeout.jsp");
+                                return;
+                            }
+                        } catch (Exception e) {
+                            logger.error(e.getMessage());
+                            session.setAttribute("errmsg", e.getMessage());
+                            httpResponse.sendRedirect(req.getContextPath() + "/sys/404/error.jsp");
                             return;
                         }
-                    }catch(Exception e) {
-                        logger.error(e.getMessage());
-                        session.setAttribute("errmsg",e.getMessage());
-                        httpResponse.sendRedirect(req.getContextPath()+"/sys/404/error.jsp");
+                    } else {
+                        filterChain.doFilter(request, response);
                         return;
                     }
-                }else{
-                    filterChain.doFilter(request, response);
-                    return;
                 }
             }
+            filterChain.doFilter(request, response);
+            return;
         }
-        filterChain.doFilter(request, response);
-        return;
     }
-}
+

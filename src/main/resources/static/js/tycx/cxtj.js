@@ -11,8 +11,12 @@ function loadCxtj(cxtj,swryDm,cxdy){
 	$("#show_more_tj").hide();
 			
 	if(cxtj.length<1){
-		$("#cxtj_panel").hide();
-		return false;
+		$("#jb_tj").append( '<div id="tjBtn" style=" display: inline-block; height:100%;float:right;"  ></div>') ;
+		$("#tjBtn").append('<span style=" display:inline-block;float:left;padding:3px 0 0 10px;"><a class="btn btn-xs btn-info no-radius" id="searchDataBtn"  onclick="queryMx();" style="float:left;padding:3px 8px 3px 8px;" ><i class="glyphicon glyphicon-search"></i>&nbsp;查询</a></span>');
+		$("#cxtj_panel").show();
+		// $("#cxtj_panel").hide();
+		// return false;
+		return;
 	}
  	
 	for (var i=0;i<cxtj.length;i++) {	//绘制查询条件

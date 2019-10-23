@@ -2,8 +2,10 @@ package com.cwks.bizcore.tycx.core.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
+import com.cwks.bizcore.comm.utils.CommUtil;
 import com.cwks.bizcore.comm.utils.JsonUtil;
 import com.cwks.bizcore.comm.utils.UUIDGenerator;
+import com.cwks.bizcore.daoUtil.ChangeDao;
 import com.cwks.bizcore.tycx.core.utils.tycxUtil;
 import com.cwks.bizcore.utils.DataSourceUtil;
 import com.cwks.common.api.dto.ext.RJson;
@@ -67,8 +69,8 @@ import java.util.Map.Entry;
 public class Tycx002DzcxService  extends BaseServices {
 
     private static Logger logger = LoggerFactory.getLogger(Tycx002DzcxService.class);
-    @Autowired
-    private JdbcDao jdbcDao;
+	@Autowired
+    private  JdbcDao jdbcDao;
 
     @Autowired
     private Tycx002DzcxDao tycx002DzcxDao;
@@ -833,8 +835,9 @@ public class Tycx002DzcxService  extends BaseServices {
 		final String queryParams = URLDecoder.decode(queryParamss,"UTF-8");
 		final String summary = (String) requestEvent.getRequestMap().get(
 				"summary");
-		final String summaryParams = (String) requestEvent.getRequestMap().get(
-				"summaryParams");
+		String summaryParams = (String) requestEvent.getRequestMap().get(
+				"summaryparams");
+		summaryParams=URLDecoder.decode(summaryParams);
 		final String queryType = (String) requestEvent.getRequestMap().get(
 				"queryType");
 		final String code2name = (String) requestEvent.getRequestMap().get(
@@ -864,9 +867,8 @@ public class Tycx002DzcxService  extends BaseServices {
 		Tycx002CxCxzxxxPojo Tycx002CxCxzxxxPojo = new Tycx002CxCxzxxxPojo();
 		String rzuuid = UUIDGenerator.getUUID();
 		long sl = new Date().getTime();
-		InetAddress ia=InetAddress.getLocalHost();
-		String ip=ia.getHostAddress().toString();
-		String address=ia.getHostName().toString();
+		CommUtil commUtil = new CommUtil();
+		ArrayList<String> ip = commUtil.getLocalIpAddr();
 		Tycx002CxCxzxxxPojo.setUuid(rzuuid);
 		Tycx002CxCxzxxxPojo.setSqlxh(dzcxVo.getSqlxh());
 		Tycx002CxCxzxxxPojo.setSqlstr(dzcxVo.getSql());
@@ -877,7 +879,7 @@ public class Tycx002DzcxService  extends BaseServices {
 		Tycx002CxCxzxxxPojo.setSjgsdq("0000");
 		Tycx002CxCxzxxxPojo.setCxy(Constant.queryType_EXPORT);//查询源
 		//Tycx002CxCxzxxxPojo.setSessionid(sessionid);
-		Tycx002CxCxzxxxPojo.setFwip(ip+Constant.rowFG+address);
+		Tycx002CxCxzxxxPojo.setFwip(ip+Constant.rowFG);
 		Tycx002CxCxzxxxPojo.setThreadid(Thread.currentThread().getName());
 		Tycx002CxCxzxxxDao.insertSelective(Tycx002CxCxzxxxPojo);
 		dzcxVo.setRzbUUID(rzuuid);
@@ -1801,9 +1803,10 @@ public class Tycx002DzcxService  extends BaseServices {
 	 * @throws
 	 * @history 修订历史（历次修订内容、修订人、修订时间等）
 	 */
-	public static List dmTomc(
+	public  List dmTomc(
 			List<Map> list, CXDzcxVO dzcxVo)
 			throws Exception {
+
 		tycxUtil tycxUtil = new tycxUtil();
 		Map<String, Object> tempDataMap = new HashMap<String, Object>();
 		// 得到代码转名称列
@@ -1839,7 +1842,10 @@ public class Tycx002DzcxService  extends BaseServices {
 						String dm = "";
 						if (!TycxUtils.isEmpty(table)) {
 
-							Map hcbList = tycxUtil.queryForMap(table,dzcxVo.getSjymc());
+							ArrayList params = new ArrayList();
+							params.add(table);
+							Map hcbList = jdbcDao.queryformap("select * from  cx_cxjgdmb t where 1=1 and TABLE_NAME=?",params);
+//							Map hcbList = tycxUtil.queryForMap(table,dzcxVo.getSjymc());
 							Map<String,Object> hcbmap=(Map<String, Object>) hcbList.get(0);
 							mc = (String) hcbList.get("default_Value_Column");
 							dm = (String) hcbList.get("index_Columns");
