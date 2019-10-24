@@ -12,8 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05f7b0dd-6201-4446-a202-ed0c6428f319" name="Default" comment="20191023">
-      <change beforePath="$PROJECT_DIR$/log/info/info.2019-10-23.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/info/info.2019-10-23.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx001CxCxdyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx001CxCxdyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/tycx/tycx_demo1_commom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/tycx/tycx_demo1_commom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/tycx/toolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/tycx/toolbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_demo1_main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_demo1_main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -49,105 +55,47 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="75" column="58" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="292" column="78" selection-start-line="292" selection-start-column="78" selection-end-line="292" selection-end-column="78" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#67418#67434#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/getIp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#167#175#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/utils/CommUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-176">
-              <caret line="52" column="50" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="50" />
-              <folding>
-                <element signature="e#1767#1775#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx001CxCxtjdyDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="186" selection-start-line="186" selection-end-line="186" />
-              <folding>
-                <element signature="e#4433#4454#0" expanded="true" />
-                <element signature="e#5482#5498#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/controller/TykfptController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/toolbar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="100" column="70" selection-start-line="100" selection-start-column="70" selection-end-line="100" selection-end-column="70" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx001/html/tycx_demo1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="122" column="40" selection-start-line="122" selection-start-column="40" selection-end-line="122" selection-end-column="40" />
+            <state relative-caret-position="303">
+              <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#7086#7092#0" expanded="true" />
+                <element signature="n#style#0;n#span#4;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/tycx/tycx_demo1_commom.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="208" column="7" selection-start-line="208" selection-start-column="7" selection-end-line="208" selection-end-column="7" />
+            <state relative-caret-position="200">
+              <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="488" column="55" lean-forward="true" selection-start-line="488" selection-start-column="55" selection-end-line="488" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/image/icon-sprite.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_demo1_main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="43" lean-forward="true" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -167,36 +115,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Idao</find>
-      <find>SQL_SYS_LOGIN_INFO_BY_RYSFDM</find>
-      <find>exceu</find>
-      <find>count</find>
-      <find>sum</find>
-      <find>queryParamss</find>
-      <find>executeQuery</find>
-      <find>exportExcel(1)</find>
-      <find>导出excel数据</find>
-      <find>exportExcel(</find>
-      <find>exportExcel</find>
-      <find>summaryParams</find>
-      <find>headParams</find>
-      <find>queryParams</find>
-      <find>tycx_service.getCxjgl({</find>
-      <find>data</find>
-      <find>tdParam</find>
-      <find>getCxjgl</find>
-      <find>URLEncoder</find>
-      <find>encoding</find>
-      <find>enco</find>
+      <find>initv</find>
+      <find>initView</find>
+      <find>summary</find>
+      <find>excelp</find>
+      <find>sql</find>
+      <find>datalist</find>
+      <find>list</find>
       <find>excel</find>
-      <find>encodeURI</find>
-      <find>summaryparams</find>
-      <find>gwxh</find>
-      <find>getPhysicalAddress</find>
-      <find>ia</find>
-      <find>getHeader</find>
-      <find>ip</find>
-      <find>ip+Constant.rowFG</find>
+      <find>dzcxVo</find>
+      <find>query</find>
+      <find>cxjgList</find>
+      <find>合计</find>
+      <find>queryType</find>
+      <find>summaryType</find>
+      <find>map</find>
+      <find>添加合计</find>
+      <find>CX_CXDY</find>
+      <find>executeCount</find>
+      <find>hjList</find>
+      <find>tdParam</find>
+      <find>searchParam</find>
+      <find>code2name</find>
+      <find>insert</find>
+      <find>图标</find>
+      <find>当前位置</find>
+      <find>code2Name</find>
+      <find>fxdata</find>
+      <find>chartTool</find>
+      <find>get</find>
+      <find>getwdxx</find>
     </findStrings>
     <replaceStrings>
       <replace>/img/image</replace>
@@ -265,8 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/yyfb/html/yyfw_sc.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/yyfb/html/yyfwWdgz.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/yyfb/html/yywBqgl.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/yyfb/html/yywtFankui.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx002/html/tycx002_setResultColumns.html" />
@@ -275,7 +221,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx002/js/tycx002Dzcx_cxtj.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/tycx/service.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/yyfb/yyfwWdgz.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/tycx/tycx_demo1_commom.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/tycx/jquery.dataTables.css" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx002/html/tycx002DzcxManager.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/yyfb/html/yyfb001_addfj.html" />
@@ -291,7 +236,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/css/tycx/jquery.dataTables.min.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/tycx/cssnjAlert.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/tycx/js/tycx001Cxdy_main.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx001CxCxdyService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx004/html/tycx004_yhscxmx.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx002/js/cx905_yhscxmx.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Fz013TsDao.java" />
@@ -306,16 +250,20 @@
         <option value="$PROJECT_DIR$/src/main/resources/sso_client.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/utils/tycxUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/tycx/cxtj.js" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx001/html/tycx_demo1.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/tycx/toolbar.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/ProcessBuilderShow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/getIp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/utils/CommUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/controller/TykfptController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/tycx/toolbar.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx001CxCxdyService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/tycx/tycx_demo1_commom.css" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_demo1_main.js" />
       </list>
     </option>
   </component>
@@ -368,7 +316,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -430,6 +377,17 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="cwks" type="462c0819:PsiDirectoryNode" />
               <item name="bizcore" type="462c0819:PsiDirectoryNode" />
+              <item name="filter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cwks" type="462c0819:PsiDirectoryNode" />
+              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
               <item name="tycx" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -457,10 +415,151 @@
               <item name="core" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="tycx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="image" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
+              <item name="sjyy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
+              <item name="sjyy" type="462c0819:PsiDirectoryNode" />
+              <item name="tycx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
+              <item name="sjyy" type="462c0819:PsiDirectoryNode" />
+              <item name="tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="tycx001" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="bizcore" type="462c0819:PsiDirectoryNode" />
+              <item name="sjyy" type="462c0819:PsiDirectoryNode" />
+              <item name="tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="tycx001" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sjyy_tycx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjyy_tycx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -477,7 +576,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569393703190" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/cwks" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/workspace_yc/yctax" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -486,22 +585,22 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3761623" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion.Presentation" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\mapper\yyfb" />
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\config" />
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\static\js\tycx" />
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\templates\biz\bizcore\sjyy\yyfb\html" />
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\static\js\tycx\js" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.cwks" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\config\sql" />
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\static\image" />
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\static" />
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\static\js\tycx" />
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\mapper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.cwks.bizcore.tycx.core.dao" />
@@ -510,12 +609,12 @@
       <recent name="com.cwks.bizcore.utils" />
       <recent name="com.cwks.bizcore.log" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\mapper\yyfb" />
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\config" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\config\sql" />
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\static\image" />
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\static" />
       <recent name="D:\workspace\sjyy_tycx\src\main\resources\static\js\tycx" />
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\templates\biz\bizcore\sjyy\yyfb\html" />
-      <recent name="D:\workspace\sjyy_tycx\src\main\resources\static\js\tycx\js" />
+      <recent name="D:\workspace\sjyy_tycx\src\main\resources\mapper" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -598,6 +697,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cwks.bizcore.filter.test" />
+      <module name="sjyy_tycx" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cwks.bizcore.filter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cwks.bizcore.tycx.config.test" />
       <module name="sjyy_tycx" />
@@ -626,9 +739,6 @@
       <method v="2" />
     </configuration>
     <configuration name="cx905_yhscxmx.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="cx905_yhscxmx.js" working-dir="$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx002/js">
-      <method v="2" />
-    </configuration>
-    <configuration name="cxtj.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="cxtj.js" working-dir="$PROJECT_DIR$/src/main/resources/static/js/tycx">
       <method v="2" />
     </configuration>
     <configuration name="sjyy_tycxApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -664,28 +774,28 @@
     </configuration>
     <list>
       <item itemvalue="Application.AddressLngLatExchange" />
-      <item itemvalue="HTTP Request.sjyy_tycxApplication#1" />
-      <item itemvalue="Node.js.cssnjAlert.js" />
-      <item itemvalue="Node.js.cxtj.js" />
-      <item itemvalue="Node.js.cx905_yhscxmx.js" />
-      <item itemvalue="Spring Boot.sjyy_tycxApplication" />
-      <item itemvalue="Spring Boot.sjyy_tycxApplication_war" />
       <item itemvalue="Application.ProcessBuilderShow" />
       <item itemvalue="Application.getIp" />
       <item itemvalue="Application.test" />
+      <item itemvalue="HTTP Request.sjyy_tycxApplication#1" />
+      <item itemvalue="Node.js.cssnjAlert.js" />
+      <item itemvalue="Node.js.cx905_yhscxmx.js" />
+      <item itemvalue="Spring Boot.sjyy_tycxApplication" />
+      <item itemvalue="Spring Boot.sjyy_tycxApplication_war" />
+      <item itemvalue="Application.test (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.test (1)" />
         <item itemvalue="Application.getIp" />
         <item itemvalue="Application.test" />
         <item itemvalue="Application.ProcessBuilderShow" />
         <item itemvalue="Node.js.cx905_yhscxmx.js" />
-        <item itemvalue="Node.js.cxtj.js" />
       </list>
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <configuration useDefault="false">C:\Users\ll\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -883,7 +993,10 @@
       <workItem from="1571723159484" duration="1750000" />
       <workItem from="1571732800881" duration="1351000" />
       <workItem from="1571795309147" duration="883000" />
-      <workItem from="1571797499022" duration="19425000" />
+      <workItem from="1571797499022" duration="19820000" />
+      <workItem from="1571827175032" duration="860000" />
+      <workItem from="1571828063214" duration="28000" />
+      <workItem from="1571879556837" duration="21979000" />
     </task>
     <task id="LOCAL-00001" summary="admin create">
       <created>1550386762963</created>
@@ -1236,7 +1349,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1207261000" />
+    <option name="totallyTimeSpent" value="1230523000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1251,7 +1364,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="37" y="73" width="373" height="923" id="Project" order="0" sideWeight="0.4923077" visible="true" weight="0.27010724" />
+      <window_info content_ui="combo" x="37" y="73" width="373" height="923" id="Project" order="0" sideWeight="0.4923077" visible="true" weight="0.21983914" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" side_tool="true" />
@@ -1263,23 +1376,23 @@
       <window_info id="Capture Tool" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49200428" weight="0.34229138" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.45184135" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.40509915" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.7627932" weight="0.4716714" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49840087" weight="0.3281471" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" sideWeight="0.4989339" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49520257" weight="0.3281471" />
-      <window_info active="true" anchor="bottom" id="Messages" order="9" sideWeight="0.4717484" visible="true" weight="0.30878186" />
+      <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.4717484" weight="0.30878186" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4946695" weight="0.329718" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4946695" weight="0.3286119" />
       <window_info anchor="bottom" id="JRebel Executor" order="12" sideWeight="0.49412394" weight="0.40520042" />
       <window_info anchor="bottom" id="JRebel Console" order="13" sideWeight="0.5053305" side_tool="true" weight="0.329718" />
       <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3281471" />
       <window_info anchor="bottom" id="Spring" order="15" weight="0.32719547" />
       <window_info anchor="bottom" id="Event Log" order="16" sideWeight="0.21313673" side_tool="true" weight="0.2592068" />
       <window_info anchor="bottom" id="Problems" order="17" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run Dashboard" order="18" sideWeight="0.78686327" weight="0.49858356" />
+      <window_info anchor="bottom" id="Run Dashboard" order="18" sideWeight="0.78686327" weight="0.2917847" />
       <window_info anchor="bottom" id="Docker" order="19" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1349,7 +1462,8 @@
     <MESSAGE value="admin create" />
     <MESSAGE value="hur update" />
     <MESSAGE value="20191018" />
-    <option name="LAST_COMMIT_MESSAGE" value="20191018" />
+    <MESSAGE value="20191023" />
+    <option name="LAST_COMMIT_MESSAGE" value="20191023" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1494,7 +1608,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1179</line>
+          <line>1192</line>
           <properties />
           <option name="timeStamp" value="369" />
         </line-breakpoint>
@@ -1506,7 +1620,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx001CxCxdyService.java</url>
-          <line>465</line>
+          <line>466</line>
           <properties />
           <option name="timeStamp" value="401" />
         </line-breakpoint>
@@ -1553,32 +1667,26 @@
           <option name="timeStamp" value="409" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java</url>
-          <line>174</line>
-          <properties />
-          <option name="timeStamp" value="428" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1293</line>
+          <line>1306</line>
           <properties />
           <option name="timeStamp" value="431" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1347</line>
+          <line>1360</line>
           <properties />
           <option name="timeStamp" value="432" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1360</line>
+          <line>1373</line>
           <properties />
           <option name="timeStamp" value="433" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>1378</line>
+          <line>1391</line>
           <properties />
           <option name="timeStamp" value="434" />
         </line-breakpoint>
@@ -1608,45 +1716,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>199</line>
-          <properties />
-          <option name="timeStamp" value="466" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java</url>
-          <line>182</line>
-          <properties />
-          <option name="timeStamp" value="467" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
           <line>335</line>
           <properties />
           <option name="timeStamp" value="469" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>921</line>
+          <line>924</line>
           <properties />
           <option name="timeStamp" value="470" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>887</line>
-          <properties />
-          <option name="timeStamp" value="471" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>276</line>
-          <properties />
-          <option name="timeStamp" value="474" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>246</line>
-          <properties />
-          <option name="timeStamp" value="475" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/utils/CommUtil.java</url>
@@ -1656,15 +1734,63 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>291</line>
+          <line>870</line>
           <properties />
-          <option name="timeStamp" value="493" />
+          <option name="timeStamp" value="494" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
-          <line>867</line>
+          <line>891</line>
           <properties />
-          <option name="timeStamp" value="494" />
+          <option name="timeStamp" value="500" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>945</line>
+          <properties />
+          <option name="timeStamp" value="501" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>916</line>
+          <properties />
+          <option name="timeStamp" value="502" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>273</line>
+          <properties />
+          <option name="timeStamp" value="504" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>1620</line>
+          <properties />
+          <option name="timeStamp" value="505" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java</url>
+          <line>172</line>
+          <properties />
+          <option name="timeStamp" value="506" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>308</line>
+          <properties />
+          <option name="timeStamp" value="508" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>305</line>
+          <properties />
+          <option name="timeStamp" value="509" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java</url>
+          <line>1821</line>
+          <properties />
+          <option name="timeStamp" value="510" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/resources/static/js/tycx/dataTableUtil.js</url>
@@ -1675,6 +1801,12 @@
           <url>file://$PROJECT_DIR$/src/main/resources/static/js/tycx/js/tycx001CxCxdyManager.js</url>
           <line>7</line>
           <option name="timeStamp" value="423" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_demo1_main.js</url>
+          <line>150</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="511" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1694,47 +1826,47 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>Tycx002CxCxzxxxPojo</expression-string>
+        <expression-string>dzcxVo</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>addr.getHostName()</expression-string>
+        <expression-string>dzcxVo.getCode2name()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>addr.getHostAddress()</expression-string>
+        <expression-string>TycxUtils.isEmpty(code2name)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>addr</expression-string>
+        <expression-string>hjList</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>interfaces.</expression-string>
+        <expression-string>datalist</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>interfaces</expression-string>
+        <expression-string>hjList.get(0).get(cxjgLists.get(i).getLmc())</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>ni.</expression-string>
+        <expression-string>cxjgLists.get(i).getLmc()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>ni.name</expression-string>
+        <expression-string>cxjgLists.get(i).getTjlx()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>ni.addrs</expression-string>
+        <expression-string>dzcxVO.getQueryType()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -1748,153 +1880,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/lib/cssnj-sso-core.jar!/cn/org/cssnj/centralportal/sso/client/SsoFilterHelper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/dataTableUtil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="253" column="52" selection-start-line="253" selection-start-column="42" selection-end-line="253" selection-end-column="52" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_dataTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="105" column="57" selection-start-line="105" selection-start-column="57" selection-end-line="105" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/yyfb/service/YyfwService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="125" column="11" selection-start-line="125" selection-start-column="11" selection-end-line="125" selection-end-column="11" />
-          <folding>
-            <element signature="e#5328#5344#0" expanded="true" />
-            <element signature="e#5732#5751#0" expanded="true" />
-            <element signature="e#7086#7102#0" expanded="true" />
-            <element signature="e#8167#8183#0" expanded="true" />
-            <element signature="e#8234#8250#0" expanded="true" />
-            <element signature="e#8784#8792#0" expanded="true" />
-            <element signature="e#10146#10162#0" expanded="true" />
-            <element signature="e#10368#10384#0" expanded="true" />
-            <element signature="e#10957#10973#0" expanded="true" />
-            <element signature="e#11466#11482#0" expanded="true" />
-            <element signature="e#11533#11549#0" expanded="true" />
-            <element signature="e#12038#12046#0" expanded="true" />
-            <element signature="e#12547#12563#0" expanded="true" />
-            <element signature="e#12614#12630#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/js/tycx001CxCxdyManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="544" column="58" selection-start-line="544" selection-start-column="36" selection-end-line="544" selection-end-column="58" />
-          <folding>
-            <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/mapping/pojo/Tycx001CxCxtjdyPojo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx001/html/tycx001CxCxdyManager.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11883">
-          <caret line="699" column="82" selection-start-line="699" selection-start-column="82" selection-end-line="699" selection-end-column="82" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#2;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#3;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#4;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#5;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#6;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#7;n#td#1;n#tr#4;n#table#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#6;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#7;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#8;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#12;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#1;n#div#12;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#13;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#1;n#div#13;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#4;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#1;n#div#4;n#div#0;n#form#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sso_client.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/js/tycx001Cxdy_main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2533">
-          <caret line="149" column="9" selection-start-line="149" selection-start-column="9" selection-end-line="149" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx002/html/tycx002DzcxManager.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1909,13 +1894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/SsoFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="42" column="99" selection-start-line="42" selection-start-column="99" selection-end-line="42" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx001/html/tycx001Cxdy_main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1927,13 +1905,6 @@
             <element signature="n#style#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.21/tomcat-embed-core-9.0.21.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
         </state>
       </provider>
     </entry>
@@ -2002,54 +1973,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/sql/sql-sys.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="10" lean-forward="true" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/utils/TycxUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="198" column="36" selection-start-line="198" selection-start-column="36" selection-end-line="198" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/cssnj-core-dev.jar!/com/cwks/common/dao/JdbcDao.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="241" column="46" lean-forward="true" selection-start-line="241" selection-start-column="46" selection-end-line="241" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="492" column="38" selection-start-line="492" selection-start-column="38" selection-end-line="492" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx001CxCxdyService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2039">
-          <caret line="240" selection-start-line="240" selection-end-line="240" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/vo/CXDzcxVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="601" column="29" lean-forward="true" selection-start-line="601" selection-start-column="29" selection-end-line="601" selection-end-column="29" />
-          <folding>
-            <element signature="e#4925#4926#0" expanded="true" />
-            <element signature="e#4942#4943#0" expanded="true" />
-            <element signature="e#9762#9763#0" expanded="true" />
-            <element signature="e#9789#9790#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2138,13 +2065,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_demo1_main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="32" column="36" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -2152,29 +2072,120 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/loadTable.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/delegate/ServiceDelegate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="46" selection-end-column="6" />
+        <state relative-caret-position="122">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx001/html/tycx_demo1.html">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/net/InetAddress.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="122" column="40" selection-start-line="122" selection-start-column="40" selection-end-line="122" selection-end-column="40" />
+        <state relative-caret-position="122">
+          <caret line="188" column="6" selection-start-line="188" selection-start-column="6" selection-end-line="188" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/ProcessBuilderShow.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/test.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/utils/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="478" column="25" selection-start-line="478" selection-start-column="25" selection-end-line="478" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/utils/CommUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="52" column="50" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx001CxCxtjdyDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2771">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/controller/TykfptController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/cssnj-core-dev.jar!/com/cwks/common/dao/JdbcDao.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="238" column="14" selection-start-line="238" selection-start-column="11" selection-end-line="238" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="30" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.21/tomcat-embed-core-9.0.21.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/getIp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#7086#7092#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/SsoFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/SsoLoginFilterImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/sql/sql-sys.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="4" column="100" selection-start-line="4" selection-start-column="100" selection-end-line="4" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/net/URLDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx004/html/tycx004_yhscxmx.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="421" column="43" selection-start-line="421" selection-start-column="24" selection-end-line="421" selection-end-column="43" />
+        <state relative-caret-position="97">
+          <caret line="1000" column="61" lean-forward="true" selection-start-line="1000" selection-start-column="61" selection-end-line="1000" selection-end-column="61" />
           <folding>
             <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
@@ -2190,118 +2201,141 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/delegate/ServiceDelegate.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/vo/CXDzcxVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="68">
+          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+          <folding>
+            <element signature="e#4925#4926#0" expanded="true" />
+            <element signature="e#4942#4943#0" expanded="true" />
+            <element signature="e#9762#9763#0" expanded="true" />
+            <element signature="e#9789#9790#0" expanded="true" />
+            <element signature="e#10322#10323#0" expanded="true" />
+            <element signature="e#10345#10346#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/mapping/pojo/Tycx001CxCxdyPojo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/dataTableUtil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-33">
+          <caret line="995" column="46" selection-start-line="995" selection-start-column="46" selection-end-line="995" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_dataTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="166" column="76" selection-start-line="166" selection-start-column="76" selection-end-line="166" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/toolbar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="100" column="70" selection-start-line="100" selection-start-column="70" selection-end-line="100" selection-end-column="70" />
+        <state relative-caret-position="170">
+          <caret line="112" column="63" selection-start-line="112" selection-start-column="63" selection-end-line="112" selection-end-column="63" />
           <folding>
             <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/net/InetAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="188" column="6" selection-start-line="188" selection-start-column="6" selection-end-line="188" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/filter/DevLoginService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="75" column="58" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/ProcessBuilderShow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding>
-            <element signature="e#398#406#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx001CxCxtjdyDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="186" selection-start-line="186" selection-end-line="186" />
-          <folding>
-            <element signature="e#4433#4454#0" expanded="true" />
-            <element signature="e#5482#5498#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/controller/TykfptController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/utils/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="478" column="25" selection-start-line="478" selection-start-column="25" selection-end-line="478" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/comm/utils/CommUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="52" column="50" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="50" />
-          <folding>
-            <element signature="e#1767#1775#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/config/getIp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#167#175#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/Tycx002DzcxDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="208" column="7" selection-start-line="208" selection-start-column="7" selection-end-line="208" selection-end-column="7" />
+        <state relative-caret-position="214">
+          <caret line="180" column="61" selection-start-line="180" selection-start-column="61" selection-end-line="180" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx002DzcxService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="292" column="78" selection-start-line="292" selection-start-column="78" selection-end-line="292" selection-end-column="78" />
+        <state relative-caret-position="84">
+          <caret line="952" column="26" selection-start-line="952" selection-start-column="26" selection-end-line="952" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#67418#67434#0" expanded="true" />
+            <element signature="e#13504#13523#0" expanded="true" />
+            <element signature="e#34857#34873#0" expanded="true" />
+            <element signature="e#67436#67452#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/service/Tycx001CxCxdyService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="439" column="72" lean-forward="true" selection-start-line="439" selection-start-column="72" selection-end-line="439" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/loadTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/biz/bizcore/sjyy/tycx/tycx001/html/tycx_demo1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#4;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/image/icon-sprite.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/tycx/tycx_demo1_commom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="488" column="55" lean-forward="true" selection-start-line="488" selection-start-column="55" selection-end-line="488" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cwks/bizcore/tycx/core/dao/TycxInfoDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="43" column="26" lean-forward="true" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/tycx/tycx_demo1_main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="43" lean-forward="true" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -2363,6 +2397,7 @@
             <option name="proportions">
               <list>
                 <option value="0.3761623" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

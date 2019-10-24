@@ -443,10 +443,11 @@ public class Tycx001CxCxdyService  {
 			tycx001CxCxdyPojo.setXybz("Y");
 			tycx001CxCxdyPojo.setXsgnan(gnan);
 			tycx001CxCxdyPojo.setFybj("Y");
-			tycx001CxCxdyPojo.setFwlj(ctx+"tycx/tykf/request_http?tld=Tycx002DzcxService_initView&sqlxh="+sqlxh);
+			tycx001CxCxdyPojo.setFwlj("tycx/tykf/request_http?tld=Tycx002DzcxService_initView&sqlxh="+sqlxh);
 
 			tycx001CxCxdyDao.insertSelective(tycx001CxCxdyPojo);
 		}else{
+			tycx001CxCxdyPojo.setFwlj("tycx/tykf/request_http?tld=Tycx002DzcxService_initView&sqlxh="+sqlxh);
 			tycx001CxCxdyPojo.setXsgnan(gnan);
 			tycx001CxCxdyPojo.setFybj("Y");
 			tycx001CxCxdyDao.updateByPKeySelective(tycx001CxCxdyPojo);

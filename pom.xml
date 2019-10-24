@@ -475,35 +475,35 @@
         </plugins>
 
         <!-- 打包所有到jar包 -->
-<!--        <resources>-->
-<!--                    <resource>-->
-<!--                        <directory>lib</directory>-->
-<!--                        <targetPath>BOOT-INF/lib/</targetPath>-->
-<!--                        <includes>-->
-<!--                            <include>**/*.jar</include>-->
-<!--                        </includes>-->
-<!--                    </resource>-->
-<!--                    <resource>-->
-<!--                        <directory>src/main/resources</directory>-->
-<!--                        <includes>-->
-<!--                            <include>**/*.yml</include>-->
-<!--                            <include>**/*.xml</include>-->
-<!--                            <include>**/*.properties</include>-->
-<!--                        </includes>-->
-<!--                    </resource>-->
-<!--                    <resource>-->
-<!--                        <directory>src/main/java</directory>-->
-<!--                        <includes>-->
-<!--                            <include>**/*.xml</include>-->
-<!--                            <include>**/*.properties</include>-->
-<!--                        </includes>-->
-<!--                    </resource>-->
+        <resources>
+                    <resource>
+                        <directory>lib</directory>
+                        <targetPath>BOOT-INF/lib/</targetPath>
+                        <includes>
+                            <include>**/*.jar</include>
+                        </includes>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*.yml</include>
+                            <include>**/*.xml</include>
+                            <include>**/*.properties</include>
+                        </includes>
+                    </resource>
+                    <resource>
+                        <directory>src/main/java</directory>
+                        <includes>
+                            <include>**/*.xml</include>
+                            <include>**/*.properties</include>
+                        </includes>
+                    </resource>
 
-<!--                    <resource>-->
-<!--                        <directory>src/main/resources</directory>-->
-<!--                        <targetPath>BOOT-INF/classes/</targetPath>-->
-<!--                    </resource>-->
-<!--        </resources>-->
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <targetPath>BOOT-INF/classes/</targetPath>
+                    </resource>
+        </resources>
         <finalName>sjyy_tycx</finalName>
     </build>
 </project>

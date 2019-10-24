@@ -30,7 +30,7 @@ div{
     display: block;
     width: 22px;
     height: 17px;
-    background: url(ctx+"/img/image/icon-sprite.png") no-repeat;
+	background: url("/tycx/img/image/icon-sprite.png") no-repeat;
     margin-right: 12px;
     cursor: pointer;
 }

@@ -64,6 +64,8 @@ function viewTjModal(){
 
 //导出excel按钮
 function exportExcel(queryType){
+	queryType=2;
+	var code2Name = []		  ;
 	var SUMMARY_TYPE_MAPPING = {
 		"2" : "sum",
 		"3" : "average",
@@ -84,6 +86,12 @@ function exportExcel(queryType){
 				});
 			}
 		}
+		if(tdParam.dmsql){ //代码转名称列
+			code2Name.push({
+				name : tdParam.lmc,
+				table : tdParam.dmsql
+			});
+		}
 	}
 	if(cxdy.cxlx==4){
 		document.getElementById("bbcxFrame").contentWindow.exportExcel('report1');
@@ -99,8 +107,12 @@ function exportExcel(queryType){
 	    	addParamsTjcxtj(queryParams);
 	    }
 	    var queryParam=JSON.stringify(queryParams).replace(/\"/g,"'");
+	    var summaryparam=JSON.stringify(summaryparams).replace(/\"/g,"'");
+	    var code2Names=JSON.stringify(code2Name).replace(/\"/g,"'");
 		var queryParam1 = encodeURI(encodeURI(queryParam));
-		var downUrl = ctx+"tykf/exportExcle?tld=Tycx002DzcxService_exportFile&sqlxh="+sqlxh+"&queryParams="+queryParam1+"&queryType="+queryType+"&summaryparams="+encodeURI(encodeURI(summaryparams));
+		var summaryparam1 = encodeURI(encodeURI(summaryparam));
+		var code2Names1 = encodeURI(encodeURI(code2Names));
+		var downUrl = ctx+"tykf/exportExcle?tld=Tycx002DzcxService_exportFile&sqlxh="+sqlxh+"&queryParams="+queryParam1+"&queryType="+queryType+"&summaryparams="+summaryparam1+"&code2Name="+code2Names1;
 
 	    if(queryType==4){
 	    	var tjcxtj=getTjcxtj();

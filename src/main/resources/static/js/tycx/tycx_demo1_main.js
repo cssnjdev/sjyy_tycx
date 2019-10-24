@@ -307,7 +307,8 @@ window.onresize=function(){
 
  
 function resetLayout(){
-	// if(fxdata==null){
+
+	// if(fxdata==null){wed
 	if(fxdata.messageCode==-1){
 		$("#chart_departments").hide();
 		$(".chartTool").hide();

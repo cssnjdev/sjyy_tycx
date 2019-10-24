@@ -829,18 +829,20 @@ public class Tycx002DzcxService  extends BaseServices {
 		HashMap reqmap = new HashMap();
 		final String sqlxh = (String) requestEvent.getRequestMap().get("sqlxh");
 		// 条件
+		List<Tycx001CxCxjgdyPojo> cxjgLists =Tycx001CxCxjgdyDao.selectBySqlxh(sqlxh);//查询结果列
 		String queryParamss = (String) requestEvent.getRequestMap().get(
 				"queryParams");
 		final String queryParams = URLDecoder.decode(queryParamss,"UTF-8");
 		final String summary = (String) requestEvent.getRequestMap().get(
 				"summary");
-		String summaryParams = (String) requestEvent.getRequestMap().get(
+		String summaryParam = (String) requestEvent.getRequestMap().get(
 				"summaryparams");
-		summaryParams=URLDecoder.decode(summaryParams);
+		String summaryParams=URLDecoder.decode(summaryParam,"UTF-8");;
 		final String queryType = (String) requestEvent.getRequestMap().get(
 				"queryType");
-		final String code2name = (String) requestEvent.getRequestMap().get(
+		String code2name = (String) requestEvent.getRequestMap().get(
 				"code2Name");
+		final String code2names = URLDecoder.decode(code2name,"UTF-8");
 		final String wrapParams = (String) requestEvent.getRequestMap().get("wrapParams");
 		// 根据SQLXH查询查询定义信息
 		// 获取查询定义信息
@@ -850,7 +852,7 @@ public class Tycx002DzcxService  extends BaseServices {
 		String sqlstr = Tycx001CxCxdyPojo.getSqlstr();
 		CXDzcxVO dzcxVo = new CXDzcxVO();
 		dzcxVo.setSqlxh(sqlxh);
-		dzcxVo.setCode2name(code2name);
+		dzcxVo.setCode2name(code2names);
 		dzcxVo.setQueryParams(queryParams);
 		dzcxVo.setSummary(summary);
 		dzcxVo.setSummaryParams(summaryParams);
@@ -861,7 +863,8 @@ public class Tycx002DzcxService  extends BaseServices {
 		dzcxVo.setSqlmc(Tycx001CxCxdyPojo.getSqlmc());
 		dzcxVo = LoopQueryParam(dzcxVo);
 		dzcxVo=LoopWrapParams(dzcxVo);
-		dzcxVo = createSql(dzcxVo, null);
+//		dzcxVo = createSql(dzcxVo, null);
+		dzcxVo = createSql(dzcxVo,cxjgLists);
 		// 执行前，保存日志
 		Tycx002CxCxzxxxPojo Tycx002CxCxzxxxPojo = new Tycx002CxCxzxxxPojo();
 		String rzuuid = UUIDGenerator.getUUID();
@@ -913,7 +916,7 @@ public class Tycx002DzcxService  extends BaseServices {
 		// 设置数据源
 		List datalist = tycx002DzcxDao.executeSql(dzcxVo);
 		// 代码转名称
-		if (!TycxUtils.isEmpty(code2name) && !TycxUtils.isEmpty(datalist)) {
+		if (!TycxUtils.isEmpty(code2names) && !TycxUtils.isEmpty(datalist)) {
 			datalist = dmTomc(datalist, dzcxVo);
 		}
 		// 执行时间,记录日志
@@ -930,6 +933,16 @@ public class Tycx002DzcxService  extends BaseServices {
 		dataMap.put("fileName", dzcxVo.getSqlmc());
 		// dataMap.put("class",Tycx002DzcxPojo.class);
 		dataMap.put("colMap", colMap);
+		boolean ishj = true;
+		if(hjList!=null&&hjList.size()>0){
+			for(int i =0;i<cxjgLists.size();i++){
+				if(cxjgLists.get(i).getTjlx().equals("1")&ishj){
+					hjList.get(0).put(cxjgLists.get(i).getLmc(),"合计");
+					ishj=false;
+				}
+			}
+			datalist.add(hjList.get(0));
+		}
 		dataMap.put("listContent", datalist);
 		reqmap.put("ExcelMap", dataMap);
 		resEvent.setResMap(reqmap);

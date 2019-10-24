@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @Service
@@ -83,8 +84,10 @@ public class DevLoginService {
                     ArrayList param = new ArrayList();
                     param.add(swry_dm);
                     param.add(swrysf_dm);
-                    Map map1 = jdbcDao.queryformap(sql, param);
+                    Map map1 = new HashMap();
                     map1.put("gwxh", gwxh);
+                    map1 = jdbcDao.queryformap(sql, param);
+
                     userContext1.setUserinfo(map1);
                     session.setAttribute("UserContext", userContext1);
                 }
